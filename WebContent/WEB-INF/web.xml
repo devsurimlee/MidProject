@@ -14,7 +14,12 @@
 	<url-pattern>*.do</url-pattern>
 </servlet-mapping>
 
-
+  <resource-ref>
+ 	<description>Oracle Datasource example</description> <!-- 리소스 설명 -->
+ 	<res-ref-name>jdbc/myoracle</res-ref-name> <!-- 리소스 이름(JNDI) -->
+ 	<res-type>javax.sql.DataSource</res-type> <!-- return type -->
+ 	<res-auth>Container</res-auth> <!-- 관리계층 -->
+  </resource-ref>
 
 
 </web-app>
