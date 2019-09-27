@@ -14,6 +14,8 @@ import co.yd.command.Command;
 import co.yd.command.IndexCommand;
 import co.yd.command.LoginCheckCommand;
 import co.yd.command.LoginFormCommand;
+import co.yd.command.OrderFormCommand;
+import co.yd.command.OrderSuccessCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -28,7 +30,8 @@ public class MainController extends HttpServlet {
 		map = new HashMap<String, Command>();
 		map.put("/index.do", new IndexCommand());
 		// 수림 추가
-		
+		map.put("/orderForm.do", new OrderFormCommand());
+		map.put("/orderSuccess.do", new OrderSuccessCommand());
 		
 		
 		
