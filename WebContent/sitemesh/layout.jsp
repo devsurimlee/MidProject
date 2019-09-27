@@ -37,6 +37,10 @@
 			<h3><a href="#" style="color:black">BOTTOM</a></h3>
 			<h3><a href="#" style="color:black">DRESS</a></h3>
 			<h3><a href="#" style="color:black">OUTER</a></h3>
+			<br />
+			<h3><a href="basic_orderForm.do">Order</a></h3>
+			
+			
 		</div>
 		
 		<!-- 중앙 그리드 -->

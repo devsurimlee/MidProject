@@ -18,6 +18,8 @@ import co.yd.command.InsertMemberCommand;
 import co.yd.command.InsertMemberFormCommand;
 import co.yd.command.LoginCheckCommand;
 import co.yd.command.LoginFormCommand;
+import co.yd.command.OrderFormCommand;
+import co.yd.command.OrderSuccessCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -32,7 +34,8 @@ public class MainController extends HttpServlet {
 		map = new HashMap<String, Command>();
 		map.put("/basic_index.do", new IndexCommand());
 		// 수림 추가
-		
+		map.put("/basic_orderForm.do", new OrderFormCommand());
+		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		
 		
 		
