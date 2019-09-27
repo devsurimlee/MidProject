@@ -5,20 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function closeWindow() {
-		opener.document.frm.id.readOnly = true;
-		opener.document.frm.pw.focus();
-		window.close();
-	}
-</script>
 </head>
 <body>
-	<div align="center">
-		<h1>${param.id}&nbsp;사용가능한 아이디 입니다.</h1>
-		<input type="button" onclick="closeWindow()" value="확인">
+	<div class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"> ID 사용가능 </h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p> ${param.id}&nbsp;사용가능한 아이디 입니다. </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"> Try Again </button>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
 </body>
 </html>

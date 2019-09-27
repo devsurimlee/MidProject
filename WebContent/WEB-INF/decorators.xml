@@ -9,8 +9,8 @@
 	</excludes>
 
 	<decorator name="basic-theme" page="layout.jsp">
-		<pattern>/</pattern>
-		<pattern>*.do</pattern>
+		<pattern>/index.jsp</pattern>
+		<pattern>/basic_*</pattern>
 	</decorator>
 	
 	<!-- 관리자용 레이아웃은 따로 만들어 주세요 -->
