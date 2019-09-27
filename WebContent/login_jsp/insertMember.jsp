@@ -43,6 +43,30 @@
 			chkId.focus();
 			return false;
 		}
+		
+		
+		$.ajax({
+            url: "../MOCK_DATA.json",
+            dataType: 'json',
+            success: function (result) {
+                // var datas = JSON.stringify(result) // json type
+                // console.log(datas)
+                // console.log(result)
+                var datas = result;
+                $(datas).each(function (ind, val) {
+                    $tr = $('<tr>').append($('<td>').text(val.id),
+                        $('<td>').text(val.first_name),
+                        $('<td>').text(val.last_name),
+                        $('<td>').text(val.email),
+                        $('<td>').html($('<input>').attr('type', 'checkbox').click(clickFunc)))
+                    $table.append($tr)
+                    $('#show').append($table)
+
+                })
+            }
+        });
+		
+		
 		window.open("idCheck.do?id=" + chkId.value, "",	"width=600, height=400");
 	}
 </script>
