@@ -25,8 +25,12 @@ public class LoginCheckCommand implements Command {
 		dto.setmId(request.getParameter("id"));
 		dto.setmPw(request.getParameter("pw"));
 
+		System.out.println("command in");
+		
 		dto = dao.loginCheck(dto);
 
+		System.out.println(dto.getmName());
+		
 		if (dto.getgGrade() != null) {
 			System.out.println(dto.getgGrade());
 			session.setAttribute("id", dto.getmId()); // 세션에 아이디저장

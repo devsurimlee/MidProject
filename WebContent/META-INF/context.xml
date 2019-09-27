@@ -24,30 +24,10 @@
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />
-
     -->
-    
-     <Resource 
-    	name="jdbc/myoracle"
-    	auth="Container"
-    	type="javax.sql.DataSource"
-    	driverClassName="oracle.jdbc.OracleDriver"
-    	url="jdbc:orcle:thin@localhost:1521:xe"
-    	username="shop"
-    	password="1234"
-    	maxActive="50"
-    	maxIdle="20"
-    	maxWait="-1" />
-    
-    <!--  
-    
-    name: dbcp name
-    username: 오라클계정명
-    maxActive: 최대 연결 허용개수
-    maxIdle: 항상 연결상태를 유지하는 개수
-    maxWait: 대기시간, 0보다 작으면 무한대기
-    
-    -->
-    
-    
+    <Resource name="jdbc/myoracle" auth="Container"
+              type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@192.168.0.68:1521:xe"
+              username="shop" password="1234" maxTotal="20" maxIdle="10"
+              maxWaitMillis="-1"/>
 </Context>
