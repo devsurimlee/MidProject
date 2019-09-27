@@ -10,7 +10,7 @@
 	<div align="center">
 	<h1>${param.id} 로그인 실패<br>
 	아이디와 비번을 다시 확인 하십시오.</h1>
-	<button onclick="location.href='login.do'">다시 로그인하기</button>
+	<button onclick="location.href='basic_login.do'">다시 로그인하기</button>
 	</div>
 	<p>
 </body>

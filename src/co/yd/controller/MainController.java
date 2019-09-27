@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
+import co.yd.command.IdCheckCommand;
 import co.yd.command.IndexCommand;
+import co.yd.command.InsertMemberCommand;
+import co.yd.command.InsertMemberFormCommand;
 import co.yd.command.LoginCheckCommand;
 import co.yd.command.LoginFormCommand;
 
@@ -26,7 +29,7 @@ public class MainController extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		map = new HashMap<String, Command>();
-		map.put("/index.do", new IndexCommand());
+		map.put("/basic_index.do", new IndexCommand());
 		// 수림 추가
 		
 		
@@ -40,9 +43,11 @@ public class MainController extends HttpServlet {
 		
 		
 		// 지원 추가
-		map.put("/login.do", new LoginFormCommand());
-		map.put("/loginCheck.do", new LoginCheckCommand());
-		
+		map.put("/basic_login.do", new LoginFormCommand());
+		map.put("/basic_loginCheck.do", new LoginCheckCommand());
+		map.put("/basic_insertMember.do", new InsertMemberFormCommand());
+		map.put("/basic_join.do", new InsertMemberCommand());
+		map.put("/idCheck.do", new IdCheckCommand());
 		
 		
 		

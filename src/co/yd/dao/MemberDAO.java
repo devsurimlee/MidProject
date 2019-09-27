@@ -20,40 +20,42 @@ public class MemberDAO extends DAO {
 	// 1. 회원가입
 	// 1-1. 회원가입
 	public int insertMember(MemberDTO dto) {
-		String sql = "insert into people values(people_seq.nextval, ?, ?, ?, 'U', ?, ?)";
+		// m_id, m_pw, m_name, m_email, m_phone, m_address, m_postcode, g_grade
+		String sql = "insert into members values(?, ?, ?, ?, ?, ?, ?, 'green')";
 		int r = 0;
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, dto.getpName());
-//			pstmt.setString(2, dto.getpAddress());
-//			pstmt.setString(3, dto.getpPhone());
-//			pstmt.setString(4, dto.getId());
-//			pstmt.setString(5, dto.getPassword());
-//			r = pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmId());
+			pstmt.setString(2, dto.getmPw());
+			pstmt.setString(3, dto.getmName());
+			pstmt.setString(4, dto.getmEmail());
+			pstmt.setString(5, dto.getmPhone());
+			pstmt.setString(6, dto.getmAddress());
+			pstmt.setString(7, dto.getmPostcode());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		close();
 		return r;
 	}
 
 	// 1-2. 아이디 중복 체크
 	public boolean isIdCheck(String id) {
-		String sql = "select * from people where id=?";
-		boolean chk = true;
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, id);
-//			rs = pstmt.executeQuery();
-//
-//			if (rs.next()) {
-//				chk = false;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		close();
-		return chk;
+		String sql = "select * from members where m_id=?";
+		boolean flag = true;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				flag = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		close();
+		return flag;
 	}
 	
 	
