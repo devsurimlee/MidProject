@@ -173,7 +173,7 @@
 							<hr>
 						</div>
 
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='orderSuccess.do'">Checkout</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='basic_orderSuccess.do'">Checkout</button>
 
 					</div>
 
