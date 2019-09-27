@@ -3,6 +3,7 @@ package co.yd.controller;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,7 +63,19 @@ public class MainController extends HttpServlet {
 		String path = uri.substring(context.length());
 
 		Command comm = map.get(path);
-		comm.execute(request, response);
+		String page = comm.execute(request, response);
+		
+		if(page!=null) {
+			if(page.startsWith("redirect:")) {
+				response.sendRedirect(page.substring(9));
+			} else if(page.startsWith("ajax:")) {
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().append(page.substring(5));
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+				dispatcher.forward(request, response);
+			}
+		}
 	}
 
 }

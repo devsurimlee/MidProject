@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function checkForm() {
 		var form = document.frm;
@@ -46,31 +47,19 @@
 		
 		
 		$.ajax({
-            url: "../MOCK_DATA.json",
-            dataType: 'json',
+			url: 'IdCheck.do',
+			dataType: {id:document.frm.id.value},
             success: function (result) {
-                // var datas = JSON.stringify(result) // json type
-                // console.log(datas)
-                // console.log(result)
-                var datas = result;
-                $(datas).each(function (ind, val) {
-                    $tr = $('<tr>').append($('<td>').text(val.id),
-                        $('<td>').text(val.first_name),
-                        $('<td>').text(val.last_name),
-                        $('<td>').text(val.email),
-                        $('<td>').html($('<input>').attr('type', 'checkbox').click(clickFunc)))
-                    $table.append($tr)
-                    $('#show').append($table)
-
-                })
+            	$('#myModal').on('shown.bs.modal', function () {
+            		  $('#contents').html()
+            		})
             }
         });
 		
-		
-		window.open("idCheck.do?id=" + chkId.value, "",	"width=600, height=400");
 	}
 </script>
 </head>
+
 <body>
 	<div align="center">
 		<div class="container-fluid">
@@ -122,5 +111,26 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"> ID 중복 </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p id="contents"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal"> Try Again </button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 </body>
 </html>
