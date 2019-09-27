@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
 import co.yd.command.IndexCommand;
+import co.yd.command.LoginCheckCommand;
+import co.yd.command.LoginFormCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -38,7 +40,8 @@ public class MainController extends HttpServlet {
 		
 		
 		// 지원 추가
-		
+		map.put("/login.do", new LoginFormCommand());
+		map.put("/loginCheck.do", new LoginCheckCommand());
 		
 		
 		

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -46,11 +47,11 @@
 		<!-- 오른쪽 그리드 -->
 		<div class="col-md-2" id="div-right" name="div-right"style="background-color:#E0ECF8">
 			 <br /><br /><br /><br />
-			 <h3>LOGIN</h3>
-			 <H3>MY PAGE</H3>
-			 <H3>CART</H3>
-			 <H3>ORDER</H3>
-			 <H3>WISHLIST</H3>
+			 <h3><a href="login.do"> LOGIN </a></h3>
+			 <H3><a href="#"> MY PAGE </a></H3>
+			 <H3><a href="#"> CART </a></H3>
+			 <H3><a href="#"> ORDER </a></H3>
+			 <H3><a href="#"> WISHLIST </a></H3>
 			 
 			<address>
 				 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
