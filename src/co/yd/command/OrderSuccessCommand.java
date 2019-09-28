@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 public class OrderSuccessCommand implements Command{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher=request.getRequestDispatcher("order_jsp/orderSuccess.jsp");
-		dispatcher.forward(request, response);		
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		return "order_jsp/orderSuccess.jsp";		
 	}
 
 }
