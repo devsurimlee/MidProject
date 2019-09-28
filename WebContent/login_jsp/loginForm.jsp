@@ -37,7 +37,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h3 class="text-center"><b>LOGIN</b></h3>
-						<form role="form">
+						<form role="form" id="frm" name="frm" action="basic_loginCheck.do">
 							<div class="form-group">
 								<label for="exampleInputEmail1"> ID </label>
 								<input type="text" class="form-control"  id="id" name="id" />

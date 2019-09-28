@@ -39,6 +39,8 @@
 			<h3><a href="#" style="color:black">OUTER</a></h3>
 			<br />
 			<h3><a href="basic_orderForm.do">Order</a></h3>
+			<br />
+			<h3><a href="basic_index.do">홈으로</a></h3>
 			
 			
 		</div>
