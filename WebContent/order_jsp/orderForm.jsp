@@ -10,21 +10,37 @@
 
 <title>Bootstrap 4, from LayoutIt!</title>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>	
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<!-- 회원정보, 배송지정보 같게하는 JS -->
 <script type="text/javascript">
-$(function(){
-	$(checkBox).change(function(){
-		if($(checkBox).is(":checked")){
-			$("#sendForm").hide();
-		} else {
-			$("#sendForm").show();
-		}
+	$(function() {
+		$(checkBox).change(function() {
+			if ($(checkBox).is(":checked")) {
+				document.getElementById('orderName').value = document.getElementById('userName').value;
+				document.getElementById('orderPhoneNum').value = document.getElementById('userPhoneNum').value;
+				document.getElementById('orderPostCode').value = document.getElementById('userPostCode').value;
+				document.getElementById('orderAddress').value = document.getElementById('userAddress').value;
+				document.getElementById('orderDetailAddress').value = document.getElementById('userDetailAddress').value;
+				
+				var name = document. getElementsByName("orderInputName");
+				for(var i = 0; i < name.length; i++) {
+					name[i].readOnly = true;
+				}
+
+				
+			} else {
+				
+				var name = document. getElementsByName("orderInputName");
+				for(var i = 0; i < name.length; i++) {
+					name[i].readOnly = false;
+					name[i].value = "";
+				}
+			}
+		});
 	});
-});
-
 </script>
-
+<!-- 회원정보, 배송지정보 같게하는 JS 끝-->
 
 <!-- 다음주소API 스크립트 시작 -->
 <script
@@ -66,23 +82,20 @@ $(function(){
 							if (extraAddr !== '') {
 								extraAddr = ' (' + extraAddr + ')';
 							}
-							// 조합된 참고항목을 해당 필드에 넣는다.
-							document.getElementById("userExtraAddress").value = extraAddr;
 
-						} else {
-							document.getElementById("userExtraAddress").value = '';
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('userPostcode').value = data.zonecode;
-						document.getElementById("userAddress").value = addr;
+						document.getElementById('userPostCode').value = data.zonecode;
+						document.getElementById("userAddress").value = addr
+								+ extraAddr;
 						// 커서를 상세주소 필드로 이동한다.
 						document.getElementById("userDetailAddress").focus();
 					}
 				}).open();
 	}
 
-	function sendDaumPostcode() {
+	function orderDaumPostcode() {
 		new daum.Postcode(
 				{
 					oncomplete : function(data) {
@@ -118,31 +131,58 @@ $(function(){
 							if (extraAddr !== '') {
 								extraAddr = ' (' + extraAddr + ')';
 							}
-							// 조합된 참고항목을 해당 필드에 넣는다.
-							document.getElementById("sendExtraAddress").value = extraAddr;
-
-						} else {
-							document.getElementById("sendExtraAddress").value = '';
+							;
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sendPostcode').value = data.zonecode;
-						document.getElementById("sendAddress").value = addr;
+						document.getElementById('orderPostCode').value = data.zonecode;
+						document.getElementById("orderAddress").value = addr
+								+ extraAddr;
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("sendDetailAddress").focus();
+						document.getElementById("orderDetailAddress").focus();
 					}
 				}).open();
 	}
 </script>
 <!-- 다음주소API 스크립트 끝 -->
+<%
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+%>
 
+
+
+
+<script type="text/javascript">
+	function checkOrderForm() {
+		var form = document.orderForm;
+		if (form.orderName.value == "") {
+			alert("이름을 입력하세요.");
+			form.orderName.focus();
+			return false;
+		}
+
+		if (form.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			form.orderPostCode.focus();
+			return false;
+		}
+		
+		if (form.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			form.orderPostCode.focus();
+			return false;
+		}
+
+		form.submit();
+	}
+</script>
 
 
 
 </head>
 
 <body>
-
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -153,6 +193,7 @@ $(function(){
 						<h4>ORDER LIST</h4>
 					</div>
 					<div class="panel-body">
+<<<<<<< HEAD
 						<table class="table borderless">
 							<thead>
 								<tr>
@@ -179,6 +220,27 @@ $(function(){
 								</tr>
 							</tbody>
 						</table>
+=======
+						<div class="row">
+							<div class="col-md-3">
+								<div class="media">
+									<a class="thumbnail pull-left" href="#"> <img
+										class="media-object" src="http://lorempixel.com/460/250/"
+										style="width: 72px; height: 72px;">
+									</a>
+									<div class="media-body">
+										<h5 class="media-heading">Product Name</h5>
+										<h5 class="media-heading">Product Code</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 text-center">1</div>
+							<div class="col-md-3 text-right">
+								<span>25,000</span><span>원</span>
+							</div>
+							<div class="col-md-3 text-right"></div>
+						</div>
+>>>>>>> branch 'master' of https://github.com/devsurimlee/MidProject.git
 					</div>
 				</div>
 				<!--SHIPPING METHOD END-->
@@ -188,92 +250,81 @@ $(function(){
 		<div class="row">
 			<!-- 주문폼 시작 -->
 			<div class="col-md-8">
-				<div class="panel-heading text-center">
-					<h4>주문자 정보</h4>
-				</div>
-				<div>
-					<input type="checkbox" id="checkBox" name="checkBox">주문자정보가 배송지 정보와 같음
-				</div>
-				<table>
-					<tr>
-						<th width="80">이름</th>
-						<td><input type="text" id="userName" name="userName"></td>
-					</tr>
-					<tr>
-						<th>연락처</th>
-						<td><input type="text" size="5" id="userPhoneNum1"
-							name="userPhoneNum1">-<input type="text" size="5"
-							id="userPhoneNum2" name="userPhoneNum2">-<input
-							type="text" size="5" id="userPhoneNum3" name="userPhoneNum3"></td>
-					</tr>
-
-					<tr>
-						<th>주소</th>
-						<td><input type="text" id="userPostcode" name="userPostcode"
-							placeholder="우편번호">&nbsp;<input type="button"
-							onclick="userDaumPostcode()" value="우편번호 찾기"></td>
-					</tr>
-					<tr>
-						<th></th>
-						<td><input type="text" id="userAddress" name="userAddress"
-							placeholder="주소" size="30">&nbsp;<input type="text"
-							id="userExtraAddress" name="userExtraAddress" placeholder=""
-							size="10" readonly></td>
-					</tr>
-
-					<tr>
-						<th></th>
-						<td><input type="text" id="userDetailAddress"
-							name="userDetailAddress" placeholder="상세주소" size="30"></td>
-					</tr>
-					<tr>
-						<th>배송메모</th>
-						<td><input type="text" id="userMemo" name="userMemo"
-							size="50"></td>
-					</tr>
-				</table>
-
-				<br />
-
-				<form id="sendForm" name="sendForm" method="post">
+				<form id="userForm" name="userForm" method="post">
 					<div class="panel-heading text-center">
-						<h4>배송지 정보</h4>
+						<h4>주문자 정보</h4>
 					</div>
-					<table>
+					<div>
+						<input type="checkbox" id="checkBox" name="checkBox">주문자정보가
+						배송지 정보와 같음
+					</div>
+					<table id ="userTable">
 						<tr>
 							<th width="80">이름</th>
-							<td><input type="text" id="sendName" name="sendName"></td>
+							<td><input type="text" id="userName" name="userName" value="${Mdto.mName }"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>
-							<td><input type="text" size="5" id="sendPhoneNum1"
-								name="sendPhoneNum1">-<input type="text" size="5"
-								id="sendPhoneNum2" name="sendPhoneNum2">-<input
-								type="text" size="5" id="sendPhoneNum3" name="sendPhoneNum3"></td>
+							<td><input type="text" id="userPhoneNum"
+								name="userPhoneNum" value="${Mdto.mPhone }">
+						</tr>
+						<c:if test="${not empty id }">
+							<tr>
+								<th>주소</th>
+								<td><input type="text" id="userPostCode"
+									name="userPostCode" value="${Mdto.mPostcode }">&nbsp;<input
+									type="button" onclick="userDaumPostcode()" value="우편번호 찾기"></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td><input type="text" id="userAddress" name="userAddress"
+									value="${Mdto.mAddress1 }"size="50"></td>
+							</tr>
+
+							<tr>
+								<th></th>
+								<td><input type="text" id="userDetailAddress"
+									name="userDetailAddress" value="${Mdto.mAddress2 }"size="50"></td>
+							</tr>
+						</c:if>
+					</table>
+				</form>
+				<br />
+				<form id="orderForm" name="orderForm" method="post">
+					<div class="panel-heading text-center">
+						<h4>배송지 정보</h4>
+					</div>
+					<table id="orderTable">
+						<tr>
+							<th width="80">이름</th>
+							<td><input type="text" id="orderName" name="orderInputName"></td>
+						</tr>
+						<tr>
+							<th>연락처</th>
+							<td><input type="text" id="orderPhoneNum"
+								name="orderInputName"></td>
 						</tr>
 
 						<tr>
 							<th>주소</th>
-							<td><input type="text" id="sendPostcode" name="sendPostcode"
+							<td><input type="text" id="orderPostCode" name="orderInputName"
 								placeholder="우편번호">&nbsp;<input type="button"
-								onclick="sendDaumPostcode()" value="우편번호 찾기"></td>
+								onclick="orderDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr>
 							<th></th>
-							<td><input type="text" id="sendAddress" name="sendAddress"
-								placeholder="주소" size="30">&nbsp;<input type="text"
-								id="sendExtraAddress" name="sendExtraAddress" placeholder=""
-								size="10" readonly></td>
+							<td><input type="text" id="orderAddress" name="orderInputName"
+								placeholder="주소" size="50"></td>
 						</tr>
 
 						<tr>
 							<th></th>
-							<td><input type="text" id="sendDetailAddress"
-								name="sendDetailAddress" placeholder="상세주소" size="30"></td>
+							<td><input type="text" id="orderDetailAddress"
+								name="orderInputName" placeholder="상세주소" size="50"></td>
 						</tr>
 						<tr>
 							<th>배송메모</th>
-							<td><input type="text" id="sendMemo" name="sendMemo"
+							<td><input type="text" id="orderMemo" name="orderMemo"
 								size="50"></td>
 						</tr>
 					</table>
@@ -315,7 +366,7 @@ $(function(){
 						</div>
 
 						<button type="button" class="btn btn-primary btn-lg btn-block"
-							onclick="location.href='basic_orderSuccess.do'">Checkout</button>
+							onclick="checkOrderForm()">Checkout</button>
 
 					</div>
 

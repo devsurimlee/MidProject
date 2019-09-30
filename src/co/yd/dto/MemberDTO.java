@@ -6,9 +6,11 @@ public class MemberDTO {
 	private String mName;
 	private String mEmail;
 	private String mPhone;
-	private String mAddress;
+	private String mAddress1;
+	private String mAddress2;
 	private String mPostcode;
 	private String gGrade;
+	private String mSalt;
 	
 	public String getmId() {
 		return mId;
@@ -40,12 +42,6 @@ public class MemberDTO {
 	public void setmPhone(String mPhone) {
 		this.mPhone = mPhone;
 	}
-	public String getmAddress() {
-		return mAddress;
-	}
-	public void setmAddress(String mAddress) {
-		this.mAddress = mAddress;
-	}
 	public String getmPostcode() {
 		return mPostcode;
 	}
@@ -57,6 +53,24 @@ public class MemberDTO {
 	}
 	public void setgGrade(String gGrade) {
 		this.gGrade = gGrade;
+	}
+	public String getmSalt() {
+		return mSalt;
+	}
+	public void setmSalt(String mSalt) {
+		this.mSalt = mSalt;
+	}
+	public String getmAddress1() {
+		return mAddress1;
+	}
+	public void setmAddress1(String mAddress1) {
+		this.mAddress1 = mAddress1;
+	}
+	public String getmAddress2() {
+		return mAddress2;
+	}
+	public void setmAddress2(String mAddress2) {
+		this.mAddress2 = mAddress2;
 	}
 	
 }

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script type="text/javascript">
 	function checkForm() {
 		var form = document.frm;
@@ -36,7 +36,17 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="text-center"><b>LOGIN</b></h3>
+						<div class="panel panel-default">
+							<br />
+							<div class="panel-heading text-center">
+								<h4><b> LOGIN </b></h4>
+					</div>
+				</div>
+				<br /><br />
+				<div class="row">
+					<div class="col-md-3"></div>
+
+					<div class="col-md-6">
 						<form role="form" id="frm" name="frm" action="basic_loginCheck.do">
 							<div class="form-group">
 								<label for="exampleInputEmail1"> ID </label>
@@ -52,6 +62,11 @@
 							<button type="button" onclick="location.href='basic_insertMember.do'" class="btn btn-md btn-primary btn-block"> JOIN </button>
 						</form>
 					</div>
+					
+					<div class="col-md-3"></div>
+				</div>
+					
+					</div>
 				</div>
 			</div>
 
@@ -61,8 +76,7 @@
 		<c:if test="${not empty id }">
 			<h1>${id }님이미 로그인 하셨습니다</h1>
 			<form id="frm1" name="frm1" action="basic_logout.do" method="post">
-				<input type="submit" value="logout"> &nbsp;&nbsp;&nbsp; <input
-					type="reset" value="취소">
+				<input type="submit" value="logout">
 			</form>
 		</c:if>
 	</div>
