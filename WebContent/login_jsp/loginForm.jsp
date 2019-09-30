@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -61,8 +60,7 @@
 		<c:if test="${not empty id }">
 			<h1>${id }님이미 로그인 하셨습니다</h1>
 			<form id="frm1" name="frm1" action="basic_logout.do" method="post">
-				<input type="submit" value="logout"> &nbsp;&nbsp;&nbsp; <input
-					type="reset" value="취소">
+				<input type="submit" value="logout">
 			</form>
 		</c:if>
 	</div>

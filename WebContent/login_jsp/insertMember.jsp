@@ -71,7 +71,7 @@
 						<div class="form-inline">
 							<label for="exampleInputEmail1"> ID </label>
 							<input type="text" id="id" name="id" type="email" class="form-control"/>
-							<input type="button" onclick="idCheck()" value="중복확인">
+							<!-- <input type="button" onclick="idCheck()" value="중복확인"> -->
 						</div>
 						
 						<div class="form-group">
@@ -104,7 +104,8 @@
 							<input type="text" id="address" name="address" class="form-control"/>
 						</div>
 						
-						<button type="submit" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button>
+						<!-- <button type="submit" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button> -->
+						<button type="submit" class="btn btn-primary btn-block"> JOIN </button>
 						<button type="button" onclick="location.href='basic_login.do'" class="btn btn-primary btn-block"> GO BACK </button>
 					</form>
 				</div>
@@ -112,7 +113,7 @@
 		</div>
 	</div>
 	
-	<div class="modal" tabindex="-1" role="dialog">
+	<!-- <div class="modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -129,7 +130,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 	
 </body>
