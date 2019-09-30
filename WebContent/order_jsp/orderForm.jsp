@@ -143,9 +143,10 @@
 	}
 </script>
 <!-- 다음주소API 스크립트 끝 -->
-
-
-
+<%
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+%>
 
 </head>
 
@@ -153,7 +154,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-
+				<div id ="id" name="id" style="visibility:hidden1">${id }</div>
 				<!--SHIPPING METHOD-->
 				<div class="panel panel-default">
 					<br />
@@ -201,7 +202,7 @@
 					<table>
 						<tr>
 							<th width="80">이름</th>
-							<td><input type="text" id="userName" name="userName"></td>
+							<td><input type="text" id="userName" name="userName" value="${id }"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>

@@ -21,9 +21,17 @@
     <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/scripts.js"></script>
 	<decorator:head/>
+	
+<%
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("id");
+%>
+	
 </head>
 
 <body style="height:100vh;">
+	
+	
 	<div class="container-fluid" >
 	<div class="row" >
 	
@@ -38,7 +46,13 @@
 			<h3><a href="#" style="color:black">DRESS</a></h3>
 			<h3><a href="#" style="color:black">OUTER</a></h3>
 			<br />
-			<h3><a href="basic_orderForm.do">Order</a></h3>
+			
+			<!-- 아이디 파라미터 넘겨줌 -->
+			<form id="frm" name="frm" action="basic_orderForm.do">
+			<input type="text" id ="id" name="id" value="${id }">
+			<h3><a onclick="document.frm.submit()">Order</a></h3>
+			</form>
+			
 			<br />
 			<h3><a href="basic_index.do">홈으로</a></h3>
 			

@@ -15,19 +15,23 @@ public class OrderDAO extends DAO{
 		super();
 	}
 	
-	public MemberDTO selectUserInfo(MemberDTO dto) {
+	public MemberDTO selectUserInfo(MemberDTO Mdto) {
 		String sql ="select * from members where m_id = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getmId());
+			pstmt.setString(1, Mdto.getmId());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				dto = new MemberDTO();
-				dto.setmId(rs.getString("m_id"));
-				dto.setmName(rs.getString("m_name"));
-				dto.setmAddress1(rs.getString("m_address1"));
-				dto.set
+				Mdto = new MemberDTO();
+				Mdto.setmId(rs.getString("m_id"));
+				Mdto.setmName(rs.getString("m_name"));
+				Mdto.setmAddress1(rs.getString("m_address1"));
+				Mdto.setmPostcode(rs.getString("m_postcode"));
+				Mdto.setmPhone(rs.getString("m_phone"));
+				Mdto.setmAddress1(rs.getString("m_address1"));
+				Mdto.setmAddress2(rs.getString("m_address2"));
+				Mdto.setgGrade(rs.getString("g_grade"));
 
 			}
 			
@@ -35,7 +39,7 @@ public class OrderDAO extends DAO{
 			e.printStackTrace();
 		}
 		close();
-		return dto;
+		return Mdto;
 		
 	}
 	

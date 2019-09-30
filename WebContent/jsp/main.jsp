@@ -21,6 +21,9 @@
 
 </head>
 <body>
+		<!-- 아이디 세션용 -->
+		<div id ="id" name="id" style="visibility:hidden">${id }</div>
+
 	<!-- 메인 화면 들어가자마자 보이는 사진 슬라이드 -->
 	<div class="carousel slide" id="carousel-299453">
 		<ol class="carousel-indicators">
