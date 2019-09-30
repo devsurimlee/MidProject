@@ -18,22 +18,24 @@
 		$(checkBox).change(function() {
 			if ($(checkBox).is(":checked")) {
 				document.getElementById('orderName').value = document.getElementById('userName').value;
-				document.getElementById('orderPhoneNum1').value = document.getElementById('userPhoneNum1').value;
-				document.getElementById('orderPhoneNum2').value = document.getElementById('userPhoneNum2').value;
-				document.getElementById('orderPhoneNum3').value = document.getElementById('userPhoneNum3').value;
+				document.getElementById('orderPhoneNum').value = document.getElementById('userPhoneNum').value;
 				document.getElementById('orderPostCode').value = document.getElementById('userPostCode').value;
 				document.getElementById('orderAddress').value = document.getElementById('userAddress').value;
 				document.getElementById('orderDetailAddress').value = document.getElementById('userDetailAddress').value;
+				
+				var name = document. getElementsByName("orderInputName");
+				for(var i = 0; i < name.length; i++) {
+					name[i].readOnly = true;
+				}
 
 				
 			} else {
-				document.getElementById('orderName').value = "";
-				document.getElementById('orderPhoneNum1').value = "";
-				document.getElementById('orderPhoneNum2').value = "";
-				document.getElementById('orderPhoneNum3').value = "";
-				document.getElementById('orderPostCode').value = "";
-				document.getElementById('orderAddress').value = "";
-				document.getElementById('orderDetailAddress').value = "";
+				
+				var name = document. getElementsByName("orderInputName");
+				for(var i = 0; i < name.length; i++) {
+					name[i].readOnly = false;
+					name[i].value = "";
+				}
 			}
 		});
 	});
@@ -148,13 +150,42 @@
         String id = request.getParameter("id");
 %>
 
+
+
+
+<script type="text/javascript">
+	function checkOrderForm() {
+		var form = document.orderForm;
+		if (form.orderName.value == "") {
+			alert("이름을 입력하세요.");
+			form.orderName.focus();
+			return false;
+		}
+
+		if (form.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			form.orderPostCode.focus();
+			return false;
+		}
+		
+		if (form.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			form.orderPostCode.focus();
+			return false;
+		}
+
+		form.submit();
+	}
+</script>
+
+
+
 </head>
 
 <body>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<div id ="id" name="id" style="visibility:hidden1">${id }</div>
 				<!--SHIPPING METHOD-->
 				<div class="panel panel-default">
 					<br />
@@ -199,35 +230,33 @@
 						<input type="checkbox" id="checkBox" name="checkBox">주문자정보가
 						배송지 정보와 같음
 					</div>
-					<table>
+					<table id ="userTable">
 						<tr>
 							<th width="80">이름</th>
-							<td><input type="text" id="userName" name="userName" value="${id }"></td>
+							<td><input type="text" id="userName" name="userName" value="${Mdto.mName }"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>
-							<td><input type="text" size="5" id="userPhoneNum1"
-								name="userPhoneNum1">-<input type="text" size="5"
-								id="userPhoneNum2" name="userPhoneNum2">-<input
-								type="text" size="5" id="userPhoneNum3" name="userPhoneNum3"></td>
+							<td><input type="text" id="userPhoneNum"
+								name="userPhoneNum" value="${Mdto.mPhone }">
 						</tr>
 						<c:if test="${not empty id }">
 							<tr>
 								<th>주소</th>
 								<td><input type="text" id="userPostCode"
-									name="userPostCode" placeholder="우편번호">&nbsp;<input
+									name="userPostCode" value="${Mdto.mPostcode }">&nbsp;<input
 									type="button" onclick="userDaumPostcode()" value="우편번호 찾기"></td>
 							</tr>
 							<tr>
 								<th></th>
 								<td><input type="text" id="userAddress" name="userAddress"
-									placeholder="주소" size="50"></td>
+									value="${Mdto.mAddress1 }"size="50"></td>
 							</tr>
 
 							<tr>
 								<th></th>
 								<td><input type="text" id="userDetailAddress"
-									name="userDetailAddress" placeholder="상세주소" size="50"></td>
+									name="userDetailAddress" value="${Mdto.mAddress2 }"size="50"></td>
 							</tr>
 						</c:if>
 					</table>
@@ -237,35 +266,33 @@
 					<div class="panel-heading text-center">
 						<h4>배송지 정보</h4>
 					</div>
-					<table>
+					<table id="orderTable">
 						<tr>
 							<th width="80">이름</th>
-							<td><input type="text" id="orderName" name="orderName"></td>
+							<td><input type="text" id="orderName" name="orderInputName"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>
-							<td><input type="text" size="5" id="orderPhoneNum1"
-								name="orderPhoneNum1">-<input type="text" size="5"
-								id="orderPhoneNum2" name="orderPhoneNum2">-<input
-								type="text" size="5" id="orderPhoneNum3" name="orderPhoneNum3"></td>
+							<td><input type="text" id="orderPhoneNum"
+								name="orderInputName"></td>
 						</tr>
 
 						<tr>
 							<th>주소</th>
-							<td><input type="text" id="orderPostCode" name="orderPostCode"
+							<td><input type="text" id="orderPostCode" name="orderInputName"
 								placeholder="우편번호">&nbsp;<input type="button"
 								onclick="orderDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr>
 							<th></th>
-							<td><input type="text" id="orderAddress" name="orderAddress"
+							<td><input type="text" id="orderAddress" name="orderInputName"
 								placeholder="주소" size="50"></td>
 						</tr>
 
 						<tr>
 							<th></th>
 							<td><input type="text" id="orderDetailAddress"
-								name="orderDetailAddress" placeholder="상세주소" size="50"></td>
+								name="orderInputName" placeholder="상세주소" size="50"></td>
 						</tr>
 						<tr>
 							<th>배송메모</th>
@@ -311,7 +338,7 @@
 						</div>
 
 						<button type="button" class="btn btn-primary btn-lg btn-block"
-							onclick="location.href='basic_orderSuccess.do'">Checkout</button>
+							onclick="checkOrderForm()">Checkout</button>
 
 					</div>
 
