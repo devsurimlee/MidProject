@@ -146,7 +146,6 @@ $(function(){
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-
 				<!--SHIPPING METHOD-->
 				<div class="panel panel-default">
 					<br />
@@ -158,10 +157,6 @@ $(function(){
 							<thead>
 								<tr>
 									<td><strong>주문상품</strong></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
 								</tr>
 							</thead>
 							<tbody>
@@ -181,15 +176,12 @@ $(function(){
 									</td>
 									<td class="text-center">1</td>
 									<td class="text-right"><span>25,000</span><span>원</span></td>
-									<td class="text-right"><button type="button"
-											class="btn btn-danger">삭제</button></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<!--SHIPPING METHOD END-->
-
 			</div>
 		</div>
 
