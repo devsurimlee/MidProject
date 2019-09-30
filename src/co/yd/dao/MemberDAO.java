@@ -79,7 +79,7 @@ public class MemberDAO extends DAO {
 			if (rs.next()) {
 				dto = new MemberDTO();
 				dto.setmId(rs.getString("m_id"));
-				dto.setgGrade(rs.getString("m_grade"));
+				dto.setgGrade(rs.getString("g_grade"));
 				dto.setmName(rs.getString("m_name"));
 			}
 		} catch (SQLException e) {
