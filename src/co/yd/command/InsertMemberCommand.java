@@ -22,7 +22,7 @@ public class InsertMemberCommand implements Command {
 		dto.setmName(request.getParameter("name"));
 		dto.setmEmail(request.getParameter("email"));
 		dto.setmPostcode(request.getParameter("postcode"));
-		dto.setmAddress(request.getParameter("address"));
+		dto.setmAddress1(request.getParameter("address"));
 		dto.setmPhone(request.getParameter("phone"));
 
 		System.out.println(request.getParameter("id"));
