@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script type="text/javascript">
 	function checkForm() {
 		var form = document.frm;
@@ -35,7 +36,17 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="text-center"><b>LOGIN</b></h3>
+						<div class="panel panel-default">
+							<br />
+							<div class="panel-heading text-center">
+								<h4><b> LOGIN </b></h4>
+					</div>
+				</div>
+				<br /><br />
+				<div class="row">
+					<div class="col-md-3"></div>
+
+					<div class="col-md-6">
 						<form role="form" id="frm" name="frm" action="basic_loginCheck.do">
 							<div class="form-group">
 								<label for="exampleInputEmail1"> ID </label>
@@ -50,6 +61,11 @@
 							<button type="submit" onclick="checkForm()" class="btn btn-md btn-primary btn-block"> LOGIN </button>
 							<button type="button" onclick="location.href='basic_insertMember.do'" class="btn btn-md btn-primary btn-block"> JOIN </button>
 						</form>
+					</div>
+					
+					<div class="col-md-3"></div>
+				</div>
+					
 					</div>
 				</div>
 			</div>

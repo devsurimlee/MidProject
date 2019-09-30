@@ -23,7 +23,7 @@ public class MemberDAO extends DAO {
 	public int insertMember(MemberDTO dto) {
 		// 컬럼 순서 주의!!
 		// 1m_id, 2m_pw, 3m_name, 4m_email, 5m_phone, 6m_address1, 7m_postcode, 8g_grade, 9m_address2, 10m_salt
-		String sql = "insert into members values(?, ?, ?, ?, ?, ?, ?, 'green', '일단 임시 상세주소', ?)";
+		String sql = "insert into members values(?, ?, ?, ?, ?, ?, ?, 'green', ?, ?)";
 		int r = 0;
 		try {
 			String salt = SHA256Util.generateSalt();
@@ -37,8 +37,8 @@ public class MemberDAO extends DAO {
 			pstmt.setString(5, dto.getmPhone());
 			pstmt.setString(6, dto.getmAddress1());
 			pstmt.setString(7, dto.getmPostcode());
-//			pstmt.setString(8, dto.getmAddress2());
-			pstmt.setString(8, salt);
+			pstmt.setString(8, dto.getmAddress2());
+			pstmt.setString(9, salt);
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
