@@ -8,7 +8,5 @@
 </head>
 <body>
 
-	<h1>${id }님 결제완료!</h1>
-
 </body>
 </html>
