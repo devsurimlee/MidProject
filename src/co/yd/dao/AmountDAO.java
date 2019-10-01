@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
-import co.yd.dto.AmountDto;
+import co.yd.dto.AmountDTO;
 
 public class AmountDAO extends DAO {
 	PreparedStatement pstmt;
@@ -19,7 +19,7 @@ public class AmountDAO extends DAO {
 		return instance;
 	}
 
-	public int insert(AmountDto dto) {
+	public int insert(AmountDTO dto) {
 		String sql = "insert into product(AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT) " + "values(?,?,?,?,?)";
 		int result = 0;
 		try {
@@ -40,10 +40,10 @@ public class AmountDAO extends DAO {
 
 	}
 
-	public int insert(ArrayList<AmountDto> list) {
+	public int insert(ArrayList<AmountDTO> list) {
 		int result = 0;
 		try {
-			for (AmountDto amount : list) {
+			for (AmountDTO amount : list) {
 				result += insert(amount);
 			}
 		} catch (Exception e) {
@@ -53,7 +53,7 @@ public class AmountDAO extends DAO {
 		return result;
 	}
 
-	public int update(AmountDto dto) {
+	public int update(AmountDTO dto) {
 		String sql = "update amount set " + "P_ID = ?,AMOUNT_SIZE = ?,AMOUNT_COLOR = ?,AMOUNT_COUNT = ? "
 				+ "where AMOUNT_ID = ?";
 		int result = 0;
@@ -74,7 +74,7 @@ public class AmountDAO extends DAO {
 		return result;
 	}
 
-	public int delete(AmountDto dto) {
+	public int delete(AmountDTO dto) {
 		int result = 0;
 		String sql = "delete from amount where AMOUNT_ID = ?";
 
@@ -88,10 +88,10 @@ public class AmountDAO extends DAO {
 		return result;
 	}
 	
-	public int delete(ArrayList<AmountDto> list) {
+	public int delete(ArrayList<AmountDTO> list) {
 		int result = 0;
 		try {
-			for (AmountDto amount : list) {
+			for (AmountDTO amount : list) {
 				result += delete(amount);
 			}
 		} catch (Exception e) {
@@ -101,14 +101,14 @@ public class AmountDAO extends DAO {
 		return result;
 	}
 	
-	public ArrayList<AmountDto> selectAll(){
+	public ArrayList<AmountDTO> selectAll(){
 		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT " + "from amount";
-		ArrayList<AmountDto> list = new ArrayList<AmountDto>();
+		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				AmountDto dto = new AmountDto();
+				AmountDTO dto = new AmountDTO();
 				dto.setAmount_id(rs.getInt("AMOUNT_ID"));
 				dto.setP_id(rs.getInt("P_ID"));
 				dto.setAmount_size(rs.getString("AMOUNT_SIZE"));
@@ -122,9 +122,9 @@ public class AmountDAO extends DAO {
 		return list;
 	}
 	
-	public AmountDto select(int amount_id) {
+	public AmountDTO select(int amount_id) {
 		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT " + "from amount where amount_id = ?";
-		AmountDto dto = new AmountDto();
+		AmountDTO dto = new AmountDTO();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
