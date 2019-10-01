@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	function checkForm() {
 		var form = document.frm;
@@ -101,8 +103,7 @@
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
 				document.getElementById('postcode').value = data.zonecode;
-				document.getElementById("address1").value = addr
-						+ extraAddr;
+				document.getElementById("address1").value = addr + extraAddr;
 				// 커서를 상세주소 필드로 이동한다.
 				document.getElementById("address2").focus();
 			}
@@ -115,88 +116,97 @@
 	<div align="center">
 		<div class="row">
 			<div class="col-md-12">
-				<!--SHIPPING METHOD-->
-				<div class="panel panel-default">
-					<br />
+				<div class="panel panel-default"><br />
 					<div class="panel-heading text-center">
-						<h4>
-							<b> JOIN US </b>
-						</h4>
+						<h4><b> JOIN US </b></h4>
 					</div>
-				</div>
-				<br /><br />
+				</div><br /><br />
 			</div>
 		</div>
 
-			<div class="row">
-				<!-- 회원가입 폼 -->
-				<div class="col-md-3"></div>
+		<div class="row">
+			<!-- 회원가입 폼 -->
+			<div class="col-md-3"></div>
 
-				<div class="col-md-6">
-					<form role="form" id="frm" name="frm" action="basic_join.do" method="post">
-						<table>
-							<tr>
-								<th width="140" align="right"> ID </th>
-								<td width="200"><input type="text" id="id" name="id" type="email"class="form-control"/></td>
-								<td width="120"><input type="button" onclick="idCheck()" value="중복확인"></td>
-							</tr>
-							
-							<tr>
-								<th> Password </th>
-								<td colspan="2"><input type="password" id="password" name="password" class="form-control" /></td>
-							</tr>
-							
-							<tr>
-								<th> Name </th>
-								<td colspan="2"><input type="text" id="name" name="name" class="form-control" /></td>
-							</tr>
-							
-							<tr>
-								<th> Phone </th>
-								<td colspan="2"><input type="text" id="phone" name="phone" class="form-control" /></td>
-							</tr>
-							
-							<tr>
-								<th> Email </th>
-								<td colspan="2"><input type="text" id="email" name="email" class="form-control" /></td>
-							</tr>
-							
-							<tr>
-								<th> Postcode </th>
-								<td><input type="text" id="postcode" name="postcode" class="form-control" /></td>
-								<td><input type="button" onclick="orderDaumPostcode()" value="우편번호 찾기"></td>
-							</tr>
-							
-							<tr>
-								<th> Address </th>
-								<td colspan="2"><input type="text" id="address1" name="address1" class="form-control" /></td>
-							</tr>
-							
-							<tr>
-								<th> Address Detail </th>
-								<td colspan="2"><input type="text" id="address2" name="address2" class="form-control" /></td>
-							</tr>
-						</table>
-						<div style="height:11px;">&nbsp;</div>
-						<table>
-							<tr>
-								<td width="230"><!-- <button type="submit" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button> -->
-							<button type="submit" class="btn btn-primary btn-block">
-								JOIN</button></td>
-								<td width="230"><button type="button" onclick="location.href='basic_login.do'"
-								class="btn btn-primary btn-block"> GO BACK </button></td>
-							</tr>
-						</table>
-						
-						</form>
+			<div class="col-md-6">
+				<form role="form" id="frm" name="frm" action="basic_join.do"
+					method="post">
+					<table>
+						<tr>
+							<th width="140" align="right">ID</th>
+							<td width="200"><input type="text" id="id" name="id"
+								type="email" class="form-control" /></td>
+							<td width="120"><input type="button" onclick="idCheck()"
+								value="중복확인"></td>
+						</tr>
 
-				</div>
+						<tr>
+							<th>Password</th>
+							<td colspan="2"><input type="password" id="password"
+								name="password" class="form-control" /></td>
+						</tr>
 
+						<tr>
+							<th>Name</th>
+							<td colspan="2"><input type="text" id="name" name="name"
+								class="form-control" /></td>
+						</tr>
 
-				<div class="col-md-3"></div>
+						<tr>
+							<th>Phone</th>
+							<td colspan="2"><input type="text" id="phone" name="phone"
+								class="form-control" /></td>
+						</tr>
+
+						<tr>
+							<th>Email</th>
+							<td colspan="2"><input type="text" id="email" name="email"
+								class="form-control" /></td>
+						</tr>
+
+						<tr>
+							<th>Postcode</th>
+							<td><input type="text" id="postcode" name="postcode"
+								class="form-control" /></td>
+							<td><input type="button" onclick="orderDaumPostcode()"
+								value="우편번호 찾기"></td>
+						</tr>
+
+						<tr>
+							<th>Address</th>
+							<td colspan="2"><input type="text" id="address1"
+								name="address1" class="form-control" /></td>
+						</tr>
+
+						<tr>
+							<th>Address Detail</th>
+							<td colspan="2"><input type="text" id="address2"
+								name="address2" class="form-control" /></td>
+						</tr>
+					</table>
+					<div style="height: 11px;">&nbsp;</div>
+					<table>
+						<tr>
+							<td width="230">
+								<!-- <button type="submit" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button> -->
+								<button type="submit" class="btn btn-primary btn-block">
+									JOIN</button>
+							</td>
+							<td width="230"><button type="button"
+									onclick="location.href='basic_login.do'"
+									class="btn btn-primary btn-block">GO BACK</button></td>
+						</tr>
+					</table>
+
+				</form>
 
 			</div>
+
+
+			<div class="col-md-3"></div>
+
 		</div>
+	</div>
 
 	<!-- <div class="modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">

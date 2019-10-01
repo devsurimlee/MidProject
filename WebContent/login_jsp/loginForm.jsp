@@ -33,43 +33,49 @@
 	<div align="center">
 		<c:if test="${empty id }">
 			<!-- 비로그인시 로그인폼 보임 -->
-			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="panel panel-default">
-							<br />
+						<div class="panel panel-default"><br />
 							<div class="panel-heading text-center">
 								<h4><b> LOGIN </b></h4>
+							</div>
+						</div><br /><br />
 					</div>
 				</div>
-				<br /><br />
+				
 				<div class="row">
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
 						<form role="form" id="frm" name="frm" action="basic_loginCheck.do">
-							<div class="form-group">
-								<label for="exampleInputEmail1"> ID </label>
-								<input type="text" class="form-control"  id="id" name="id" />
-							</div>
-							<div class="form-group">
-
-								<label for="exampleInputPassword1"> Password </label>
-								<input type="password" class="form-control" id="pw" name="pw" />
-							</div>
-
-							<button type="submit" onclick="checkForm()" class="btn btn-md btn-primary btn-block"> LOGIN </button>
-							<button type="button" onclick="location.href='basic_insertMember.do'" class="btn btn-md btn-primary btn-block"> JOIN </button>
+							<table>
+								<tr>
+									<th width="100"> ID </th>
+									<td width="240"><input type="text" class="form-control"  id="id" name="id" /></td>
+								</tr>
+								<tr>
+									<th> Password </th>
+									<td><input type="password" class="form-control" id="pw" name="pw" /></td>
+								</tr>
+							</table>
+							<div style="height: 11px;">&nbsp;</div>
+							<table>
+								<tr>
+									<td colspan="2"><button type="submit" onclick="checkForm()" class="btn btn-md btn-primary btn-block"> LOGIN </button></td>
+								</tr>
+								<tr>
+									<td colspan="2"><button type="button" onclick="location.href='basic_insertMember.do'" class="btn btn-md btn-primary btn-block"> JOIN </button></td>
+								</tr>
+								<tr>
+									<td width="170"><button type="button" onclick="location.href='########.do'" class="btn btn-md btn-primary btn-block"> 아이디 찾기 </button></td>
+									<td width="170"><button type="button" onclick="location.href='########.do'" class="btn btn-md btn-primary btn-block"> 비밀번호 찾기 </button></td>
+								</tr>
+							</table>
 						</form>
 					</div>
 					
 					<div class="col-md-3"></div>
 				</div>
-					
-					</div>
-				</div>
-			</div>
-
 		</c:if>
 	</div>
 	<div align="center">
