@@ -1,225 +1,225 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="decorator"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title></title>
-<!-- Favicon icon -->
-<!-- <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png"> -->
+<html lang="en">
 
-<!-- Chartist -->
-<link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
-<!-- Custom Stylesheet -->
-<link href="css/style.css" rel="stylesheet">
-<decorator:head>
-</decorator:head>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>SB Admin - Dashboard</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+
+<!-- Page level plugin CSS-->
+<link href="vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+<decorator:head />
 
 </head>
-<body>
-	<!--*******************
-        Preloader start
-    ********************-->
-	<div id="preloader">
-		<div class="loader">
-			<svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none"
-					stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-		</div>
-	</div>
-	<!--*******************
-        Preloader end
-    ********************-->
 
+<body id="page-top">
 
-	<!--**********************************
-        Main wrapper start
-    ***********************************-->
-	<div id="main-wrapper">
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-		<!--**********************************
-            Nav header start
-        ***********************************-->
-		<div class="nav-header">
-			<div class="brand-logo">
-				<a href="./adminDefaultForm.jsp"> <b class="logo-abbr"><img
-						src="images/logo.png" alt=""> </b> <span class="logo-compact"><img
-						src="./images/logo-compact.png" alt=""></span> <span
-					class="brand-title"> <img src="images/logo-text.png" alt="">
-				</span>
+		<a class="navbar-brand mr-1" href="./adminIndex.jsp">Start
+			Bootstrap</a>
+
+		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
+			id="sidebarToggle" href="#">
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Navbar Search -->
+		<form
+			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search for..."
+					aria-label="Search" aria-describedby="basic-addon2">
+				<div class="input-group-append">
+					<button class="btn btn-primary" type="button">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
+			</div>
+		</form>
+
+		<!-- Navbar -->
+		<ul class="navbar-nav ml-auto ml-md-0">
+			<li class="nav-item dropdown no-arrow mx-1"><a
+				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <span
+					class="badge badge-danger">9+</span>
+			</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="alertsDropdown">
+					<a class="dropdown-item" href="#">Action</a> <a
+						class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div></li>
+			<li class="nav-item dropdown no-arrow mx-1"><a
+				class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> <span
+					class="badge badge-danger">7</span>
+			</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="messagesDropdown">
+					<a class="dropdown-item" href="#">Action</a> <a
+						class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div></li>
+			<li class="nav-item dropdown no-arrow"><a
+				class="nav-link dropdown-toggle" href="#" id="userDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <i class="fas fa-user-circle fa-fw"></i>
+			</a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#">Settings</a> <a
+						class="dropdown-item" href="#">Activity Log</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#" data-toggle="modal"
+						data-target="#logoutModal">Logout</a>
+				</div></li>
+		</ul>
+
+	</nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav">
+			<li class="nav-item active"><a class="nav-link"
+				href="./adminIndex.jsp"> <i class="fas fa-fw fa-tachometer-alt"></i>
+					<span>Dashboard</span>
+			</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>물품관리</span>
 				</a>
-			</div>
-		</div>
-		<!--**********************************
-            Nav header end
-        ***********************************-->
-
-		<!--**********************************
-            Header start
-        ***********************************-->
-		<div class="header">
-			<div class="header-content clearfix">
-
-				<div class="nav-control">
-					<div class="hamburger">
-						<span class="toggle-icon"><i class="icon-menu"></i></span>
-					</div>
+				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+					<h6 class="dropdown-header">상품관리</h6>
+					<a class="dropdown-item" href="adminProductRegistForm.jsp">상품등록</a> <a
+						class="dropdown-item" href="adminProductListForm.jsp">상품리스트</a>
+					<div class="dropdown-divider"></div>
+					<h6 class="dropdown-header">주문관리</h6>
+					<a class="dropdown-item" href="404.html">주문처리</a> <a
+						class="dropdown-item" href="blank.html">미정</a>
 				</div>
-
-				<div class="header-right">
-					<ul class="clearfix">
-						<li class="icons dropdown"><a href="javascript:void(0)"
-							data-toggle="dropdown"> <i class="mdi mdi-email-outline"></i>
-								<span class="badge badge-pill gradient-1">3</span>
-						</a>
-							<div class="drop-down animated fadeIn dropdown-menu">
-								<div
-									class="dropdown-content-heading d-flex justify-content-between">
-									<span class="">3개의 문의사항이 있습니다.</span> <a
-										href="javascript:void()" class="d-inline-block"> <span
-										class="badge badge-pill gradient-1">3</span>
-									</a>
-								</div>
-								<!--  new 1:1 Message update -->
-
-
-							</div></li>
-						<li class="icons dropdown">
-							<div class="user-img c-pointer position-relative"
-								data-toggle="dropdown">
-								<span class="activity active"></span> <img
-									src="images/user/1.png" height="40" width="40" alt="">
-							</div>
-							<div
-								class="drop-down dropdown-profile animated fadeIn dropdown-menu">
-								<div class="dropdown-content-body">
-									<ul>
-										<li><a href="app-profile.html"><i class="icon-user"></i>
-												<span>관리자 수정</span></a></li>
-										<li><a href="app-profile.html"><i class="icon-user"></i>
-												<span>로그아웃</span></a></li>
-
-									</ul>
-								</div>
-							</div>
-						</li>
-					</ul>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="charts.html">
+					<i class="fas fa-fw fa-chart-area"></i> <span>고객관리</span>
+			</a></li>
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>게시판</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+					
+					<a class="dropdown-item" href="login.html">공지게시판</a> 
+					
+					
+					<a class="dropdown-item" href="404.html">1:1게시판</a> 
 				</div>
+			</li>
+		</ul>
+		<div id="content-wrapper">
+
+			<div class="container-fluid">
+				<!-- /.container-fluid -->
+
+
+				<decorator:body />
+
 			</div>
 		</div>
-		<!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
-		<!--**********************************
-            Sidebar start
-        ***********************************-->
-		<div class="nk-sidebar">
-			<div class="nk-nav-scroll">
-				<ul class="metismenu" id="menu">
-					<li><a href="./adminDefaultForm.jsp" aria-expanded="false"> <i
-							class="icon-badge menu-icon"></i><span class="nav-text">Home</span>
-					</a></li>
-					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
-						href="javascript:void()" aria-expanded="false"> <i
-							class="icon-globe-alt menu-icon"></i><span class="nav-text">상품관리</span>
-					</a>
-						<ul aria-expanded="false">
-							<li><a href="./adminProductRegistForm.jsp">상품등록</a></li>
-							<li><a href="./adminProductTableForm.jsp">상품리스트</a></li>
-
-						</ul></li>
-
-					<li><a href="widgets.html" aria-expanded="false"> <i
-							class="icon-badge menu-icon"></i><span class="nav-text">주문관리</span>
-					</a></li>
-					<li><a href="#" aria-expanded="false"> <i
-							class="icon-badge menu-icon"></i><span class="nav-text">고객관리</span>
-					</a></li>
-					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
-						href="javascript:void()" aria-expanded="false"> <i
-							class="icon-globe-alt menu-icon"></i><span class="nav-text">게시판</span>
-					</a>
-						<ul aria-expanded="false">
-							<li><a href="./layout-blank.html">1:1문의</a></li>
-							<li><a href="./layout-one-column.html">공지사항</a></li>
-
-						</ul></li>
 
 
-				</ul>
-			</div>
-		</div>
-		<!--**********************************
-            Sidebar end
-        ***********************************-->
-
-		<!--**********************************
-            Content body start
-        ***********************************-->
-		<div class="content-body">
-
-			<decorator:body />
-
-
-			<!-- #/ container -->
-		</div>
-		<!--**********************************
-            Content body end
-        ***********************************-->
-
-
-		<!--**********************************
-            Footer start
-        ***********************************-->
-		<div class="footer">
-			<div class="copyright">
-				<p>(주)예담 컴퍼니</p>
-			</div>
-		</div>
-		<!--**********************************
-            Footer end
-        ***********************************-->
 	</div>
-	<!--**********************************
-        Main wrapper end
-    ***********************************-->
 
-	<!--**********************************
-        Scripts
-    ***********************************-->
-	<script src="plugins/common/common.min.js"></script>
-	<script src="js/custom.min.js"></script>
-	<script src="js/settings.js"></script>
-	<script src="js/gleek.js"></script>
-	<script src="js/styleSwitcher.js"></script>
+	<!-- #/ container -->
+	<!-- Sticky Footer -->
+	<footer class="sticky-footer">
+		<div class="container my-auto">
+			<div class="copyright text-center my-auto">
+				<span>Copyright © Your Website 2019</span>
+			</div>
+		</div>
+	</footer>
 
-	<!-- Chartjs -->
-	<script src="./plugins/chart.js/Chart.bundle.min.js"></script>
-	<!-- Circle progress -->
-	<script src="./plugins/circle-progress/circle-progress.min.js"></script>
-	<!-- Datamap -->
-	<script src="./plugins/d3v3/index.js"></script>
-	<script src="./plugins/topojson/topojson.min.js"></script>
-	<script src="./plugins/datamaps/datamaps.world.min.js"></script>
-	<!-- Morrisjs -->
-	<script src="./plugins/raphael/raphael.min.js"></script>
-	<script src="./plugins/morris/morris.min.js"></script>
-	<!-- Pignose Calender -->
-	<script src="./plugins/moment/moment.min.js"></script>
-	<script src="./plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-	<!-- ChartistJS -->
-	<script src="./plugins/chartist/js/chartist.min.js"></script>
-	<script
-		src="./plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+	<!-- /.content-wrapper -->
 
+	<!-- /#wrapper -->
 
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
 
-	<script src="./js/dashboard/dashboard-1.js"></script>
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-primary" href="login.html">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Page level plugin JavaScript-->
+	<script src="vendor/chart.js/Chart.min.js"></script>
+	<script src="vendor/datatables/jquery.dataTables.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin.min.js"></script>
+
+	<!-- Demo scripts for this page-->
+	<script src="js/demo/datatables-demo.js"></script>
+	<script src="js/demo/chart-area-demo.js"></script>
 
 </body>
+
 </html>
