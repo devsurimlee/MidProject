@@ -1,6 +1,6 @@
 package co.yd.dto;
 
-public class AmountDto {
+public class AmountDTO {
 	int amount_id;
 	int p_id;
 	String amount_size;

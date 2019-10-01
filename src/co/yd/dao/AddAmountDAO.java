@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
-import co.yd.dto.AddAmountDto;
-import co.yd.dto.AmountDto;
+import co.yd.dto.AddAmountDTO;
+import co.yd.dto.AmountDTO;
 
 public class AddAmountDAO extends DAO {
 	PreparedStatement pstmt;
@@ -20,7 +20,7 @@ public class AddAmountDAO extends DAO {
 		return instance;
 	}
 
-	public int countIncrease(AddAmountDto dto) {
+	public int countIncrease(AddAmountDTO dto) {
 		String sql = "insert into add_amount(AMOUNT_ID,AA_DATE,AA_COUNT) " + "values(?,sysdate,?)";
 		int result = 0;
 		try {
@@ -37,7 +37,7 @@ public class AddAmountDAO extends DAO {
 		return result;
 	}
 
-	public int countDecrease(AddAmountDto dto) {
+	public int countDecrease(AddAmountDTO dto) {
 		String sql = "insert into add_amount(AMOUNT_ID,AA_DATE,AA_COUNT) " + "values(?,sysdate,?)";
 		int result = 0;
 		try {
@@ -54,14 +54,14 @@ public class AddAmountDAO extends DAO {
 		return result;
 	}
 
-	public ArrayList<AddAmountDto> selectAll() {
+	public ArrayList<AddAmountDTO> selectAll() {
 		String sql = "select AMOUNT_ID,AA_DATE,AA_COUNT from add_amount";
-		ArrayList<AddAmountDto> list = new ArrayList<AddAmountDto>();
+		ArrayList<AddAmountDTO> list = new ArrayList<AddAmountDTO>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				AddAmountDto dto = new AddAmountDto();
+				AddAmountDTO dto = new AddAmountDTO();
 				dto.setAmount_id(rs.getInt("AMOUNT_ID"));
 				dto.setAa_Date(rs.getDate("aa_Date"));
 				dto.setAa_Count(rs.getInt("AA_COUNT"));

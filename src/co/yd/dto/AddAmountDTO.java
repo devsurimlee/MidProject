@@ -2,7 +2,7 @@ package co.yd.dto;
 
 import java.sql.Date;
 
-public class AddAmountDto {
+public class AddAmountDTO {
 	int amount_id;
 	Date aa_Date;
 	int aa_Count;
