@@ -50,7 +50,7 @@ public class MainController extends HttpServlet {
 		
 		
 		// 연우 추가
-		map.put("/admin_index.do", new AdminIndexCommand());
+		map.put("/admin_Index.do", new AdminIndexCommand());
 		map.put("/admin_productListForm.do", new AdminProductListFormCommand());
 		map.put("/admin_productUpdateForm.do", new AdminProductUpdateFormCommand());
 		map.put("/admin_productUpdate.do", new AdminProductUpdateCommand());
