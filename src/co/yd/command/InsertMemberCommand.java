@@ -24,15 +24,7 @@ public class InsertMemberCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("request.getParameter(\"email1\") = " + request.getParameter("email1"));
-		System.out.println("request.getParameter(\"email2\") = " + request.getParameter("email2"));
 		
-		System.out.println("request.getParameter(\"mPhone\") = " + request.getParameter("mPhone"));
-		System.out.println("request.getParameter(\"mEmail\") = " + request.getParameter("mEmail"));
-		
-		System.out.println("dto.getmPhone() = " + dto.getmPhone());
-		System.out.println("dto.getmEmail() = " + dto.getmEmail());
-
 		/*
 		 * dto.setmId(request.getParameter("id"));
 		 * dto.setmPw(request.getParameter("password"));
@@ -44,12 +36,11 @@ public class InsertMemberCommand implements Command {
 		 * dto.setmPhone(request.getParameter("phone"));
 		 */
 
-		
 		int r = dao.insertMember(dto);
 
-		if (r != 0) {
-			path = "login_jsp/joinSuccess.jsp";
-		} else {
+		if (r != 0) { // 성공
+			path = "login_jsp/joinSucess.jsp";
+		} else { // 실패
 			path = "login_jsp/joinFailure.jsp";
 		}
 
