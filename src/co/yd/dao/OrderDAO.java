@@ -1,25 +1,32 @@
 package co.yd.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import co.yd.common.JDBCutil;
 import co.yd.dto.MemberDTO;
 import co.yd.dto.OrderDTO;
 
-public class OrderDAO extends DAO{
+public class OrderDAO{
 	
 	PreparedStatement pstmt;
 	ResultSet rs;
+	Connection conn;
 
-	public OrderDAO() {
-		super();
+	//싱글톤 인스턴트화 안하고 바로 가능
+	public static OrderDAO instance = new OrderDAO(); 
+	
+	public static OrderDAO getInstance() {
+		return instance;
 	}
 	
 	public OrderDTO insertOrders(OrderDTO dto) {
 		String sql = "insert into orders VALUES(ORDERS_SEQ.nextval, sysdate, null, ?, ?, ?, ?, ?, ?, '배송준비중', ?)";
 
 				try {
+					conn = JDBCutil.connect(); //커넥트
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, dto.getmId());
 					pstmt.setString(2, dto.getOrderName());
@@ -33,6 +40,8 @@ public class OrderDAO extends DAO{
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
+				} finally {
+					JDBCutil.disconnect(pstmt, conn); //클로즈
 				}
 		
 		
@@ -43,6 +52,7 @@ public class OrderDAO extends DAO{
 		String sql ="select * from members where m_id = ?";
 		
 		try {
+			conn = JDBCutil.connect(); //커넥트
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, Mdto.getmId());
 			rs = pstmt.executeQuery();
@@ -61,24 +71,11 @@ public class OrderDAO extends DAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
-		close();
 		return Mdto;
-		
 	}
 	
-	private void close() {
-		try {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 }
