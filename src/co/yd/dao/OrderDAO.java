@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import co.yd.dto.MemberDTO;
+import co.yd.dto.OrderDTO;
 
 public class OrderDAO extends DAO{
 	
@@ -13,6 +14,29 @@ public class OrderDAO extends DAO{
 
 	public OrderDAO() {
 		super();
+	}
+	
+	public OrderDTO insertOrders(OrderDTO dto) {
+		String sql = "insert into orders VALUES(ORDERS_SEQ.nextval, sysdate, null, ?, ?, ?, ?, ?, ?, '배송준비중', ?)";
+
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, dto.getmId());
+					pstmt.setString(2, dto.getOrderName());
+					pstmt.setString(3, dto.getOrderAddress1());
+					pstmt.setString(4, dto.getOrderPostCode());
+					pstmt.setString(5, dto.getOrderPhoneNum());
+					pstmt.setInt(6, dto.getOrderTotalPrice());
+					pstmt.setString(7, dto.getOrderAddress2());
+					
+					pstmt.executeUpdate();
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		
+		
+		return dto;
 	}
 	
 	public MemberDTO selectUserInfo(MemberDTO Mdto) {

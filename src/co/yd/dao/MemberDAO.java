@@ -1,19 +1,26 @@
 package co.yd.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import co.yd.common.JDBCutil;
 import co.yd.controller.SHA256Util;
 import co.yd.dto.MemberDTO;
 
-public class MemberDAO extends DAO {
+public class MemberDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
-
-	public MemberDAO() {
-		super();
+	Connection conn;
+	
+	//싱글톤 인스턴트화 안하고 바로 가능
+	public static MemberDAO instance = new MemberDAO(); 
+	
+	public static MemberDAO getInstance() {
+		return instance;
 	}
+
 
 	// 지원: 1회원가입, 2회원정보수정(비밀번호, 주소, 전화번호), 3회원탈퇴(아이디, 주문목록, 게시글 남김)
 	// 4주문내역조회(운송장번호 조회), 5로그인, 6아이디 찾기, 7비밀번호 찾기
@@ -28,7 +35,9 @@ public class MemberDAO extends DAO {
 		try {
 			String salt = SHA256Util.generateSalt();
 			String newPassword = SHA256Util.getEncrypt(dto.getmPw(), salt);
-
+			
+			conn = JDBCutil.connect(); //커넥트
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getmId());
 			pstmt.setString(2, newPassword);
@@ -42,8 +51,9 @@ public class MemberDAO extends DAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
-		close();
 		return r;
 	}
 
@@ -52,6 +62,9 @@ public class MemberDAO extends DAO {
 		String sql = "select * from members where m_id=?";
 		boolean flag = true;
 		try {
+			conn = JDBCutil.connect(); //커넥트
+
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -60,8 +73,10 @@ public class MemberDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
-		close();
+
 		return flag;
 	}
 	
@@ -81,6 +96,8 @@ public class MemberDAO extends DAO {
 		try {
 			String memberSalt;
 			String sql = "select * from members where m_id = ?";
+			
+			conn = JDBCutil.connect(); //커넥트
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getmId());
 			rs = pstmt.executeQuery();
@@ -101,30 +118,13 @@ public class MemberDAO extends DAO {
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
-		close();
 		return rdto;
 	}
-
 	
 	// 6. 아이디 찾기
 	
-	
 	// 7. 비밀번호 찾기
-	
-	
-	// close
-	private void close() {
-		try {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }

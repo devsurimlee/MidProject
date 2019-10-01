@@ -17,24 +17,19 @@
 	$(function() {
 		$(checkBox).change(function() {
 			if ($(checkBox).is(":checked")) {
-				document.getElementById('orderName').value = document.getElementById('userName').value;
-				document.getElementById('orderPhoneNum').value = document.getElementById('userPhoneNum').value;
-				document.getElementById('orderPostCode').value = document.getElementById('userPostCode').value;
-				document.getElementById('orderAddress').value = document.getElementById('userAddress').value;
-				document.getElementById('orderDetailAddress').value = document.getElementById('userDetailAddress').value;
 				
-				var name = document. getElementsByName("orderInputName");
-				for(var i = 0; i < name.length; i++) {
-					name[i].readOnly = true;
+				var userName = $("[name^='user']")  	
+				var orderName = $("[name^='order']")
+				for(var i = 0; i < orderName.length; i++) {
+					orderName[i].readOnly = true;
+					orderName[i].value = userName[i].value;
 				}
-
-				
 			} else {
 				
-				var name = document. getElementsByName("orderInputName");
-				for(var i = 0; i < name.length; i++) {
-					name[i].readOnly = false;
-					name[i].value = "";
+				var orderName = $("[name^='order']")
+				for(var i = 0; i < orderName.length; i++) {
+					orderName[i].readOnly = false;
+					orderName[i].value = "";
 				}
 			}
 		});
@@ -151,30 +146,44 @@
 %>
 
 
-
-
 <script type="text/javascript">
 	function checkOrderForm() {
-		var form = document.orderForm;
-		if (form.orderName.value == "") {
-			alert("이름을 입력하세요.");
-			form.orderName.focus();
-			return false;
-		}
-
-		if (form.orderPostCode.value == "") {
-			alert("우편번호를 입력하세요.");
-			form.orderPostCode.focus();
+		var userForm = document.userForm;
+		var orderForm = document.orderForm;
+		var checkOutForm = document.checkOutForm;
+		
+		if (userForm.userName.value == "") {
+			alert("주문자 이름을 입력하세요.");
+			userForm.userName.focus();
 			return false;
 		}
 		
-		if (form.orderPostCode.value == "") {
-			alert("우편번호를 입력하세요.");
-			form.orderPostCode.focus();
+		if (userForm.userPhoneNum.value == "") {
+			alert("주문자 휴대폰 번호를 입력하세요.");
+			userForm.userPhoneNum.focus();
+			return false;
+		}
+		
+		
+		if (orderForm.orderName.value == "") {
+			alert("수신자 이름을 입력하세요.");
+			orderForm.orderName.focus();
 			return false;
 		}
 
-		form.submit();
+		if (orderForm.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			orderForm.orderPostCode.focus();
+			return false;
+		}
+		
+		if (orderForm.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			orderForm.orderPostCode.focus();
+			return false;
+		}
+
+		orderForm.submit();
 	}
 </script>
 
@@ -193,7 +202,7 @@
 						<h4>ORDER LIST</h4>
 					</div>
 					<div class="panel-body">
-<<<<<<< HEAD
+
 						<table class="table borderless">
 							<thead>
 								<tr>
@@ -220,27 +229,8 @@
 								</tr>
 							</tbody>
 						</table>
-=======
-						<div class="row">
-							<div class="col-md-3">
-								<div class="media">
-									<a class="thumbnail pull-left" href="#"> <img
-										class="media-object" src="http://lorempixel.com/460/250/"
-										style="width: 72px; height: 72px;">
-									</a>
-									<div class="media-body">
-										<h5 class="media-heading">Product Name</h5>
-										<h5 class="media-heading">Product Code</h5>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3 text-center">1</div>
-							<div class="col-md-3 text-right">
-								<span>25,000</span><span>원</span>
-							</div>
-							<div class="col-md-3 text-right"></div>
-						</div>
->>>>>>> branch 'master' of https://github.com/devsurimlee/MidProject.git
+
+						
 					</div>
 				</div>
 				<!--SHIPPING METHOD END-->
@@ -290,37 +280,37 @@
 					</table>
 				</form>
 				<br />
-				<form id="orderForm" name="orderForm" method="post">
+				<form id="orderForm" name="orderForm" method="post" action="basic_orderSuccess.do">
 					<div class="panel-heading text-center">
 						<h4>배송지 정보</h4>
 					</div>
 					<table id="orderTable">
 						<tr>
 							<th width="80">이름</th>
-							<td><input type="text" id="orderName" name="orderInputName"></td>
+							<td><input type="text" id="orderName" name="orderName"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>
 							<td><input type="text" id="orderPhoneNum"
-								name="orderInputName"></td>
+								name="orderPhoneNum"></td>
 						</tr>
 
 						<tr>
 							<th>주소</th>
-							<td><input type="text" id="orderPostCode" name="orderInputName"
+							<td><input type="text" id="orderPostCode" name="orderPostCode"
 								placeholder="우편번호">&nbsp;<input type="button"
 								onclick="orderDaumPostcode()" value="우편번호 찾기"></td>
 						</tr>
 						<tr>
 							<th></th>
-							<td><input type="text" id="orderAddress" name="orderInputName"
+							<td><input type="text" id="orderAddress" name="orderAddress"
 								placeholder="주소" size="50"></td>
 						</tr>
 
 						<tr>
 							<th></th>
 							<td><input type="text" id="orderDetailAddress"
-								name="orderInputName" placeholder="상세주소" size="50"></td>
+								name="orderDetailAddress" placeholder="상세주소" size="50"></td>
 						</tr>
 						<tr>
 							<th>배송메모</th>
@@ -364,10 +354,11 @@
 							</div>
 							<hr>
 						</div>
-
+						
+						<form id="checkOutForm" name="checkOutForm" method="post">
 						<button type="button" class="btn btn-primary btn-lg btn-block"
 							onclick="checkOrderForm()">Checkout</button>
-
+						</form>
 					</div>
 
 				</div>
