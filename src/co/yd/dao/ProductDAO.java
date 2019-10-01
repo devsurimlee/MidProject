@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
-import co.yd.dto.ProductDto;
+import co.yd.dto.ProductDTO;
 
 public class ProductDAO extends DAO {
 	PreparedStatement pstmt;
@@ -21,7 +21,7 @@ public class ProductDAO extends DAO {
 		return instance;
 	}
 
-	public int insert(ProductDto dto) {
+	public int insert(ProductDTO dto) {
 		String sql = "insert into product(P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE) "
 				+ "values(?,?,?,?,?,?,?,?)";
 		int result = 0;
@@ -48,7 +48,7 @@ public class ProductDAO extends DAO {
 
 	}
 
-	public int update(ProductDto dto) {
+	public int update(ProductDTO dto) {
 		String sql = "update product set "
 				+ "P_NAME = ?,P_PRICE = ?,P_SIZE = ?,P_COLOR = ?,P_DETAIL = ?,P_CATEGORY = ?,P_SHOW_STATE = ? "
 				+ "where P_ID = ?";
@@ -77,7 +77,7 @@ public class ProductDAO extends DAO {
 		return result;
 	}
 
-	public int delete(ProductDto dto) {
+	public int delete(ProductDTO dto) {
 		int result = 0;
 		String sql = "delete from product where P_ID = ?";
 
@@ -91,14 +91,14 @@ public class ProductDAO extends DAO {
 		return result;
 	}
 
-	public ArrayList<ProductDto> selectAll() {
+	public ArrayList<ProductDTO> selectAll() {
 		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE " + "from product";
-		ArrayList<ProductDto> list = new ArrayList<ProductDto>();
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				ProductDto dto = new ProductDto();
+				ProductDTO dto = new ProductDTO();
 				dto.setP_id(rs.getInt("P_ID"));
 				dto.setP_name(rs.getString("P_NAME"));
 				dto.setP_price(rs.getInt("P_PRICE"));
@@ -115,9 +115,9 @@ public class ProductDAO extends DAO {
 		return list;
 	}
 	
-	public ProductDto select(int p_id){
+	public ProductDTO select(int p_id){
 		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE " + "from product where p_id = ?";
-		ProductDto dto = new ProductDto();
+		ProductDTO dto = new ProductDTO();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_id);
