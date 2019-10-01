@@ -68,7 +68,12 @@
 		<!-- 오른쪽 그리드 -->
 		<div class="col-md-2" id="div-right" name="div-right"style="background-color:#E0ECF8">
 			 <br /><br /><br /><br />
-			 <h3><a href="basic_login.do"> LOGIN </a></h3>
+			 <c:if test="${empty id }">
+				<h3><a href="basic_login.do"> LOGIN </a></h3>
+			 </c:if>
+			 <c:if test="${not empty id }">
+				 <h3><a href="basic_login.do"> LOGOUT </a></h3>
+			 </c:if>
 			 <H3><a href="#"> MY PAGE </a></H3>
 			 <H3><a href="#"> CART </a></H3>
 			 <H3><a href="#"> ORDER </a></H3>
