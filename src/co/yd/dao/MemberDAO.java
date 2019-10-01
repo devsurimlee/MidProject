@@ -57,7 +57,7 @@ public class MemberDAO {
 		return r;
 	}
 
-	// 1-2. 아이디 중복 체크
+	// 1-2. 아이디 중복 체크 / 사용 가능하면 true / 사용 불가능 false
 	public boolean isIdCheck(String id) {
 		String sql = "select * from members where m_id=?";
 		boolean flag = true;

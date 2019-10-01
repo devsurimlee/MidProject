@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 	function checkForm() {
-		var form = document.frm;
+		var form = document.loginfrm;
 		if (form.id.value == "") {
 			alert("아이디를 입력하세요.");
 			form.id.focus();
@@ -20,7 +20,6 @@
 			form.pw.focus();
 			return false;
 		}
-
 		form.submit();
 	}
 </script>
@@ -47,21 +46,21 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
-						<form role="form" id="frm" name="frm" action="basic_loginCheck.do">
+						<form role="form" id="loginfrm" name="loginfrm" action="basic_loginCheck.do">
 							<table>
 								<tr>
 									<th width="100"> ID </th>
-									<td width="240"><input type="text" class="form-control"  id="id" name="id" /></td>
+									<td width="240"><input type="text" class="form-control" id="id" name="id" /></td>
 								</tr>
 								<tr>
 									<th> Password </th>
 									<td><input type="password" class="form-control" id="pw" name="pw" /></td>
 								</tr>
 							</table>
-							<div style="height: 11px;">&nbsp;</div>
+							<div style="height: 11px;">&nbsp;</div> <!-- 그냥 테이블이랑 버튼 사이 간격 조정을 위한 태그 -->
 							<table>
 								<tr>
-									<td colspan="2"><button type="submit" onclick="checkForm()" class="btn btn-md btn-primary btn-block"> LOGIN </button></td>
+									<td colspan="2"><button type="button" onclick="checkForm()" class="btn btn-md btn-primary btn-block"> LOGIN </button></td>
 								</tr>
 								<tr>
 									<td colspan="2"><button type="button" onclick="location.href='basic_insertMember.do'" class="btn btn-md btn-primary btn-block"> JOIN </button></td>

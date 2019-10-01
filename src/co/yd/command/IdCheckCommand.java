@@ -11,22 +11,23 @@ import co.yd.dao.MemberDAO;
 public class IdCheckCommand implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		MemberDAO dao = new MemberDAO();
 
 		String id = request.getParameter("id");
 		boolean flag = dao.isIdCheck(id);
-		String ajax = null;
+		String result = null;
 
-		if (flag) {
-			
-
-		} else {
-			
+		if (flag == true) { // 아이디 사용 가능
+			result = "{\"flag\": true}";
+		} else { // 아이디 사용 불가능
+			result = "{\"flag\": false}";
 		}
 
-		return "ajax:"+ajax;
+//		response.getWriter().print(result);
+		return "ajax:" + result;
 	}
 
 }
