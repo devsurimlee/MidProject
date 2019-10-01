@@ -8,7 +8,7 @@
 </head>
 <body>
 
-상품상세 페이지~~~
+${param.key }번 상품 상품상세 페이지~~~
 
 </body>
 </html>

@@ -11,7 +11,9 @@ public class ProductDetailCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		int key = Integer.parseInt(request.getParameter("key"));
+		
 		return "order_jsp/productDetail.jsp";
 	}
-
 }

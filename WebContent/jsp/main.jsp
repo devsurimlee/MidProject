@@ -83,6 +83,7 @@ $(document).ready(function(){
 
 	<!-- 사진 슬라이드 밑에 상품 진열 -->
 	
+	<form>
 	<c:forEach items="${list }" var="dto">
 		<figure class="snip1384">
 		<img src="image/clothes/${dto.p_id }.jpg" alt="sample83" width="400" height="400"/>
@@ -91,9 +92,10 @@ $(document).ready(function(){
 			<p>${dto.p_color }</p>
 			<i class="ion-ios-arrow-right"></i>
 		</figcaption>
-		<a href="basic_productDetail.do?key="${dto.p_id }"></a>
+		<a href="basic_productDetail.do?key=${dto.p_id }"></a>
 	</figure>
 	</c:forEach>
+	</form>
 	
 	
 <br/><br/><br/>
