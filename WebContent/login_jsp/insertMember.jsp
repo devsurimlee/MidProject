@@ -8,24 +8,31 @@
 <script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript">
+	var chPw = 0;
 	function checkForm() {
 		var form = document.joinfrm;
 
-		if (form.id.value == "") {
+		if (form.joinid.value == "") {
 			alert("아이디를 입력하세요.");
-			form.id.focus();
+			form.joinid.focus();
 			return false;
 		}
 
-		if (form.id.readOnly != true) {
-			alert("중복체크를 해주세요.");
-			form.id.focus();
+		if (form.joinid.readOnly != true) {
+			alert("아이디 중복체크를 해 주세요.");
+			form.joinid.focus();
 			return false;
 		}
 
-		if (form.password.value == "") {
+		if (form.password1.value == "") {
 			alert("비밀번호를 입력하세요.");
-			form.password.focus();
+			form.password1.focus();
+			return false;
+		}
+		
+		if (chPw == 0){
+			alert("비밀번호 재확인을 해 주세요.");
+			form.password2.focus();
 			return false;
 		}
 
@@ -35,17 +42,52 @@
 			return false;
 		}
 		
-		var ph = $("#phone1").val() + $("#phone2").val() +$("#phone3").val();
-		$("#mPhone").val(ph)
+		if (form.phone2.value == "" || form.phone3.value == ""){
+			alert("전화번호를 입력하세요.");
+			form.phone2.focus();
+			return false;
+		}
 		
-		var m = $("#mail1").val() + $("#mail2").val();
-		$("#mEmail").val(m);
+		if (isNaN(form.phone2.value) == true || isNaN(form.phone3.value) == true){
+			alert("전화번호는 숫자만 입력해 주세요.");
+			form.phone2.focus();
+			return false;
+		}
+		
+		if (form.email1.value == ""){
+			alert("이메일을 입력하세요.");
+			form.eamil1.focus();
+			return false;
+		}
+		
+		if (form.postcode.value == ""){
+			alert("주소를 입력하세요.");
+			form.address2.focus();
+			return false;
+		}
+		
+		if (form.address2.value == ""){
+			alert("상세 주소를 입력하세요.");
+			form.address2.focus();
+			return false;
+		}
+		
+		console.log("phone1 = " + form.phone1.value)
+		console.log("phone1 = " + $("phone1").val())
+		
+		var ph = form.phone1.value + "-" + form.phone2.value + "-" + form.phone3.value;
+		form.mPhone.value = ph;
+		
+		var m = form.email1.value + "@" + form.email2.value;
+		/* $("#email1").val() + "@" + $("#email2").val(); */
+		form.mEmail.value = m;
+		/* $("#mEmail").val(m); */
 		
 		form.submit();
 	}
 
 	function idCheck() {
-		var chkId = document.joinfrm.id;
+		var chkId = document.joinfrm.joinid;
 		if (chkId.value == "") {
 			alert("아이디를 입력하세요.");
 			chkId.focus();
@@ -54,13 +96,13 @@
 
 		$.ajax({
 			url : 'idCheck.do',
-			data : { id : document.joinfrm.id.value },
+			data : { id : document.joinfrm.joinid.value },
 			dataType : 'json',
 			success : function(result) {
 				if(result.flag == true) { // 아이디 사용 가능할 때
-					alert(document.joinfrm.id.value + "는 사용 가능한 ID입니다.");
-					document.joinfrm.id.readOnly = true;
-					document.joinfrm.password.focus();
+					alert(document.joinfrm.joinid.value + "는 사용 가능한 ID입니다.");
+					document.joinfrm.joinid.readOnly = true;
+					document.joinfrm.password1.focus();
 				} else { // 아이디 사용 불가능 할 때
 					alert("사용할 수 없는 ID입니다.");
 				}
@@ -68,8 +110,55 @@
 		});
 	}
 	
+	// 비밀번호: 숫자, 특수문자 혼합하여 6-8자리
 	function pwCheck() {
+		var pattern1 = /[0-9]/;
+		var pattern2 = /[~!@#$%^&*()_+|<>?:{}]/;
 		
+		var first = $("#password1").val();
+		var second = $("#password2").val();
+		
+		/* if(!pattern1.test(str) || !pattern2.test(str) || !pattern3.test(str) || str.length < 8) { 
+			alert("비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성하여야 합니다."); 
+			return false; 
+		} else { 
+			return true; } */
+		
+		
+		if(first == second){
+			chPw = 1;
+			$("#confirmPw").text("");
+			$("#confirmPw").append("<font size=\"2\" color=\"blue\"> *비밀번호 재확인 완료 </font>");
+		}else{
+			chPw = 0;
+			$("#confirmPw").text("");
+			$("#confirmPw").append("<font size=\"2\" color=\"red\"> *재확인 비밀번호가 일치하지 않습니다. </font>");
+		}
+	}
+	
+	// 아이디: 영문자, 숫자 혼합하여 4-6자리
+	function idCondition() {
+		var pattern1 = /[a-zA-Z]/;
+		var pattern2 = /[0-9]/;
+		
+		var id = document.joinfrm.joinid;
+		
+			if(id.value.length >= 6 && id.value.length <= 8) { // 길이 체크
+				console.log(id.value.length)
+				if(pattern1.test(id.value) && pattern2.test(id.value)){ // 영문, 숫자 체크
+					$("#confirmId").text("");
+					document.joinfrm.idButton.disabled = false;
+				} else {
+					document.joinfrm.idButton.disabled = true;
+					$("#confirmId").text("");
+					$("#confirmId").append("<font size=\"2\" color=\"red\"> *영문자, 숫자를 혼합하여 4-6자리 </font>");
+				}
+			} else{
+				document.joinfrm.idButton.disabled = true;
+				$("#confirmId").text("");
+				$("#confirmId").append("<font size=\"2\" color=\"red\"> *영문자, 숫자를 혼합하여 4-6자리 </font>");
+			}
+
 	}
 </script>
 
@@ -144,32 +233,35 @@
 					<input type="hidden" id="email" name="mEmail">
 					<table>
 						<tr>
-							<th width="120" align="right" height="60">ID</th>
+							<th width="120" align="right">ID</th>
 							<td width="200" colspan="3"><input type="text" id="joinid" name="mId"
-								class="form-control form-control-sm" /></td>
-							<td width="120" colspan="2" align="center"><input type="button" class="btn btn-sm btn-outline-primary" onclick="idCheck()" value="중복확인"></td>
+								class="form-control form-control-sm" onkeyup="idCondition()" /></td>
+							<td width="120" colspan="2" align="center"><input disabled id="idButton" type="button" class="btn btn-sm btn-outline-primary" onclick="idCheck()" value="중복확인" /></td>
+						</tr>
+						
+						<tr>
+							<td height="30"></td>
+							<td colspan="5" id="confirmId"><font size="2">*아이디는 영문자, 숫자를 혼합하여 4-6자리 </font></td>
 						</tr>
 
 						<tr>
 							<th>Password</th>
-							<td colspan="5"><input type="password" id="password"
-								name="mPw" class="form-control form-control-sm" onchange="pwCheck()" /></td>
+							<td colspan="5"><input type="password" id="password1" name="mPw" class="form-control form-control-sm" onkeyup="pwCheck()" /></td>
 						</tr>
 						
 						<tr>
 							<td></td>
-							<td colspan="5"><font size="2">*비밀번호는 숫자, 특수문자를 포함하여 6자리 이상</font></td>
+							<td colspan="5"><font size="2">*비밀번호는 숫자, 특수문자를 혼합하여 6-8자리</font></td>
 						</tr>
 						
 						<tr>
 							<td></td>
-							<td colspan="5"><input type="password" id="password2"
-								name="password2" class="form-control form-control-sm" onchange="pwCheck()" /></td>
+							<td colspan="5"><input type="password" id="password2" class="form-control form-control-sm" onkeyup="pwCheck()" /></td>
 						</tr>
 						
 						<tr>
 							<td></td>
-							<td colspan="5"><font size="2" color="red">*비밀번호 재확인을 해 주세요.</font></td>
+							<td colspan="5" id="confirmPw"><font size="2">*비밀번호 재확인을 해 주세요.</font></td>
 						</tr>
 
 						<tr>
@@ -196,9 +288,9 @@
 							<th height="50">Email</th>
 							<td colspan="3" align="center"><input type="text" id="email1" name="email1" class="form-control form-control-sm" /></td>
 							<td> @ </td>
-								<td><select id="email2" name="email2" class="btn btn-secondary btn-sm dropdown-toggle"><option value="gmail" selected>gmail.com</option>
-																			<option value="naver">naver.com</option>
-																			<option value="daum">daum.net</option></select>
+								<td><select id="email2" name="email2" class="btn btn-secondary btn-sm dropdown-toggle"><option value="gmail.com" selected>gmail.com</option>
+																			<option value="naver.com">naver.com</option>
+																			<option value="daum.net">daum.net</option></select>
 								</td>
 						</tr>
 
