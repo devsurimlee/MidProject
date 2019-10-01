@@ -15,10 +15,8 @@
 	
 	<!-- 관리자용 레이아웃은 따로 만들어 주세요 -->
 	<decorator name="admin-theme" page="adminLayout.jsp">
-		<pattern>*/admin/*</pattern>
-		
-	
-		<pattern>ad*</pattern>
+		<pattern>/admin*</pattern>	
+		<pattern>/admin_Index.do</pattern>
 	</decorator>
 
 </decorators>

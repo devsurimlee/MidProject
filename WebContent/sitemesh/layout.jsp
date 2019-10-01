@@ -25,6 +25,7 @@
 <%
         request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
+        String grant = request.getParameter("grant");
 %>
 	
 </head>
@@ -78,6 +79,9 @@
 			 <H3><a href="#"> CART </a></H3>
 			 <H3><a href="#"> ORDER </a></H3>
 			 <H3><a href="#"> WISHLIST </a></H3>
+			 <c:if test="${grant == 'admin' }"> <!-- 관리자용 -->
+			 	<H3><a href="admin_Index.do"> ADMIN </a></H3>
+			 </c:if>
 			 
 			<address>
 				 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890

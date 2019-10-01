@@ -37,5 +37,6 @@ public class AmountDTO {
 		this.amount_count = amount_count;
 	}
 	
-
+	
 }
+
