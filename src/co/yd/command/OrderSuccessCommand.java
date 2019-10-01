@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yd.dao.MemberDAO;
 import co.yd.dao.OrderDAO;
 import co.yd.dto.OrderDTO;
+import co.yd.dto.OrderDetailDTO;
 
 public class OrderSuccessCommand implements Command{
 
@@ -27,6 +28,12 @@ public class OrderSuccessCommand implements Command{
 		dto.setOrderAddress2(request.getParameter("orderDetailAddress"));
 		
 		dao.insertOrders(dto);
+		
+		OrderDetailDTO odDto = new OrderDetailDTO();
+		odDto.setOrderId(dto.getOrderId());
+		
+		//dao.insertOrderDetail(odDto);
+		
 		
 		return "order_jsp/orderSuccess.jsp";		
 	}

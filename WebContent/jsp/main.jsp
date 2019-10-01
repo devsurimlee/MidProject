@@ -72,34 +72,18 @@
 	<br />	<br />
 
 	<!-- 사진 슬라이드 밑에 상품 진열 -->
-	<figure class="snip1384">
-		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample83.jpg" alt="sample83" />
+	
+	<c:forEach items="${list }" var="dto">
+		<figure class="snip1384">
+		<img src="image/clothes/${dto.p_id }.jpg" alt="sample83" width="400" height="400"/>
 		<figcaption>
-			<h3>Fleece Marigold</h3>
-			<p>Which is worse, that everyone has his price, or that the price is always so low.</p>
+			<h3>${dto.p_name }</h3>
+			<p>${dto.p_color }</p>
 			<i class="ion-ios-arrow-right"></i>
 		</figcaption>
 		<a href="#"></a>
 	</figure>
-	<figure class="snip1384 hover">
-		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample66.jpg" alt="sample66" />
-		<figcaption>
-			<h3>Guy Mann</h3>
-			<p>I'm killing time while I wait for life to shower me with	meaning and happiness.</p>
-			<i class="ion-ios-arrow-right"></i>
-		</figcaption>
-		<a href="#"></a>
-	</figure>
-	<figure class="snip1384">
-		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample92.jpg"	alt="sample92" />
-		<figcaption>
-			<h3>Nigel Nigel</h3>
-			<p>The only skills I have the patience to learn are those that have no real application in life.</p>
-			<i class="ion-ios-arrow-right"></i>
-		</figcaption>
-		<a href="#"></a>
-	</figure>
-	<br />	<br />
+	</c:forEach>
 
 </body>
 </html>
