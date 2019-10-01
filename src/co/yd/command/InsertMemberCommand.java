@@ -24,6 +24,14 @@ public class InsertMemberCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("request.getParameter(\"email1\") = " + request.getParameter("email1"));
+		System.out.println("request.getParameter(\"email2\") = " + request.getParameter("email2"));
+		
+		System.out.println("request.getParameter(\"mPhone\") = " + request.getParameter("mPhone"));
+		System.out.println("request.getParameter(\"mEmail\") = " + request.getParameter("mEmail"));
+		
+		System.out.println("dto.getmPhone() = " + dto.getmPhone());
+		System.out.println("dto.getmEmail() = " + dto.getmEmail());
 
 		/*
 		 * dto.setmId(request.getParameter("id"));
@@ -36,7 +44,6 @@ public class InsertMemberCommand implements Command {
 		 * dto.setmPhone(request.getParameter("phone"));
 		 */
 
-		System.out.println(request.getParameter("id"));
 		
 		int r = dao.insertMember(dto);
 
