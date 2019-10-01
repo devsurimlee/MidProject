@@ -61,6 +61,11 @@
 							<td colspan="2"><input type="text" id="email" name="email"
 								class="form-control" /></td>
 						</tr>
+						<tr>
+							<th>카테고리</th>
+							<td colspan="2"><input type="text" id="email" name="email"
+								class="form-control" /></td>
+						</tr>
 
 					</table>
 				</form>

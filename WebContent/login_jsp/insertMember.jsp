@@ -34,6 +34,13 @@
 			form.name.focus();
 			return false;
 		}
+		
+		var ph = $("#phone1").val() + $("#phone2").val() +$("#phone3").val();
+		$("#mPhone").val(ph)
+		
+		var m = $("#mail1").val() + $("#mail2").val();
+		$("#mEmail").val(m);
+		
 		form.submit();
 	}
 
@@ -59,7 +66,10 @@
 				}
 			}
 		});
-
+	}
+	
+	function pwCheck() {
+		
 	}
 </script>
 
@@ -130,60 +140,63 @@
 			<div class="col-md-6">
 				<!-- 회원가입 폼 -->
 				<form role="form" id="joinfrm" name="joinfrm" action="basic_join.do" method="post">
+					<input type="hidden" id="phone" name="mPhone">
+					<input type="hidden" id="email" name="mEmail">
 					<table>
 						<tr>
-							<th width="120" align="right" height="50">ID</th>
-							<td width="200" colspan="2"><input type="text" id="joinid" name="id"
-								type="email" class="form-control form-control-sm" /></td>
-							<td width="120"><input type="button" class="btn btn-sm btn-outline-primary" onclick="idCheck()" value="중복확인"></td>
+							<th width="120" align="right" height="60">ID</th>
+							<td width="200" colspan="3"><input type="text" id="joinid" name="mId"
+								class="form-control form-control-sm" /></td>
+							<td width="120" colspan="2" align="center"><input type="button" class="btn btn-sm btn-outline-primary" onclick="idCheck()" value="중복확인"></td>
 						</tr>
 
 						<tr>
-							<th height="50">Password</th>
-							<td colspan="3"><input type="password" id="password"
-								name="password" class="form-control form-control-sm" /></td>
+							<th>Password</th>
+							<td colspan="5"><input type="password" id="password"
+								name="mPw" class="form-control form-control-sm" onchange="pwCheck()" /></td>
 						</tr>
 						
 						<tr>
 							<td></td>
-							<td colspan="3"><font size="2">*비밀번호는 숫자, 특수문자를 포함하여 6자리 이상</font></td>
+							<td colspan="5"><font size="2">*비밀번호는 숫자, 특수문자를 포함하여 6자리 이상</font></td>
 						</tr>
 						
 						<tr>
 							<td></td>
-							<td colspan="3"><input type="password" id="password2"
-								name="password2" class="form-control form-control-sm" /></td>
+							<td colspan="5"><input type="password" id="password2"
+								name="password2" class="form-control form-control-sm" onchange="pwCheck()" /></td>
 						</tr>
 						
 						<tr>
 							<td></td>
-							<td colspan="3"><font size="2" color="red">*비밀번호 재확인을 해 주세요.</font></td>
+							<td colspan="5"><font size="2" color="red">*비밀번호 재확인을 해 주세요.</font></td>
 						</tr>
 
 						<tr>
 							<th height="50">Name</th>
-							<td colspan="3"><input type="text" id="name" name="name"
+							<td colspan="5"><input type="text" id="name" name="mName"
 								class="form-control form-control-sm" /></td>
 						</tr>
 
 						<tr>
 							<th height="50">Phone</th>
-							<td align="center">
+							<td align="center" width="40">
 							
-							<select name="sphone" class="btn btn-secondary btn-sm dropdown-toggle"><option value="010" selected>010</option>
+							<select id="phone1" class="btn btn-secondary btn-sm dropdown-toggle"><option value="010" selected>010</option>
 																			<option value="011">011</option>
 																			<option value="012">012</option></select></td>
-										<td> ─ </td>
-										<td width="100"><input type="text" id="phone" name="phone" class="form-control form-control-sm" /></td>
-										<td> ─ </td>
-										<td width="100"><input type="text" id="phone" name="phone" class="form-control form-control-sm" /></td>
+										<td width="10"> ─ </td>
+										<td width="100"><input type="text" id="phone2" class="form-control form-control-sm" /></td>
+										<td width="10"> ─ </td>
+										<td width="100"><input type="text" id="phone3" class="form-control form-control-sm" /></td>
   											
 						</tr>
 
 						<tr>
 							<th height="50">Email</th>
-							<td colspan="2" align="center"><input type="text" id="email" name="email" class="form-control form-control-sm" /> @ </td>
-								<td>			<select name="semail" class="btn btn-secondary btn-sm dropdown-toggle"><option value="gmail" selected>gmail.com</option>
+							<td colspan="3" align="center"><input type="text" id="email1" name="email1" class="form-control form-control-sm" /></td>
+							<td> @ </td>
+								<td><select id="email2" name="email2" class="btn btn-secondary btn-sm dropdown-toggle"><option value="gmail" selected>gmail.com</option>
 																			<option value="naver">naver.com</option>
 																			<option value="daum">daum.net</option></select>
 								</td>
@@ -191,29 +204,27 @@
 
 						<tr>
 							<th height="50">Postcode</th>
-							<td colspan="2"><input type="text" id="postcode" name="postcode"
+							<td colspan="3"><input type="text" id="postcode" name="mPostcode"
 								class="form-control form-control-sm" /></td>
-							<td><input type="button" onclick="orderDaumPostcode()" class="btn btn-sm btn-outline-primary"
+							<td colspan="2" align="center"><input type="button" onclick="orderDaumPostcode()" class="btn btn-sm btn-outline-primary"
 								value="우편번호 찾기"></td>
 						</tr>
 
 						<tr>
 							<th height="50">Address</th>
-							<td colspan="3"><input type="text" id="address1"
-								name="address1" class="form-control form-control-sm" /></td>
+							<td colspan="5"><input type="text" id="address1"
+								name="mAddress1" class="form-control form-control-sm" /></td>
 						</tr>
 
 						<tr>
 							<th height="50">Address Detail</th>
-							<td colspan="3"><input type="text" id="address2"
-								name="address2" class="form-control form-control-sm" /></td>
+							<td colspan="5"><input type="text" id="address2"
+								name="mAddress2" class="form-control form-control-sm" /></td>
 						</tr>
-					</table>
-					<div style="height: 11px;">&nbsp;</div> <!-- 그냥 테이블이랑 버튼 사이 간격 조정을 위한 태그 -->
-					<table>
+						
 						<tr>
-							<td width="220"><button type="button" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button></td>
-							<td width="220"><button type="button" onclick="location.href='basic_login.do'" class="btn btn-primary btn-block"> GO BACK </button></td>
+							<td width="220" colspan="3" height="80"><button type="button" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button></td>
+							<td width="220" colspan="3"><button type="button" onclick="location.href='basic_login.do'" class="btn btn-primary btn-block"> GO BACK </button></td>
 						</tr>
 					</table>
 				</form>
