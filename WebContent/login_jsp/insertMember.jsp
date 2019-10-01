@@ -1,17 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script type="text/javascript">
 	function checkForm() {
-		var form = document.frm;
+		var form = document.joinfrm;
 
 		if (form.id.value == "") {
 			alert("아이디를 입력하세요.");
@@ -25,9 +23,9 @@
 			return false;
 		}
 
-		if (form.pw.value == "") {
+		if (form.password.value == "") {
 			alert("비밀번호를 입력하세요.");
-			form.pw.focus();
+			form.password.focus();
 			return false;
 		}
 
@@ -36,29 +34,31 @@
 			form.name.focus();
 			return false;
 		}
-
 		form.submit();
 	}
 
 	function idCheck() {
-		var chkId = document.frm.id;
+		var chkId = document.joinfrm.id;
 		if (chkId.value == "") {
 			alert("아이디를 입력하세요.");
 			chkId.focus();
 			return false;
 		}
 
-		/* $.ajax({
-			url : 'IdCheck.do',
-			dataType : {
-				id : document.frm.id.value
-			},
+		$.ajax({
+			url : 'idCheck.do',
+			data : { id : document.joinfrm.id.value },
+			dataType : 'json',
 			success : function(result) {
-				$('#myModal').on('shown.bs.modal', function() {
-					$('#contents').html()
-				})
+				if(result.flag == true) { // 아이디 사용 가능할 때
+					alert(document.joinfrm.id.value + "는 사용 가능한 ID입니다.");
+					document.joinfrm.id.readOnly = true;
+					document.joinfrm.password.focus();
+				} else { // 아이디 사용 불가능 할 때
+					alert("사용할 수 없는 ID입니다.");
+				}
 			}
-		}); */
+		});
 
 	}
 </script>
@@ -125,107 +125,104 @@
 		</div>
 
 		<div class="row">
-			<!-- 회원가입 폼 -->
 			<div class="col-md-3"></div>
 
 			<div class="col-md-6">
-				<form role="form" id="frm" name="frm" action="basic_join.do"
-					method="post">
+				<!-- 회원가입 폼 -->
+				<form role="form" id="joinfrm" name="joinfrm" action="basic_join.do" method="post">
 					<table>
 						<tr>
-							<th width="140" align="right">ID</th>
-							<td width="200"><input type="text" id="id" name="id"
-								type="email" class="form-control" /></td>
-							<td width="120"><input type="button" onclick="idCheck()"
-								value="중복확인"></td>
+							<th width="120" align="right" height="50">ID</th>
+							<td width="200" colspan="2"><input type="text" id="joinid" name="id"
+								type="email" class="form-control form-control-sm" /></td>
+							<td width="120"><input type="button" class="btn btn-sm btn-outline-primary" onclick="idCheck()" value="중복확인"></td>
 						</tr>
 
 						<tr>
-							<th>Password</th>
-							<td colspan="2"><input type="password" id="password"
-								name="password" class="form-control" /></td>
+							<th height="50">Password</th>
+							<td colspan="3"><input type="password" id="password"
+								name="password" class="form-control form-control-sm" /></td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td colspan="3"><font size="2">*비밀번호는 숫자, 특수문자를 포함하여 6자리 이상</font></td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td colspan="3"><input type="password" id="password2"
+								name="password2" class="form-control form-control-sm" /></td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td colspan="3"><font size="2" color="red">*비밀번호 재확인을 해 주세요.</font></td>
 						</tr>
 
 						<tr>
-							<th>Name</th>
-							<td colspan="2"><input type="text" id="name" name="name"
-								class="form-control" /></td>
+							<th height="50">Name</th>
+							<td colspan="3"><input type="text" id="name" name="name"
+								class="form-control form-control-sm" /></td>
 						</tr>
 
 						<tr>
-							<th>Phone</th>
-							<td colspan="2"><input type="text" id="phone" name="phone"
-								class="form-control" /></td>
+							<th height="50">Phone</th>
+							<td align="center">
+							
+							<select name="sphone" class="btn btn-secondary btn-sm dropdown-toggle"><option value="010" selected>010</option>
+																			<option value="011">011</option>
+																			<option value="012">012</option></select></td>
+										<td> ─ </td>
+										<td width="100"><input type="text" id="phone" name="phone" class="form-control form-control-sm" /></td>
+										<td> ─ </td>
+										<td width="100"><input type="text" id="phone" name="phone" class="form-control form-control-sm" /></td>
+  											
 						</tr>
 
 						<tr>
-							<th>Email</th>
-							<td colspan="2"><input type="text" id="email" name="email"
-								class="form-control" /></td>
+							<th height="50">Email</th>
+							<td colspan="2" align="center"><input type="text" id="email" name="email" class="form-control form-control-sm" /> @ </td>
+								<td>			<select name="semail" class="btn btn-secondary btn-sm dropdown-toggle"><option value="gmail" selected>gmail.com</option>
+																			<option value="naver">naver.com</option>
+																			<option value="daum">daum.net</option></select>
+								</td>
 						</tr>
 
 						<tr>
-							<th>Postcode</th>
-							<td><input type="text" id="postcode" name="postcode"
-								class="form-control" /></td>
-							<td><input type="button" onclick="orderDaumPostcode()"
+							<th height="50">Postcode</th>
+							<td colspan="2"><input type="text" id="postcode" name="postcode"
+								class="form-control form-control-sm" /></td>
+							<td><input type="button" onclick="orderDaumPostcode()" class="btn btn-sm btn-outline-primary"
 								value="우편번호 찾기"></td>
 						</tr>
 
 						<tr>
-							<th>Address</th>
-							<td colspan="2"><input type="text" id="address1"
-								name="address1" class="form-control" /></td>
+							<th height="50">Address</th>
+							<td colspan="3"><input type="text" id="address1"
+								name="address1" class="form-control form-control-sm" /></td>
 						</tr>
 
 						<tr>
-							<th>Address Detail</th>
-							<td colspan="2"><input type="text" id="address2"
-								name="address2" class="form-control" /></td>
+							<th height="50">Address Detail</th>
+							<td colspan="3"><input type="text" id="address2"
+								name="address2" class="form-control form-control-sm" /></td>
 						</tr>
 					</table>
-					<div style="height: 11px;">&nbsp;</div>
+					<div style="height: 11px;">&nbsp;</div> <!-- 그냥 테이블이랑 버튼 사이 간격 조정을 위한 태그 -->
 					<table>
 						<tr>
-							<td width="230">
-								<!-- <button type="submit" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button> -->
-								<button type="submit" class="btn btn-primary btn-block">
-									JOIN</button>
-							</td>
-							<td width="230"><button type="button"
-									onclick="location.href='basic_login.do'"
-									class="btn btn-primary btn-block">GO BACK</button></td>
+							<td width="220"><button type="button" onclick="checkForm()" class="btn btn-primary btn-block"> JOIN </button></td>
+							<td width="220"><button type="button" onclick="location.href='basic_login.do'" class="btn btn-primary btn-block"> GO BACK </button></td>
 						</tr>
 					</table>
-
 				</form>
-
 			</div>
 
 
 			<div class="col-md-3"></div>
-
 		</div>
 	</div>
-
-	<!-- <div class="modal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title"> ID 중복 </h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p id="contents"></p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal"> Try Again </button>
-				</div>
-			</div>
-		</div>
-	</div> -->
 
 </body>
 </html>
