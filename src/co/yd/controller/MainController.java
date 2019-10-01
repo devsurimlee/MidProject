@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yd.command.AdminIndexCommand;
+import co.yd.command.AdminProductDeleteCommand;
+import co.yd.command.AdminProductListFormCommand;
+import co.yd.command.AdminProductRegistCommand;
+import co.yd.command.AdminProductRegistFormCommand;
+import co.yd.command.AdminProductUpdateCommand;
+import co.yd.command.AdminProductUpdateFormCommand;
 import co.yd.command.Command;
 import co.yd.command.IdCheckCommand;
 import co.yd.command.IndexCommand;
@@ -43,6 +50,13 @@ public class MainController extends HttpServlet {
 		
 		
 		// 연우 추가
+		map.put("/admin_index.do", new AdminIndexCommand());
+		map.put("/admin_productListForm.do", new AdminProductListFormCommand());
+		map.put("/admin_productUpdateForm.do", new AdminProductUpdateFormCommand());
+		map.put("/admin_productUpdate.do", new AdminProductUpdateCommand());
+		map.put("/admin_productDelete.do", new AdminProductDeleteCommand());
+		map.put("/admin_productRegistForm.do", new AdminProductRegistFormCommand());
+		map.put("/admin_productRegist.do", new AdminProductRegistCommand());
 		
 		
 		

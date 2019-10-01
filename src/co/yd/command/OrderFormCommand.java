@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import co.yd.dao.OrderDAO;
 import co.yd.dto.MemberDTO;
+import co.yd.dto.OrderDetailDTO;
 
 public class OrderFormCommand implements Command{
 
@@ -23,7 +24,6 @@ public class OrderFormCommand implements Command{
 		Mdto.setmId(request.getParameter("id"));
 		Mdto = Odao.selectUserInfo(Mdto);
 		request.setAttribute("Mdto", Mdto); //db에서 넘어온 값을  request객체 속성으로 삽입
-
 		
 		return "order_jsp/orderForm.jsp";
 		

@@ -35,7 +35,7 @@
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-		<a class="navbar-brand mr-1" href="./adminIndex.jsp">Start
+		<a class="navbar-brand mr-1" href="/admin_Index.do">Start
 			Bootstrap</a>
 
 		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
@@ -107,7 +107,7 @@
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav">
 			<li class="nav-item active"><a class="nav-link"
-				href="./adminIndex.jsp"> <i class="fas fa-fw fa-tachometer-alt"></i>
+				href="/admin_index"> <i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span>
 			</a>
 			</li>
@@ -119,15 +119,15 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 					<h6 class="dropdown-header">상품관리</h6>
-					<a class="dropdown-item" href="adminProductRegistForm.jsp">상품등록</a> <a
-						class="dropdown-item" href="adminProductListForm.jsp">상품리스트</a>
+					<a class="dropdown-item" href="/admin_productRegistForm.do">상품등록</a> <a
+						class="dropdown-item" href="/admin_productListForm.do">상품리스트</a>
 					<div class="dropdown-divider"></div>
 					<h6 class="dropdown-header">주문관리</h6>
-					<a class="dropdown-item" href="404.html">주문처리</a> <a
-						class="dropdown-item" href="blank.html">미정</a>
+					<a class="dropdown-item" href="#">주문처리</a> <a
+						class="dropdown-item" href="#">미정</a>
 				</div>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="charts.html">
+			<li class="nav-item"><a class="nav-link" href="#">
 					<i class="fas fa-fw fa-chart-area"></i> <span>고객관리</span>
 			</a></li>
 			<li class="nav-item dropdown">
@@ -138,10 +138,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 					
-					<a class="dropdown-item" href="login.html">공지게시판</a> 
+					<a class="dropdown-item" href="#">공지게시판</a> 
 					
 					
-					<a class="dropdown-item" href="404.html">1:1게시판</a> 
+					<a class="dropdown-item" href="#">1:1게시판</a> 
 				</div>
 			</li>
 		</ul>
