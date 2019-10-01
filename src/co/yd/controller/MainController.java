@@ -28,6 +28,7 @@ import co.yd.command.LoginFormCommand;
 import co.yd.command.LogoutCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
+import co.yd.command.ProductDetailCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -46,7 +47,7 @@ public class MainController extends HttpServlet {
 		// 수림 추가
 		map.put("/basic_orderForm.do", new OrderFormCommand());
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
-		
+		map.put("/basic_productDetail.do", new ProductDetailCommand());
 		
 		
 		// 연우 추가
