@@ -285,6 +285,7 @@
 						<h4>배송지 정보</h4>
 					</div>
 					<table id="orderTable">
+						<input type="hidden" id="id" name="id" value="${id }">
 						<tr>
 							<th width="80">이름</th>
 							<td><input type="text" id="orderName" name="orderName"></td>

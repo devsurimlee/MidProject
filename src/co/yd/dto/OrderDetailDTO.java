@@ -5,7 +5,7 @@ public class OrderDetailDTO {
 	private int orderId;
 	private int productId;
 	private int amountId;
-	private int orderProductCount;
+	private int orderProductCount; //주문수량
 	
 	public OrderDetailDTO() {
 	}
