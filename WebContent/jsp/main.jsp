@@ -90,6 +90,7 @@ $(document).ready(function(){
 		<figcaption>
 			<h3>${dto.p_name }</h3>
 			<p>${dto.p_color }</p>
+			<p>${dto.p_size }</p>
 			<p>${dto.p_detail }</p>
 			<i class="ion-ios-arrow-right"></i>
 		</figcaption>

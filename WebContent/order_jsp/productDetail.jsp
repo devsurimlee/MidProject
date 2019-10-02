@@ -9,7 +9,15 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(function() {
+		$("label[name='colorGroup']".on("click", function() {
+			console.out("aa");
+		})
+		
+	});
 
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -58,25 +66,37 @@
 									<h1>${dto.p_name }</h1>
 								</thead>
 								<tbody>
+									<br/><br/>
 									<tr>
-										<th>가격:</th>
-										<td>${dto.p_price }</td>
+										<th><h3>가격: ${dto.p_price }</h3></th>
 									</tr>
 									<tr>
-										<th>등급할인:</th>
+										<th><h3>등급할인: </h3></th>
 									</tr>
 									<tr>
-										<th>색상:</th>
-										<td>${dto.p_color }</td>
+										<th><h3>색상</h3></th>
+									</tr>
+									<tr>	
+										<td>
+										<c:forEach items="${amount }" var="amount">
+											<label id="color${amount.amount_id }" name="colorGroup">${amount.amount_color}</label>
+										</c:forEach>
+										</td>
 									</tr>
 									<tr>
-										<th>사이즈</th>
-										<td>${dto.p_size }</td>
+										<th><h3>사이즈</h3></th>
+									</tr>
+									<tr>
+										<td>
+										<c:forEach items="${amount }" var="amount">
+											<label id="size${amount.amount_id }" name="sizeGroup">${amount.amount_size}</label>
+										</c:forEach>
+										</td>
 									</tr>
 								</tbody>
 							</table>
-						</div>
-						<div id="btn" name="btn">
+						
+						
 							<table>
 								<thead></thead>
 								<tbody>
@@ -91,7 +111,7 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
+							</div>
 					</div>
 					<!-- col md 7 끝 -->
 				</div>
