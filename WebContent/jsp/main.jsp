@@ -86,10 +86,11 @@ $(document).ready(function(){
 	<form>
 	<c:forEach items="${list }" var="dto">
 		<figure class="snip1384">
-		<img src="image/clothes/${dto.p_id }.jpg" alt="sample83" width="400" height="400"/>
+		<img src="image/thumbnail/${dto.p_id }.jpg" alt="sample83" width="400" height="400"/>
 		<figcaption>
 			<h3>${dto.p_name }</h3>
 			<p>${dto.p_color }</p>
+			<p>${dto.p_detail }</p>
 			<i class="ion-ios-arrow-right"></i>
 		</figcaption>
 		<a href="basic_productDetail.do?key=${dto.p_id }"></a>
