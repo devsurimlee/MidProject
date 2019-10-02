@@ -20,16 +20,16 @@ public class AmountDAO extends DAO {
 	}
 
 	public int insert(AmountDTO dto) {
-		String sql = "insert into product(AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT) " + "values(?,?,?,?,?)";
+		String sql = "insert into product(AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT) " + "values(AMOUNT_SEQ.nextval,?,?,?,?)";
 		int result = 0;
 		try {
 			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getAmount_id());
-			pstmt.setInt(2, dto.getP_id());
-			pstmt.setString(3, dto.getAmount_size());
-			pstmt.setString(4, dto.getAmount_color());
-			pstmt.setInt(5, dto.getAmount_count());
+//			pstmt.setInt(1, dto.getAmount_id());
+			pstmt.setInt(1, dto.getP_id());
+			pstmt.setString(2, dto.getAmount_size());
+			pstmt.setString(3, dto.getAmount_color());
+			pstmt.setInt(4, dto.getAmount_count());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,7 +107,7 @@ public class AmountDAO extends DAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				AmountDTO dto = new AmountDTO();
 				dto.setAmount_id(rs.getInt("AMOUNT_ID"));
 				dto.setP_id(rs.getInt("P_ID"));
@@ -141,6 +141,25 @@ public class AmountDAO extends DAO {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	public int selectAmountid(int p_id) {
+		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ? select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ? order by AMOUNT_ID";
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				System.out.println(rs.getString("AMOUNT_SIZE"));
+				System.out.println(rs.getString("AMOUNT_COLOR"));
+				System.out.println(rs.getString("AMOUNT_COUNT"));
+				result = rs.getInt("AMOUNT_ID");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

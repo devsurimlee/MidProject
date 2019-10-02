@@ -22,13 +22,20 @@ public class ProductDAO extends DAO {
 	}
 
 	public int insert(ProductDTO dto) {
-		String sql = "insert into product(P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE) "
-				+ "values(?,?,?,?,?,?,?,?)";
+
 		int result = 0;
 		try {
 
 			conn = JDBCutil.connect(); // 커넥트
 
+			String sql = "select PRODUCT_SEQ.nextval from dual";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			dto.setP_id(rs.getInt(1));
+			
+			 sql = "insert into product(P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE) "
+					+ "values(?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getP_id());
 			pstmt.setString(2, dto.getP_name());
@@ -41,9 +48,7 @@ public class ProductDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			JDBCutil.disconnect(pstmt, conn); // 클로즈
-		}
+		} 
 		return result;
 
 	}
@@ -71,9 +76,7 @@ public class ProductDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			JDBCutil.disconnect(pstmt, conn); // 클로즈
-		}
+		} 
 		return result;
 	}
 
@@ -97,7 +100,7 @@ public class ProductDAO extends DAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				ProductDTO dto = new ProductDTO();
 				dto.setP_id(rs.getInt("P_ID"));
 				dto.setP_name(rs.getString("P_NAME"));
@@ -121,6 +124,29 @@ public class ProductDAO extends DAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setP_name(rs.getString("P_NAME"));
+				dto.setP_price(rs.getInt("P_PRICE"));
+				dto.setP_size(rs.getString("P_SIZE"));
+				dto.setP_color(rs.getString("P_COLOR"));
+				dto.setP_detail(rs.getString("P_DETAIL"));
+				dto.setP_category(rs.getString("P_CATEGORY"));
+				dto.setP_show_state(rs.getString("P_SHOW_STATE"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
+	public ProductDTO select(String p_name){
+		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE " + "from product where p_name = ?";
+		ProductDTO dto = new ProductDTO();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p_name);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				dto.setP_id(rs.getInt("P_ID"));
