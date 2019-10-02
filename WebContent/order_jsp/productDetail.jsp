@@ -28,7 +28,7 @@
 							<div class="carousel-inner">
 								<div class="carousel-item active">
 									<img class="d-block w-100"
-										src="image/thumbnail/${dto.p_id }.jpg" />
+										src="image/thumbnail/product${dto.p_id }.jpg" />
 									<div class="carousel-caption">
 									</div>
 								</div>
@@ -100,7 +100,7 @@
 					<div class="col-md-12">
 						${dto.p_detail }<br />
 
-						<img src="image/thumbnail/${dto.p_id }.jpg" />
+						<img src="image/thumbnail/product${dto.p_id }.jpg" />
 						<c:forEach items="${amount }" var="amount">
 							<img src="image/clothesDetail/amount${amount.amount_id }.jpg" />
 						</c:forEach>
