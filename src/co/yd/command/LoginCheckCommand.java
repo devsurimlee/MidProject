@@ -35,13 +35,13 @@ public class LoginCheckCommand implements Command {
 			session.setAttribute("id", dto.getmId()); // 세션에 아이디저장
 			session.setAttribute("grant", dto.getgGrade());
 			session.setAttribute("name", dto.getmName());
-			path = "login_jsp/loginSuccess.jsp";
+			path = "/basic_index.do";
 		} else {
-			path = "login_jsp/loginFailure.jsp";
+			request.setAttribute("message", "로그인 실패하셨습니다. 아이디와 비밀번호를 다시 확인해 주세요.");
+			path = "login_jsp/loginForm.jsp";
 		}
 
 		return path;
-
 	}
 
 }

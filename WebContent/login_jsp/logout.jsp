@@ -4,14 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	window.onload=function(){ // 페이지 띄워지자마자 실행
+		var result = confirm("로그아웃 하시겠습니까?");
+
+        if(result == true) {
+        	location.href="basic_afterlogout.do";
+        } else {
+        	location.href="basic_index.do";
+        }
+	}
+</script>
 </head>
 <body>
-
-<div align="center">
-	<h2> 로그아웃하셨습니다. </h2>
-
-	<jsp:include page="loginForm.jsp"></jsp:include>
-</div>
 
 </body>
 </html>

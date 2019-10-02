@@ -17,7 +17,6 @@ public class InsertMemberCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
-		String path = null;
 		
 		try {
 			BeanUtils.copyProperties(dto, request.getParameterMap()); // 하나씩 안 넣고 전체를 한번에 넣어줌
@@ -37,14 +36,15 @@ public class InsertMemberCommand implements Command {
 		 */
 
 		int r = dao.insertMember(dto);
-
+		
 		if (r != 0) { // 성공
-			path = "login_jsp/joinSucess.jsp";
+			request.setAttribute("message", "회원이 되신 것을 축하드립니다!");
+			return "basic_login.do";
 		} else { // 실패
-			path = "login_jsp/joinFailure.jsp";
+			request.setAttribute("message", "회원가입에 실패하셨습니다. 다시 시도해 주세요.");
+			return "login_jsp/insertMember.jsp";
 		}
 
-		return path;
 
 	}
 

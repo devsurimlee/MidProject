@@ -1,20 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+<!-- 회원가입 체크 -->
 <script type="text/javascript">
+	if('${message}' != ''){
+		alert('${message}');
+	}
+	
 	var chPw = 0;
 	function checkForm() {
 		var form = document.joinfrm;
 
+		// 필요한 정보를 다 넣었는지 확인
 		if (form.joinid.value == "") {
 			alert("아이디를 입력하세요.");
 			form.joinid.focus();
@@ -76,21 +79,18 @@
 			return false;
 		}
 
-		console.log("phone1 = " + form.phone1.value)
-		console.log("phone1 = " + $("phone1").val())
-
-		var ph = form.phone1.value + "-" + form.phone2.value + "-"
-				+ form.phone3.value;
+		// 휴대폰 번호 한 컬럼에 넣으려고 합침
+		var ph = form.phone1.value + "-" + form.phone2.value + "-" + form.phone3.value;
 		form.mPhone.value = ph;
 
+		// 이메일 한 컬럼에 넣기 위해 합침
 		var m = form.email1.value + "@" + form.email2.value;
-		/* $("#email1").val() + "@" + $("#email2").val(); */
 		form.mEmail.value = m;
-		/* $("#mEmail").val(m); */
 
 		form.submit();
 	}
 
+	// 중복되는 아이디인지 체크
 	function idCheck() {
 		var chkId = document.joinfrm.joinid;
 		if (chkId.value == "") {
@@ -258,7 +258,7 @@
 							<th width="120" align="right">ID</th>
 							<td width="200" colspan="3"><input type="text" id="joinid"
 								name="mId" class="form-control form-control-sm"
-								onkeyup="idCondition()" /></td>
+								onkeyup="idCondition()" value="${param.mId }" /></td>
 							<td width="120" colspan="2" align="center"><input disabled
 								id="idButton" type="button"
 								class="btn btn-sm btn-outline-primary" onclick="idCheck()"
@@ -299,7 +299,7 @@
 						<tr>
 							<th height="50">Name</th>
 							<td colspan="5"><input type="text" id="name" name="mName"
-								class="form-control form-control-sm" /></td>
+								class="form-control form-control-sm" value="${param.mName }" /></td>
 						</tr>
 
 						<tr>
@@ -310,10 +310,10 @@
 									<option value="011">011</option>
 									<option value="012">012</option></select></td>
 							<td width="10">─</td>
-							<td width="100"><input type="text" id="phone2"
-								class="form-control form-control-sm" /></td>
+							<td width="100"><input type="text" id="phone2" name="phone2"
+								class="form-control form-control-sm" value="${param.phone2 }" /></td>
 							<td width="10">─</td>
-							<td width="100"><input type="text" id="phone3"
+							<td width="100"><input type="text" id="phone3" name="phone3" value="${param.phone3 }"
 								class="form-control form-control-sm" /></td>
 
 						</tr>
@@ -321,7 +321,7 @@
 						<tr>
 							<th height="50">Email</th>
 							<td colspan="3" align="center"><input type="text"
-								id="email1" name="email1" class="form-control form-control-sm" /></td>
+								id="email1" name="email1" class="form-control form-control-sm" value="${param.email1 }" /></td>
 							<td>@</td>
 							<td><select id="email2" name="email2"
 								class="btn btn-secondary btn-sm dropdown-toggle"><option
@@ -333,7 +333,7 @@
 						<tr>
 							<th height="50">Postcode</th>
 							<td colspan="3"><input type="text" id="postcode"
-								name="mPostcode" class="form-control form-control-sm" /></td>
+								name="mPostcode" class="form-control form-control-sm" value="${param.mPostcode }" /></td>
 							<td colspan="2" align="center"><input type="button"
 								onclick="orderDaumPostcode()"
 								class="btn btn-sm btn-outline-primary" value="우편번호 찾기"></td>
@@ -341,13 +341,13 @@
 
 						<tr>
 							<th height="50">Address</th>
-							<td colspan="5"><input type="text" id="address1"
+							<td colspan="5"><input type="text" id="address1" value="${param.mAddress1 }"
 								name="mAddress1" class="form-control form-control-sm" /></td>
 						</tr>
 
 						<tr>
 							<th height="50">Address Detail</th>
-							<td colspan="5"><input type="text" id="address2"
+							<td colspan="5"><input type="text" id="address2" value="${param.mAddress2 }"
 								name="mAddress2" class="form-control form-control-sm" /></td>
 						</tr>
 

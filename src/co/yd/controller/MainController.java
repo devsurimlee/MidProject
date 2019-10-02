@@ -26,6 +26,7 @@ import co.yd.command.InsertMemberFormCommand;
 import co.yd.command.LoginCheckCommand;
 import co.yd.command.LoginFormCommand;
 import co.yd.command.LogoutCommand;
+import co.yd.command.LogoutFormCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
 import co.yd.command.ProductDetailCommand;
@@ -69,8 +70,8 @@ public class MainController extends HttpServlet {
 		map.put("/basic_insertMember.do", new InsertMemberFormCommand());
 		map.put("/basic_join.do", new InsertMemberCommand());
 		map.put("/idCheck.do", new IdCheckCommand());
-		map.put("/basic_logout.do", new LogoutCommand());
-		
+		map.put("/basic_logout.do", new LogoutFormCommand());
+		map.put("/basic_afterlogout.do", new LogoutCommand());
 		
 		
 	}
@@ -92,6 +93,9 @@ public class MainController extends HttpServlet {
 			} else if(page.startsWith("ajax:")) {
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(page.substring(5));
+			} else if(page.startsWith("script:")) {
+				response.setContentType("text/html; charset=UTF-8");
+				response.getWriter().append(page.substring(7));
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 				dispatcher.forward(request, response);

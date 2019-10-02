@@ -73,7 +73,7 @@
 				<h3><a href="basic_login.do"> LOGIN </a></h3>
 			 </c:if>
 			 <c:if test="${not empty id }">
-				 <h3><a href="basic_login.do"> LOGOUT </a></h3>
+				 <h3><a href="basic_logout.do"> LOGOUT </a></h3>
 			 </c:if>
 			 <H3><a href="#"> MY PAGE </a></H3>
 			 <H3><a href="#"> CART </a></H3>

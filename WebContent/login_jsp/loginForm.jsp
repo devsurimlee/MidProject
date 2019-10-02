@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 
 <script type="text/javascript">
+	if('${message}' != ''){
+		alert('${message}');
+	}
+	
 	function checkForm() {
 		var form = document.loginfrm;
 		if (form.id.value == "") {
@@ -50,7 +54,7 @@
 							<table>
 								<tr>
 									<th width="100"> ID </th>
-									<td width="240"><input type="text" class="form-control" id="id" name="id" /></td>
+									<td width="240"><input type="text" class="form-control" id="id" name="id" value="${param.id}" /></td>
 								</tr>
 								<tr>
 									<th> Password </th>
@@ -77,14 +81,5 @@
 				</div>
 		</c:if>
 	</div>
-	<div align="center">
-		<c:if test="${not empty id }">
-			<h1>${id }님이미 로그인 하셨습니다</h1>
-			<form id="frm1" name="frm1" action="basic_logout.do" method="post">
-				<input type="submit" value="logout">
-			</form>
-		</c:if>
-	</div>
-	<p>
 </body>
 </html>
