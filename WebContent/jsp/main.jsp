@@ -86,7 +86,7 @@ $(document).ready(function(){
 	<form>
 	<c:forEach items="${list }" var="dto">
 		<figure class="snip1384">
-		<img src="image/thumbnail/${dto.p_id }.jpg" alt="sample83" width="400" height="400"/>
+		<img src="image/thumbnail/product${dto.p_id }.jpg" alt="sample83" width="400" height="400"/>
 		<figcaption>
 			<h3>${dto.p_name }</h3>
 			<p>${dto.p_color }</p>
