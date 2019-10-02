@@ -70,10 +70,10 @@
 		<div class="col-md-2" id="div-right" name="div-right"style="background-color:#E0ECF8">
 			 <br /><br /><br /><br />
 			 <c:if test="${empty id }">
-				<h3><a href="basic_login.do"> LOGIN </a></h3>
+				<h3><a href="basic_loginForm.do"> LOGIN </a></h3>
 			 </c:if>
 			 <c:if test="${not empty id }">
-				 <h3><a href="basic_logout.do"> LOGOUT </a></h3>
+				 <h3><a href="basic_logoutForm.do"> LOGOUT </a></h3>
 			 </c:if>
 			 <H3><a href="#"> MY PAGE </a></H3>
 			 <H3><a href="#"> CART </a></H3>

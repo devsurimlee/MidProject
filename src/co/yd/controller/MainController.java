@@ -19,14 +19,17 @@ import co.yd.command.AdminProductRegistFormCommand;
 import co.yd.command.AdminProductUpdateCommand;
 import co.yd.command.AdminProductUpdateFormCommand;
 import co.yd.command.Command;
-import co.yd.command.IdCheckCommand;
+import co.yd.command.FormForgotId;
+import co.yd.command.FormForgotPw;
+import co.yd.command.FormJoin;
+import co.yd.command.FormLogin;
+import co.yd.command.FormLogout;
 import co.yd.command.IndexCommand;
-import co.yd.command.InsertMemberCommand;
-import co.yd.command.InsertMemberFormCommand;
-import co.yd.command.LoginCheckCommand;
-import co.yd.command.LoginFormCommand;
-import co.yd.command.LogoutCommand;
-import co.yd.command.LogoutFormCommand;
+import co.yd.command.MemberCheckIdCommand;
+import co.yd.command.MemberForgotIdCommand;
+import co.yd.command.MemberJoinCommand;
+import co.yd.command.MemberLoginCommand;
+import co.yd.command.MemberLogoutCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
 import co.yd.command.ProductDetailCommand;
@@ -65,13 +68,17 @@ public class MainController extends HttpServlet {
 		
 		
 		// 지원 추가
-		map.put("/basic_login.do", new LoginFormCommand());
-		map.put("/basic_loginCheck.do", new LoginCheckCommand());
-		map.put("/basic_insertMember.do", new InsertMemberFormCommand());
-		map.put("/basic_join.do", new InsertMemberCommand());
-		map.put("/idCheck.do", new IdCheckCommand());
-		map.put("/basic_logout.do", new LogoutFormCommand());
-		map.put("/basic_afterlogout.do", new LogoutCommand());
+		map.put("/basic_loginForm.do", new FormLogin());
+		map.put("/basic_joinForm.do", new FormJoin());
+		map.put("/basic_logoutForm.do", new FormLogout());
+		map.put("/basic_forgotIdForm.do", new FormForgotId());
+		map.put("/basic_forgotPwForm.do", new FormForgotPw());
+		
+		map.put("/basic_login.do", new MemberLoginCommand());
+		map.put("/basic_join.do", new MemberJoinCommand());
+		map.put("/checkId.do", new MemberCheckIdCommand());
+		map.put("/basic_logout.do", new MemberLogoutCommand());
+		map.put("/basic_forgotId.do", new MemberForgotIdCommand());
 		
 		
 	}
