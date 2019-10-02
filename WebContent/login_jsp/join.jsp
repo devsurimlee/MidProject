@@ -13,6 +13,7 @@
 		alert('${message}');
 	}
 	
+	var conPw = 0;
 	var chPw = 0;
 	function checkForm() {
 		var form = document.joinfrm;
@@ -32,6 +33,12 @@
 
 		if (form.password1.value == "") {
 			alert("비밀번호를 입력하세요.");
+			form.password1.focus();
+			return false;
+		}
+		
+		if (conPw == 0) {
+			alert("비밀번호 조건을 확인해 주세요.");
 			form.password1.focus();
 			return false;
 		}
@@ -100,7 +107,7 @@
 		}
 
 		$.ajax({
-			url : 'idCheck.do',
+			url : 'checkId.do',
 			data : {
 				id : document.joinfrm.joinid.value
 			},
@@ -150,12 +157,15 @@
 		// 비밀번호 조건 체크
 		if (first.value.length >= 6 && first.value.length <= 8) { // 길이 체크
 			if (pattern1.test(first.value) && pattern2.test(first.value)) { // 숫자, 특수문자 혼합
+				conPw = 1;
 				$("#conditionPw").text("");
 			} else {
+				conPw = 0;
 				$("#conditionPw").text("");
 				$("#conditionPw").append("<font size=\"2\" color=\"red\"> *숫자, 특수문자를 혼합하여 6-8자리 </font>");
 			}
 		} else {
+			conPw = 0;
 			$("#conditionPw").text("");
 			$("#conditionPw").append("<font size=\"2\" color=\"red\"> *숫자, 특수문자를 혼합하여 6-8자리 </font>");
 		}
@@ -356,7 +366,7 @@
 									type="button" onclick="checkForm()"
 									class="btn btn-primary btn-block">JOIN</button></td>
 							<td width="220" colspan="3"><button type="button"
-									onclick="location.href='basic_login.do'"
+									onclick="location.href='basic_loginForm.do'"
 									class="btn btn-primary btn-block">GO BACK</button></td>
 						</tr>
 					</table>

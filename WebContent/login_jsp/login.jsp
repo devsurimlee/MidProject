@@ -50,7 +50,7 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
-						<form role="form" id="loginfrm" name="loginfrm" action="basic_loginCheck.do">
+						<form role="form" id="loginfrm" name="loginfrm" action="basic_login.do">
 							<table>
 								<tr>
 									<th width="100"> ID </th>
@@ -67,11 +67,11 @@
 									<td colspan="2"><button type="button" onclick="checkForm()" class="btn btn-md btn-primary btn-block"> LOGIN </button></td>
 								</tr>
 								<tr>
-									<td colspan="2"><button type="button" onclick="location.href='basic_insertMember.do'" class="btn btn-md btn-primary btn-block"> JOIN </button></td>
+									<td colspan="2"><button type="button" onclick="location.href='basic_joinForm.do'" class="btn btn-md btn-primary btn-block"> JOIN </button></td>
 								</tr>
 								<tr>
-									<td width="170"><button type="button" onclick="location.href='########.do'" class="btn btn-md btn-primary btn-block"> 아이디 찾기 </button></td>
-									<td width="170"><button type="button" onclick="location.href='########.do'" class="btn btn-md btn-primary btn-block"> 비밀번호 찾기 </button></td>
+									<td width="170" ><button type="button" onclick="location.href='basic_forgotIdForm.do'" class="btn btn-md btn-primary btn-block"> 아이디 찾기 </button></td>
+									<td width="170"><button type="button" onclick="location.href='basic_forgotPwForm.do'" class="btn btn-md btn-primary btn-block"> 비밀번호 찾기 </button></td>
 								</tr>
 							</table>
 						</form>

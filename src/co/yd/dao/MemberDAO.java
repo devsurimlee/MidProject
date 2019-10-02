@@ -125,6 +125,25 @@ public class MemberDAO {
 	}
 	
 	// 6. 아이디 찾기
+	public String forgotId(String name, String email) {
+		String sql = "select m_id from members where m_name=? and m_email=?";
+		String getId = null;
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				getId = rs.getString("m_id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return getId;
+	}
 	
 	// 7. 비밀번호 찾기
 }

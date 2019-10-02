@@ -11,7 +11,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import co.yd.dao.MemberDAO;
 import co.yd.dto.MemberDTO;
 
-public class InsertMemberCommand implements Command {
+public class MemberJoinCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,13 +39,10 @@ public class InsertMemberCommand implements Command {
 		
 		if (r != 0) { // 성공
 			request.setAttribute("message", "회원이 되신 것을 축하드립니다!");
-			return "basic_login.do";
+			return "basic_loginForm.do";
 		} else { // 실패
 			request.setAttribute("message", "회원가입에 실패하셨습니다. 다시 시도해 주세요.");
-			return "login_jsp/insertMember.jsp";
+			return "login_jsp/join.jsp";
 		}
-
-
 	}
-
 }

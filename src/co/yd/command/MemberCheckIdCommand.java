@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yd.dao.MemberDAO;
 
-public class IdCheckCommand implements Command {
+public class MemberCheckIdCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

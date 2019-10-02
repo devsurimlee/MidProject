@@ -9,7 +9,7 @@
 		var result = confirm("로그아웃 하시겠습니까?");
 
         if(result == true) {
-        	location.href="basic_afterlogout.do";
+        	location.href="basic_logout.do";
         } else {
         	location.href="basic_index.do";
         }

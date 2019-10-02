@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import co.yd.dao.MemberDAO;
 import co.yd.dto.MemberDTO;
 
-public class LoginCheckCommand implements Command {
+public class MemberLoginCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class LoginCheckCommand implements Command {
 			path = "/basic_index.do";
 		} else {
 			request.setAttribute("message", "로그인 실패하셨습니다. 아이디와 비밀번호를 다시 확인해 주세요.");
-			path = "login_jsp/loginForm.jsp";
+			path = "login_jsp/login.jsp";
 		}
 
 		return path;
