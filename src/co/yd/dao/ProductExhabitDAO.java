@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
+import co.yd.dto.AmountDTO;
 import co.yd.dto.ProductDTO;
 
 public class ProductExhabitDAO {
@@ -21,7 +22,35 @@ public class ProductExhabitDAO {
 		return instance;
 	}
 	
-	//key는 물품아이디
+	//상품 재고테이블 현황
+	public ArrayList<AmountDTO> selectProductStock(int key) {
+		String sql = "select * from amount where p_id = ?";
+		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, key);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				AmountDTO dto = new AmountDTO();
+				dto.setAmount_id(rs.getInt("amount_id"));
+				dto.setP_id(rs.getInt("p_id"));
+				dto.setAmount_size(rs.getString("amount_size"));
+				dto.setAmount_color(rs.getString("amount_color"));
+				dto.setAmount_count(rs.getInt("amount_count"));
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return list;
+	}
+	
+	//key는 물품아이디 상품테이블 상품 1개 조회
 	public ProductDTO selectProduct(int key) {
 		String sql = "select * from product where p_id= ?";
 		ProductDTO dto = new ProductDTO();
@@ -43,9 +72,9 @@ public class ProductExhabitDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
-
-		
 		return dto;
 	}
 	
@@ -73,13 +102,9 @@ public class ProductExhabitDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			JDBCutil.disconnect(pstmt, conn); //클로즈
-		}
+		} 
 		return list;
 	}
-	
-	
 	
 
 }
