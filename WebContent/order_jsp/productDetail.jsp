@@ -9,15 +9,6 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-	$(function() {
-		$("label[name='colorGroup']".on("click", function() {
-			console.out("aa");
-		})
-		
-	});
-
-</script>
 </head>
 <body>
 	<div class="container-fluid">
