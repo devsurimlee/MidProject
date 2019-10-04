@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script>
 $(document).ready (function()
 	{
@@ -27,17 +29,46 @@ console.log(amountList);
 		
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size;
 		$("#total_product").show();	
+		console.log(color + "11");
+
 	}
 	
-	function change(num) {
+ 	function change(num) {
+		var color =$("[name=colorGroup]:checked").val();
+		var size = $("[name=sizeGroup]:checked").val();
+		var count = 0;
+			console.log(amountList.length + "/ 배열사이즈");
 		for(var i = 0; i < amountList.length; i++ ){
-			console.log(amountList[i].amount_color + "배열확인");
-			var color =$("[name=colorGroup]:checked").length > 0 ? $("[name=colorGroup]:checked").val() : "" ;
-			var size = $("[name=sizeGroup]:checked").length > 0 ? $("[name=sizeGroup]:checked").val() : "";
-			if (color == amountList[i].amount_color && size == amountList[i].amount_size) {
+			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
+				console.log(i + " / i check 2222");
 				var count = amountList[i].amount_count;
-				var y = Number(cnt.value)+num;
-				console.log(count);
+				break;
+			}
+		}//
+			
+		var y = Number(cnt.value) + num;
+		
+		if(y < 1) { 
+			y = 1;
+		}
+		
+		if(y > count) {
+			y = count;
+		}
+		productCnt.cnt.value = y;
+
+	} 
+	
+	
+/* 	function change(num) {
+		for(var i = 0; i < amountList.length; i++ ){
+			var color =$("[name=colorGroup]:checked").val();
+			var size = $("[name=sizeGroup]:checked").val();
+				console.log(color + "색상 22");
+			if (color == amountList[i].amount_color && size == amountList[i].amount_size ) {
+				console.log(i);
+				var count = amountList[i].amount_count;
+				var y = Number(cnt.value) + num;
 				
 				if(y < 1) { 
 					y = 1;
@@ -49,7 +80,7 @@ console.log(amountList);
 				productCnt.cnt.value = y;
 			}
 		}
-	}
+	} */
 
 </script>
 <!-- 수량체크용 끝 -->
@@ -119,7 +150,7 @@ console.log(amountList);
 										<td>
 										<!-- forTokens string 잘라서 넣어줌 delims가 구분자 -->
 										<c:forTokens items="${dto.p_color }" var="color" delims=",">
-											<input type="radio" id="${color }" name="colorGroup" value="${color}" onclick="add()">${color}
+											<input type="radio" id="${color }" name="colorGroup" value="${fn:trim(color) }" onclick="add()">${color}
 										</c:forTokens>
 										</td>
 									</tr>
@@ -129,7 +160,7 @@ console.log(amountList);
 									<tr>
 										<td>
 										<c:forTokens items="${dto.p_size }" var="size" delims=",">
-											<input type="radio" id="${size}" name="sizeGroup" value="${size }" onclick="add()">${size }</label>
+											<input type="radio" id="${size}" name="sizeGroup" value="${fn:trim(size) }" onclick="add()">${size }</label>
 										</c:forTokens>
 										</td>
 									</tr>
