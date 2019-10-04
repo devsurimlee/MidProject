@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
 import co.yd.dto.AmountDTO;
+import co.yd.dto.ProductDTO;
 
 public class AmountDAO extends DAO {
 	PreparedStatement pstmt;
@@ -175,6 +176,29 @@ public class AmountDAO extends DAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	public ArrayList<AmountDTO> selectAllToProduct(ProductDTO product){
+		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ?";
+		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
+		try {
+
+			conn = JDBCutil.connect(); // 커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product.getP_id());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AmountDTO dto = new AmountDTO();
+				dto.setAmount_id(rs.getInt("AMOUNT_ID"));
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setAmount_size(rs.getString("AMOUNT_SIZE"));
+				dto.setAmount_color(rs.getString("AMOUNT_COLOR"));
+				dto.setAmount_count(rs.getInt("AMOUNT_COUNT"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }
