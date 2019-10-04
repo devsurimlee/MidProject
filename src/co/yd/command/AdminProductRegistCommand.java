@@ -20,8 +20,6 @@ public class AdminProductRegistCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDTO productDto = dto(request, response);
-		ProductDAO productDao = new ProductDAO();
-		AmountDAO amountDao = new AmountDAO();
 		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
 		ArrayList<AddAmountDTO> addAmountDtoList = new ArrayList<AddAmountDTO>();
 		String path = "";
@@ -30,18 +28,12 @@ public class AdminProductRegistCommand implements Command {
 		boolean amountResult = false;
 		boolean addAmountResult = false;
 		if (productResult) {
-//			ProductDTO a = productDao.select(productDto.getP_name()); //상품아이디
-//					int i = a.getP_id();
-//			productDto.setP_id(i);
 			int amountCount = Integer.parseInt(request.getParameter("amount_count")); //사용안할경우 예외처리 필요
 					
 			amountList = buildAmountDtoList(productDto,amountCount);
 
 			amountResult = amountProcess(amountList);
 			if (amountResult) {
-//				int amount_Id_Start = amountDao.selectAmountid(productDto.getP_id());
-//				amountList = addIdSeqAmountDtoList(amountList);
-
 				addAmountDtoList = bulidaddAmountList(amountList);
 				addAmountResult = addAmountProcess(addAmountDtoList);
 				if (addAmountResult) {
@@ -96,15 +88,6 @@ public class AdminProductRegistCommand implements Command {
 		}
 		return amountDtoList;
 	}
-
-//	private ArrayList<AmountDTO> addIdSeqAmountDtoList(ArrayList<AmountDTO> amountList) {
-//		for (AmountDTO amount : amountList) {
-//			amount.setAmount_id(start_seq);
-//			start_seq++;
-//		}
-//
-//		return amountList;
-//	}
 
 	private boolean amountProcess(ArrayList<AmountDTO> amountDtoList) {
 		boolean result = false;

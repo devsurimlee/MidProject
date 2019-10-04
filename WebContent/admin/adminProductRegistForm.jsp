@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="admin/js/imageUpload.js"></script>
 <script type="text/javascript">
 	function p_name_Check() {
 		var chkP_name = $("p_name");
@@ -70,18 +72,19 @@
 							<td colspan="2"><textarea class="form-control" id="p_detail"
 									name="p_detail"> </textarea></td>
 						</tr>
-
-						<tr>
-							<th>이미지추가</th>
-							<td colspan="2"><input type="text" id="#" name="#"
-								class="form-control" /></td>
-						</tr>
 						<tr>
 							<th>카테고리</th>
 							<td colspan="2"><input type="text" id="p_category"
 								name="p_category" class="form-control" /></td>
 						</tr>
+						<tr>
 
+
+							<th>썸네일</th>
+							<td colspan="2"><input type="file" name="uploadFile"
+								id="uploadFile" class="form-control" multiple>
+								<div id="sumnail"></div>
+						</tr>
 					</table>
 
 				</div>
@@ -197,7 +200,8 @@
 									</tr>
 									<tr>
 										<td><label>각각 갯수</label></td>
-										<td><input type="text" id="amount_count" name="amount_count"></td>
+										<td><input type="text" id="amount_count"
+											name="amount_count"></td>
 									</tr>
 
 								</table></td>
