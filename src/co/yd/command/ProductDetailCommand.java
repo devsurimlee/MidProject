@@ -24,6 +24,7 @@ public class ProductDetailCommand implements Command{
 		ProductExhabitDAO pDAO = new ProductExhabitDAO();
 		ProductDTO dto = new ProductDTO();
 		dto = pDAO.selectProduct(key);
+		request.setAttribute("dtoList", JSONArray.fromObject(dto).toString());
 		request.setAttribute("dto", dto);
 		
 		//재고 테이블

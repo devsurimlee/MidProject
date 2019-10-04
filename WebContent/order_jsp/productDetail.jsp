@@ -14,22 +14,34 @@
 $(document).ready (function()
 	{
 	$("#total_product").hide();	
+	//위시리스트
+	$("#wishList").click( function() { alert("로그인 화면으로 이동합니다");
+		
+	});
+
 });
 
 </script>
 
+
 <!-- 수량체크용 -->
 <script>
+var dtoList = JSON.parse('${dtoList}');
 var amountList = JSON.parse('${amountList}');
+var totalPrice = 0;
 console.log(amountList);
+console.log(dtoList);
+
 
 	function add() {
 		var color =$("[name=colorGroup]:checked").length > 0 ? $("[name=colorGroup]:checked").val() : "" ;
 		var size = $("[name=sizeGroup]:checked").length >0 ? $("[name=sizeGroup]:checked").val() : "";
+		totalPrice = dtoList[0].p_price;
+		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
 		
-		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size;
-		$("#total_product").show();	
-		console.log(color + "11");
+		if ($("[name=colorGroup]:checked").length > 0 && $("[name=sizeGroup]:checked").length > 0 ) {
+			$("#total_product").show();	
+		}
 
 	}
 	
@@ -40,47 +52,22 @@ console.log(amountList);
 			console.log(amountList.length + "/ 배열사이즈");
 		for(var i = 0; i < amountList.length; i++ ){
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
-				console.log(i + " / i check 2222");
 				var count = amountList[i].amount_count;
 				break;
 			}
-		}//
-			
+	 	  }
 		var y = Number(cnt.value) + num;
 		
-		if(y < 1) { 
+		if (y < 1) { 
 			y = 1;
-		}
-		
-		if(y > count) {
+		} if (y > count) {
 			y = count;
 		}
 		productCnt.cnt.value = y;
-
-	} 
-	
-	
-/* 	function change(num) {
-		for(var i = 0; i < amountList.length; i++ ){
-			var color =$("[name=colorGroup]:checked").val();
-			var size = $("[name=sizeGroup]:checked").val();
-				console.log(color + "색상 22");
-			if (color == amountList[i].amount_color && size == amountList[i].amount_size ) {
-				console.log(i);
-				var count = amountList[i].amount_count;
-				var y = Number(cnt.value) + num;
-				
-				if(y < 1) { 
-					y = 1;
-				}
-				
-				if(y > count) {
-					y = count;
-				}
-				productCnt.cnt.value = y;
-			}
-		}
-	} */
+		
+		totalPrice = dtoList[0].p_price * y;
+		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
+ 	}//
 
 </script>
 <!-- 수량체크용 끝 -->
@@ -177,9 +164,9 @@ console.log(amountList);
 								<thead></thead>
 								<tbody>
 									<tr>
-										<td width="200"><button type="button"
+										<td width="200"><button type="button" id ="cart" name="cart"
 												class="btn btn-md btn-primary btn-block">CART</button></td>
-										<td width="200"><button type="button"
+										<td width="200"><button type="button" id ="wishList" name="wishList"
 												class="btn btn-md btn-primary btn-block">WISHLIST</button></td>
 									<tr>
 										<td colspan="2"><button type="button"
