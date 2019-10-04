@@ -35,6 +35,7 @@ import co.yd.command.MemberResetPwCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
 import co.yd.command.ProductDetailCommand;
+import co.yd.command.WishListCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -54,7 +55,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_orderForm.do", new OrderFormCommand());
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
-		
+		map.put("/basic_wishList.do", new WishListCommand());
 		
 		// 연우 추가
 		map.put("/admin_Index.do", new AdminIndexCommand());

@@ -14,10 +14,21 @@
 $(document).ready (function()
 	{
 	$("#total_product").hide();	
+	
 	//위시리스트
-	$("#wishList").click( function() { alert("로그인 화면으로 이동합니다");
-		
-	});
+	var wishList = $("#wishList");
+	if($('#id').val().length == "") {
+		wishList.click( function() { 
+			alert("로그인 화면으로 이동합니다");
+			window.location.href = "basic_loginForm.do";
+		});
+	} else {
+		wishList.click( function() {
+			window.location.href = "basic_wishList.do";
+		});
+	}
+	
+
 
 });
 
