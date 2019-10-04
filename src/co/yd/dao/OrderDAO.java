@@ -25,11 +25,20 @@ public class OrderDAO{
 	
 	public OrderDetailDTO insertOrderDetail(OrderDetailDTO odDto) {
 		
-		//1) 오더디테일 교유 인덱스, 2)오더번호, 3)제품명, 4)재고명(사이즈/색상등), 5)주문수량
-		String sql ="insert into order_detail values(ORDER_DETAIL_SEQ.nextval, ?, ?, ?, ?)";
+		//1) 오더디테일 고유 인덱스, 2)오더번호, 3)제품명, 4)재고명(사이즈/색상등), 5)주문수량
+		String sql1 = "select ORDER_DETAIL_SEQ.nextval from dual";
+		String sql ="insert into order_detail values(?, ?, ?, ?, ?)";
 		
 		try {
 			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql1);
+			rs =  pstmt.executeQuery();
+			rs.next();
+			odDto.setOrderDetailId(rs.getInt(1));
+			System.out.println(odDto.getOrderDetailId());		
+			
+			OrderDTO dto = new OrderDTO();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, odDto.getOrderDetailId());
 			pstmt.setInt(2, odDto.getOrderId());

@@ -18,7 +18,7 @@ var dtoList = JSON.parse('${dtoList}');
 var amountList = JSON.parse('${amountList}');
 var totalPrice = 0;
 console.log(amountList);
-console.log(dtoList);
+console.log(dtoList[0].p_price + "dto!!");
 
 
 	function add() {
@@ -26,6 +26,19 @@ console.log(dtoList);
 		var size = $("[name=sizeGroup]:checked").length >0 ? $("[name=sizeGroup]:checked").val() : "";
 		totalPrice = dtoList[0].p_price;
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
+		
+		for(var i = 0; i < amountList.length; i++ ){
+			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
+				// selectOption 1) 재고아이디
+				selectOption.productId.value = amountList[i].amount_id;
+				break;
+			}
+	 	  }
+		// selectOption 3)총금액 4)색상 5)사이즈 
+		selectOption.productPrice.value = totalPrice;
+		selectOption.productColor.value = color;
+		selectOption.productSize.value = size;
+		
 		
 		if ($("[name=colorGroup]:checked").length > 0 && $("[name=sizeGroup]:checked").length > 0 ) {
 			$("#total_product").show();	
@@ -37,9 +50,9 @@ console.log(dtoList);
 		var color =$("[name=colorGroup]:checked").val();
 		var size = $("[name=sizeGroup]:checked").val();
 		var count = 0;
-			console.log(amountList.length + "/ 배열사이즈");
 		for(var i = 0; i < amountList.length; i++ ){
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
+				//selectOption 6)수량
 				var count = amountList[i].amount_count;
 				break;
 			}
@@ -52,9 +65,13 @@ console.log(dtoList);
 			y = count;
 		}
 		productCnt.cnt.value = y;
+		selectOption.productCount.value = y;
 		
 		totalPrice = dtoList[0].p_price * y;
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
+		
+		selectOption.productPrice.value = totalPrice;
+
  	}//
 
 </script>
@@ -88,14 +105,8 @@ $(document).ready (function()
 			alert("사이즈를 선택해주세요");
 			return false;
 		}
-		var productName = $("#productName").html();
-		var totalPrice = $("#productPrice").html() * $("#cnt").html();
-		//var amountId =
-			
+		selectOption.submit();
 		
-		console.log(productName);
-		console.log($("[name=colorGroup]:checked").val());
-		//window.location.href ="basic_orderForm.do";
 	});
 
 });
@@ -106,6 +117,24 @@ $(document).ready (function()
 
 </head>
 <body>
+<!-- value값 선택은 JS function add(), change(num) 참조-->
+<form id="selectOption" name="selectOption" method="post" action="basic_orderForm.do">
+<table>
+	<thead></thead>
+	<tbody>
+		<tr>
+			<td><input type="text" id="key" name="key" value="${key }"></td>
+			<td><input type="text" id="productId" name="productId"></td>
+			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td>
+			<td><input type="text" id="productPrice" name="productPrice"></td>
+			<td><input type="text" id="productColor" name="productColor"></td>
+			<td><input type="text" id="productSize" name="productSize"></td>
+			<td><input type="text" id="productCount" name="productCount" value="1"></td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -178,7 +207,7 @@ $(document).ready (function()
 									<tr>
 										<td>
 										<c:forTokens items="${dto.p_size }" var="size" delims=",">
-											<input type="radio" id="${size}" name="sizeGroup" value="${fn:trim(size) }" onclick="add()">${size }</label>
+											<input type="radio" id="${size}" name="sizeGroup" value="${fn:trim(size) }" onclick="add()">${size }
 										</c:forTokens>
 										</td>
 									</tr>

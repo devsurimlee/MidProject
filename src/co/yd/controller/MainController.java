@@ -19,10 +19,6 @@ import co.yd.command.AdminProductRegistFormCommand;
 import co.yd.command.AdminProductUpdateCommand;
 import co.yd.command.AdminProductUpdateFormCommand;
 import co.yd.command.Command;
-import co.yd.command.IndexCommand;
-import co.yd.command.OrderFormCommand;
-import co.yd.command.OrderSuccessCommand;
-import co.yd.command.ProductDetailCommand;
 import co.yd.command.member.command.MemberCheckIdCommand;
 import co.yd.command.member.command.MemberDeleteCommand;
 import co.yd.command.member.command.MemberForgotIdCommand;
@@ -42,7 +38,11 @@ import co.yd.command.member.form.FormLogout;
 import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
 import co.yd.command.member.form.FormUpdatePw;
-import co.yd.command.WishListCommand;
+import co.yd.command.order.IndexCommand;
+import co.yd.command.order.OrderFormCommand;
+import co.yd.command.order.OrderSuccessCommand;
+import co.yd.command.order.ProductDetailCommand;
+import co.yd.command.order.WishListCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -55,10 +55,8 @@ public class MainController extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		map = new HashMap<String, Command>();
-		map.put("/basic_index.do", new IndexCommand());
-		
-		
 		// 수림 추가
+		map.put("/basic_index.do", new IndexCommand());
 		map.put("/basic_orderForm.do", new OrderFormCommand());
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
