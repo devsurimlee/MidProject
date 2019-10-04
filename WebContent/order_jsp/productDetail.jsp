@@ -10,18 +10,6 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script>
-$(document).ready (function()
-	{
-	$("#total_product").hide();	
-	//위시리스트
-	$("#wishList").click( function() { alert("로그인 화면으로 이동합니다");
-		
-	});
-
-});
-
-</script>
 
 
 <!-- 수량체크용 -->
@@ -72,6 +60,39 @@ console.log(dtoList);
 </script>
 <!-- 수량체크용 끝 -->
 
+<script>
+$(document).ready (function()
+	{
+	$("#total_product").hide();	
+	
+	//위시리스트
+	var wishList = $("#wishList");
+	if($('#id').val().length == "") {
+		wishList.click( function() { 
+			alert("로그인 화면으로 이동합니다");
+			window.location.href = "basic_loginForm.do";
+		});
+	} else {
+		wishList.click( function() {
+			window.location.href = "basic_wishList.do";
+		});
+	}
+	
+	//상품구매
+	$("#buyNow").click( function() {
+		var productName = $("#productName").html();
+		console.log(productName);
+		
+		
+		//window.location.href ="basic_orderForm.do";
+	});
+
+
+});
+
+</script>
+
+
 
 </head>
 <body>
@@ -120,12 +141,12 @@ console.log(dtoList);
 							<table>
 								<thead>
 									<tr>
-										<td id="productName" value=${dto.p_name }><h1>${dto.p_name }</h1></td>
+										<td id="productName"><h1>${dto.p_name }</h1></td>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<th id="productPrice" value=${dto.p_price }><h3>가격: ${dto.p_price }</h3></th>
+										<th id="productPrice"><h3>가격: ${dto.p_price }</h3></th>
 									</tr>
 									<tr>
 										<th><h3>등급할인: </h3></th>
@@ -169,7 +190,7 @@ console.log(dtoList);
 										<td width="200"><button type="button" id ="wishList" name="wishList"
 												class="btn btn-md btn-primary btn-block">WISHLIST</button></td>
 									<tr>
-										<td colspan="2"><button type="button"
+										<td colspan="2"><button type="button" id="buyNow" name="buyNow"
 												class="btn btn-md btn-primary btn-block">BUY NOW</button></td>
 									</tr>
 									<tr>

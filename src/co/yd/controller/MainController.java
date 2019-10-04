@@ -42,6 +42,7 @@ import co.yd.command.member.form.FormLogout;
 import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
 import co.yd.command.member.form.FormUpdatePw;
+import co.yd.command.WishListCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -61,7 +62,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_orderForm.do", new OrderFormCommand());
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
-		
+		map.put("/basic_wishList.do", new WishListCommand());
 		
 		// 연우 추가
 		map.put("/admin_Index.do", new AdminIndexCommand());
