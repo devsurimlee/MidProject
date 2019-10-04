@@ -22,7 +22,7 @@ public class MemberDAO {
 	}
 
 
-	// 지원: 1회원가입, 2회원정보수정(비밀번호, 주소, 전화번호), 3회원탈퇴(아이디, 주문목록, 게시글 남김)
+	// 지원: 1회원가입, 2회원정보수정(전화번호, 이메일, 주소, 비밀번호), 3회원탈퇴(아이디, 주문목록, 게시글 남김)
 	// 4주문내역조회(운송장번호 조회), 5로그인, 6아이디 찾기, 7비밀번호 찾기
 
 	// 1. 회원가입
@@ -81,10 +81,49 @@ public class MemberDAO {
 	}
 	
 	
-	// 2. 회원 정보 수정(비밀번호, 주소, 전화번호)
+	// 2. 회원 정보 수정
+	// 2-1. 정보 변경(전화번호, 이메일, 주소)
+	public int updateMember(MemberDTO dto) {
+		String sql = "update members set m_email=?, m_phone=?, m_postcode=?, m_address1=?, m_address2=? where m_id=?";
+		int r = 0;
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmEmail());
+			pstmt.setString(2, dto.getmPhone());
+			pstmt.setString(3, dto.getmPostcode());
+			pstmt.setString(4, dto.getmAddress1());
+			pstmt.setString(5, dto.getmAddress2());
+			pstmt.setString(6, dto.getmId());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return r;
+	}
 	
+	// 2-2. 비밀번호 변경 -> 7.2 메서드
 	
 	// 3. 회원 탈퇴(아이디, 주문 목록, 게시글은 남겨야 함)
+	public int deleteMember(String id) {
+		// 1m_id, 2m_pw, 3m_name, 4m_email, 5m_phone, 6m_address1, 7m_postcode, 8g_grade, 9m_address2, 10m_salt
+		String sql = "update members set m_pw='null', m_name='null', m_email='null', m_phone='null', m_address1='null', m_postcode='null',"
+				+ "g_grade='null', m_address2='null', m_salt='null' where m_id=?";
+		int r = 0;
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return r;
+	}
 	
 	
 	// 4. 주문 내역 조회(운송장번호 조회)
@@ -114,6 +153,11 @@ public class MemberDAO {
 					rdto.setmId(rs.getString("m_id"));
 					rdto.setmName(rs.getString("m_name"));
 					rdto.setgGrade(rs.getString("g_grade"));
+					rdto.setmEmail(rs.getString("m_email"));
+					rdto.setmPhone(rs.getString("m_phone"));
+					rdto.setmPostcode(rs.getString("m_postcode"));
+					rdto.setmAddress1(rs.getString("m_address1"));
+					rdto.setmAddress2(rs.getString("m_address2"));
 				}
 			}
 		} catch(SQLException e) {
@@ -123,6 +167,7 @@ public class MemberDAO {
 		}
 		return rdto;
 	}
+	
 	
 	// 6. 아이디 찾기
 	public String forgotId(String name, String email) {
@@ -144,6 +189,7 @@ public class MemberDAO {
 		}
 		return getId;
 	}
+	
 	
 	// 7. 비밀번호 찾기
 	// 7-1. 비밀번호를 찾기 위해 등록된 회원정보가 맞는지 체크

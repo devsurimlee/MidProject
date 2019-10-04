@@ -19,19 +19,26 @@ import co.yd.command.AdminProductRegistFormCommand;
 import co.yd.command.AdminProductUpdateCommand;
 import co.yd.command.AdminProductUpdateFormCommand;
 import co.yd.command.Command;
+import co.yd.command.FormDeleteMember;
 import co.yd.command.FormForgotId;
 import co.yd.command.FormForgotPw;
 import co.yd.command.FormJoin;
 import co.yd.command.FormLogin;
 import co.yd.command.FormLogout;
+import co.yd.command.FormMypage;
+import co.yd.command.FormUpdateMember;
+import co.yd.command.FormUpdatePw;
 import co.yd.command.IndexCommand;
 import co.yd.command.MemberCheckIdCommand;
+import co.yd.command.MemberDeleteCommand;
 import co.yd.command.MemberForgotIdCommand;
 import co.yd.command.MemberForgotPwCommand;
 import co.yd.command.MemberJoinCommand;
 import co.yd.command.MemberLoginCommand;
 import co.yd.command.MemberLogoutCommand;
 import co.yd.command.MemberResetPwCommand;
+import co.yd.command.MemberUpdateCommand;
+import co.yd.command.MemberUpdatePwCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
 import co.yd.command.ProductDetailCommand;
@@ -76,6 +83,10 @@ public class MainController extends HttpServlet {
 		map.put("/basic_logoutForm.do", new FormLogout());
 		map.put("/basic_forgotIdForm.do", new FormForgotId());
 		map.put("/basic_forgotPwForm.do", new FormForgotPw());
+		map.put("/basic_mypageForm.do", new FormMypage());
+		map.put("/basic_updateMemberForm.do", new FormUpdateMember());
+		map.put("/basic_updatePwForm.do", new FormUpdatePw());
+		map.put("/basic_deleteMemberForm.do", new FormDeleteMember());
 		
 		map.put("/basic_login.do", new MemberLoginCommand());
 		map.put("/basic_join.do", new MemberJoinCommand());
@@ -84,7 +95,9 @@ public class MainController extends HttpServlet {
 		map.put("/basic_forgotId.do", new MemberForgotIdCommand());
 		map.put("/basic_forgotPw.do", new MemberForgotPwCommand());
 		map.put("/basic_resetPw.do", new MemberResetPwCommand());
-		
+		map.put("/basic_updateMember.do", new MemberUpdateCommand());
+		map.put("/basic_updatePw.do", new MemberUpdatePwCommand());
+		map.put("/basic_deleteMember.do", new MemberDeleteCommand());
 		
 	}
 

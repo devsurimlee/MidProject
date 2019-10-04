@@ -106,7 +106,6 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("아무튼 에러");
 		}
 		return result;
 	}

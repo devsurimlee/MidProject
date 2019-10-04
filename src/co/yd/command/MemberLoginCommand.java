@@ -27,13 +27,8 @@ public class MemberLoginCommand implements Command {
 		dto.setmId(request.getParameter("id"));
 		dto.setmPw(request.getParameter("pw"));
 		
-		System.out.println("dto = " + dto.getmId());
-		System.out.println("dto = " + dto.getmPw());
-
 		ndto = dao.loginCheck(dto);
-		
-		System.out.println("ndto = " + ndto.getmId());
-		System.out.println("ndto = " + ndto.getmName());
+		session.setAttribute("list", ndto);
 
 		if (ndto.getgGrade() != null) {
 			System.out.println(ndto.getgGrade());
