@@ -34,7 +34,7 @@ public class ProductDAO extends DAO {
 			rs.next();
 			dto.setP_id(rs.getInt(1));
 			
-			 sql = "insert into product(P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE) "
+			sql = "insert into product(P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE) "
 					+ "values(?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getP_id());
@@ -85,6 +85,7 @@ public class ProductDAO extends DAO {
 		String sql = "delete from product where P_ID = ?";
 
 		try {
+			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getP_id());
 			result = pstmt.executeUpdate();
@@ -98,6 +99,7 @@ public class ProductDAO extends DAO {
 		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE " + "from product";
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		try {
+			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -122,6 +124,7 @@ public class ProductDAO extends DAO {
 		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE " + "from product where p_id = ?";
 		ProductDTO dto = new ProductDTO();
 		try {
+			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_id);
 			rs = pstmt.executeQuery();
@@ -145,6 +148,7 @@ public class ProductDAO extends DAO {
 		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE " + "from product where p_name = ?";
 		ProductDTO dto = new ProductDTO();
 		try {
+			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, p_name);
 			rs = pstmt.executeQuery();

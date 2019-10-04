@@ -30,16 +30,17 @@ public class AdminProductRegistCommand implements Command {
 		boolean amountResult = false;
 		boolean addAmountResult = false;
 		if (productResult) {
-			ProductDTO a = productDao.select(productDto.getP_name()); //상품아이디
-					int i = a.getP_id();
-			productDto.setP_id(i);
-
-			amountList = buildAmountDtoList(productDto);
+//			ProductDTO a = productDao.select(productDto.getP_name()); //상품아이디
+//					int i = a.getP_id();
+//			productDto.setP_id(i);
+			int amountCount = Integer.parseInt(request.getParameter("amount_count")); //사용안할경우 예외처리 필요
+					
+			amountList = buildAmountDtoList(productDto,amountCount);
 
 			amountResult = amountProcess(amountList);
 			if (amountResult) {
-				int amount_Id_Start = amountDao.selectAmountid(productDto.getP_id());
-				amountList = addIdSeqAmountDtoList(amountList, amount_Id_Start);
+//				int amount_Id_Start = amountDao.selectAmountid(productDto.getP_id());
+//				amountList = addIdSeqAmountDtoList(amountList);
 
 				addAmountDtoList = bulidaddAmountList(amountList);
 				addAmountResult = addAmountProcess(addAmountDtoList);
@@ -79,7 +80,7 @@ public class AdminProductRegistCommand implements Command {
 		return result;
 	}
 
-	private ArrayList<AmountDTO> buildAmountDtoList(ProductDTO productDto) {
+	private ArrayList<AmountDTO> buildAmountDtoList(ProductDTO productDto, int amountCount) {
 		ArrayList<AmountDTO> amountDtoList = new ArrayList<AmountDTO>();
 		String[] sizeSplit = productDto.getP_size().split(",");
 		String[] colorSplit = productDto.getP_color().split(",");
@@ -88,22 +89,22 @@ public class AdminProductRegistCommand implements Command {
 				AmountDTO amountDto = new AmountDTO();
 				amountDto.setP_id(productDto.getP_id());
 				amountDto.setAmount_size(sizeSplit[sizeCount]);
-				amountDto.setAmount_color(sizeSplit[colorCount]);
-				amountDto.setAmount_count(0);// need to update
+				amountDto.setAmount_color(colorSplit[colorCount]);
+				amountDto.setAmount_count(amountCount);// need to update
 				amountDtoList.add(amountDto);
 			}
 		}
 		return amountDtoList;
 	}
 
-	private ArrayList<AmountDTO> addIdSeqAmountDtoList(ArrayList<AmountDTO> amountList, int start_seq) {
-		for (AmountDTO amount : amountList) {
-			amount.setAmount_id(start_seq);
-			start_seq++;
-		}
-
-		return amountList;
-	}
+//	private ArrayList<AmountDTO> addIdSeqAmountDtoList(ArrayList<AmountDTO> amountList) {
+//		for (AmountDTO amount : amountList) {
+//			amount.setAmount_id(start_seq);
+//			start_seq++;
+//		}
+//
+//		return amountList;
+//	}
 
 	private boolean amountProcess(ArrayList<AmountDTO> amountDtoList) {
 		boolean result = false;
