@@ -20,16 +20,24 @@ public class AmountDAO extends DAO {
 	}
 
 	public int insert(AmountDTO dto) {
-		String sql = "insert into product(AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT) " + "values(AMOUNT_SEQ.nextval,?,?,?,?)";
 		int result = 0;
 		try {
 			conn = JDBCutil.connect(); // 커넥트
+			
+			String sql = "select AMOUNT_SEQ.nextval from dual";
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setInt(1, dto.getAmount_id());
-			pstmt.setInt(1, dto.getP_id());
-			pstmt.setString(2, dto.getAmount_size());
-			pstmt.setString(3, dto.getAmount_color());
-			pstmt.setInt(4, dto.getAmount_count());
+			rs = pstmt.executeQuery();
+			rs.next();
+			dto.setAmount_id(rs.getInt(1));
+			
+			sql = "insert into amount(AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT) " + "values(?,?,?,?,?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getAmount_id());
+			pstmt.setInt(2, dto.getP_id());
+			pstmt.setString(3, dto.getAmount_size());
+			pstmt.setString(4, dto.getAmount_color());
+			pstmt.setInt(5, dto.getAmount_count());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,6 +87,8 @@ public class AmountDAO extends DAO {
 		String sql = "delete from amount where AMOUNT_ID = ?";
 
 		try {
+
+			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getAmount_id());
 			result = pstmt.executeUpdate();
@@ -105,6 +115,8 @@ public class AmountDAO extends DAO {
 		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT " + "from amount";
 		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
 		try {
+
+			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -126,6 +138,8 @@ public class AmountDAO extends DAO {
 		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT " + "from amount where amount_id = ?";
 		AmountDTO dto = new AmountDTO();
 		try {
+
+			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -144,9 +158,11 @@ public class AmountDAO extends DAO {
 	}
 	
 	public int selectAmountid(int p_id) {
-		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ? select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ? order by AMOUNT_ID";
+		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ? order by AMOUNT_ID";
 		int result = 0;
 		try {
+
+			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_id);
 			rs = pstmt.executeQuery();
