@@ -20,7 +20,8 @@ import co.yd.dao.MemberDAO;
 public class MemberForgotIdCommand implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String name = request.getParameter("mName");
 		String email = request.getParameter("mEmail");
@@ -35,7 +36,7 @@ public class MemberForgotIdCommand implements Command {
 		} else { // 해당하는 아이디를 찾았음
 			// 이메일 전송
 			final String user = "yedam.help@gmail.com"; // 보내는 사람 이메일 주소
-			final String password = "&&1234&&1234"; // 비밀번호
+			final String password = "pwcbixblceoqsrhv"; // 비밀번호
 
 			Properties prop = new Properties();
 			prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -55,7 +56,7 @@ public class MemberForgotIdCommand implements Command {
 				message.setFrom(new InternetAddress(user));
 
 				// 받는 사람의 이메일 주소
-				message.addRecipient(Message.RecipientType.TO, new InternetAddress("je708@naver.com"));
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 				// 메일 제목
 				message.setSubject("쇼핑몰에서 알려드립니다.");
 				// 메일 내용
@@ -72,7 +73,8 @@ public class MemberForgotIdCommand implements Command {
 
 			request.setAttribute("message", "이메일로 아이디를 발송했습니다. 로그인 해 주세요.");
 			return "basic_loginForm.do";
-		}
-	}
 
+		}
+
+	}
 }

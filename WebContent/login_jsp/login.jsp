@@ -11,6 +11,10 @@
 		alert('${message}');
 	}
 	
+	if('${resetPw}' != ''){
+		alert('${resetPw}');
+	}
+	
 	function checkForm() {
 		var form = document.loginfrm;
 		if (form.id.value == "") {

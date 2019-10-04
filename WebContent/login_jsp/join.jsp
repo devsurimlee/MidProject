@@ -148,6 +148,7 @@
 	}
 
 	// 비밀번호 조건 확인: 숫자, 특수문자 혼합하여 6-8자리
+	// 밑에다 합쳐놨음 지금 안 씀: 비밀번호 조건 만족 안 할 때 재확인 완료 후 조건 만족하면 재확인이 제대로 안 되는 문제가 있음
 	function pwCondition() {
 		var pattern1 = /[0-9]/;
 		var pattern2 = /[~!@#$%^&*()_+|<>?:{}]/;
@@ -171,10 +172,29 @@
 		}
 	}
 
-	// 비밀번호 재확인
+	// 비밀번호 조건 확인: 숫자, 특수문자 혼합하여 6-8자리 // 비밀번호 재확인
 	function pwCheck() {
 		var first = $("#password1").val();
 		var second = $("#password2").val();
+		
+		var pattern1 = /[0-9]/;
+		var pattern2 = /[~!@#$%^&*()_+|<>?:{}]/;
+
+		// 비밀번호 조건 체크
+		if (first.length >= 6 && first.length <= 8) { // 길이 체크
+			if (pattern1.test(first) && pattern2.test(first)) { // 숫자, 특수문자 혼합
+				conPw = 1;
+				$("#conditionPw").text("");
+			} else {
+				conPw = 0;
+				$("#conditionPw").text("");
+				$("#conditionPw").append("<font size=\"2\" color=\"red\"> *숫자, 특수문자를 혼합하여 6-8자리 </font>");
+			}
+		} else {
+			conPw = 0;
+			$("#conditionPw").text("");
+			$("#conditionPw").append("<font size=\"2\" color=\"red\"> *숫자, 특수문자를 혼합하여 6-8자리 </font>");
+		}
 
 		// 비밀번호 재확인 체크
 		if (first == second) {
@@ -285,7 +305,7 @@
 							<th>Password</th>
 							<td colspan="5"><input type="password" id="password1"
 								name="mPw" class="form-control form-control-sm"
-								onkeyup="pwCondition()" /></td>
+								onkeyup="pwCheck()" /></td>
 						</tr>
 
 						<tr>

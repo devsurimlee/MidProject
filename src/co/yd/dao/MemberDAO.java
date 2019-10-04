@@ -146,4 +146,44 @@ public class MemberDAO {
 	}
 	
 	// 7. 비밀번호 찾기
+	// 7-1. 비밀번호를 찾기 위해 등록된 회원정보가 맞는지 체크
+	public int forgotPw(MemberDTO dto) {
+		String sql = "select m_id from members where m_id=? and m_name=? and m_email=?";
+		int r = 0;
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmId());
+			pstmt.setString(2, dto.getmName());
+			pstmt.setString(3, dto.getmEmail());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return r;
+	}
+	
+	// 7-2. 비밀번호 바꿈
+	public int resetPw(String id, String pw) {
+		String sql = "update members set m_pw=?, m_salt=? where m_id=?";
+		int r = 0;
+		try {
+			String salt = SHA256Util.generateSalt();
+			String newPassword = SHA256Util.getEncrypt(pw, salt);
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, newPassword);
+			pstmt.setString(2, salt);
+			pstmt.setString(3, id);
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return r;
+	}
 }

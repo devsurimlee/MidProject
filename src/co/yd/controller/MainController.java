@@ -27,9 +27,11 @@ import co.yd.command.FormLogout;
 import co.yd.command.IndexCommand;
 import co.yd.command.MemberCheckIdCommand;
 import co.yd.command.MemberForgotIdCommand;
+import co.yd.command.MemberForgotPwCommand;
 import co.yd.command.MemberJoinCommand;
 import co.yd.command.MemberLoginCommand;
 import co.yd.command.MemberLogoutCommand;
+import co.yd.command.MemberResetPwCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
 import co.yd.command.ProductDetailCommand;
@@ -79,6 +81,8 @@ public class MainController extends HttpServlet {
 		map.put("/checkId.do", new MemberCheckIdCommand());
 		map.put("/basic_logout.do", new MemberLogoutCommand());
 		map.put("/basic_forgotId.do", new MemberForgotIdCommand());
+		map.put("/basic_forgotPw.do", new MemberForgotPwCommand());
+		map.put("/basic_resetPw.do", new MemberResetPwCommand());
 		
 		
 	}
