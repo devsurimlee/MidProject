@@ -7,8 +7,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready (function()
+	{
+	$("#total_product").hide();	
+});
+
+</script>
+
+<!-- 수량체크용 -->
+<script>
+var amountList = JSON.parse('${amountList}');
+console.log(amountList);
+
+	function add() {
+		var color =$("[name=colorGroup]:checked").length > 0 ? $("[name=colorGroup]:checked").val() : "" ;
+		var size = $("[name=sizeGroup]:checked").length >0 ? $("[name=sizeGroup]:checked").val() : "";
+		
+		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size;
+		$("#total_product").show();	
+	}
+	
+	function change(num) {
+		for(var i = 0; i < amountList.length; i++ ){
+			console.log(amountList[i].amount_color + "배열확인");
+			var color =$("[name=colorGroup]:checked").length > 0 ? $("[name=colorGroup]:checked").val() : "" ;
+			var size = $("[name=sizeGroup]:checked").length > 0 ? $("[name=sizeGroup]:checked").val() : "";
+			if (color == amountList[i].amount_color && size == amountList[i].amount_size) {
+				var count = amountList[i].amount_count;
+				var y = Number(cnt.value)+num;
+				console.log(count);
+				
+				if(y < 1) { 
+					y = 1;
+				}
+				
+				if(y > count) {
+					y = count;
+				}
+				productCnt.cnt.value = y;
+			}
+		}
+	}
+
+</script>
+<!-- 수량체크용 끝 -->
+
+
 </head>
 <body>
 	<div class="container-fluid">
@@ -52,12 +98,14 @@
 					</div>
 					<div class="col-md-7">
 						<div style="height: 200px;">
+						<form name="productCnt">
 							<table>
 								<thead>
-									<div id="productName" value=${dto.p_name }><h1>${dto.p_name }</h1></div>
+									<tr>
+										<td id="productName" value=${dto.p_name }><h1>${dto.p_name }</h1></td>
+									</tr>
 								</thead>
 								<tbody>
-									<br/><br/>
 									<tr>
 										<th id="productPrice" value=${dto.p_price }><h3>가격: ${dto.p_price }</h3></th>
 									</tr>
@@ -69,9 +117,10 @@
 									</tr>
 									<tr>	
 										<td>
-										<c:forEach items="${amount }" var="amount">
-											<label id="color${amount.amount_id }" name="colorGroup">${amount.amount_color}</label>
-										</c:forEach>
+										<!-- forTokens string 잘라서 넣어줌 delims가 구분자 -->
+										<c:forTokens items="${dto.p_color }" var="color" delims=",">
+											<input type="radio" id="${color }" name="colorGroup" value="${color}" onclick="add()">${color}
+										</c:forTokens>
 										</td>
 									</tr>
 									<tr>
@@ -79,15 +128,20 @@
 									</tr>
 									<tr>
 										<td>
-										<c:forEach items="${amount }" var="amount">
-											<label id="size${amount.amount_id }" name="sizeGroup">${amount.amount_size}</label>
-										</c:forEach>
+										<c:forTokens items="${dto.p_size }" var="size" delims=",">
+											<input type="radio" id="${size}" name="sizeGroup" value="${size }" onclick="add()">${size }</label>
+										</c:forTokens>
 										</td>
+									</tr>
+									<tr>
+										<td id="total_product"><input type="text" id="colorNsize" name="colorNsize" size="50">
+										<a href="#" onclick="change(-1)">◀</a>
+										<input type="text" id="cnt" name="cnt" value="1" size="3">
+										<a href="#" onclick="change(1)">▶</a></td>
 									</tr>
 								</tbody>
 							</table>
-						
-						
+							</form>
 							<table>
 								<thead></thead>
 								<tbody>
@@ -152,7 +206,6 @@
 
 </script>
 <!-- 네이버페이 테스트용 끝 -->
-
 
 
 </body>

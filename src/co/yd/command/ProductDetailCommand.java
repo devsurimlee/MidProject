@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yd.dao.ProductExhabitDAO;
 import co.yd.dto.AmountDTO;
 import co.yd.dto.ProductDTO;
+import net.sf.json.JSONArray;
 
 public class ProductDetailCommand implements Command{
 
@@ -19,15 +20,18 @@ public class ProductDetailCommand implements Command{
 		
 		int key = Integer.parseInt(request.getParameter("key"));
 		
+		//상품 테이블
 		ProductExhabitDAO pDAO = new ProductExhabitDAO();
 		ProductDTO dto = new ProductDTO();
 		dto = pDAO.selectProduct(key);
 		request.setAttribute("dto", dto);
 		
-		
+		//재고 테이블
 		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
 		list = pDAO.selectProductStock(key);
+		request.setAttribute("amountList", JSONArray.fromObject(list).toString());
 		request.setAttribute("amount", list);
+
 		
 		return "order_jsp/productDetail.jsp";
 	}
