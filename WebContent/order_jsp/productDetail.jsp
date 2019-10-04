@@ -80,13 +80,23 @@ $(document).ready (function()
 	
 	//상품구매
 	$("#buyNow").click( function() {
+		
+		if(! $("[name=colorGroup]:checked").val()) {
+			alert("색상을 선택해주세요");
+			return false;
+		}  if(! $("[name=sizeGroup]:checked").val()) {
+			alert("사이즈를 선택해주세요");
+			return false;
+		}
 		var productName = $("#productName").html();
+		var totalPrice = $("#productPrice").html() * $("#cnt").html();
+		//var amountId =
+			
+		
 		console.log(productName);
-		
-		
+		console.log($("[name=colorGroup]:checked").val());
 		//window.location.href ="basic_orderForm.do";
 	});
-
 
 });
 
