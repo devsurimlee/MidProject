@@ -75,7 +75,7 @@
 			 <c:if test="${not empty id }">
 				 <h3><a href="basic_logoutForm.do"> LOGOUT </a></h3>
 			 </c:if>
-			 <H3><a href="#"> MY PAGE </a></H3>
+			 <H3><a href="basic_mypageForm.do"> MY PAGE </a></H3>
 			 <H3><a href="#"> CART </a></H3>
 			 <H3><a href="#"> ORDER </a></H3>
 			 <H3><a href="#"> WISHLIST </a></H3>

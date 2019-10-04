@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.member.command;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yd.command.Command;
 import co.yd.dao.MemberDAO;
 
 public class MemberForgotIdCommand implements Command {

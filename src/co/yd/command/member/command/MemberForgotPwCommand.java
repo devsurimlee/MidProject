@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.member.command;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import co.yd.command.Command;
 import co.yd.dao.MemberDAO;
 import co.yd.dto.MemberDTO;
 

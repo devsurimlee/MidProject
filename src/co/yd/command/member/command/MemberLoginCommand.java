@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.member.command;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import co.yd.command.Command;
 import co.yd.dao.MemberDAO;
 import co.yd.dto.MemberDTO;
 
@@ -27,13 +28,8 @@ public class MemberLoginCommand implements Command {
 		dto.setmId(request.getParameter("id"));
 		dto.setmPw(request.getParameter("pw"));
 		
-		System.out.println("dto = " + dto.getmId());
-		System.out.println("dto = " + dto.getmPw());
-
 		ndto = dao.loginCheck(dto);
-		
-		System.out.println("ndto = " + ndto.getmId());
-		System.out.println("ndto = " + ndto.getmName());
+		session.setAttribute("list", ndto);
 
 		if (ndto.getgGrade() != null) {
 			System.out.println(ndto.getgGrade());

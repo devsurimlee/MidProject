@@ -21,7 +21,7 @@ public class OrderFormCommand implements Command{
 		String path = null;
 		HttpSession session = request.getSession(false);
 
-		Mdto.setmId(request.getParameter("id"));
+		Mdto.setmId((String)session.getAttribute("id"));
 		Mdto = Odao.selectUserInfo(Mdto);
 		request.setAttribute("Mdto", Mdto); //db에서 넘어온 값을  request객체 속성으로 삽입
 		
