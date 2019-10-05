@@ -35,7 +35,7 @@ public class OrderSuccessCommand implements Command{
 		odDto.setAmountId(Integer.parseInt(request.getParameter("amountId")));
 		odDto.setOrderProductCount(Integer.parseInt(request.getParameter("orderProductCount")));
 		
-		//dao.insertOrderDetail(odDto);
+		//dao.insertOrderDetail(odDto);fff
 		
 		
 		return "order_jsp/orderSuccess.jsp";		
