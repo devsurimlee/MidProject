@@ -12,7 +12,23 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<script>
+$(document).ready (function() {
+	
+	var now = new Date();
 
+	var year= now.getFullYear();
+	var mon = (now.getMonth()+1)>9 ? ''+(now.getMonth()+1) : '0'+(now.getMonth()+1);
+	var day = now.getDate()>9 ? ''+now.getDate() : '0'+now.getDate();
+	        
+	var chan_val = year + '-' + mon + '-' + day;
+	$('#today').val("주문날짜: " + chan_val);
+	
+});
+
+
+
+</script>
 
 </head>
 
@@ -76,7 +92,7 @@
 				<td>주문번호:${orders.orderId }</td>
 			</tr>
 			<tr>
-				<td>주문날짜:${orders.orderDate } </td>
+				<td><input type="text" id="today" style="border:none"></td>
 			</tr>
 			<tr>
 				<td>상품합계:${orders.orderTotalPrice }원 </td>
@@ -91,4 +107,4 @@
 	</table>
 	
 </body>
-</html>
+</html> 
