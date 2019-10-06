@@ -19,7 +19,7 @@
 				
 				var userName = $("[name^='user']")  	
 				var orderName = $("[name^='order']")
-				for(var i = 0; i < orderName.length; i++) {
+				for(var i = 0; i < userName.length; i++) {
 					orderName[i].readOnly = true;
 					orderName[i].value = userName[i].value;
 				}
@@ -191,6 +191,8 @@
 </head>
 
 <body>
+
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -287,9 +289,6 @@
 					</div>
 					<table id="orderTable">
 						<tr>
-							<td><input type="hidden" id="id" name="id" value="${id }"></td>
-						</tr>
-						<tr>
 							<th width="80">이름</th>
 							<td><input type="text" id="orderName" name="orderName"></td>
 						</tr>
@@ -322,14 +321,28 @@
 								size="50"></td>
 						</tr>
 						<tr>
-							<th></th>
-							
-							<td><input type="text" id="orderTotalPrice" name="orderTotalPrice" value="${ofDTO.productPrice }"></td>
-							<td><input type="text" id="productId" name="productId" value="${key }"></td>
-							<td><input type="text" id="amountId" name="amountId" value="${ofDTO.productId }"> </td>
-							<td><input type="text" id="orderProductCount" name="orderProductCount" value="${ofDTO.productCount }"></td>
+							<td><input type="hidden" id="orderTotalPrice" name="orderTotalPrice" value="${ofDTO.productPrice }"></td>
+							<td><input type="hidden" id="productId" name="productId" value="${key }"></td>
+							<td><input type="hidden" id="amountId" name="amountId" value="${ofDTO.productId }"> </td>
+							<td><input type="hidden" id="orderProductCount" name="orderProductCount" value="${ofDTO.productCount }"></td>
 						</tr>
 					</table>
+					
+					
+					<table>
+						<thead></thead>
+						<tbody>
+							<tr>
+								<td><input type="text" id="productName" name="productName" value="${ofDTO.productName }"></td>
+								<td><input type="text" id="productPrice" name="productPrice" value="${ofDTO.productPrice }"></td>
+								<td><input type="text" id="productColor" name="productColor" value="${ofDTO.productColor }"></td>
+								<td><input type="text" id="productSize" name="productSize" value="${ofDTO.productSize }"></td>
+								<td><input type="text" id="productCount" name="productCount" value="${ofDTO.productCount }"></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					
 				</form>
 				<br /> <br />
 			</div>

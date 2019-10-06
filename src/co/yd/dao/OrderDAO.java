@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import co.yd.common.JDBCutil;
+import co.yd.dto.AmountDTO;
 import co.yd.dto.MemberDTO;
 import co.yd.dto.OrderDTO;
 import co.yd.dto.OrderDetailDTO;
@@ -22,9 +23,30 @@ public class OrderDAO{
 	public static OrderDAO getInstance() {
 		return instance;
 	}
+	// 재고에서 주문 수량 빼기, 재고수량 amount_count, 주문수량 getOrderProductCount
+	public void subAmount(AmountDTO amDto) {
+		String sql = "update amount set amount_count = (amount_count - ? ) where amount_id= ? and p_id = ? ";
+		
+		conn = JDBCutil.connect(); //커넥트
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, amDto.getOrderProductCount());
+			pstmt.setInt(2, amDto.getAmount_id());
+			pstmt.setInt(3, amDto.getP_id());
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 재고 업데이트 완료");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
 	
 	public OrderDetailDTO insertOrderDetail(OrderDetailDTO odDto) {
 		
+		//od_id, o_id, p_id, amount_id, a_count
 		//1) 오더디테일 고유 인덱스, 2)오더번호, 3)제품명, 4)재고명(사이즈/색상등), 5)주문수량
 		String sql1 = "select ORDER_DETAIL_SEQ.nextval from dual";
 		String sql ="insert into order_detail values(?, ?, ?, ?, ?)";
@@ -38,7 +60,6 @@ public class OrderDAO{
 			System.out.println(odDto.getOrderDetailId());		
 			
 			OrderDTO dto = new OrderDTO();
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, odDto.getOrderDetailId());
 			pstmt.setInt(2, odDto.getOrderId());

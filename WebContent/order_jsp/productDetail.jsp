@@ -31,6 +31,10 @@ console.log(dtoList[0].p_price + "dto!!");
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
 				// selectOption 1) 재고아이디
 				selectOption.productId.value = amountList[i].amount_id;
+				
+				var count = amountList[i].amount_count;
+				//<재고> 부분에 물품 재고값 넣어줌
+				productCnt.productAmount.value= "재고: " + count;
 				break;
 			}
 	 	  }
@@ -42,6 +46,7 @@ console.log(dtoList[0].p_price + "dto!!");
 		
 		if ($("[name=colorGroup]:checked").length > 0 && $("[name=sizeGroup]:checked").length > 0 ) {
 			$("#total_product").show();	
+			$("#amount").show();
 		}
 
 	}
@@ -54,6 +59,7 @@ console.log(dtoList[0].p_price + "dto!!");
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
 				//selectOption 6)수량
 				var count = amountList[i].amount_count;
+				//<재고> 부분에 물품 재고값 넣어줌
 				break;
 			}
 	 	  }
@@ -81,6 +87,7 @@ console.log(dtoList[0].p_price + "dto!!");
 $(document).ready (function()
 	{
 	$("#total_product").hide();	
+	$("#amount").hide();
 	
 	//위시리스트
 	var wishList = $("#wishList");
@@ -216,6 +223,9 @@ $(document).ready (function()
 										<a href="#" onclick="change(-1)">◀</a>
 										<input type="text" id="cnt" name="cnt" value="1" size="3">
 										<a href="#" onclick="change(1)">▶</a></td>
+									</tr>
+									<tr>
+										<td id="amount"><input type="text" id="productAmount" name="productAmount"></td>
 									</tr>
 								</tbody>
 							</table>
