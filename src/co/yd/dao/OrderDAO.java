@@ -37,6 +37,8 @@ public class OrderDAO{
 			System.out.println(r + "건 재고 업데이트 완료");
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 
 	}

@@ -48,7 +48,9 @@ public class ProductDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
 		return result;
 
 	}
@@ -76,7 +78,9 @@ public class ProductDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
 		return result;
 	}
 
@@ -116,6 +120,8 @@ public class ProductDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return list;
 	}
@@ -140,6 +146,8 @@ public class ProductDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return dto;
 	}
@@ -164,6 +172,8 @@ public class ProductDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return dto;
 	}

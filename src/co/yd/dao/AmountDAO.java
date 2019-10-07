@@ -58,6 +58,8 @@ public class AmountDAO extends DAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("아무튼 에러");
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -95,6 +97,8 @@ public class AmountDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -107,6 +111,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -130,6 +136,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return list;
 	}
@@ -153,6 +161,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return dto;
 	}
@@ -174,6 +184,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -197,6 +209,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return list;
 	}

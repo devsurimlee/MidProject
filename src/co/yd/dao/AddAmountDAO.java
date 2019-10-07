@@ -69,6 +69,8 @@ public class AddAmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 
 		return null;

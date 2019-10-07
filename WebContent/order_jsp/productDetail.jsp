@@ -195,7 +195,9 @@ $(document).ready (function()
 										<th id="productPrice"><h3>가격: ${dto.p_price }</h3></th>
 									</tr>
 									<tr>
+										<c:if test="${grant != green }">
 										<th><h3>등급할인: </h3></th>
+										</c:if>
 									</tr>
 									<tr>
 										<th><h3>색상</h3></th>
