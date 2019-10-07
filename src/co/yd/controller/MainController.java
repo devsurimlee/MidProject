@@ -23,6 +23,9 @@ import co.yd.command.IndexCommand;
 import co.yd.command.OrderFormCommand;
 import co.yd.command.OrderSuccessCommand;
 import co.yd.command.ProductDetailCommand;
+import co.yd.command.WishListCommand;
+import co.yd.command.board.form.FormNoticeList;
+import co.yd.command.board.form.FormNoticeRead;
 import co.yd.command.member.command.MemberCheckIdCommand;
 import co.yd.command.member.command.MemberDeleteCommand;
 import co.yd.command.member.command.MemberForgotIdCommand;
@@ -42,7 +45,6 @@ import co.yd.command.member.form.FormLogout;
 import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
 import co.yd.command.member.form.FormUpdatePw;
-import co.yd.command.WishListCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -78,6 +80,7 @@ public class MainController extends HttpServlet {
 		
 		
 		// 지원 추가
+		// 회원 관련 폼
 		map.put("/basic_loginForm.do", new FormLogin());
 		map.put("/basic_joinForm.do", new FormJoin());
 		map.put("/basic_logoutForm.do", new FormLogout());
@@ -88,6 +91,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_updatePwForm.do", new FormUpdatePw());
 		map.put("/basic_deleteMemberForm.do", new FormDeleteMember());
 		
+		// 회원 관련 커맨드
 		map.put("/basic_login.do", new MemberLoginCommand());
 		map.put("/basic_join.do", new MemberJoinCommand());
 		map.put("/checkId.do", new MemberCheckIdCommand());
@@ -98,6 +102,10 @@ public class MainController extends HttpServlet {
 		map.put("/basic_updateMember.do", new MemberUpdateCommand());
 		map.put("/basic_updatePw.do", new MemberUpdatePwCommand());
 		map.put("/basic_deleteMember.do", new MemberDeleteCommand());
+		
+		// 공지 게시판 폼
+		map.put("/basic_noticeListForm.do", new FormNoticeList());
+		map.put("/basic_noticeReadForm.do", new FormNoticeRead());
 		
 	}
 
