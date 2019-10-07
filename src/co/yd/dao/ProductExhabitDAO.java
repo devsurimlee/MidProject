@@ -79,9 +79,115 @@ public class ProductExhabitDAO {
 	}
 	
 	
-	
+	//'진열' 상태인 물품 전체 가져오기
 	public ArrayList<ProductDTO> selectDisplayAll(ProductDTO pDto) {
 		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열'";
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		try {
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setP_name(rs.getString("P_NAME"));
+				dto.setP_price(rs.getInt("P_PRICE"));
+				dto.setP_size(rs.getString("P_SIZE"));
+				dto.setP_color(rs.getString("P_COLOR"));
+				dto.setP_detail(rs.getString("P_DETAIL"));
+				dto.setP_category(rs.getString("P_CATEGORY"));
+				dto.setP_show_state(rs.getString("P_SHOW_STATE"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return list;
+	}
+	
+	//카테고리중 top인 물품만 가져옴
+	public ArrayList<ProductDTO> selectTopDisplay(ProductDTO pDto) {
+		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열' and p_category='top'";
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		try {
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setP_name(rs.getString("P_NAME"));
+				dto.setP_price(rs.getInt("P_PRICE"));
+				dto.setP_size(rs.getString("P_SIZE"));
+				dto.setP_color(rs.getString("P_COLOR"));
+				dto.setP_detail(rs.getString("P_DETAIL"));
+				dto.setP_category(rs.getString("P_CATEGORY"));
+				dto.setP_show_state(rs.getString("P_SHOW_STATE"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return list;
+	}
+	
+	//카테고리중 bottom인 물품만 가져옴
+	public ArrayList<ProductDTO> selectBottomDisplay(ProductDTO pDto) {
+		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열' and p_category='bottom'";
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		try {
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setP_name(rs.getString("P_NAME"));
+				dto.setP_price(rs.getInt("P_PRICE"));
+				dto.setP_size(rs.getString("P_SIZE"));
+				dto.setP_color(rs.getString("P_COLOR"));
+				dto.setP_detail(rs.getString("P_DETAIL"));
+				dto.setP_category(rs.getString("P_CATEGORY"));
+				dto.setP_show_state(rs.getString("P_SHOW_STATE"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return list;
+	}
+	
+	public ArrayList<ProductDTO> selectDressDisplay(ProductDTO pDto) {
+		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열' and p_category='dress'";
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		try {
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setP_name(rs.getString("P_NAME"));
+				dto.setP_price(rs.getInt("P_PRICE"));
+				dto.setP_size(rs.getString("P_SIZE"));
+				dto.setP_color(rs.getString("P_COLOR"));
+				dto.setP_detail(rs.getString("P_DETAIL"));
+				dto.setP_category(rs.getString("P_CATEGORY"));
+				dto.setP_show_state(rs.getString("P_SHOW_STATE"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return list;
+	}
+	
+	public ArrayList<ProductDTO> selectOuterDisplay(ProductDTO pDto) {
+		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열' and p_category='bottom'";
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		try {
 			

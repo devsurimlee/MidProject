@@ -31,8 +31,6 @@ $(document).ready(function(){
 
 </head>
 <body>
-		<!-- 아이디 세션용 -->
-		<div id ="id" name="id" style="visibility:hidden">${id }</div>
 
 	<!-- 메인 화면 들어가자마자 보이는 사진 슬라이드 -->
 	<div class="carousel slide" id="carousel-299453">
@@ -114,12 +112,8 @@ $(document).ready(function(){
 				<td />
 			</tr>
 			<tr>
-				<td>OPYRIGHT (주) 예담쇼핑몰</td>
-				<td>ADDRESS : 430015 경기도 안양시 만안구 안양로 233 서안양우체국 4층 언니옷</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>RETURN ADDRESS : 대구광역시 중구 국채보상로 537 (수동, 5층)</td>
+				<td>COPYRIGHT (주)예담쇼핑몰</td>
+				<td>ADDRESS : 대구광역시 중구 국채보상로 537 (수동, 5층)</td>
 			</tr>
 			<tr>
 				<td></td>

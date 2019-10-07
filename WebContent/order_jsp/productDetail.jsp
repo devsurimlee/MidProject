@@ -285,8 +285,8 @@ $(document).ready (function()
           "merchantUserKey": "test", //가맹점 사용자 식별키 *merchantUserKey(가맹점의 사용자키) 파라미터는 개인 아이디와 같은 개인정보 데이터를 제외한 사용자 식별키값으로 전달해 주시면 됩니다.
           "merchantPayKey": "1", //가맹점 주문 번호 *가맹점에서 사용중인 주문번호 또는 결제번호를 전달해 주시면 됩니다.
           "productName": $("#productName").attr("value"),
-          "totalPayAmount": $("#productPrice").attr("value"),
-          "taxScopeAmount": $("#productPrice").attr("value"),
+          "totalPayAmount": "25000",
+          "taxScopeAmount": "25000",
           "taxExScopeAmount": "0",
           "returnUrl": "basic_index.do" //결제완료시 띄울 페이지
         });

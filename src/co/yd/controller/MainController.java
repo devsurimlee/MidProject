@@ -38,10 +38,15 @@ import co.yd.command.member.form.FormLogout;
 import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
 import co.yd.command.member.form.FormUpdatePw;
+import co.yd.command.order.BestItemListCommand;
 import co.yd.command.order.IndexCommand;
 import co.yd.command.order.OrderFormCommand;
 import co.yd.command.order.OrderSuccessCommand;
+import co.yd.command.order.ProductBottomListCommand;
 import co.yd.command.order.ProductDetailCommand;
+import co.yd.command.order.ProductDressListCommand;
+import co.yd.command.order.ProductOuterListCommand;
+import co.yd.command.order.ProductTopListCommand;
 import co.yd.command.order.WishListCommand;
 
 @WebServlet("/MainController")
@@ -61,7 +66,13 @@ public class MainController extends HttpServlet {
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
 		map.put("/basic_wishList.do", new WishListCommand());
-		
+		map.put("/basic_bestItemList.do", new BestItemListCommand());
+		map.put("/basic_topList.do", new ProductTopListCommand());
+		map.put("/basic_bottomList.do", new ProductBottomListCommand());
+		map.put("/basic_dressList.do", new ProductDressListCommand());
+		map.put("/basic_outerList.do", new ProductOuterListCommand());
+		 
+
 		// 연우 추가
 		map.put("/admin_Index.do", new AdminIndexCommand());
 		map.put("/admin_productListForm.do", new AdminProductListFormCommand());
@@ -70,11 +81,7 @@ public class MainController extends HttpServlet {
 		map.put("/admin_productDelete.do", new AdminProductDeleteCommand());
 		map.put("/admin_productRegistForm.do", new AdminProductRegistFormCommand());
 		map.put("/admin_productRegist.do", new AdminProductRegistCommand());
-		
-		
-		
-		
-		
+
 		// 지원 추가
 		map.put("/basic_loginForm.do", new FormLogin());
 		map.put("/basic_joinForm.do", new FormJoin());
@@ -85,7 +92,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_updateMemberForm.do", new FormUpdateMember());
 		map.put("/basic_updatePwForm.do", new FormUpdatePw());
 		map.put("/basic_deleteMemberForm.do", new FormDeleteMember());
-		
+
 		map.put("/basic_login.do", new MemberLoginCommand());
 		map.put("/basic_join.do", new MemberJoinCommand());
 		map.put("/checkId.do", new MemberCheckIdCommand());
@@ -96,7 +103,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_updateMember.do", new MemberUpdateCommand());
 		map.put("/basic_updatePw.do", new MemberUpdatePwCommand());
 		map.put("/basic_deleteMember.do", new MemberDeleteCommand());
-		
+
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -109,14 +116,14 @@ public class MainController extends HttpServlet {
 
 		Command comm = map.get(path);
 		String page = comm.execute(request, response);
-		
-		if(page!=null) {
-			if(page.startsWith("redirect:")) {
+
+		if (page != null) {
+			if (page.startsWith("redirect:")) {
 				response.sendRedirect(page.substring(9));
-			} else if(page.startsWith("ajax:")) {
+			} else if (page.startsWith("ajax:")) {
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(page.substring(5));
-			} else if(page.startsWith("script:")) {
+			} else if (page.startsWith("script:")) {
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(page.substring(7));
 			} else {
