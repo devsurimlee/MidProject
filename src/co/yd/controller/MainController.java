@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.AdminIndexCommand;
+import co.yd.command.AdminMemberDeleteCommand;
 import co.yd.command.AdminMemberListFormCommand;
+import co.yd.command.AdminMemberUpdateCommand;
+import co.yd.command.AdminMemberUpdateFormCommand;
 import co.yd.command.AdminProductDeleteCommand;
 import co.yd.command.AdminProductListFormCommand;
 import co.yd.command.AdminProductRegistCommand;
@@ -83,7 +86,10 @@ public class MainController extends HttpServlet {
 		map.put("/admin_productRegistForm.do", new AdminProductRegistFormCommand());
 		map.put("/admin_productRegist.do", new AdminProductRegistCommand());
 		map.put("/adminMemberListFormCommand.do",new AdminMemberListFormCommand());
-
+		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
+		map.put("/adminMemberUpdateCommand.do",new AdminMemberUpdateCommand());
+		map.put("/adminMemberDeleteCommand.do",new AdminMemberDeleteCommand());
+		
 		// 지원 추가
 		map.put("/basic_loginForm.do", new FormLogin());
 		map.put("/basic_joinForm.do", new FormJoin());
