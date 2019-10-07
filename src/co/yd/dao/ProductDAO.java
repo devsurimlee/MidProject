@@ -95,6 +95,8 @@ public class ProductDAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}

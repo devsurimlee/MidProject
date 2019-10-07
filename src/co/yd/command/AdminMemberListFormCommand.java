@@ -1,27 +1,25 @@
 package co.yd.command;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.yd.dao.MemberDAO;
+import co.yd.dao.AdminMemberDAO;
 import co.yd.dto.MemberDTO;
 
-public class AdminProductDeleteCommand implements Command{
+public class AdminMemberListFormCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		MemberDAO dao = new MemberDAO();
-		
-		String mId = (request.getParameter("mId"));
-		
-		dao.deleteMember(mId);
-		
-		return null;
+		ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+		AdminMemberDAO dao = new AdminMemberDAO();
+		list = dao.SelectAll();
+		request.setAttribute("list",list);
+		return "admin/adminMemberListForm.jsp";
 	}
-	
+
 }

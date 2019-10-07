@@ -6,22 +6,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.yd.dao.MemberDAO;
+import co.yd.dao.AdminMemberDAO;
 import co.yd.dto.MemberDTO;
 
-public class AdminProductDeleteCommand implements Command{
+public class AdminMemberUpdateFormCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		MemberDAO dao = new MemberDAO();
-		
-		String mId = (request.getParameter("mId"));
-		
-		dao.deleteMember(mId);
-		
-		return null;
+		AdminMemberDAO dao = new AdminMemberDAO();
+		String mId= request.getParameter("key");
+		MemberDTO dto = new MemberDTO();
+		dto = dao.select(mId);
+		request.setAttribute("dto", dto);
+		return "admin/adminMemberUpdateForm.jsp";
 	}
-	
+
 }

@@ -9,19 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 import co.yd.dao.MemberDAO;
 import co.yd.dto.MemberDTO;
 
-public class AdminProductDeleteCommand implements Command{
+public class AdminMemberUpdateCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
 		
-		String mId = (request.getParameter("mId"));
+		dto.setmId(request.getParameter("mId"));
+		dto.setmName(request.getParameter("mName"));
+		dto.setmPhone(request.getParameter("mEmail"));
+		dto.setmPhone(request.getParameter("mPhone"));
+		dto.setmAddress1(request.getParameter("mAddress1"));
+		dto.setgGrade(request.getParameter("gGrade"));
 		
-		dao.deleteMember(mId);
+		dao.updateMember(dto);
+		
 		
 		return null;
 	}
-	
+
 }
