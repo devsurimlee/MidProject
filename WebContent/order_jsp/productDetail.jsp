@@ -31,7 +31,8 @@ console.log(dtoList[0].p_price + "dto!!");
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
 				// selectOption 1) 재고아이디
 				selectOption.productId.value = amountList[i].amount_id;
-				
+				cartInsert.amountId.value =amountList[i].amount_id;
+				cartInsert.orderProductCount.value = 1;
 				var count = amountList[i].amount_count;
 				//<재고> 부분에 물품 재고값 넣어줌
 				productCnt.productAmount.value= "재고: " + count;
@@ -72,6 +73,7 @@ console.log(dtoList[0].p_price + "dto!!");
 		}
 		productCnt.cnt.value = y;
 		selectOption.productCount.value = y;
+		cartInsert.orderProductCount.value = y;
 		
 		totalPrice = dtoList[0].p_price * y;
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
@@ -89,6 +91,19 @@ $(document).ready (function()
 	$("#total_product").hide();	
 	$("#amount").hide();
 	
+	//장바구니
+	var cart = $("#cart");
+	cart.click( function() {
+		cartInsert.submit();
+		
+		var resurt = confirm("상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?");
+		if(resurt == true) {
+			window.location.replace("basic_cartView.do");
+		} else {
+			//취소하면 페이지 그대로
+		}
+	});
+	
 	//위시리스트
 	var wishList = $("#wishList");
 	if($('#id').val().length == "") {
@@ -104,7 +119,6 @@ $(document).ready (function()
 	
 	//상품구매
 	$("#buyNow").click( function() {
-		
 		if(! $("[name=colorGroup]:checked").val()) {
 			alert("색상을 선택해주세요");
 			return false;
@@ -124,12 +138,13 @@ $(document).ready (function()
 
 </head>
 <body>
-<!-- value값 선택은 JS function add(), change(num) 참조-->
+<!-- 단품 주문용 폼 value값 선택은 JS function add(), change(num) 참조-->
 <form id="selectOption" name="selectOption" method="post" action="basic_orderForm.do">
 <table>
 	<thead></thead>
 	<tbody>
 		<tr>
+			<td><input type="hidden" id="id" name="id" value="${id }"></td>
 			<td><input type="text" id="key" name="key" value="${key }"></td>
 			<td><input type="text" id="productId" name="productId"></td>
 			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td>
@@ -141,6 +156,20 @@ $(document).ready (function()
 	</tbody>
 </table>
 </form>
+<!-- cart 추가용 폼 -->
+<form id = "cartInsert" name="cartInsert" method="post" action="basic_cartInsert.do">
+	<table>
+		<thead></thead>
+		<tbody>
+			<tr>
+			<td><input type="text" id="key" name="key" value="${key }"></td>
+				<td><input type="text" id="amountId" name="amountId"></td>
+				<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
 
 	<div class="container-fluid">
 		<div class="row">

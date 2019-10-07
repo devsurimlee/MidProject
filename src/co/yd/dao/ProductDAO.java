@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import co.yd.common.JDBCutil;
 import co.yd.dto.ProductDTO;
 
-public class ProductDAO extends DAO {
+public class ProductDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	Connection conn;

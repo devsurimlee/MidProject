@@ -10,7 +10,7 @@ import co.yd.common.JDBCutil;
 import co.yd.dto.AddAmountDTO;
 import co.yd.dto.AmountDTO;
 
-public class AddAmountDAO extends DAO {
+public class AddAmountDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	Connection conn;
