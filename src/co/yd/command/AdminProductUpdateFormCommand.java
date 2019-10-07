@@ -17,19 +17,22 @@ public class AdminProductUpdateFormCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		ProductDTO productDto = new ProductDTO();
-//		productDto.setP_id(Integer.parseInt(request.getParameter("p_id")));
-//		
-//		ProductDAO productDao = new ProductDAO();
-//		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
-//		AmountDAO amountDao = new AmountDAO();
-//		amountList = amountDao.selectAllToProduct(productDto);
-//		
-//		request.setAttribute("amountList", amountList);
-//		
-//		int key = Integer.parseInt(request.getParameter("key"));
-//		productDto = productDao.select(key);
-//		request.setAttribute("product", productDto);
+		ProductDTO productDto = new ProductDTO();
+
+		int key = Integer.parseInt(request.getParameter("key"));
+		productDto.setP_id(key);
+		ProductDAO productDao = new ProductDAO();
+		productDto = productDao.select(key);
+		request.setAttribute("product", productDto);
+		
+		
+		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
+		AmountDAO amountDao = new AmountDAO();
+		amountList = amountDao.selectAllToProduct(productDto);
+		
+		request.setAttribute("amountList", amountList);
+		
+		
 		return "admin/adminProductUpdateForm.jsp";
 	}
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.AdminIndexCommand;
+import co.yd.command.AdminMemberListFormCommand;
 import co.yd.command.AdminProductDeleteCommand;
 import co.yd.command.AdminProductListFormCommand;
 import co.yd.command.AdminProductRegistCommand;
@@ -81,6 +82,7 @@ public class MainController extends HttpServlet {
 		map.put("/admin_productDelete.do", new AdminProductDeleteCommand());
 		map.put("/admin_productRegistForm.do", new AdminProductRegistFormCommand());
 		map.put("/admin_productRegist.do", new AdminProductRegistCommand());
+		map.put("/adminMemberListFormCommand.do",new AdminMemberListFormCommand());
 
 		// 지원 추가
 		map.put("/basic_loginForm.do", new FormLogin());
