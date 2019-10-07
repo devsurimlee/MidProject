@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
 import co.yd.dto.AmountDTO;
+import co.yd.dto.ProductDTO;
 
 public class AmountDAO extends DAO {
 	PreparedStatement pstmt;
@@ -57,6 +58,8 @@ public class AmountDAO extends DAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("아무튼 에러");
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -94,6 +97,8 @@ public class AmountDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -106,6 +111,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}
@@ -129,6 +136,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return list;
 	}
@@ -152,6 +161,8 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return dto;
 	}
@@ -173,8 +184,35 @@ public class AmountDAO extends DAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
+	}
+	public ArrayList<AmountDTO> selectAllToProduct(ProductDTO product){
+		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT from amount where p_id = ?";
+		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
+		try {
+
+			conn = JDBCutil.connect(); // 커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, product.getP_id());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AmountDTO dto = new AmountDTO();
+				dto.setAmount_id(rs.getInt("AMOUNT_ID"));
+				dto.setP_id(rs.getInt("P_ID"));
+				dto.setAmount_size(rs.getString("AMOUNT_SIZE"));
+				dto.setAmount_color(rs.getString("AMOUNT_COLOR"));
+				dto.setAmount_count(rs.getInt("AMOUNT_COUNT"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return list;
 	}
 
 }

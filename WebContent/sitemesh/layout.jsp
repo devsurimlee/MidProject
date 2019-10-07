@@ -41,22 +41,14 @@
 			<br /><br />
 			<br />
 			<br />
-			<h3><a href="#" style="color:black">BEST ITEM</a></h3>
-			<h3><a href="#" style="color:black">TOP</a></h3>
-			<h3><a href="#" style="color:black">BOTTOM</a></h3>
-			<h3><a href="#" style="color:black">DRESS</a></h3>
-			<h3><a href="#" style="color:black">OUTER</a></h3>
+			<h3><a href="basic_bestItemList.do" style="color:black">BEST ITEM</a></h3>
+			<h3><a href="basic_topList.do" style="color:black">TOP</a></h3>
+			<h3><a href="basic_bottomList.do" style="color:black">BOTTOM</a></h3>
+			<h3><a href="basic_dressList.do" style="color:black">DRESS</a></h3>
+			<h3><a href="basic_outerList.do" style="color:black">OUTER</a></h3>
 			<br />
 			
-			<!-- 아이디 파라미터 넘겨줌 -->
-			<form id="frm" name="frm" action="basic_orderForm.do">
-			<input type="text" id ="id" name="id" value="${id }">
-			<h3><a onclick="document.frm.submit()">Order</a></h3>
-			</form>
-			
 			<br />
-			<h3><a href="basic_noticeListForm.do">공지게시판</a></h3>
-			<h3><a href="#">문의게시판</a></h3>
 			<h3><a href="basic_index.do">홈으로</a></h3>
 			
 			
@@ -86,7 +78,7 @@
 			 </c:if>
 			 
 			<address>
-				 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
+				 <strong>(주)예담쇼핑몰</strong><br>대구광역시 중구 국채보상로 537<br>(수동, 5층)<br> <abbr title="Phone">P:</abbr> 053-356-****
 			</address>
 		</div>
 		

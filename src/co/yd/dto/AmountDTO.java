@@ -6,6 +6,11 @@ public class AmountDTO {
 	String amount_size;
 	String amount_color;
 	int amount_count;
+	
+	// orderDetail에서 가져옴 Amount테이블에 없는 변수! 주문수량 체크용!
+	int OrderProductCount;
+	
+	
 	public int getAmount_id() {
 		return amount_id;
 	}
@@ -36,7 +41,12 @@ public class AmountDTO {
 	public void setAmount_count(int amount_count) {
 		this.amount_count = amount_count;
 	}
-	
+	public int getOrderProductCount() {
+		return OrderProductCount;
+	}
+	public void setOrderProductCount(int orderProductCount) {
+		OrderProductCount = orderProductCount;
+	}
 	
 }
 

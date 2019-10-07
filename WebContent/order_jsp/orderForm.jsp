@@ -19,7 +19,7 @@
 				
 				var userName = $("[name^='user']")  	
 				var orderName = $("[name^='order']")
-				for(var i = 0; i < orderName.length; i++) {
+				for(var i = 0; i < userName.length; i++) {
 					orderName[i].readOnly = true;
 					orderName[i].value = userName[i].value;
 				}
@@ -191,6 +191,8 @@
 </head>
 
 <body>
+
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -211,20 +213,22 @@
 							<tbody>
 								<!-- foreach ($order->lineItems as $line) or some such thing here -->
 								<tr>
-									<td class="col-md-3">
+									<td>
 										<div class="media">
 											<a class="thumbnail pull-left" href="#"> <img
-												class="media-object" src="http://lorempixel.com/460/250/"
+												class="media-object" src="image/clothesDetail/amount${ofDTO.productId }.jpg"
 												style="width: 72px; height: 72px;">
 											</a>
 											<div class="media-body">
-												<h5 class="media-heading">Product Name</h5>
-												<h5 class="media-heading">Product Code</h5>
+												<h5 class="media-heading">${ofDTO.productName }</h5>
+												<h5 class="media-heading">${ofDTO.productId }</h5>
 											</div>
 										</div>
 									</td>
-									<td class="text-center">1</td>
-									<td class="text-right"><span>25,000</span><span>원</span></td>
+									<td><h5>색상: <span>${ofDTO.productColor }</span></h5></td>
+									<td><h5>사이즈: <span>${ofDTO.productSize }</span></h5></td>
+									<td><h5>수량: <span>${ofDTO.productCount }</span></h5></td>
+									<td><h5>가격: <span>${ofDTO.productPrice }</span><span>원</span></h5></td>
 								</tr>
 							</tbody>
 						</table>
@@ -250,30 +254,30 @@
 					<table id ="userTable">
 						<tr>
 							<th width="80">이름</th>
-							<td><input type="text" id="userName" name="userName" value="${Mdto.mName }"></td>
+							<td><input type="text" id="userName" name="userName" value="${mdto.mName }"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>
 							<td><input type="text" id="userPhoneNum"
-								name="userPhoneNum" value="${Mdto.mPhone }">
+								name="userPhoneNum" value="${mdto.mPhone }">
 						</tr>
 						<c:if test="${not empty id }">
 							<tr>
 								<th>주소</th>
 								<td><input type="text" id="userPostCode"
-									name="userPostCode" value="${Mdto.mPostcode }">&nbsp;<input
+									name="userPostCode" value="${mdto.mPostcode }">&nbsp;<input
 									type="button" onclick="userDaumPostcode()" value="우편번호 찾기"></td>
 							</tr>
 							<tr>
 								<th></th>
 								<td><input type="text" id="userAddress" name="userAddress"
-									value="${Mdto.mAddress1 }"size="50"></td>
+									value="${mdto.mAddress1 }"size="50"></td>
 							</tr>
 
 							<tr>
 								<th></th>
 								<td><input type="text" id="userDetailAddress"
-									name="userDetailAddress" value="${Mdto.mAddress2 }"size="50"></td>
+									name="userDetailAddress" value="${mdto.mAddress2 }"size="50"></td>
 							</tr>
 						</c:if>
 					</table>
@@ -284,7 +288,6 @@
 						<h4>배송지 정보</h4>
 					</div>
 					<table id="orderTable">
-						<input type="hidden" id="id" name="id" value="${id }">
 						<tr>
 							<th width="80">이름</th>
 							<td><input type="text" id="orderName" name="orderName"></td>
@@ -317,7 +320,29 @@
 							<td><input type="text" id="orderMemo" name="orderMemo"
 								size="50"></td>
 						</tr>
+						<tr>
+							<td><input type="hidden" id="orderTotalPrice" name="orderTotalPrice" value="${ofDTO.productPrice }"></td>
+							<td><input type="hidden" id="productId" name="productId" value="${key }"></td>
+							<td><input type="hidden" id="amountId" name="amountId" value="${ofDTO.productId }"> </td>
+							<td><input type="hidden" id="orderProductCount" name="orderProductCount" value="${ofDTO.productCount }"></td>
+						</tr>
 					</table>
+					
+					
+					<table>
+						<thead></thead>
+						<tbody>
+							<tr>
+								<td><input type="text" id="productName" name="productName" value="${ofDTO.productName }"></td>
+								<td><input type="text" id="productPrice" name="productPrice" value="${ofDTO.productPrice }"></td>
+								<td><input type="text" id="productColor" name="productColor" value="${ofDTO.productColor }"></td>
+								<td><input type="text" id="productSize" name="productSize" value="${ofDTO.productSize }"></td>
+								<td><input type="text" id="productCount" name="productCount" value="${ofDTO.productCount }"></td>
+							</tr>
+						</tbody>
+					</table>
+					
+					
 				</form>
 				<br /> <br />
 			</div>
@@ -336,12 +361,12 @@
 						<div class="col-md-12">
 							<strong>상품합계</strong> <br />
 							<div class="pull-right">
-								<span>25,000</span><span>원</span>
+								<span>${ofDTO.productPrice }</span><span>원</span>
 							</div>
 						</div>
 
 						<div class="col-md-12">
-							<small>배송비</small>
+							<strong>배송비</strong>
 							<div class="pull-right">
 								<span>+2,500</span><span>원</span>
 							</div>
@@ -350,7 +375,7 @@
 						<div class="col-md-12">
 							<strong>총결제금액</strong>
 							<div class="pull-right">
-								<span>27,500</span><span>원</span>
+								<span>${ofDTO.productPrice+2500 }</span><span>원</span>
 							</div>
 							<hr>
 						</div>

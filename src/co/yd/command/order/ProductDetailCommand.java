@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.order;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yd.command.Command;
 import co.yd.dao.ProductExhabitDAO;
 import co.yd.dto.AmountDTO;
 import co.yd.dto.ProductDTO;
@@ -19,6 +20,7 @@ public class ProductDetailCommand implements Command{
 			throws ServletException, IOException {
 		
 		int key = Integer.parseInt(request.getParameter("key"));
+		request.setAttribute("key", key);
 		
 		//상품 테이블
 		ProductExhabitDAO pDAO = new ProductExhabitDAO();

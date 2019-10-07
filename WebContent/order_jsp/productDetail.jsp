@@ -18,7 +18,7 @@ var dtoList = JSON.parse('${dtoList}');
 var amountList = JSON.parse('${amountList}');
 var totalPrice = 0;
 console.log(amountList);
-console.log(dtoList);
+console.log(dtoList[0].p_price + "dto!!");
 
 
 	function add() {
@@ -27,8 +27,26 @@ console.log(dtoList);
 		totalPrice = dtoList[0].p_price;
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
 		
+		for(var i = 0; i < amountList.length; i++ ){
+			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
+				// selectOption 1) 재고아이디
+				selectOption.productId.value = amountList[i].amount_id;
+				
+				var count = amountList[i].amount_count;
+				//<재고> 부분에 물품 재고값 넣어줌
+				productCnt.productAmount.value= "재고: " + count;
+				break;
+			}
+	 	  }
+		// selectOption 3)총금액 4)색상 5)사이즈 
+		selectOption.productPrice.value = totalPrice;
+		selectOption.productColor.value = color;
+		selectOption.productSize.value = size;
+		
+		
 		if ($("[name=colorGroup]:checked").length > 0 && $("[name=sizeGroup]:checked").length > 0 ) {
 			$("#total_product").show();	
+			$("#amount").show();
 		}
 
 	}
@@ -37,10 +55,11 @@ console.log(dtoList);
 		var color =$("[name=colorGroup]:checked").val();
 		var size = $("[name=sizeGroup]:checked").val();
 		var count = 0;
-			console.log(amountList.length + "/ 배열사이즈");
 		for(var i = 0; i < amountList.length; i++ ){
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
+				//selectOption 6)수량
 				var count = amountList[i].amount_count;
+				//<재고> 부분에 물품 재고값 넣어줌
 				break;
 			}
 	 	  }
@@ -52,9 +71,13 @@ console.log(dtoList);
 			y = count;
 		}
 		productCnt.cnt.value = y;
+		selectOption.productCount.value = y;
 		
 		totalPrice = dtoList[0].p_price * y;
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
+		
+		selectOption.productPrice.value = totalPrice;
+
  	}//
 
 </script>
@@ -64,6 +87,7 @@ console.log(dtoList);
 $(document).ready (function()
 	{
 	$("#total_product").hide();	
+	$("#amount").hide();
 	
 	//위시리스트
 	var wishList = $("#wishList");
@@ -80,13 +104,17 @@ $(document).ready (function()
 	
 	//상품구매
 	$("#buyNow").click( function() {
-		var productName = $("#productName").html();
-		console.log(productName);
 		
+		if(! $("[name=colorGroup]:checked").val()) {
+			alert("색상을 선택해주세요");
+			return false;
+		}  if(! $("[name=sizeGroup]:checked").val()) {
+			alert("사이즈를 선택해주세요");
+			return false;
+		}
+		selectOption.submit();
 		
-		//window.location.href ="basic_orderForm.do";
 	});
-
 
 });
 
@@ -96,6 +124,24 @@ $(document).ready (function()
 
 </head>
 <body>
+<!-- value값 선택은 JS function add(), change(num) 참조-->
+<form id="selectOption" name="selectOption" method="post" action="basic_orderForm.do">
+<table>
+	<thead></thead>
+	<tbody>
+		<tr>
+			<td><input type="text" id="key" name="key" value="${key }"></td>
+			<td><input type="text" id="productId" name="productId"></td>
+			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td>
+			<td><input type="text" id="productPrice" name="productPrice"></td>
+			<td><input type="text" id="productColor" name="productColor"></td>
+			<td><input type="text" id="productSize" name="productSize"></td>
+			<td><input type="text" id="productCount" name="productCount" value="1"></td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -149,7 +195,9 @@ $(document).ready (function()
 										<th id="productPrice"><h3>가격: ${dto.p_price }</h3></th>
 									</tr>
 									<tr>
+										<c:if test="${grant != green }">
 										<th><h3>등급할인: </h3></th>
+										</c:if>
 									</tr>
 									<tr>
 										<th><h3>색상</h3></th>
@@ -168,7 +216,7 @@ $(document).ready (function()
 									<tr>
 										<td>
 										<c:forTokens items="${dto.p_size }" var="size" delims=",">
-											<input type="radio" id="${size}" name="sizeGroup" value="${fn:trim(size) }" onclick="add()">${size }</label>
+											<input type="radio" id="${size}" name="sizeGroup" value="${fn:trim(size) }" onclick="add()">${size }
 										</c:forTokens>
 										</td>
 									</tr>
@@ -177,6 +225,9 @@ $(document).ready (function()
 										<a href="#" onclick="change(-1)">◀</a>
 										<input type="text" id="cnt" name="cnt" value="1" size="3">
 										<a href="#" onclick="change(1)">▶</a></td>
+									</tr>
+									<tr>
+										<td id="amount"><input type="text" id="productAmount" name="productAmount"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -236,8 +287,8 @@ $(document).ready (function()
           "merchantUserKey": "test", //가맹점 사용자 식별키 *merchantUserKey(가맹점의 사용자키) 파라미터는 개인 아이디와 같은 개인정보 데이터를 제외한 사용자 식별키값으로 전달해 주시면 됩니다.
           "merchantPayKey": "1", //가맹점 주문 번호 *가맹점에서 사용중인 주문번호 또는 결제번호를 전달해 주시면 됩니다.
           "productName": $("#productName").attr("value"),
-          "totalPayAmount": $("#productPrice").attr("value"),
-          "taxScopeAmount": $("#productPrice").attr("value"),
+          "totalPayAmount": "25000",
+          "taxScopeAmount": "25000",
           "taxExScopeAmount": "0",
           "returnUrl": "basic_index.do" //결제완료시 띄울 페이지
         });
