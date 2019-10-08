@@ -22,7 +22,7 @@ public class WishListInsertCommand implements Command{
 		
 		//회원 로그인시
 		if(userId != null) {
-			wishListDTO dto = new wishListDTO();
+			//wishListDTO dto = new wishListDTO();
 			WishListDAO dao = new WishListDAO();
 			
 			dto.setmId(userId);
