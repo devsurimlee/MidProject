@@ -113,8 +113,13 @@ $(document).ready (function()
 		});
 	} else {
 		wishList.click( function() {
-			window.location.href = "basic_wishList.do";
-		});
+			wishlistInsert.submit();
+			var resurt = confirm("상품이 위시리스트에 담겼습니다. 위시리스트로 이동하시겠습니까?");
+			if(resurt == true) {
+				window.location.replace("basic_wishList.do");
+			} else {
+			};3
+		}
 	}
 	
 	//상품구매
@@ -176,9 +181,7 @@ $(document).ready (function()
 		<thead></thead>
 		<tbody>
 			<tr>
-			<td><input type="text" id="key" name="key" value="${key }"></td>
-				<td><input type="text" id="amountId" name="amountId"></td>
-				<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
+			<td><input type="text" id="p_id" name="p_id" value="${key }"></td>
 			</tr>
 		</tbody>
 	</table>

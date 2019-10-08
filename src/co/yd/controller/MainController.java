@@ -36,9 +36,7 @@ import co.yd.command.admin.AdminProductRegistFormCommand;
 import co.yd.command.admin.AdminProductUpdateCommand;
 import co.yd.command.admin.AdminProductUpdateFormCommand;
 import co.yd.command.admin.AdminQnaAnswerCommand;
-import co.yd.command.admin.AdminQnaDeleteCommand;
 import co.yd.command.admin.AdminQnaPasswordCommand;
-import co.yd.command.admin.AdminQnaWriteCommand;
 import co.yd.command.board.command.NoticeDeleteCommand;
 import co.yd.command.board.command.NoticeUpdateCommand;
 import co.yd.command.board.command.NoticeWriteCommand;
@@ -108,9 +106,10 @@ public class MainController extends HttpServlet {
 		
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
-		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());
 		
+		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());		
 		map.put("/basic_wishList.do", new WishListCommand());
+		
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
 		map.put("/cartDelete.do", new CartDeleteCommand());
@@ -156,8 +155,8 @@ public class MainController extends HttpServlet {
 		map.put("/admin_qnaAnswerForm.do", new AdminFormQnaAnswer());
 		map.put("/admin_qnaPasswordForm.do", new AdminFormQnaPassword());
 		
-		map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
-		map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
+		//map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
+		//map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
 		map.put("/admin_qnaAnswer.do", new AdminQnaAnswerCommand());
 		map.put("/admin_qnaPassword.do", new AdminQnaPasswordCommand());
 		
