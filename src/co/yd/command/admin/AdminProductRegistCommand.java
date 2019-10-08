@@ -53,7 +53,6 @@ public class AdminProductRegistCommand implements Command {
 
 	private ProductDTO dto(HttpServletRequest request, HttpServletResponse response) {
 		ProductDTO productDto = new ProductDTO();
-		productDto.setP_id(Integer.parseInt(request.getParameter("p_id"))); 
 		productDto.setP_name(request.getParameter("p_name"));
 		productDto.setP_price(Integer.parseInt(request.getParameter("p_price")));
 		productDto.setP_size(request.getParameter("p_size")); // amount column
