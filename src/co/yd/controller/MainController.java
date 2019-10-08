@@ -26,10 +26,19 @@ import co.yd.command.Command;
 import co.yd.command.board.command.NoticeDeleteCommand;
 import co.yd.command.board.command.NoticeUpdateCommand;
 import co.yd.command.board.command.NoticeWriteCommand;
+import co.yd.command.board.command.QnaAnswerCommand;
+import co.yd.command.board.command.QnaDeleteCommand;
+import co.yd.command.board.command.QnaPasswordCommand;
+import co.yd.command.board.command.QnaWriteCommand;
 import co.yd.command.board.form.FormNoticeList;
 import co.yd.command.board.form.FormNoticeRead;
 import co.yd.command.board.form.FormNoticeUpdate;
 import co.yd.command.board.form.FormNoticeWrite;
+import co.yd.command.board.form.FormQnaAnswer;
+import co.yd.command.board.form.FormQnaList;
+import co.yd.command.board.form.FormQnaPassword;
+import co.yd.command.board.form.FormQnaRead;
+import co.yd.command.board.form.FormQnaWrite;
 import co.yd.command.member.command.MemberCheckIdCommand;
 import co.yd.command.member.command.MemberDeleteCommand;
 import co.yd.command.member.command.MemberForgotIdCommand;
@@ -135,6 +144,17 @@ public class MainController extends HttpServlet {
 		map.put("/basic_noticeUpdate.do", new NoticeUpdateCommand());
 		map.put("/basic_noticeWrite.do", new NoticeWriteCommand());
 
+		// 문의게시판
+		map.put("/basic_qnaListForm.do", new FormQnaList());
+		map.put("/basic_qnaReadForm.do", new FormQnaRead());
+		map.put("/basic_qnaWriteForm.do", new FormQnaWrite());
+		map.put("/basic_qnaAnswerForm.do", new FormQnaAnswer());
+		map.put("/basic_qnaPasswordForm.do", new FormQnaPassword());
+		
+		map.put("/basic_qnaWrite.do", new QnaWriteCommand());
+		map.put("/basic_qnaDelete.do", new QnaDeleteCommand());
+		map.put("/basic_qnaAnswer.do", new QnaAnswerCommand());
+		map.put("/basic_qnaPassword.do", new QnaPasswordCommand());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
