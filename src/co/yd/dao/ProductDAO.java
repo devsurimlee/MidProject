@@ -57,7 +57,9 @@ public class ProductDAO {
 
 	public int update(ProductDTO dto) {
 		String sql = "update product set "
-				+ "P_NAME = ?,P_PRICE = ?,P_SIZE = ?,P_COLOR = ?,P_DETAIL = ?,P_CATEGORY = ?,P_SHOW_STATE = ? "
+				+ "P_NAME = ?,P_PRICE = ?,P_DETAIL = ?,"
+				+ "P_CATEGORY = ?,"
+				+ "P_SHOW_STATE = ? "
 				+ "where P_ID = ?";
 
 		int result = 0;
@@ -69,12 +71,10 @@ public class ProductDAO {
 
 			pstmt.setString(1, dto.getP_name());
 			pstmt.setInt(2, dto.getP_price());
-			pstmt.setString(3, dto.getP_size());
-			pstmt.setString(4, dto.getP_color());
-			pstmt.setString(5, dto.getP_detail());
-			pstmt.setString(6, dto.getP_category());
-			pstmt.setString(7, dto.getP_show_state());
-			pstmt.setInt(8, dto.getP_id());
+			pstmt.setString(3, dto.getP_detail());
+			pstmt.setString(4, dto.getP_category());
+			pstmt.setString(5, dto.getP_show_state());
+			pstmt.setInt(6, dto.getP_id());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

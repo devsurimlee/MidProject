@@ -53,7 +53,8 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row">상품명 <strong class="icoRequired">필수</strong></th>
+								<th scope="row">상품명 <input type="text" hidden="true" id="product_id" name="product_id" value="${product.p_id }">
+								 <strong class="icoRequired">필수</strong></th>
 								<td colspan="2">
 									<div class="overlapTip">
 										<input type="text" name="product_name" required="required"
@@ -88,6 +89,13 @@
 								<td colspan="2"><textarea rows="3" cols="70"
 										id="product_detail" name="product_detail">
 								${product.p_detail }
+								</textarea></td>
+							</tr>
+							<tr>
+								<th scope="row">상품 카테고리</th>
+								<td colspan="2"><input type="text" 
+										id="product_category" name="product_category" value="${product.p_category }">
+								
 								</textarea></td>
 							</tr>
 
@@ -261,7 +269,7 @@
 								<th scope="row">진열상태</th>
 								<td> <label class="fLabel">진열함 <input type="radio"
 										class="fCheck eMarketChecker" id="product_show_state"
-										name="product_show_state" value="진열함"
+										name="product_show_state" value="진열"
 										<c:if test="${product.p_show_state eq '진열'}" >checked=checked</c:if> />
 
 										<span class="checkMark"></span>
