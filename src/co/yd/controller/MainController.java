@@ -11,18 +11,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.yd.command.AdminIndexCommand;
-import co.yd.command.AdminMemberDeleteCommand;
-import co.yd.command.AdminMemberListFormCommand;
-import co.yd.command.AdminMemberUpdateCommand;
-import co.yd.command.AdminMemberUpdateFormCommand;
-import co.yd.command.AdminProductDeleteCommand;
-import co.yd.command.AdminProductListFormCommand;
-import co.yd.command.AdminProductRegistCommand;
-import co.yd.command.AdminProductRegistFormCommand;
-import co.yd.command.AdminProductUpdateCommand;
-import co.yd.command.AdminProductUpdateFormCommand;
 import co.yd.command.Command;
+import co.yd.command.admin.AdminIndexCommand;
+import co.yd.command.admin.AdminMemberDeleteCommand;
+import co.yd.command.admin.AdminMemberListFormCommand;
+import co.yd.command.admin.AdminMemberUpdateCommand;
+import co.yd.command.admin.AdminMemberUpdateFormCommand;
+import co.yd.command.admin.AdminNoticeDeleteCommand;
+import co.yd.command.admin.AdminNoticeListFormCommand;
+import co.yd.command.admin.AdminNoticeUpdateCommand;
+import co.yd.command.admin.AdminNoticeUpdateFormComand;
+import co.yd.command.admin.AdminNoticeWriteCommand;
+import co.yd.command.admin.AdminNoticeWriteFormCommand;
+import co.yd.command.admin.AdminProductDeleteCommand;
+import co.yd.command.admin.AdminProductListFormCommand;
+import co.yd.command.admin.AdminProductRegistCommand;
+import co.yd.command.admin.AdminProductRegistFormCommand;
+import co.yd.command.admin.AdminProductUpdateCommand;
+import co.yd.command.admin.AdminProductUpdateFormCommand;
+import co.yd.command.admin.AdminQNADeleteCommand;
+import co.yd.command.admin.AdminQNAListFormCommand;
+import co.yd.command.admin.AdminQNAUpdateCommand;
+import co.yd.command.admin.AdminQNAUpdateFormComand;
+import co.yd.command.admin.AdminQNAWriteCommand;
+import co.yd.command.admin.AdminQNAWriteFormCommand;
 import co.yd.command.board.command.NoticeDeleteCommand;
 import co.yd.command.board.command.NoticeUpdateCommand;
 import co.yd.command.board.command.NoticeWriteCommand;
@@ -81,27 +93,42 @@ public class MainController extends HttpServlet {
 		map.put("/basic_wishList.do", new WishListCommand());
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
-		
+
 		map.put("/basic_bestItemList.do", new BestItemListCommand());
 		map.put("/basic_topList.do", new ProductTopListCommand());
 		map.put("/basic_bottomList.do", new ProductBottomListCommand());
 		map.put("/basic_dressList.do", new ProductDressListCommand());
 		map.put("/basic_outerList.do", new ProductOuterListCommand());
-		 
 
 		// 연우 추가
 		map.put("/admin_Index.do", new AdminIndexCommand());
+		// 상품
 		map.put("/admin_productListForm.do", new AdminProductListFormCommand());
 		map.put("/admin_productUpdateForm.do", new AdminProductUpdateFormCommand());
 		map.put("/admin_productUpdate.do", new AdminProductUpdateCommand());
 		map.put("/admin_productDelete.do", new AdminProductDeleteCommand());
 		map.put("/admin_productRegistForm.do", new AdminProductRegistFormCommand());
 		map.put("/admin_productRegist.do", new AdminProductRegistCommand());
-		map.put("/adminMemberListFormCommand.do",new AdminMemberListFormCommand());
+		// 회원
+		map.put("/adminMemberListFormCommand.do", new AdminMemberListFormCommand());
 		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
-		map.put("/adminMemberUpdateCommand.do",new AdminMemberUpdateCommand());
-		map.put("/adminMemberDeleteCommand.do",new AdminMemberDeleteCommand());
-		
+		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
+		map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
+		// 공지사항
+		map.put("/adminNoticeListFormCommand.do", new AdminNoticeListFormCommand());
+		map.put("/adminNoticeWriteFormCommand.do", new AdminNoticeWriteFormCommand());
+		map.put("/adminNoticeWriteCommand.do", new AdminNoticeWriteCommand());
+		map.put("/adminNoticeUpdateFormCommand.do", new AdminNoticeUpdateFormComand());
+		map.put("/adminNoticeUpdateCommand.do", new AdminNoticeUpdateCommand());
+		map.put("/adminNoticeDeleteCommand.do", new AdminNoticeDeleteCommand());
+		// 1:1문의사항
+		map.put("/adminQNAListFormCommand.do", new AdminQNAListFormCommand());
+		map.put("/adminQNAWriteFormCommand.do", new AdminQNAWriteFormCommand());
+		map.put("/adminQNAWriteCommand.do", new AdminQNAWriteCommand());
+		map.put("/adminQNAUpdateFormCommand.do", new AdminQNAUpdateFormComand());
+		map.put("/adminQNAUpdateCommand.do", new AdminQNAUpdateCommand());
+		map.put("/adminQNADeleteCommand.do", new AdminQNADeleteCommand());
+
 		// 지원 추가
 		// 멤버 관련
 		map.put("/basic_loginForm.do", new FormLogin());
@@ -124,13 +151,13 @@ public class MainController extends HttpServlet {
 		map.put("/basic_updateMember.do", new MemberUpdateCommand());
 		map.put("/basic_updatePw.do", new MemberUpdatePwCommand());
 		map.put("/basic_deleteMember.do", new MemberDeleteCommand());
-		
+
 		// 공지게시판
 		map.put("/basic_noticeListForm.do", new FormNoticeList());
 		map.put("/basic_noticeReadForm.do", new FormNoticeRead());
 		map.put("/basic_noticeUpdateForm.do", new FormNoticeUpdate());
 		map.put("/basic_noticeWriteForm.do", new FormNoticeWrite());
-		
+
 		map.put("/basic_noticeDelete.do", new NoticeDeleteCommand());
 		map.put("/basic_noticeUpdate.do", new NoticeUpdateCommand());
 		map.put("/basic_noticeWrite.do", new NoticeWriteCommand());

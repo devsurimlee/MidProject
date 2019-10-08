@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.admin;
 
 import java.io.IOException;
 
@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yd.command.Command;
 import co.yd.dao.AdminMemberDAO;
 import co.yd.dto.MemberDTO;
 
