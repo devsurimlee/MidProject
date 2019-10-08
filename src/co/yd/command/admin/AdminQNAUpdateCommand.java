@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.admin;
 
 import java.io.IOException;
 
@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AdminProductUpdateCommand implements Command{
+import co.yd.command.Command;
+
+public class AdminQNAUpdateCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

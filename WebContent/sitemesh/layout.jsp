@@ -50,7 +50,7 @@
 			
 			<br />
 			<h3><a href="basic_noticeListForm.do"> 공지 게시판 </a></h3>
-			<h3><a href="#"> 문의 게시판 </a></h3>
+			<h3><a href="basic_qnaListForm.do?title=상품문의"> 문의 게시판 </a></h3>
 			<h3><a href="basic_index.do">홈으로</a></h3>
 			
 			
