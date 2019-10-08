@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yd.command.Command;
 import co.yd.dao.AddAmountDAO;
 import co.yd.dao.AmountDAO;
 import co.yd.dao.ProductDAO;
@@ -14,11 +15,13 @@ import co.yd.dto.AddAmountDTO;
 import co.yd.dto.AmountDTO;
 import co.yd.dto.ProductDTO;
 
-public class AdminProductRegistCommand implements Command {
+public class AdminProductUpdateCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String[] a = request.getParameterValues("amountColor");
 		ProductDTO productDto = dto(request, response);
 		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
 		ArrayList<AddAmountDTO> addAmountDtoList = new ArrayList<AddAmountDTO>();
@@ -28,6 +31,7 @@ public class AdminProductRegistCommand implements Command {
 		boolean amountResult = false;
 		boolean addAmountResult = false;
 		if (productResult) {
+			
 			int amountCount = Integer.parseInt(request.getParameter("amount_count")); //사용안할경우 예외처리 필요
 					
 			amountList = buildAmountDtoList(productDto,amountCount);
@@ -47,14 +51,11 @@ public class AdminProductRegistCommand implements Command {
 
 		return path;
 	}
-
 	private ProductDTO dto(HttpServletRequest request, HttpServletResponse response) {
 		ProductDTO productDto = new ProductDTO();
-		productDto.setP_name(request.getParameter("p_name"));
-		productDto.setP_price(Integer.parseInt(request.getParameter("p_price")));
-		productDto.setP_size(request.getParameter("p_size")); // amount column
-		productDto.setP_color(request.getParameter("p_color")); // amount column
-		productDto.setP_detail(request.getParameter("p_detail"));
+		productDto.setP_name(request.getParameter("product_name"));
+		productDto.setP_price(Integer.parseInt(request.getParameter("product_price")));
+		productDto.setP_detail(request.getParameter("product_detail"));
 		productDto.setP_category(request.getParameter("p_category"));
 		productDto.setP_show_state(request.getParameter("p_show_state"));
 		return productDto;

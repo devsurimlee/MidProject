@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,19 +7,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.yd.dao.ProductDAO;
-import co.yd.dto.ProductDTO;
+import co.yd.command.Command;
+import co.yd.dao.NoticeBoardDAO;
+import co.yd.dto.NoticeBoardDTO;
 
-public class AdminProductListFormCommand implements Command{
+public class AdminNoticeListFormCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-		ProductDAO dao = new ProductDAO();
-		list = dao.selectAll();
+		ArrayList<NoticeBoardDTO> list = new ArrayList<NoticeBoardDTO>();
+		NoticeBoardDAO dao = new NoticeBoardDAO();
+		list = dao.noticeList();
 		request.setAttribute("list", list);
-		return "admin/adminProductListForm.jsp";
+		
+		return "admin/adminNoticeListForm.jsp";
 	}
 
 }

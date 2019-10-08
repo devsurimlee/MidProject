@@ -23,8 +23,8 @@ public class CartDAO {
 	}
 	
 	public ArrayList<CartDTO> selectOptionCart (CartDTO cdto) {
-		String sql = "select c.amount_id, c.m_id, a.p_id, a.amount_size, a.amount_color, a.amount_count, p.p_name, p.p_price, p.p_detail, c.a_count"
-				+ "from cart c, amount a, product p"
+		String sql = "select c.amount_id, c.m_id, a.p_id, a.amount_size, a.amount_color, a.amount_count, p.p_name, p.p_price, p.p_detail, c.a_count "
+				+ "from cart c, amount a, product p "
 				+ "where c.amount_id = a.amount_id and p.p_id = a.p_id and c.m_id = ? ";
 		
 		ArrayList<CartDTO> optionList = new ArrayList<CartDTO>();

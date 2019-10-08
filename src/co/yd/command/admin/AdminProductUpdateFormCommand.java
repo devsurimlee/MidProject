@@ -1,4 +1,4 @@
-package co.yd.command;
+package co.yd.command.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yd.command.Command;
 import co.yd.dao.AmountDAO;
 import co.yd.dao.ProductDAO;
 import co.yd.dto.AmountDTO;
