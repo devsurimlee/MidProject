@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
 import co.yd.dto.AmountDTO;
@@ -23,6 +24,10 @@ public class OrderDAO{
 	public static OrderDAO getInstance() {
 		return instance;
 	}
+
+	
+	
+	
 	// 재고에서 주문 수량 빼기, 재고수량 amount_count, 주문수량 getOrderProductCount
 	public void subAmount(AmountDTO amDto) {
 		String sql = "update amount set amount_count = (amount_count - ? ) where amount_id= ? and p_id = ? ";

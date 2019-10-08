@@ -50,9 +50,11 @@ import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
 import co.yd.command.member.form.FormUpdatePw;
 import co.yd.command.order.BestItemListCommand;
+import co.yd.command.order.CartDeleteCommand;
 import co.yd.command.order.CartInsertCommand;
 import co.yd.command.order.CartViewCommand;
 import co.yd.command.order.IndexCommand;
+import co.yd.command.order.OrderAllFormCommand;
 import co.yd.command.order.OrderFormCommand;
 import co.yd.command.order.OrderSuccessCommand;
 import co.yd.command.order.ProductBottomListCommand;
@@ -76,11 +78,14 @@ public class MainController extends HttpServlet {
 		// 수림 추가
 		map.put("/basic_index.do", new IndexCommand());
 		map.put("/basic_orderForm.do", new OrderFormCommand());
+		map.put("/basic_orderAllForm.do", new OrderAllFormCommand());
+		
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
 		map.put("/basic_wishList.do", new WishListCommand());
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
+		map.put("/cartDelete.do", new CartDeleteCommand());
 		
 		map.put("/basic_bestItemList.do", new BestItemListCommand());
 		map.put("/basic_topList.do", new ProductTopListCommand());

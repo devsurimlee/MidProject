@@ -22,6 +22,49 @@ public class CartDAO {
 		return instance;
 	}
 	
+	public CartDTO delectAllCart(CartDTO dto) {
+		String sql = "delete from cart where m_id = ?";
+		
+		try {
+			conn = JDBCutil.connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmId());
+			
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 장바구니 삭제완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		
+		return dto;
+	}
+	
+	
+	public CartDTO delectCart (CartDTO dto) {
+		String sql = "delete from cart where m_id = ? and amount_id = ?";
+		
+		try {
+			conn = JDBCutil.connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmId());
+			pstmt.setInt(2, dto.getAmountId());
+			
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 장바구니 삭제완료");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		
+		return dto;
+	}
+	
+	
 	public ArrayList<CartDTO> selectOptionCart (CartDTO cdto) {
 		String sql = "select c.amount_id, c.m_id, a.p_id, a.amount_size, a.amount_color, a.amount_count, p.p_name, p.p_price, p.p_detail, c.a_count "
 				+ "from cart c, amount a, product p "
