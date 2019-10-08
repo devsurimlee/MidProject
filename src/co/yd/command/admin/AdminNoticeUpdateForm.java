@@ -8,21 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
 import co.yd.dao.NoticeBoardDAO;
+import co.yd.dto.NoticeBoardDTO;
 
-public class AdminNoticeDeleteCommand implements Command {
+public class AdminNoticeUpdateForm implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NoticeBoardDAO dao = new NoticeBoardDAO();
 		int nbId = Integer.parseInt(request.getParameter("id"));
-		int r = dao.noticeDelete(nbId);
-		if(r != 0) {
-			request.setAttribute("deleteMessage", "공지글이 삭제되었습니다.");
-			return "admin_noticeListFormCommand.do";
-		} else {
-			request.setAttribute("deleteMessage", "공지글이 삭제되지 않았습니다. 다시 시도해 주세요.");
-			return "admin_noticeListFormCommand.do";
-		}
+		NoticeBoardDTO dto = new NoticeBoardDTO();
+		NoticeBoardDAO dao = new NoticeBoardDAO();
+		dto = dao.noticeRead(nbId);
+		request.setAttribute("content", dto);
+		return "admin_board_jsp/noticeUpdate.jsp";
 	}
 
 }
