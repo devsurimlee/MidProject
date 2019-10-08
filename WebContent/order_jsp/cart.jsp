@@ -11,9 +11,10 @@
 <script>
 
 	$(function() {
-		//$("li").on("mouseover", function(){ $(this).css("backgroundColor", "blue"); });	단독 이벤트
-		//$("tr").on("mouseover", "td", function(){ $(this).css("backgroundColor", "blue"); });	
-		//$("button").on("click", function() { $("ul").append( $("<li>").html("spring")); });
+		
+		$('#allOrderBtn').on("click", function() {
+			OrderForm.submit();
+		})
 		
 	});
 	
@@ -123,7 +124,7 @@ ul{
 </form>
 		<ul>
 			<li><button id="selectOrderBtn" name="selectOrderBtn" class="btn btn-md btn-primary btn-block">선택상품결제</button>
-			<li><button id="allOrderBtn" name="allOrderBtn" class="btn btn-md btn-primary btn-block" onclick = "basic_orderAllForm.do">전체결제</button>
+			<li><button id="allOrderBtn" name="allOrderBtn" class="btn btn-md btn-primary btn-block">전체결제</button>
 			<li><button id="deleteAllBtn" name="deleteAllBtn" class="btn btn-md btn-primary btn-block" onclick ="deleteAllCart()">장바구니비우기</button>
 		</ul>
 </body>

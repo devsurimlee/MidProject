@@ -170,6 +170,20 @@ $(document).ready (function()
 	</table>
 </form>
 
+<!-- wishlistInsert 추가용 폼 -->
+<form id = "wishlistInsert" name="wishlistInsert" method="post" action="basic_wishlistInsert.do">
+	<table>
+		<thead></thead>
+		<tbody>
+			<tr>
+			<td><input type="text" id="key" name="key" value="${key }"></td>
+				<td><input type="text" id="amountId" name="amountId"></td>
+				<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
 
 	<div class="container-fluid">
 		<div class="row">

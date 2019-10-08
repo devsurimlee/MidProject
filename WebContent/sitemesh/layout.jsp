@@ -74,7 +74,7 @@
 			 <H3><a href="basic_mypageForm.do"> MY PAGE </a></H3>
 			 <H3><a href="basic_cartView.do"> CART </a></H3>
 			 <H3><a href="#"> ORDER </a></H3>
-			 <H3><a href="#"> WISHLIST </a></H3>
+			 <H3><a href="basic_wishList.do"> WISHLIST </a></H3>
 			 <c:if test="${grant == 'admin' }"> <!-- 관리자용 -->
 			 	<H3><a href="admin_Index.do"> ADMIN </a></H3>
 			 </c:if>

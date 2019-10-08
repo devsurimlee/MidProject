@@ -84,6 +84,7 @@ import co.yd.command.order.ProductDressListCommand;
 import co.yd.command.order.ProductOuterListCommand;
 import co.yd.command.order.ProductTopListCommand;
 import co.yd.command.order.WishListCommand;
+import co.yd.command.order.WishListInsertCommand;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -103,6 +104,8 @@ public class MainController extends HttpServlet {
 		
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
+		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());
+		
 		map.put("/basic_wishList.do", new WishListCommand());
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
