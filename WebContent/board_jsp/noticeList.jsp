@@ -5,65 +5,94 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
 <script>
-	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
-	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
-	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=8ffc0b31bc8d9ff82fbb94689dd1d7ff">
-	
-	</style>
-	<script type="text/javascript" src="/media/js/site.js?_=df7cd4213eec7fc146048acf402cae00"></script>
-	<script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fstyling%2Fbootstrap4.html" async></script>
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-	<script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
-	<script type="text/javascript" class="init">
-	
+if('${updateMessage}' != ''){
+	alert('${updateMessage}');
+}
 	$(document).ready(function() {
-		$('#example').DataTable(){
+		$('#example').DataTable({
+			 "language": {
+			        "emptyTable": "등록된 공지사항이 없습니다.",
+			        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+			        "info": "현재 _START_ - _END_ / _TOTAL_건",
+			        "infoEmpty": "데이터 없음",
+			        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+			        "search":"",
+			        "zeroRecords": "검색 결과와 일치하는 공지 사항이 없습니다.",
+			        "loadingRecords": "***LOADING***",
+			        "processing":     "잠시만 기다려 주세요.",
+			        "paginate": {
+			            "next": ">>",
+			            "previous": "<<"
+			        }},
 			"lengthChange" : false,
 			"filter" : true,
 			"ordering" : true,
-			"order" : [[0, "desc"]];
-		};
+			"info" : false,
+			"order" : [[0, "desc"]]
+		});
 	} );
 
 	function getKey(nbId){
 		location.href = 'basic_noticeReadForm.do?id='+nbId;
 	}
-
 </script>
 </head>
 <body>
-	<table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Contents</th>
-                <th>Date</th>
-                <th>Hit</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-			<!-- db의 글목록을 가져와서 뿌려주는 곳~ -->
-			<c:if test="${list.isEmpty()}">
-				<tr>
-					<td colspan="5"> 등록된 공지사항이 없습니다. </td>
-				</tr>	
-			</c:if>
-			<c:forEach items="${list }" var="dto">
-				<tr onclick="getKey(${dto.nbId})">
-					<td align="center">${dto.nbId } </td>
-					<td align="center">${dto.nbTitle } </td>
-					<td align="center">${dto.nbContents } </td>
-					<td align="center">${dto.nbDate } </td>
-					<td align="center">${dto.nbHit } </td>
-				</tr>
-			</c:forEach>
-            
-        <tfoot></tfoot>
-    </table>
+	<div align="center">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default"><br />
+					<div class="panel-heading text-center">
+						<h4><b> NOTICE </b></h4>
+					</div>
+				</div><br /><br />
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-md-1"></div>
+
+			<div class="col-md-10">
+				<table id="example" class="table table-bordered table-hover" style="width:100%">
+			        <thead>
+			            <tr>
+			                <th width="60">No</th>
+			                <th width="500">Title</th>
+			                <th width="100">Date</th>
+			                <th width="60">Hit</th>
+			            </tr>
+			        </thead>
+			        
+			        <tbody>
+						<!-- db의 글목록을 가져와서 뿌려주는 곳~ -->
+						<c:if test="${list.isEmpty()}">
+							<tr>
+								<td colspan="5"> 등록된 공지사항이 없습니다. </td>
+							</tr>	
+						</c:if>
+						<c:forEach items="${list }" var="dto">
+							<tr onclick="getKey(${dto.nbId})">
+								<td align="center">${dto.nbId } </td>
+								<td>${dto.nbTitle } </td>
+								<td align="center">${dto.nbDate } </td>
+								<td align="center">${dto.nbHit } </td>
+							</tr>
+						</c:forEach>
+			            
+			        <tfoot></tfoot>
+			    </table>
+			    <c:if test="${grant == 'admin' }">
+			    	<button type="button" onclick="location.href='basic_noticeWriteForm.do'" class="btn btn-outline-primary"> WRITE </button>
+			    </c:if>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
 </body>
 </html>
