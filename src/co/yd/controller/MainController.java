@@ -12,29 +12,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
+import co.yd.command.admin.AdminFormQnaAnswer;
+import co.yd.command.admin.AdminFormQnaList;
+import co.yd.command.admin.AdminFormQnaPassword;
+import co.yd.command.admin.AdminFormQnaRead;
+import co.yd.command.admin.AdminFormQnaWrite;
 import co.yd.command.admin.AdminIndexCommand;
 import co.yd.command.admin.AdminMemberDeleteCommand;
 import co.yd.command.admin.AdminMemberListFormCommand;
 import co.yd.command.admin.AdminMemberUpdateCommand;
 import co.yd.command.admin.AdminMemberUpdateFormCommand;
 import co.yd.command.admin.AdminNoticeDeleteCommand;
-import co.yd.command.admin.AdminNoticeListFormCommand;
+import co.yd.command.admin.AdminNoticeListForm;
+import co.yd.command.admin.AdminNoticeReadForm;
 import co.yd.command.admin.AdminNoticeUpdateCommand;
-import co.yd.command.admin.AdminNoticeUpdateFormComand;
+import co.yd.command.admin.AdminNoticeUpdateForm;
 import co.yd.command.admin.AdminNoticeWriteCommand;
-import co.yd.command.admin.AdminNoticeWriteFormCommand;
+import co.yd.command.admin.AdminNoticeWriteForm;
 import co.yd.command.admin.AdminProductDeleteCommand;
 import co.yd.command.admin.AdminProductListFormCommand;
 import co.yd.command.admin.AdminProductRegistCommand;
 import co.yd.command.admin.AdminProductRegistFormCommand;
 import co.yd.command.admin.AdminProductUpdateCommand;
 import co.yd.command.admin.AdminProductUpdateFormCommand;
-import co.yd.command.admin.AdminQNADeleteCommand;
-import co.yd.command.admin.AdminQNAListFormCommand;
-import co.yd.command.admin.AdminQNAUpdateCommand;
-import co.yd.command.admin.AdminQNAUpdateFormComand;
-import co.yd.command.admin.AdminQNAWriteCommand;
-import co.yd.command.admin.AdminQNAWriteFormCommand;
+import co.yd.command.admin.AdminQnaAnswerCommand;
+import co.yd.command.admin.AdminQnaDeleteCommand;
+import co.yd.command.admin.AdminQnaPasswordCommand;
+import co.yd.command.admin.AdminQnaWriteCommand;
 import co.yd.command.board.command.NoticeDeleteCommand;
 import co.yd.command.board.command.NoticeUpdateCommand;
 import co.yd.command.board.command.NoticeWriteCommand;
@@ -134,21 +138,25 @@ public class MainController extends HttpServlet {
 		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
 		map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
 		// 공지사항
-		map.put("/adminNoticeListFormCommand.do", new AdminNoticeListFormCommand());
-		map.put("/adminNoticeWriteFormCommand.do", new AdminNoticeWriteFormCommand());
-		map.put("/adminNoticeWriteCommand.do", new AdminNoticeWriteCommand());
-		map.put("/adminNoticeUpdateFormCommand.do", new AdminNoticeUpdateFormComand());
-		map.put("/adminNoticeUpdateCommand.do", new AdminNoticeUpdateCommand());
-		map.put("/adminNoticeDeleteCommand.do", new AdminNoticeDeleteCommand());
-		// 1:1문의사항
-		map.put("/adminQNAListFormCommand.do", new AdminQNAListFormCommand());
-		map.put("/adminQNAWriteFormCommand.do", new AdminQNAWriteFormCommand());
-		map.put("/adminQNAWriteCommand.do", new AdminQNAWriteCommand());
-		map.put("/adminQNAUpdateFormCommand.do", new AdminQNAUpdateFormComand());
-		map.put("/adminQNAUpdateCommand.do", new AdminQNAUpdateCommand());
-		map.put("/adminQNADeleteCommand.do", new AdminQNADeleteCommand());
+		map.put("/admin_noticeListFormCommand.do", new AdminNoticeListForm());
+		map.put("/admin_noticeReadForm.do", new AdminNoticeReadForm());
+		map.put("/admin_noticeUpdateForm.do", new AdminNoticeUpdateForm());
+		map.put("/admin_noticeWriteForm.do", new AdminNoticeWriteForm());
 
+		map.put("/admin_noticeDelete.do", new AdminNoticeDeleteCommand());
+		map.put("/admin_noticeUpdate.do", new AdminNoticeUpdateCommand());
+		map.put("/admin_noticeWrite.do", new AdminNoticeWriteCommand());
+		// 1:1문의사항
+		map.put("/admin_qnaListForm.do", new AdminFormQnaList());
+		map.put("/admin_qnaReadForm.do", new AdminFormQnaRead());
+		map.put("/admin_qnaWriteForm.do", new AdminFormQnaWrite());
+		map.put("/admin_qnaAnswerForm.do", new AdminFormQnaAnswer());
+		map.put("/admin_qnaPasswordForm.do", new AdminFormQnaPassword());
 		
+		map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
+		map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
+		map.put("/admin_qnaAnswer.do", new AdminQnaAnswerCommand());
+		map.put("/admin_qnaPassword.do", new AdminQnaPasswordCommand());
 		
 		
 		

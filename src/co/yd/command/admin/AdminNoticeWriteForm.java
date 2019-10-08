@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
 
-public class AdminQNAWriteFormCommand implements Command{
+public class AdminNoticeWriteForm implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+		return "admin_board_jsp/noticeWrite.jsp";
 	}
 
 }

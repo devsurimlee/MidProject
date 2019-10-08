@@ -11,17 +11,16 @@ import co.yd.command.Command;
 import co.yd.dao.NoticeBoardDAO;
 import co.yd.dto.NoticeBoardDTO;
 
-public class AdminNoticeListFormCommand implements Command{
+public class AdminNoticeListForm implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		ArrayList<NoticeBoardDTO> list = new ArrayList<NoticeBoardDTO>();
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<NoticeBoardDTO> list = new ArrayList<>();
 		NoticeBoardDAO dao = new NoticeBoardDAO();
+		
 		list = dao.noticeList();
 		request.setAttribute("list", list);
-		
-		return "admin/adminNoticeListForm.jsp";
+		return "admin_board_jsp/noticeList.jsp";
 	}
 
 }
