@@ -127,7 +127,7 @@
 						class="dropdown-item" href="#">미정</a>
 				</div>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="#">
+			<li class="nav-item"><a class="nav-link" href="adminMemberListFormCommand.do">
 					<i class="fas fa-fw fa-chart-area"></i> <span>고객관리</span>
 			</a></li>
 			<li class="nav-item dropdown">

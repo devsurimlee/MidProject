@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import co.yd.common.JDBCutil;
 import co.yd.dto.ProductDTO;
 
-public class ProductDAO extends DAO {
+public class ProductDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	Connection conn;
@@ -95,6 +95,8 @@ public class ProductDAO extends DAO {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return result;
 	}

@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.AdminIndexCommand;
+import co.yd.command.AdminMemberDeleteCommand;
+import co.yd.command.AdminMemberListFormCommand;
+import co.yd.command.AdminMemberUpdateCommand;
+import co.yd.command.AdminMemberUpdateFormCommand;
 import co.yd.command.AdminProductDeleteCommand;
 import co.yd.command.AdminProductListFormCommand;
 import co.yd.command.AdminProductRegistCommand;
@@ -46,6 +50,8 @@ import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
 import co.yd.command.member.form.FormUpdatePw;
 import co.yd.command.order.BestItemListCommand;
+import co.yd.command.order.CartInsertCommand;
+import co.yd.command.order.CartViewCommand;
 import co.yd.command.order.IndexCommand;
 import co.yd.command.order.OrderFormCommand;
 import co.yd.command.order.OrderSuccessCommand;
@@ -73,6 +79,9 @@ public class MainController extends HttpServlet {
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
 		map.put("/basic_wishList.do", new WishListCommand());
+		map.put("/basic_cartInsert.do", new CartInsertCommand());
+		map.put("/basic_cartView.do", new CartViewCommand());
+		
 		map.put("/basic_bestItemList.do", new BestItemListCommand());
 		map.put("/basic_topList.do", new ProductTopListCommand());
 		map.put("/basic_bottomList.do", new ProductBottomListCommand());
@@ -88,7 +97,11 @@ public class MainController extends HttpServlet {
 		map.put("/admin_productDelete.do", new AdminProductDeleteCommand());
 		map.put("/admin_productRegistForm.do", new AdminProductRegistFormCommand());
 		map.put("/admin_productRegist.do", new AdminProductRegistCommand());
-
+		map.put("/adminMemberListFormCommand.do",new AdminMemberListFormCommand());
+		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
+		map.put("/adminMemberUpdateCommand.do",new AdminMemberUpdateCommand());
+		map.put("/adminMemberDeleteCommand.do",new AdminMemberDeleteCommand());
+		
 		// 지원 추가
 		// 멤버 관련
 		map.put("/basic_loginForm.do", new FormLogin());
