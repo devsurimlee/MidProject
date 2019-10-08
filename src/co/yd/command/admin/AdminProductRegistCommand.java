@@ -66,7 +66,7 @@ public class AdminProductRegistCommand implements Command {
 	private boolean productProcess(ProductDTO productDto) {
 		boolean result = false;
 		ProductDAO productDao = new ProductDAO();
-		 productDao.update(productDto);
+		 productDao.insert(productDto);
 		 int p_id = productDto.getP_id();
 		if (p_id > 0) {
 			result = true;
