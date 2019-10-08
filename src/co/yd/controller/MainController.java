@@ -108,7 +108,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
 		
 		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());		
-		map.put("/basic_wishList.do", new WishListCommand());
+		map.put("/basic_wishListView.do", new WishListCommand());
 		
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
@@ -138,7 +138,7 @@ public class MainController extends HttpServlet {
 		map.put("/adminMemberListFormCommand.do", new AdminMemberListFormCommand());
 		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
 		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
-		map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
+		//map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
 		// 공지사항
 		map.put("/admin_noticeListFormCommand.do", new AdminNoticeListForm());
 		map.put("/admin_noticeReadForm.do", new AdminNoticeReadForm());

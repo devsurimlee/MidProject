@@ -20,6 +20,7 @@ public class WishListInsertCommand implements Command {
 		HttpSession session = request.getSession(false);
 		String userId = (String) session.getAttribute("id");
 		String key = (String) request.getParameter("key");
+		System.out.println(key);
 
 		// 회원 로그인시
 		if (userId != null) {

@@ -58,10 +58,19 @@
 </script>
 
 <style>
-ul{
+ul {
    list-style:none;
-   padding-left:0px;
-   }
+   padding-left:400px;
+   padding-right:400px;
+}
+   
+ul li { 
+display:inline; /* 세로나열을 가로나열로 변경 */ 
+padding:0 10px; /* 각 메뉴 간격 */
+
+}
+
+
 </style>
 
 

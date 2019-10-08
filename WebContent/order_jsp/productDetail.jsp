@@ -31,8 +31,8 @@ console.log(dtoList[0].p_price + "dto!!");
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
 				// selectOption 1) 재고아이디
 				selectOption.productId.value = amountList[i].amount_id;
-				cartInsert.amountId.value =amountList[i].amount_id;
-				cartInsert.orderProductCount.value = 1;
+				selectOption.amountId.value =amountList[i].amount_id;
+				selectOption.orderProductCount.value = 1;
 				var count = amountList[i].amount_count;
 				//<재고> 부분에 물품 재고값 넣어줌
 				productCnt.productAmount.value= "재고: " + count;
@@ -73,7 +73,7 @@ console.log(dtoList[0].p_price + "dto!!");
 		}
 		productCnt.cnt.value = y;
 		selectOption.productCount.value = y;
-		cartInsert.orderProductCount.value = y;
+		selectOption.orderProductCount.value = y;
 		
 		totalPrice = dtoList[0].p_price * y;
 		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
@@ -91,13 +91,14 @@ $(document).ready (function()
 	$("#total_product").hide();	
 	$("#amount").hide();
 	
-	//장바구니
+	//카트
 	var cart = $("#cart");
 	cart.click( function() {
-		cartInsert.submit();
+		$("#selectOption").attr("action", "basic_cartInsert.do");
+		selectOption.submit();
 		
-		var resurt = confirm("상품이 장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?");
-		if(resurt == true) {
+		var cartResurt = confirm("상품이 카트에 담겼습니다. 카트로 이동하시겠습니까?");
+		if(cartResurt == true) {
 			window.location.replace("basic_cartView.do");
 		} else {
 			//취소하면 페이지 그대로
@@ -113,13 +114,17 @@ $(document).ready (function()
 		});
 	} else {
 		wishList.click( function() {
-			wishlistInsert.submit();
-			var resurt = confirm("상품이 위시리스트에 담겼습니다. 위시리스트로 이동하시겠습니까?");
-			if(resurt == true) {
-				window.location.replace("basic_wishList.do");
+			$("#selectOption").attr("action", "basic_wishlistInsert.do");
+			selectOption.submit();
+			
+			var wishlistResurt = confirm("상품이 위시리스트에 담겼습니다. 위시리스트로 이동하시겠습니까?");
+			if(wishlistResurt == true) {
+				window.location.replace("basic_wishListView.do");
 			} else {
-			};3
-		}
+				//취소하면 페이지 그대로
+			};
+
+		})
 	}
 	
 	//상품구매
@@ -157,36 +162,12 @@ $(document).ready (function()
 			<td><input type="text" id="productColor" name="productColor"></td>
 			<td><input type="text" id="productSize" name="productSize"></td>
 			<td><input type="text" id="productCount" name="productCount" value="1"></td>
+			<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
+			<td><input type="text" id="amountId" name="amountId"></td>
 		</tr>
 	</tbody>
 </table>
 </form>
-<!-- cart 추가용 폼 -->
-<form id = "cartInsert" name="cartInsert" method="post" action="basic_cartInsert.do">
-	<table>
-		<thead></thead>
-		<tbody>
-			<tr>
-			<td><input type="text" id="key" name="key" value="${key }"></td>
-				<td><input type="text" id="amountId" name="amountId"></td>
-				<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-
-<!-- wishlistInsert 추가용 폼 -->
-<form id = "wishlistInsert" name="wishlistInsert" method="post" action="basic_wishlistInsert.do">
-	<table>
-		<thead></thead>
-		<tbody>
-			<tr>
-			<td><input type="text" id="p_id" name="p_id" value="${key }"></td>
-			</tr>
-		</tbody>
-	</table>
-</form>
-
 
 	<div class="container-fluid">
 		<div class="row">
