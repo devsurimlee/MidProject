@@ -80,7 +80,6 @@ $(document).ready(function(){
 	<br />	<br />
 
 	<!-- 사진 슬라이드 밑에 상품 진열 -->
-	
 	<form>
 	<c:forEach items="${list }" var="dto">
 		<figure class="snip1384">
