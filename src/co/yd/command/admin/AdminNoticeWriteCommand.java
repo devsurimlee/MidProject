@@ -25,10 +25,10 @@ public class AdminNoticeWriteCommand implements Command {
 		int r = dao.noticeWrite(dto);
 		if(r != 0) {
 			request.setAttribute("writeMessage", "공지사항이 등록되었습니다.");
-			return "admin_noticeListFormCommand.do";
+			return "admin_noticeListForm.do";
 		} else {
 			request.setAttribute("writeMessage", "공지사항이 등록되지 않았습니다. 다시 시도해 주세요.");
-			return "admin_noticeListFormCommand.do";
+			return "admin_noticeListForm.do";
 		}
 	}
 

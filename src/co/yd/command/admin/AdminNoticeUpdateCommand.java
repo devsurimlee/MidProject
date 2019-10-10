@@ -27,7 +27,7 @@ public class AdminNoticeUpdateCommand implements Command {
 		int r = dao.noticeUpdate(dto);
 		if(r != 0) {
 			request.setAttribute("updateMessage", "공지사항을 성공적으로 수정하였습니다.");
-			return "admin_noticeListFormCommand.do";
+			return "admin_noticeListForm.do";
 		} else {
 			request.setAttribute("updateMessage", "공지사항이 수정되지 않았습니다. 다시 시도해 주세요.");
 			return "admin_board_jsp/noticeList.jsp";

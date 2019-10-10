@@ -138,10 +138,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 					
-					<a class="dropdown-item" href="admin_noticeListFormCommand.do">공지게시판</a> 
+					<a class="dropdown-item" href="admin_noticeListForm.do">공지게시판</a> 
 					
 					
-					<a class="dropdown-item" href="admin_qnaListForm.do">1:1게시판</a> 
+					<a class="dropdown-item" href="admin_qnaListForm.do?title=상품문의">1:1게시판</a> 
 				</div>
 			</li>
 		</ul>

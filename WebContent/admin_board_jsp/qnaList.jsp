@@ -73,10 +73,10 @@
 			<div class="col-md-1"></div>
 
 			<div class="col-md-10">
-				<button type="button" class="btn btn-outline-info" onclick="location.href='basic_qnaListForm.do?title=상품문의'">상품문의</button>
-				<button type="button" class="btn btn-outline-info" onclick="location.href='basic_qnaListForm.do?title=배송문의'">배송문의</button>
-				<button type="button" class="btn btn-outline-info" onclick="location.href='basic_qnaListForm.do?title=기타문의'">기타문의</button>
-				<button type="button" class="btn btn-outline-info" onclick="location.href='basic_qnaListForm.do?title=입금문의'">입금문의</button>
+				<button type="button" class="btn btn-outline-info" onclick="location.href='admin_qnaListForm.do?title=상품문의'">상품문의</button>
+				<button type="button" class="btn btn-outline-info" onclick="location.href='admin_qnaListForm.do?title=배송문의'">배송문의</button>
+				<button type="button" class="btn btn-outline-info" onclick="location.href='admin_qnaListForm.do?title=기타문의'">기타문의</button>
+				<button type="button" class="btn btn-outline-info" onclick="location.href='admin_qnaListForm.do?title=입금문의'">입금문의</button>
 				<br /><br />
 				<table id="example" class="table table-bordered table-hover" style="width:100%">
 			        <thead>

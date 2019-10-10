@@ -18,7 +18,6 @@ import co.yd.command.admin.AdminFormQnaPassword;
 import co.yd.command.admin.AdminFormQnaRead;
 import co.yd.command.admin.AdminFormQnaWrite;
 import co.yd.command.admin.AdminIndexCommand;
-import co.yd.command.admin.AdminMemberDeleteCommand;
 import co.yd.command.admin.AdminMemberListFormCommand;
 import co.yd.command.admin.AdminMemberUpdateCommand;
 import co.yd.command.admin.AdminMemberUpdateFormCommand;
@@ -36,7 +35,9 @@ import co.yd.command.admin.AdminProductRegistFormCommand;
 import co.yd.command.admin.AdminProductUpdateCommand;
 import co.yd.command.admin.AdminProductUpdateFormCommand;
 import co.yd.command.admin.AdminQnaAnswerCommand;
+import co.yd.command.admin.AdminQnaDeleteCommand;
 import co.yd.command.admin.AdminQnaPasswordCommand;
+import co.yd.command.admin.AdminQnaWriteCommand;
 import co.yd.command.board.command.NoticeDeleteCommand;
 import co.yd.command.board.command.NoticeUpdateCommand;
 import co.yd.command.board.command.NoticeWriteCommand;
@@ -140,7 +141,7 @@ public class MainController extends HttpServlet {
 		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
 		//map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
 		// 공지사항
-		map.put("/admin_noticeListFormCommand.do", new AdminNoticeListForm());
+		map.put("/admin_noticeListForm.do", new AdminNoticeListForm());
 		map.put("/admin_noticeReadForm.do", new AdminNoticeReadForm());
 		map.put("/admin_noticeUpdateForm.do", new AdminNoticeUpdateForm());
 		map.put("/admin_noticeWriteForm.do", new AdminNoticeWriteForm());
@@ -155,8 +156,8 @@ public class MainController extends HttpServlet {
 		map.put("/admin_qnaAnswerForm.do", new AdminFormQnaAnswer());
 		map.put("/admin_qnaPasswordForm.do", new AdminFormQnaPassword());
 		
-		//map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
-		//map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
+		map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
+		map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
 		map.put("/admin_qnaAnswer.do", new AdminQnaAnswerCommand());
 		map.put("/admin_qnaPassword.do", new AdminQnaPasswordCommand());
 		

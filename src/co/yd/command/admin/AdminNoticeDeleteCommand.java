@@ -18,10 +18,10 @@ public class AdminNoticeDeleteCommand implements Command {
 		int r = dao.noticeDelete(nbId);
 		if(r != 0) {
 			request.setAttribute("deleteMessage", "공지글이 삭제되었습니다.");
-			return "admin_noticeListFormCommand.do";
+			return "admin_noticeListForm.do";
 		} else {
 			request.setAttribute("deleteMessage", "공지글이 삭제되지 않았습니다. 다시 시도해 주세요.");
-			return "admin_noticeListFormCommand.do";
+			return "admin_noticeListForm.do";
 		}
 	}
 
