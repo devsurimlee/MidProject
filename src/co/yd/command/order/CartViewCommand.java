@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import co.yd.command.Command;
 import co.yd.dao.CartDAO;
 import co.yd.dto.CartDTO;
+import net.sf.json.JSONArray;
 
 public class CartViewCommand implements Command{
 
@@ -27,6 +28,7 @@ public class CartViewCommand implements Command{
 	
 	ArrayList<CartDTO> optionList = new ArrayList<CartDTO>();
 	optionList = cdao.selectOptionCart(cdto);
+	request.setAttribute("optionList", JSONArray.fromObject(optionList).toString());
 	request.setAttribute("OptionList", optionList);
 	
 		return "order_jsp/cart.jsp";
