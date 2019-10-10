@@ -5,7 +5,7 @@ import java.sql.Date;
 public class OrderDTO {
 	private int orderId;
 	private Date orderDate;
-	private String orderDeliveredDate;
+	private Date orderDeliveredDate;
 	private String mId;
 	private String orderName;
 	private String orderAddress1;
@@ -35,11 +35,11 @@ public class OrderDTO {
 		this.orderDate = orderDate;
 	}
 
-	public String getOrderDeliveredDate() {
+	public Date getOrderDeliveredDate() {
 		return orderDeliveredDate;
 	}
 
-	public void setOrderDeliveredDate(String orderDeliveredDate) {
+	public void setOrderDeliveredDate(Date orderDeliveredDate) {
 		this.orderDeliveredDate = orderDeliveredDate;
 	}
 

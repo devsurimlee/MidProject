@@ -6,6 +6,11 @@ public class OrderDetailDTO {
 	private int productId;
 	private int amountId;
 	private int orderProductCount; //주문수량
+	//// 추가
+	private String pName;
+	private String aSize;
+	private String aColor;
+	private int pPrice;
 	
 	public OrderDetailDTO() {
 	}
@@ -48,5 +53,38 @@ public class OrderDetailDTO {
 
 	public void setOrderProductCount(int orderProductCount) {
 		this.orderProductCount = orderProductCount;
+	}
+	
+	// 추가
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public String getaSize() {
+		return aSize;
+	}
+
+	public void setaSize(String aSize) {
+		this.aSize = aSize;
+	}
+
+	public String getaColor() {
+		return aColor;
+	}
+
+	public void setaColor(String aColor) {
+		this.aColor = aColor;
+	}
+
+	public int getpPrice() {
+		return pPrice;
+	}
+
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
 	}
 }
