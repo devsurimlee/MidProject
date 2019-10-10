@@ -38,6 +38,9 @@ import co.yd.command.admin.AdminQnaAnswerCommand;
 import co.yd.command.admin.AdminQnaDeleteCommand;
 import co.yd.command.admin.AdminQnaPasswordCommand;
 import co.yd.command.admin.AdminQnaWriteCommand;
+import co.yd.command.admin_orders.AdminDeliverList;
+import co.yd.command.admin_orders.AdminOrderList;
+import co.yd.command.admin_orders.AdminOrderRead;
 import co.yd.command.board.command.NoticeDeleteCommand;
 import co.yd.command.board.command.NoticeUpdateCommand;
 import co.yd.command.board.command.NoticeWriteCommand;
@@ -220,6 +223,11 @@ public class MainController extends HttpServlet {
 		map.put("/basic_qnaDelete.do", new QnaDeleteCommand());
 		map.put("/basic_qnaAnswer.do", new QnaAnswerCommand());
 		map.put("/basic_qnaPassword.do", new QnaPasswordCommand());
+		
+		// 관리자 - 주문관리
+		map.put("/admin_orderListForm.do", new AdminOrderList());
+		map.put("/admin_orderReadForm.do", new AdminOrderRead());
+		map.put("/admin_deliverListForm.do", new AdminDeliverList());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin - Dashboard</title>
+<title>예담 쇼핑몰 관리자 페이지입니다.</title>
 
 <!-- Custom fonts for this template-->
 <link href="${pageContext.request.contextPath }/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -121,12 +121,22 @@
 					<h6 class="dropdown-header">상품관리</h6>
 					<a class="dropdown-item" href="admin_productRegistForm.do">상품등록</a> <a
 						class="dropdown-item" href="admin_productListForm.do">상품리스트</a>
-					<div class="dropdown-divider"></div>
-					<h6 class="dropdown-header">주문관리</h6>
-					<a class="dropdown-item" href="#">주문처리</a> <a
-						class="dropdown-item" href="#">미정</a>
 				</div>
 			</li>
+			
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>주문관리</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+					<h6 class="dropdown-header">주문관리</h6>
+					<a class="dropdown-item" href="admin_orderListForm.do">전체 주문 목록</a> <a
+						class="dropdown-item" href="admin_deliverListForm.do?status=전체">배송 관리</a>
+				</div>	
+			</li>
+			
 			<li class="nav-item"><a class="nav-link" href="adminMemberListFormCommand.do">
 					<i class="fas fa-fw fa-chart-area"></i> <span>고객관리</span>
 			</a></li>
@@ -137,10 +147,7 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>게시판</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					
 					<a class="dropdown-item" href="admin_noticeListForm.do">공지게시판</a> 
-					
-					
 					<a class="dropdown-item" href="admin_qnaListForm.do?title=상품문의">1:1게시판</a> 
 				</div>
 			</li>
