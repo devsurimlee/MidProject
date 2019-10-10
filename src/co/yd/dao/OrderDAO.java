@@ -26,6 +26,27 @@ public class OrderDAO{
 	}
 
 	
+	public void subAllAmount(ArrayList<AmountDTO> amountList) {
+		String sql = "update amount set amount_count = (amount_count - ? ) where amount_id = ? and p_id = ? ";
+		
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i = 0; i < amountList.size(); i++) {
+				AmountDTO dto = amountList.get(i);
+				pstmt.setInt(1, dto.getOrderProductCount());
+				pstmt.setInt(2, dto.getAmount_id());
+				pstmt.setInt(3, dto.getP_id());
+				pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
+	}
 	
 	
 	// 재고에서 주문 수량 빼기, 재고수량 amount_count, 주문수량 getOrderProductCount
@@ -39,7 +60,6 @@ public class OrderDAO{
 			pstmt.setInt(2, amDto.getAmount_id());
 			pstmt.setInt(3, amDto.getP_id());
 			int r = pstmt.executeUpdate();
-			System.out.println(r + "건 재고 업데이트 완료");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -48,8 +68,35 @@ public class OrderDAO{
 
 	}
 	
-	
-	
+public ArrayList<OrderDetailDTO> insertAllOrderDetail(ArrayList<OrderDetailDTO> list) {
+		
+		//od_id, o_id, p_id, amount_id, a_count
+		//1) 오더디테일 고유 인덱스, 2)오더번호, 3)제품명, 4)재고명(사이즈/색상등), 5)주문수량
+		String sql ="insert into order_detail values(ORDER_DETAIL_SEQ.nextval, ?, ?, ?, ?)";
+		
+		
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i = 0; i < list.size(); i++) {
+			
+				OrderDetailDTO dto = list.get(i);
+				pstmt.setInt(1, dto.getOrderId());
+				pstmt.setInt(2, dto.getProductId());
+				pstmt.setInt(3, dto.getAmountId());
+				pstmt.setInt(4, dto.getOrderProductCount());
+				pstmt.executeUpdate();
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return list;
+	}
 	
 	public OrderDetailDTO insertOrderDetail(OrderDetailDTO odDto) {
 		
@@ -64,7 +111,6 @@ public class OrderDAO{
 			rs =  pstmt.executeQuery();
 			rs.next();
 			odDto.setOrderDetailId(rs.getInt(1));
-			System.out.println(odDto.getOrderDetailId());		
 			
 			OrderDTO dto = new OrderDTO();
 			pstmt = conn.prepareStatement(sql);
