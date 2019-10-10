@@ -11,15 +11,25 @@
 <script>
 	$(function() {
 		//전체결제
+		var tr = $('tr')
 		var allOrderBtn = $("#allOrderBtn");
 		allOrderBtn.click( function() {
-			var resurt = confirm("전체주문창으로 넘어갑니다");
-			if(resurt == true) {
-				cartForm.submit();
-			} else {
-				//취소하면 페이지 그대로
-			}
-			
+			if(tr.length > 1 ) {
+				var resurt = confirm("전체주문창으로 넘어갑니다");
+				if(resurt == true) {
+					cartForm.submit();
+					} else {
+						//취소하면 페이지 그대로
+					}
+		 	 } else {
+				var resurt = confirm("전체주문창으로 넘어갑니다");
+				if(resurt == true) {
+					$("#cartForm").attr("action", "basic_orderForm.do");
+					cartForm.submit();
+					} else {
+						//취소하면 페이지 그대로
+					}
+		 	 }
 		});
 		
 
@@ -132,6 +142,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 								가격: <input type="text" id="price" name="price" value="${dto.p_price }" style="border:0" size="10">
 							</h5></td>
 						<td><button type="button" class="btn btn-md btn-primary btn-block" id="deleteBtn" name="deleteBtn" onclick="deleteCart(event, '${dto.amountId }')">삭제</button></td>	
+						<input type="text" id="key" name="key" value="${dto.p_id }" style="border:0" size="10">					
 					</tr>
 				</c:forEach>
 				</tbody>

@@ -226,9 +226,9 @@
 										</div>
 									</td>
 									<td><h5>색상: <span>${amountColor[0] }</span></h5></td>
-									<td><h5>사이즈: <span>${ofDTO.productSize }</span></h5></td>
-									<td><h5>수량: <span>${ofDTO.productCount }</span></h5></td>
-									<td><h5>가격: <span>${ofDTO.productPrice }</span><span>원</span></h5></td>
+									<td><h5>사이즈: <span>${amountColor[0] }</span></h5></td>
+									<td><h5>수량: <span>${amountSize[0] }</span></h5></td>
+									<td><h5>가격: <span>${productPrice[0] }</span><span>원</span></h5></td>
 								</tr>
 							</tbody>
 						</table>

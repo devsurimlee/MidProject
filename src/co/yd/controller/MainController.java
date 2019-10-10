@@ -83,6 +83,7 @@ import co.yd.command.order.IndexCommand;
 import co.yd.command.order.OrderAllFormCommand;
 import co.yd.command.order.OrderAllSuccessCommand;
 import co.yd.command.order.OrderFormCommand;
+import co.yd.command.order.OrderSingleFormCommand;
 import co.yd.command.order.OrderSuccessCommand;
 import co.yd.command.order.ProductBottomListCommand;
 import co.yd.command.order.ProductDetailCommand;
@@ -106,9 +107,12 @@ public class MainController extends HttpServlet {
 		// 수림 추가
 		map.put("/basic_index.do", new IndexCommand());
 		map.put("/basic_orderForm.do", new OrderFormCommand());
+		map.put("/basic_orderSingleForm.do", new OrderSingleFormCommand());
 		map.put("/basic_orderAllForm.do", new OrderAllFormCommand());
+		
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_orderAllSuccess.do", new OrderAllSuccessCommand());
+		map.put("/basic_orderSingleSuccess.do", new OrderSigleSuccessCommand());
 		
 		
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
