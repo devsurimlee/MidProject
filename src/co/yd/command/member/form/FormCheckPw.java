@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
 
-public class FormUpdatePw implements Command {
+public class FormCheckPw implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
-		return "login_jsp/updatePw.jsp";
+		return "login_jsp/checkPw.jsp";
 	}
 
 }

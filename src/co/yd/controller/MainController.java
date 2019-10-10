@@ -55,6 +55,7 @@ import co.yd.command.board.form.FormQnaPassword;
 import co.yd.command.board.form.FormQnaRead;
 import co.yd.command.board.form.FormQnaWrite;
 import co.yd.command.member.command.MemberCheckIdCommand;
+import co.yd.command.member.command.MemberCheckPwCommand;
 import co.yd.command.member.command.MemberDeleteCommand;
 import co.yd.command.member.command.MemberForgotIdCommand;
 import co.yd.command.member.command.MemberForgotPwCommand;
@@ -64,15 +65,16 @@ import co.yd.command.member.command.MemberLogoutCommand;
 import co.yd.command.member.command.MemberResetPwCommand;
 import co.yd.command.member.command.MemberUpdateCommand;
 import co.yd.command.member.command.MemberUpdatePwCommand;
+import co.yd.command.member.form.FormCheckPw;
 import co.yd.command.member.form.FormDeleteMember;
 import co.yd.command.member.form.FormForgotId;
 import co.yd.command.member.form.FormForgotPw;
 import co.yd.command.member.form.FormJoin;
 import co.yd.command.member.form.FormLogin;
 import co.yd.command.member.form.FormLogout;
+import co.yd.command.member.form.FormMyBoardList;
 import co.yd.command.member.form.FormMypage;
 import co.yd.command.member.form.FormUpdateMember;
-import co.yd.command.member.form.FormUpdatePw;
 import co.yd.command.order.BestItemListCommand;
 import co.yd.command.order.CartDeleteCommand;
 import co.yd.command.order.CartInsertCommand;
@@ -176,8 +178,9 @@ public class MainController extends HttpServlet {
 		map.put("/basic_forgotPwForm.do", new FormForgotPw());
 		map.put("/basic_mypageForm.do", new FormMypage());
 		map.put("/basic_updateMemberForm.do", new FormUpdateMember());
-		map.put("/basic_updatePwForm.do", new FormUpdatePw());
+		map.put("/basic_checkPwForm.do", new FormCheckPw());
 		map.put("/basic_deleteMemberForm.do", new FormDeleteMember());
+		map.put("/basic_myBoardListForm.do", new FormMyBoardList());
 
 		map.put("/basic_login.do", new MemberLoginCommand());
 		map.put("/basic_join.do", new MemberJoinCommand());
@@ -187,6 +190,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_forgotPw.do", new MemberForgotPwCommand());
 		map.put("/basic_resetPw.do", new MemberResetPwCommand());
 		map.put("/basic_updateMember.do", new MemberUpdateCommand());
+		map.put("/basic_checkPw.do", new MemberCheckPwCommand());
 		map.put("/basic_updatePw.do", new MemberUpdatePwCommand());
 		map.put("/basic_deleteMember.do", new MemberDeleteCommand());
 

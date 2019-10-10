@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
 import co.yd.controller.SHA256Util;
 import co.yd.dto.MemberDTO;
+import co.yd.dto.QnaBoardDTO;
 
 public class MemberDAO {
 	PreparedStatement pstmt;
@@ -23,7 +25,7 @@ public class MemberDAO {
 
 
 	// 지원: 1회원가입, 2회원정보수정(전화번호, 이메일, 주소, 비밀번호), 3회원탈퇴(아이디, 주문목록, 게시글 남김)
-	// 4주문내역조회(운송장번호 조회), 5로그인, 6아이디 찾기, 7비밀번호 찾기
+	// 4주문내역조회(운송장번호 조회), 5로그인, 6아이디 찾기, 7비밀번호 찾기, 8내가 쓴 글 보기
 
 	// 1. 회원가입
 	// 1-1. 회원가입
@@ -231,5 +233,70 @@ public class MemberDAO {
 			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return r;
+	}
+	
+	// 7-3. 현재 비밀번호 확인
+	public boolean checkPw(String id, String pw) {
+		boolean flag = false;
+		try {
+			String memberSalt;
+			String sql = "select * from members where m_id = ?";
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				// 해당 아이디의 salt를 가져와서
+				memberSalt = rs.getString("m_salt");
+				
+				// salt를 이용해서 입력 받은 비밀번호를 암호화한다
+				String inputPassword = pw;
+				String newPassword = SHA256Util.getEncrypt(inputPassword, memberSalt);
+				
+				// 이제 비밀번호 맞는지 체크
+				if(newPassword.equals(rs.getString("m_pw"))) {
+					flag = true;
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return flag;
+	}
+	
+	
+	// 8. 내가 쓴 글 보기
+	public ArrayList<QnaBoardDTO> myBoardList(String id) {
+		QnaBoardDTO dto = new QnaBoardDTO();
+		ArrayList<QnaBoardDTO> list = new ArrayList<>();
+		// 1qb_id  2m_id  3qb_title  4qb_contents  5qb_date  6qb_hit  7qb_origin  8qb_pw
+		String sql = "select q.qb_id, q.m_id, m.m_name, q.qb_title, q.qb_contents, q.qb_date, q.qb_hit, q.qb_pw "
+						+ "from qna_board q, members m where q.m_id = m.m_id and q.m_id = ?";
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dto = new QnaBoardDTO();
+				dto.setQbId(rs.getInt("qb_id"));
+				dto.setmId(rs.getString("m_id"));
+				dto.setmName(rs.getString("m_name"));
+				dto.setQbTitle(rs.getString("qb_title"));
+				dto.setQbContents(rs.getString("qb_contents"));
+				dto.setQbDate(rs.getDate("qb_date"));
+				dto.setQbHit(rs.getInt("qb_hit"));
+				dto.setQbPw(rs.getInt("qb_pw"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return list;
 	}
 }
