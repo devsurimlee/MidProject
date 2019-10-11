@@ -18,6 +18,7 @@ import co.yd.command.admin.AdminFormQnaPassword;
 import co.yd.command.admin.AdminFormQnaRead;
 import co.yd.command.admin.AdminFormQnaWrite;
 import co.yd.command.admin.AdminIndexCommand;
+import co.yd.command.admin.AdminMemberDeleteCommand;
 import co.yd.command.admin.AdminMemberListFormCommand;
 import co.yd.command.admin.AdminMemberUpdateCommand;
 import co.yd.command.admin.AdminMemberUpdateFormCommand;
@@ -38,6 +39,7 @@ import co.yd.command.admin.AdminQnaAnswerCommand;
 import co.yd.command.admin.AdminQnaDeleteCommand;
 import co.yd.command.admin.AdminQnaPasswordCommand;
 import co.yd.command.admin.AdminQnaWriteCommand;
+import co.yd.command.admin_orders.AdminChangeDeliverStatus;
 import co.yd.command.admin_orders.AdminDeliverList;
 import co.yd.command.admin_orders.AdminOrderList;
 import co.yd.command.admin_orders.AdminOrderRead;
@@ -156,7 +158,7 @@ public class MainController extends HttpServlet {
 		map.put("/adminMemberListFormCommand.do", new AdminMemberListFormCommand());
 		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
 		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
-		//map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
+		map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
 		// 공지사항
 		map.put("/admin_noticeListForm.do", new AdminNoticeListForm());
 		map.put("/admin_noticeReadForm.do", new AdminNoticeReadForm());
@@ -235,6 +237,7 @@ public class MainController extends HttpServlet {
 		map.put("/admin_orderListForm.do", new AdminOrderList());
 		map.put("/admin_orderReadForm.do", new AdminOrderRead());
 		map.put("/admin_deliverListForm.do", new AdminDeliverList());
+		map.put("/changeDeliverStatus.do", new AdminChangeDeliverStatus());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

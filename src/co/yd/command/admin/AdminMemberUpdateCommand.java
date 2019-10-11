@@ -17,18 +17,23 @@ public class AdminMemberUpdateCommand implements Command{
 			throws ServletException, IOException {
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
-		
+		String path = "";
+		System.out.println("test");
 		dto.setmId(request.getParameter("mId"));
-		dto.setmName(request.getParameter("mName"));
-		dto.setmPhone(request.getParameter("mEmail"));
+		dto.setmEmail(request.getParameter("mEmail"));
 		dto.setmPhone(request.getParameter("mPhone"));
-		dto.setmAddress1(request.getParameter("mAddress1"));
 		dto.setgGrade(request.getParameter("gGrade"));
+		dto.setmPostcode(request.getParameter("mpostcode"));
+		dto.setmAddress1(request.getParameter("maddress1"));
+		dto.setmAddress2(request.getParameter("maddress2"));
 		
-		dao.updateMember(dto);
-		
-		
-		return null;
+		System.out.println(dto.getgGrade());
+		int result = dao.updateMember(dto);
+
+		if(result > 0) {
+			path = "admin_Index.do";
+		}
+		return path;
 	}
 
 }

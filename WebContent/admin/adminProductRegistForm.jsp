@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="admin/js/imageUpload.js"></script>
+<script src="admin/js/imageUpload.js"></script>
 <script type="text/javascript">
+
 	function p_name_Check() {
 		var chkP_name = $("p_name");
 		if (chkP_name.value == "") {
@@ -21,12 +22,14 @@
 					width = "600", height = "400");
 		}
 	}
+	
+	
 </script>
 </head>
 
 <body>
-	<form role="form" id="frm" name="frm" action="admin_productRegist.do"
-		method="post">
+	<form role="form" id="frm" name="frm" method="post" action="admin_productRegist.do"
+		enctype="multipart/form-data">
 		<div align="center">
 			<div class="row">
 				<div class="col-md-12">
@@ -51,8 +54,9 @@
 							<th width="140" align="right">상품명 *</th>
 							<td width="200"><input type="text" id="p_name" name="p_name"
 								class="form-control" /></td>
-							<td width="120"><input type="button"
-								onclick="p_name_Check()"></td>
+							<td width="120">
+<!-- 							<input type="button" onclick="p_name_Check()"> -->
+								</td>
 						</tr>
 
 						<tr>
@@ -78,9 +82,20 @@
 								name="p_category" class="form-control" /></td>
 						</tr>
 						<tr>
-
-
 							<th>썸네일</th>
+							<td colspan="2"><a href="javascript:"
+								onclick="fileUploadAction();" class="my_button"></a>  <!-- 								<div id="sumnail"></div> -->
+						</tr>
+						<tr>
+							<th>썸네일 사진</th>
+							<td colspan="2">
+							<input
+								type="file" name="input_imgs" id="input_imgs"
+								class="form-control" multiple>
+							</td>
+						</tr>
+						<tr>
+							<th>추가사진</th>
 							<td colspan="2"><input type="file" name="uploadFile"
 								id="uploadFile" class="form-control" multiple>
 								<div id="sumnail"></div>

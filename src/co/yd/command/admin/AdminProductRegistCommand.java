@@ -1,11 +1,19 @@
 package co.yd.command.admin;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import co.yd.command.Command;
 import co.yd.dao.AddAmountDAO;
@@ -16,30 +24,60 @@ import co.yd.dto.AmountDTO;
 import co.yd.dto.ProductDTO;
 
 public class AdminProductRegistCommand implements Command {
-
+	String uploadFilePath;
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ProductDTO productDto = dto(request, response);
+		MultipartRequest multi = multi(request, response);
+		ProductDTO productDto = dto(multi, response);
 		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
 		ArrayList<AddAmountDTO> addAmountDtoList = new ArrayList<AddAmountDTO>();
 		String path = "";
 
-		boolean productResult = productProcess(productDto); //상품등록
+		boolean productResult = productProcess(productDto); // 상품등록
 		boolean amountResult = false;
 		boolean addAmountResult = false;
 		if (productResult) {
-			
-			
-			int amountCount = Integer.parseInt(request.getParameter("amount_count"));//다른방식으로처리
-					
-			amountList = buildAmountDtoList(productDto,amountCount);
 
-			amountResult = amountProcess(amountList);
+			int amountCount = Integer.parseInt(multi.getParameter("amount_count"));
+//					request.getParameter("amount_count"));// 다른방식으로처리
+			
+			amountList = buildAmountDtoList(productDto, amountCount);
+
+			amountResult = amountProcess(amountList);// 재고 등록
 			if (amountResult) {
 				addAmountDtoList = bulidaddAmountList(amountList);
-				addAmountResult = addAmountProcess(addAmountDtoList);
+				addAmountResult = addAmountProcess(addAmountDtoList); // 재고 수량테이블에 추가
+				System.out.println(addAmountResult);
+				Enumeration<?> files = multi.getFileNames();
+				String product_new_fileName = "/product" + (productDto.getP_id() + ".jpg");
+				String[] amount_new_filename = new String[amountList.size()];
+				for (int i = 0; i < amountList.size(); i++) {
+					amount_new_filename[i] = "/amount" + String.valueOf(amountList.get(i).getAmount_id() + ".jpg");
+				}
+				int count = 0;
+//				 uploadFilePath //이전 파일 업로드 경로
+
+				while (files.hasMoreElements()) {
+
+					File file = new File((String) files.nextElement());
+					String filePath = file.getPath();
+					System.out.println(file.getAbsolutePath());
+					System.out.println(filePath);
+					System.out.println(file.getName());
+					String new_name="";
+					if (count == 0) {
+						new_name= filePath + product_new_fileName;
+
+					} else {
+						new_name = file.getParent() + "/clothesDetail" + amount_new_filename[count - 1];
+
+					}
+					File fileToMove = new File(new_name);
+					boolean isMoved = file.renameTo(fileToMove);
+				}
 				if (addAmountResult) {
+					
 					path = "admin_Index.do";
 				}
 			}
@@ -51,7 +89,7 @@ public class AdminProductRegistCommand implements Command {
 		return path;
 	}
 
-	private ProductDTO dto(HttpServletRequest request, HttpServletResponse response) {
+	private ProductDTO dto(MultipartRequest request, HttpServletResponse response) {
 		ProductDTO productDto = new ProductDTO();
 		productDto.setP_name(request.getParameter("p_name"));
 		productDto.setP_price(Integer.parseInt(request.getParameter("p_price")));
@@ -66,13 +104,54 @@ public class AdminProductRegistCommand implements Command {
 	private boolean productProcess(ProductDTO productDto) {
 		boolean result = false;
 		ProductDAO productDao = new ProductDAO();
-		 productDao.insert(productDto);
-		 int p_id = productDto.getP_id();
+		productDao.insert(productDto);
+		int p_id = productDto.getP_id();
 		if (p_id > 0) {
 			result = true;
 		}
 
 		return result;
+	}
+
+	private MultipartRequest multi(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		MultipartRequest multi = null;
+
+		try {
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+
+			String savePath = "image/thumbnail";
+			int uploadFileSizeLimit = 10 * 1024 * 1024;
+			String encType = "UTF-8";
+			PrintWriter out = response.getWriter();
+
+			ServletContext context = request.getServletContext();
+			uploadFilePath = context.getRealPath(savePath);
+			System.out.println(uploadFilePath);
+			multi = new MultipartRequest(request,
+
+					uploadFilePath,
+
+					uploadFileSizeLimit,
+
+					encType,
+
+					new DefaultFileRenamePolicy());
+			Enumeration<?> files = multi.getFileNames();
+			while (files.hasMoreElements()) {
+				String file = (String) files.nextElement();
+				String file_name = multi.getFilesystemName(file);
+				String ori_file_name = multi.getOriginalFileName(file);
+				out.print("<br>업로드된 파일명 : " + file_name);
+				out.print("<br>업로드된 파일명 : " + ori_file_name);
+				out.print("<hr>");
+
+			}
+		} catch (Exception e) {
+			System.out.print("예외 발생 : " + e);
+		}
+		return multi;
 	}
 
 	private ArrayList<AmountDTO> buildAmountDtoList(ProductDTO productDto, int amountCount) {
@@ -96,7 +175,7 @@ public class AdminProductRegistCommand implements Command {
 		boolean result = false;
 		AmountDAO amountDao = new AmountDAO();
 		int check = amountDao.insert(amountDtoList);
-		if (check > 1) {
+		if (check > 0) {
 			result = true;
 
 		}
@@ -114,6 +193,10 @@ public class AdminProductRegistCommand implements Command {
 				result = true;
 
 		}
+		if(check>0) {
+			result = true;
+		}
+		
 
 		return result;
 	}
