@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
+import co.yd.dao.AdminOrderDAO;
+import co.yd.dto.OrderDTO;
 import net.sf.json.JSONArray;
-import net.sf.json.JsonConfig;
 
 public class AdminChangeDeliverStatus implements Command {
 
@@ -18,11 +19,21 @@ public class AdminChangeDeliverStatus implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		String json = request.getParameter("list");
 		JSONArray array = JSONArray.fromObject(json);
-		JsonConfig jc = null;
-		List<Map> list = JSONArray.toList(array, Map.class, jc);
+		List<Map> list = JSONArray.toList(array, Map.class);
+		System.out.println(array);
+//		System.out.println(list.get(0).get("orderId"));
+//		System.out.println(list.size());
 		
-		System.out.println(list);
-		return null;
+		AdminOrderDAO dao = new AdminOrderDAO();
+		OrderDTO dto = new OrderDTO();
+//		for(int i=0; i<list.size(); i++) {
+//			dto = new OrderDTO();
+//			dto.setOrderId(Integer.parseInt((String) list.get(i).get("orderId")));
+//			dto.setOrderDeliverState((String)list.get(i).get("orderDeliverState"));
+//			int r = dao.changeDeliverStatus(dto);
+//			System.out.println("성공 실패: " + r);
+//		}
+		return "ajax:" + 1;
 	}
 
 }

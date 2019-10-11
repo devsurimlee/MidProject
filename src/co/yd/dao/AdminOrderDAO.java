@@ -133,11 +133,12 @@ public class AdminOrderDAO {
 	// 4. 배송상태 배송완료로 바꾸기
 	public int changeDeliverStatus(OrderDTO dto) {
 		int r = 0;
-		String sql = "update orders set o_delivered_date=sysdate, o_deliver_state='배송완료' where o_id=?";
+		String sql = "update orders set o_delivered_date=sysdate, o_deliver_state=? where o_id=?";
 		try {
 			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getOrderId());
+			pstmt.setString(1, dto.getOrderDeliverState());
+			pstmt.setInt(2, dto.getOrderId());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
