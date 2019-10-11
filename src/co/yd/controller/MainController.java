@@ -84,6 +84,7 @@ import co.yd.command.order.CartDeleteCommand;
 import co.yd.command.order.CartInsertCommand;
 import co.yd.command.order.CartViewCommand;
 import co.yd.command.order.IndexCommand;
+import co.yd.command.order.MyOrderViewCommand;
 import co.yd.command.order.OrderAllFormCommand;
 import co.yd.command.order.OrderAllSuccessCommand;
 import co.yd.command.order.OrderFormCommand;
@@ -117,7 +118,7 @@ public class MainController extends HttpServlet {
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_orderAllSuccess.do", new OrderAllSuccessCommand());
 		map.put("/basic_orderSingleSuccess.do", new OrderSigleSuccessCommand());
-		
+		map.put("/basic_myOrderView.do", new MyOrderViewCommand());
 		
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
 		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());		

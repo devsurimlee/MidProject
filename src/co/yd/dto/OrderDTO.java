@@ -16,7 +16,6 @@ public class OrderDTO {
 	private String orderAddress2;
 	
 	public OrderDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getOrderId() {

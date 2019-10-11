@@ -28,6 +28,7 @@ public class OrderAllSuccessCommand implements Command{
 		OrderDAO dao = new OrderDAO();
 		OrderDTO dto = new OrderDTO();
 		
+		
 		//오더테이블에 주문 추가
 		dto.setmId((String)session.getAttribute("id"));
 		dto.setOrderName(request.getParameter("orderName"));

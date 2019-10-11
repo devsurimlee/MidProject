@@ -13,6 +13,8 @@
 		//전체결제
 		var tr = $('tr')
 		var allOrderBtn = $("#allOrderBtn");
+		$("#trLength").val(tr.length);
+		
 		allOrderBtn.click( function() {
 			if(tr.length > 1 ) {
 				var resurt = confirm("전체주문창으로 넘어갑니다");
@@ -32,8 +34,6 @@
 		 	 }
 		});
 		
-
-		
 		//최종금액 계산
 		var optionList = JSON.parse('${optionList}');
 		var sum = 0;
@@ -48,7 +48,6 @@
 	//JSP라서 button에 보면 event있음
 	function deleteCart(e, amountId) {
 		var tr = $(e.target).parent().parent()
-		console.log(tr + "tr check");
 		$.ajax( {
 			url : 'cartDelete.do',
 			data : {
@@ -58,6 +57,17 @@
 			success : function() {
 				 alert("상품이 삭제되었습니다");
 				 tr.remove();
+				 
+					var price = parseInt($("#productPrice").val())
+				  
+			 	 //수정
+					var sum = price;
+					sum -= parseInt(tr.children().eq(6).attr('id'));
+					
+					$("#productPrice").val(sum + "원");
+					$("#totalPrice").val(sum + 2500+"원");	   
+				 
+				 
 			}
 		});
 		
@@ -74,7 +84,8 @@
 			success : function() {
 				 alert("상품이 모두 삭제되었습니다");
 				 $('tr').remove();
-				 
+				 $("#productPrice").val('0');
+				 $("#totalPrice").val('0');
 			}
 		});
 		
@@ -138,11 +149,12 @@ padding:0 10px; /* 각 메뉴 간격 */
 						<td><h5>
 								수량: <input type="text" id="amountCount" name="amountCount" value="${dto.a_count }" style="border:0" size="10">
 							</h5></td>
-						<td><h5>
+						<td id ="${dto.p_price }"><h5>
 								가격: <input type="text" id="price" name="price" value="${dto.p_price }" style="border:0" size="10">
 							</h5></td>
-						<td><button type="button" class="btn btn-md btn-primary btn-block" id="deleteBtn" name="deleteBtn" onclick="deleteCart(event, '${dto.amountId }')">삭제</button></td>	
-						<input type="text" id="key" name="key" value="${dto.p_id }" style="border:0" size="10">					
+						<td><button type="button" class="btn btn-md btn-primary btn-block" id="deleteBtn" name="deleteBtn" onclick="deleteCart(event, '${dto.amountId }')">삭제</button>	
+						<input type="hidden" id="key" name="key" value="${dto.p_id }" style="border:0" size="10">	
+						<input type="hidden" id="trLength" name="trLength"></td>		
 					</tr>
 				</c:forEach>
 				</tbody>

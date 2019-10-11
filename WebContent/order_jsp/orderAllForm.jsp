@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 			sum += parseInt(productPrice[i].value);
 			$('#allScore').val(sum);
 			$('#totalScore').val(sum+2500);
-			$('#orderProductCount').val(sum+2500);
+			$('#orderTotalPrice').val(sum+2500);
 
 			
 			
@@ -227,7 +228,7 @@
 							</thead>
 							<tbody>
 								<!-- foreach ($order->lineItems as $line) or some such thing here -->
-								<c:forEach var="i" begin="0" end="1">
+								<c:forEach var="i" begin="0" end="${(fn:length(amountId))-1}">
 								<tr>
 									<td>
 										<div class="media">
@@ -348,14 +349,14 @@
 						<thead></thead>
 						<tbody>
 							<tr>
-								<c:forEach var="i" begin="0" end="1">
-									<input type="text" id="amountId" name="amountId" value="${amountId[i] }">
-									<input type="text" id="amountCount" name="amountCount" value="${amountCount[i] }">
-									<input type="text" id="productName" name="productName" value="${productName[i] }">
-									<input type="text" id="productId" name="productId" value="${productId[i] }">
-									<input type="text" id="amountColor" name="amountColor" value="${amountColor[i] }">
-									<input type="text" id="amountSize" name="amountSize" value="${amountSize[i] }">
-									<input type="text" id="price" name="price" value="${productPrice[i] }">
+								<c:forEach var="i" begin="0" end="${(fn:length(amountId))-1}">
+									<input type="hidden" id="amountId" name="amountId" value="${amountId[i] }">
+									<input type="hidden" id="amountCount" name="amountCount" value="${amountCount[i] }">
+									<input type="hidden" id="productName" name="productName" value="${productName[i] }">
+									<input type="hidden" id="productId" name="productId" value="${productId[i] }">
+									<input type="hidden" id="amountColor" name="amountColor" value="${amountColor[i] }">
+									<input type="hidden" id="amountSize" name="amountSize" value="${amountSize[i] }">
+									<input type="hidden" id="price" name="price" value="${productPrice[i] }">
 								</c:forEach>
 							</tr>
 						</tbody>
