@@ -24,7 +24,7 @@
 		 	 } else {
 				var resurt = confirm("전체주문창으로 넘어갑니다");
 				if(resurt == true) {
-					$("#cartForm").attr("action", "basic_orderForm.do");
+					$("#cartForm").attr("action", "basic_orderSingleForm.do");
 					cartForm.submit();
 					} else {
 						//취소하면 페이지 그대로
