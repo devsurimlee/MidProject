@@ -1,6 +1,7 @@
 package co.yd.dto;
 
 public class AmountDTO {
+	String p_name;
 	int amount_id;
 	int p_id;
 	String amount_size;
@@ -11,6 +12,12 @@ public class AmountDTO {
 	int OrderProductCount;
 	
 	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 	public int getAmount_id() {
 		return amount_id;
 	}

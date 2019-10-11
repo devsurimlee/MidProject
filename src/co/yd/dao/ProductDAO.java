@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import co.yd.common.JDBCutil;
 import co.yd.dto.ProductDTO;
@@ -178,6 +180,27 @@ public class ProductDAO {
 			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 		return dto;
+	}
+	
+	public HashMap<Integer,String> selectAllName(){
+		String sql = "select p_id, p_name from product";
+		HashMap<Integer, String>names = new HashMap<Integer, String>();
+		try {
+			conn = JDBCutil.connect();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int key = rs.getInt("p_id");
+				String value = rs.getString("p_name");
+				names.put(key, value);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return names;
 	}
 
 }

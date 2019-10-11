@@ -26,7 +26,24 @@
 
 <!-- Custom styles for this template-->
 <link href="${pageContext.request.contextPath }/admin/css/sb-admin.css" rel="stylesheet">
+	<!-- Bootstrap core JavaScript-->
+	<script src="${pageContext.request.contextPath }/admin/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath }/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+	<!-- Core plugin JavaScript-->
+	<script src="${pageContext.request.contextPath }/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Page level plugin JavaScript-->
+	<script src="${pageContext.request.contextPath }/admin/vendor/chart.js/Chart.min.js"></script>
+	<script src="${pageContext.request.contextPath }/admin/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="${pageContext.request.contextPath }/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="${pageContext.request.contextPath }/admin/js/sb-admin.min.js"></script>
+
+	<!-- Demo scripts for this page-->
+	<script src="${pageContext.request.contextPath }/admin/js/demo/datatables-demo.js"></script>
+	<script src="${pageContext.request.contextPath }/admin/js/demo/chart-area-demo.js"></script>
 <decorator:head />
 
 </head>
@@ -136,6 +153,17 @@
 						class="dropdown-item" href="admin_deliverListForm.do?status=전체">배송 관리</a>
 				</div>	
 			</li>
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>재고관리</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+					<h6 class="dropdown-header">재고입고</h6>
+					<a class="dropdown-item" href="adminAmountListForm.do">입고</a> 
+				</div>	
+			</li>
 			
 			<li class="nav-item"><a class="nav-link" href="adminMemberListFormCommand.do">
 					<i class="fas fa-fw fa-chart-area"></i> <span>고객관리</span>
@@ -208,24 +236,7 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="${pageContext.request.contextPath }/admin/vendor/jquery/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath }/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script src="${pageContext.request.contextPath }/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Page level plugin JavaScript-->
-	<script src="${pageContext.request.contextPath }/admin/vendor/chart.js/Chart.min.js"></script>
-	<script src="${pageContext.request.contextPath }/admin/vendor/datatables/jquery.dataTables.js"></script>
-	<script src="${pageContext.request.contextPath }/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="${pageContext.request.contextPath }/admin/js/sb-admin.min.js"></script>
-
-	<!-- Demo scripts for this page-->
-	<script src="${pageContext.request.contextPath }/admin/js/demo/datatables-demo.js"></script>
-	<script src="${pageContext.request.contextPath }/admin/js/demo/chart-area-demo.js"></script>
 
 </body>
 
