@@ -85,6 +85,7 @@ import co.yd.command.order.CartDeleteCommand;
 import co.yd.command.order.CartInsertCommand;
 import co.yd.command.order.CartViewCommand;
 import co.yd.command.order.IndexCommand;
+import co.yd.command.order.MyOrderReadFormCommand;
 import co.yd.command.order.MyOrderViewCommand;
 import co.yd.command.order.OrderAllFormCommand;
 import co.yd.command.order.OrderAllSuccessCommand;
@@ -112,22 +113,27 @@ public class MainController extends HttpServlet {
 		map = new HashMap<String, Command>();
 		// 수림 추가
 		map.put("/basic_index.do", new IndexCommand());
+		//결제관련
 		map.put("/basic_orderForm.do", new OrderFormCommand());
 		map.put("/basic_orderSingleForm.do", new OrderSingleFormCommand());
 		map.put("/basic_orderAllForm.do", new OrderAllFormCommand());
-		
 		map.put("/basic_orderSuccess.do", new OrderSuccessCommand());
 		map.put("/basic_orderAllSuccess.do", new OrderAllSuccessCommand());
 		map.put("/basic_orderSingleSuccess.do", new OrderSigleSuccessCommand());
-		map.put("/basic_myOrderView.do", new MyOrderViewCommand());
-		
+		//본인주문페이지
+		map.put("/basic_myOrderList.do", new MyOrderViewCommand());
+		map.put("/basic_myOrderReadForm.do", new MyOrderReadFormCommand());
+		//상품상세페이지
 		map.put("/basic_productDetail.do", new ProductDetailCommand());
+		//위시리스트
 		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());		
 		map.put("/basic_wishListView.do", new WishListCommand());
+		//카트
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
 		map.put("/cartDelete.do", new CartDeleteCommand());
 		
+		//왼쪽물품카테고리
 		map.put("/basic_bestItemList.do", new BestItemListCommand());
 		map.put("/basic_topList.do", new ProductTopListCommand());
 		map.put("/basic_bottomList.do", new ProductBottomListCommand());

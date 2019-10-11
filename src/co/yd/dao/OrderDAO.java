@@ -25,16 +25,97 @@ public class OrderDAO{
 		return instance;
 	}
 	
-	public ArrayList<OrderDTO> selectMyOrders (ArrayList<OrderDTO> list) {
-		String sql ="select o_id, o_date, o_delivered_date, o_name, o_address1, o_postcode, o_phone, o_total_price, o_deliver_state, o_address2 from orders" ;
+	
+
+	// 지원 1전체주문내역수 2주문목록 3상세주문 4배송상태에따른목록
+
+	// 1. 전체 주문 내역 수
+	public int countOrders(String mid) {
+		String where = "where 1=1 ";
+		int i = 0;
+		if (mid != null) {
+				where += "and m_id = ? ";
+		}
+		String sql = "select count(*) as count from orders " + where;
+		int count = 0;
+		try {
+			conn = JDBCutil.connect(); // 커넥트
+			pstmt = conn.prepareStatement(sql);
+			if (mid != null) {
+					pstmt.setString(++i, mid);
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				count = rs.getInt("count");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		return count;
+	}
+
+	// 2. 주문 목록(조건부 검색)
+	public ArrayList<OrderDTO> orderList(OrderDTO dto, int first, int last) throws Exception {
+		ArrayList<OrderDTO> list = new ArrayList<>();
+		try {
+			String where = "where 1=1 ";
+			if (dto.getmId() != null) {
+					where += "and m_id = ? ";
+			}
+			String sql = "select b.* from ( select a.*, rownum  rnum from ( " + " select * from orders " + where
+					+ " order by o_id )a" + " )b where rnum between ? and ?";
+
+			conn = JDBCutil.connect();
+			pstmt = conn.prepareStatement(sql);
+			int i = 0;
+			if (dto.getmId() != null) {
+					pstmt.setString(++i, dto.getmId());
+			}
+			pstmt.setInt(++i, first);
+			pstmt.setInt(++i, last);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				OrderDTO ndto = new OrderDTO();
+				ndto.setOrderId(rs.getInt("o_id"));
+				ndto.setOrderDate(rs.getDate("o_date"));
+				ndto.setOrderDeliveredDate(rs.getDate("o_delivered_date"));
+				ndto.setmId(rs.getString("m_id"));
+				ndto.setOrderName(rs.getString("o_name"));
+				ndto.setOrderAddress1(rs.getString("o_address1"));
+				ndto.setOrderPostCode(rs.getString("o_postcode"));
+				ndto.setOrderPhoneNum(rs.getString("o_phone"));
+				ndto.setOrderTotalPrice(rs.getInt("o_total_price"));
+				ndto.setOrderDeliverState(rs.getString("o_deliver_state"));
+				ndto.setOrderAddress2(rs.getString("o_address2"));
+				list.add(ndto);
+			}
+		} catch (Throwable e) {
+			System.out.println("comment selectAll error" + e.getMessage());
+			throw new Exception(e.getMessage());
+		} finally {
+			JDBCutil.disconnect(pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	
+	
+	public ArrayList<OrderDTO> selectMyOrders (OrderDTO odto) {
+		String sql = "select o_id, o_date, o_delivered_date, o_name, o_address1, o_postcode, o_phone, o_total_price, o_deliver_state, o_address2 from orders "
+				   + "where m_id = ? order by o_id" ;
 		
-		OrderDTO dto = new OrderDTO();
+		ArrayList<OrderDTO> list = new ArrayList<OrderDTO>();
 		try {
 			conn = JDBCutil.connect(); //커넥트
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getmId());
+			pstmt.setString(1, odto.getmId());
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
+				OrderDTO dto = new OrderDTO();
 				dto.setOrderId(rs.getInt("o_id"));
 				dto.setOrderDate(rs.getDate("o_date"));
 				dto.setOrderDeliveredDate(rs.getDate("o_delivered_date"));
@@ -51,6 +132,8 @@ public class OrderDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 	
 	return list;
@@ -75,6 +158,8 @@ public class OrderDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
 		}
 
 		

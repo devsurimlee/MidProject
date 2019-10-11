@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html>
 <html>
-<head><title>부서목록</title>
+<head><title>OrderList</title>
 <script>
 	function getKey(orderId){
 		location.href = 'admin_orderReadForm.do?orderId='+orderId;
@@ -30,7 +30,6 @@
 					<th scope="col" width="100"> 주문날짜 </th>
 					<th scope="col" width="100"> 출고날짜 </th>
 					<th scope="col" width="100"> 주문 총액</th>
-					<th scope="col" width="100"> 회원ID </th>
 					<th scope="col" width="100"> 수신자명 </th>
 					<th scope="col" width="150"> 수신 우편번호 </th>
 					<th scope="col" width="250"> 수신 주소 </th>
@@ -44,7 +43,6 @@
 						<td>${i.orderDate }</td>
 						<td>${i.orderDeliveredDate }</td>
 						<td>${i.orderTotalPrice }</td>
-						<td>${i.mId }</td>
 						<td>${i.orderName }</td>
 						<td>${i.orderPostCode }</td>
 						<td>${i.orderAddress1 }</td>
