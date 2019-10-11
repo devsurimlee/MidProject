@@ -27,65 +27,55 @@ public class OrderDAO{
 	
 	
 
-	// 지원  1전체주문내역수  2주문목록  3상세주문  4배송상태에따른목록
-	
+	// 지원 1전체주문내역수 2주문목록 3상세주문 4배송상태에따른목록
+
 	// 1. 전체 주문 내역 수
-	public int countOrders(String status) {
+	public int countOrders(String mid) {
 		String where = "where 1=1 ";
-		if (status != null) {
-			where += "and o_deliver_state = ? ";
+		int i = 0;
+		if (mid != null) {
+				where += "and m_id = ? ";
 		}
 		String sql = "select count(*) as count from orders " + where;
 		int count = 0;
 		try {
-			conn = JDBCutil.connect(); //커넥트
+			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
-			if (status != null) {
-				pstmt.setString(1, status);
-		}
+			if (mid != null) {
+					pstmt.setString(++i, mid);
+			}
 			rs = pstmt.executeQuery();
-			if(rs.next())
+			if (rs.next())
 				count = rs.getInt("count");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCutil.disconnect(pstmt, conn); //클로즈
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
 		}
 		return count;
 	}
-	
-	// 2. 주문 목록
-	public ArrayList<OrderDTO> selectAll(OrderDTO dto, int first, int last) throws Exception {
+
+	// 2. 주문 목록(조건부 검색)
+	public ArrayList<OrderDTO> orderList(OrderDTO dto, int first, int last) throws Exception {
 		ArrayList<OrderDTO> list = new ArrayList<>();
 		try {
 			String where = "where 1=1 ";
-			if (dto != null) {
-				if (dto.getOrderId() != 0) { 
-					where += "and o_id like '%' || ? || '%' ";
-				}
-				if (dto.getOrderTotalPrice() != 0) {
-					where += "and o_total_price like '%' || ? || '%' ";
-				}
+			if (dto.getmId() != null) {
+					where += "and m_id = ? ";
 			}
-			String sql ="select b.* from ( select a.*, rownum  rnum from ( "
-					   											+ " select * from orders " + where + " order by o_id )a"
-							+ " )b where rnum between ? and ?";
-			
+			String sql = "select b.* from ( select a.*, rownum  rnum from ( " + " select * from orders " + where
+					+ " order by o_id )a" + " )b where rnum between ? and ?";
+
 			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
-			int i=0;
-			if (dto != null) {
-				if (dto.getOrderId() != 0) { 
-					pstmt.setInt(++i, dto.getOrderId());
-				}
-				if ( dto.getOrderTotalPrice() != 0) { 
-					pstmt.setInt(++i, dto.getOrderTotalPrice());
-				}
+			int i = 0;
+			if (dto.getmId() != null) {
+					pstmt.setString(++i, dto.getmId());
 			}
 			pstmt.setInt(++i, first);
 			pstmt.setInt(++i, last);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				OrderDTO ndto = new OrderDTO();
 				ndto.setOrderId(rs.getInt("o_id"));
@@ -108,7 +98,7 @@ public class OrderDAO{
 			JDBCutil.disconnect(pstmt, conn);
 		}
 		return list;
-	}// end of selectAll() method
+	}
 	
 	
 	

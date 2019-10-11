@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<c:if test="${!empty id }">aaaaa</c:if>	
-
 	<div align="center">
 		<div class="row">
 			<div class="col-md-12">

@@ -12,8 +12,10 @@
 </script>
 </head>
 <body>
-
-<c:if>
+<form action="admin_deliverListForm.do" name="frm">
+	<input type="hidden" name="p" value="1">
+	<input type="hidden" name="status" value="${param.status }">
+</form>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -55,19 +57,26 @@
 						<td>${i.orderDeliverState }</td>
 					</tr>
 				</c:forEach>
-				<!-- 페이징 -->
-					<tr><td colspan="11" align="center"><font size="5">
-					<c:forEach begin="1" end="${pageCnt}" varStatus="st">
-						<c:if test="${param.p != st.count}">
-						<a href="basic_myOrderList.do?p=${st.count}">${st.count}</a>
-						</c:if> 
-						<c:if test="${param.p == st.count}">
-							${st.count}
-						</c:if>
-					</c:forEach>
-					</font></td></tr>
 			</table>
+							<!-- 페이징 -->
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				    <li class="page-item">
+				    	
+				      <a class="page-link" href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    	<c:forEach begin="1" end="${pageCnt}" varStatus="st">
+				    <li class="page-item"><a class="page-link" href="#" onclick="clickPage(${st.count})">${st.count}</a></li>
+				    </c:forEach>
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
 		</div>
-	</div>
 </body>
 </html>
