@@ -20,6 +20,14 @@ public class AdminMemberUpdateFormCommand implements Command{
 		MemberDTO dto = new MemberDTO();
 		dto = dao.select(mId);
 		request.setAttribute("dto", dto);
+		
+		String originEmail = dto.getmEmail();
+		String[] splitEmail = originEmail.split("@");
+		request.setAttribute("splitEmail", splitEmail);
+		System.out.println(dto.getmEmail());
+		String originPhone = dto.getmPhone();
+		String[] splitPhone = originPhone.split("-");
+		request.setAttribute("splitPhone", splitPhone);
 		return "admin/adminMemberUpdateForm.jsp";
 	}
 
