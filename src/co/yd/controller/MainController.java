@@ -38,6 +38,7 @@ import co.yd.command.admin.AdminQnaAnswerCommand;
 import co.yd.command.admin.AdminQnaDeleteCommand;
 import co.yd.command.admin.AdminQnaPasswordCommand;
 import co.yd.command.admin.AdminQnaWriteCommand;
+import co.yd.command.admin_orders.AdminChangeDeliverStatus;
 import co.yd.command.admin_orders.AdminDeliverList;
 import co.yd.command.admin_orders.AdminOrderList;
 import co.yd.command.admin_orders.AdminOrderRead;
@@ -228,6 +229,7 @@ public class MainController extends HttpServlet {
 		map.put("/admin_orderListForm.do", new AdminOrderList());
 		map.put("/admin_orderReadForm.do", new AdminOrderRead());
 		map.put("/admin_deliverListForm.do", new AdminDeliverList());
+		map.put("/changeDeliverStatus.do", new AdminChangeDeliverStatus());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

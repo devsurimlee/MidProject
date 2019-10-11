@@ -18,6 +18,7 @@ public class AdminDeliverList implements Command {
 		String status = request.getParameter("status");
 		AdminOrderDAO dao = new AdminOrderDAO();
 		OrderDTO dto = new OrderDTO();
+		dto.setOrderDeliverState(status);
 		String p = request.getParameter("p"); // 페이지번호
 		int pageNo = 1;
 		if (p != null && !p.isEmpty()) {
@@ -25,7 +26,11 @@ public class AdminDeliverList implements Command {
 		}
 		int first, last; 		// 조회할 시작과 끝 레코드 번호
 		int recordTotal; 		// 총레코드 갯수(DB조회)
-		int pagePerRecord = 5;  // 한페이지에 출력할 레코드 건수
+		int pagePerRecord = 0;  // 한페이지에 출력할 레코드 건수
+		if(status.equals("배송준비중"))
+			pagePerRecord = 8;
+		else
+			pagePerRecord = 5;
 		int pageCnt; 			// 페이지수
 		first = (pageNo - 1) * pagePerRecord + 1; // 해당페이지의 시작레코드
 		last = first + pagePerRecord - 1; // 해당페이지의 마지막레코드
@@ -33,7 +38,7 @@ public class AdminDeliverList implements Command {
 		pageCnt = recordTotal / pagePerRecord + (recordTotal % pagePerRecord > 0 ? 1 : 0);// 마지막페이지번호
 
 		try {
-			request.setAttribute("orderList", dao.deliveryStatus(dto, first, last, status));
+			request.setAttribute("orderList", dao.orderList(dto, first, last));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

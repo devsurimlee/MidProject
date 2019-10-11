@@ -33,7 +33,7 @@ public class AdminOrderList implements Command {
 		pageCnt = recordTotal / pagePerRecord + (recordTotal % pagePerRecord > 0 ? 1 : 0);// 마지막페이지번호
 
 		try {
-			request.setAttribute("orderList", dao.selectAll(dto, first, last));
+			request.setAttribute("orderList", dao.orderList(dto, first, last));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

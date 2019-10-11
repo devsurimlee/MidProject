@@ -12,8 +12,7 @@ import co.yd.dao.MemberDAO;
 public class MemberCheckIdCommand implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		MemberDAO dao = new MemberDAO();
 
