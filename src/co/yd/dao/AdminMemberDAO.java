@@ -48,12 +48,11 @@ public class AdminMemberDAO extends DAO {
 	}
 	
 	public MemberDTO select(String mId) {
-		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		try {
 
 			conn = JDBCutil.connect(); // 커넥트
-			String sql = "select m_id,m_name,m_email,m_phone,m_address1,g_grade from members where m_id = ?";
+			String sql = "select m_id,m_name,m_email,m_phone,m_address1,m_address2,g_grade,m_Postcode from members where m_id = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mId);
@@ -64,7 +63,9 @@ public class AdminMemberDAO extends DAO {
 				dto.setmEmail(rs.getString("m_email"));
 				dto.setmPhone(rs.getString("m_phone"));
 				dto.setmAddress1(rs.getString("m_address1"));
+				dto.setmAddress2(rs.getString("m_address2"));
 				dto.setgGrade(rs.getString("g_grade"));
+				dto.setmPostcode(rs.getString("m_Postcode"));
 
 			}
 

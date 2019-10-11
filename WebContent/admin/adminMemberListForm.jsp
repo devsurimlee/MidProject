@@ -24,6 +24,7 @@
 							<th>이메일</th>
 							<th>폰번호</th>
 							<th>주소</th>
+							<th>주소2</th>
 							<th>등급</th>
 							<th>삭제버튼</th>
 							<!-- 							<th>재고상태</th> -->
@@ -38,14 +39,32 @@
 						</c:if>
 
 						<c:forEach items="${list }" var="dto">
-							<tr
-								onclick="location.href='admin_MemberUpdateForm.do?key=${dto.mId}'">
-								<td>${dto.mId}</td>
-								<td>${dto.mName }</td>
-								<td>${dto.mEmail }</td>
-								<td>${dto.mPhone }</td>
-								<td>${dto.mAddress1 }</td>
-								<td>${dto.gGrade }</td>
+							<tr>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.mId}"></td>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.mName }"></td>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.mEmail }"></td>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.mPhone }"></td>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.mAddress1 }"></td>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.mAddress2 }"></td>
+								<td><input type="text"
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									value="${dto.gGrade }"></td>
+
+								<td><input type="button"
+									onclick="location.href='adminMemberDeleteCommand.do?key=${dto.mId}'"
+									value="삭제"></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -24,6 +24,38 @@ public class OrderDAO{
 	public static OrderDAO getInstance() {
 		return instance;
 	}
+	
+	public ArrayList<OrderDTO> selectMyOrders (ArrayList<OrderDTO> list) {
+		String sql ="select o_id, o_date, o_delivered_date, o_name, o_address1, o_postcode, o_phone, o_total_price, o_deliver_state, o_address2 from orders" ;
+		
+		OrderDTO dto = new OrderDTO();
+		try {
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmId());
+			
+			while(rs.next()) {
+				dto.setOrderId(rs.getInt("o_id"));
+				dto.setOrderDate(rs.getDate("o_date"));
+				dto.setOrderDeliveredDate(rs.getDate("o_delivered_date"));
+				dto.setOrderName(rs.getString("o_name"));
+				dto.setOrderAddress1(rs.getString("o_address1"));
+				dto.setOrderPostCode(rs.getString("o_postcode"));
+				dto.setOrderPhoneNum(rs.getString("o_phone"));
+				dto.setOrderTotalPrice(rs.getInt("o_total_price"));
+				dto.setOrderDeliverState(rs.getString("o_deliver_state"));
+				dto.setOrderAddress2(rs.getString("o_address2"));
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	return list;
+	}
+	
 
 	
 	public void subAllAmount(ArrayList<AmountDTO> amountList) {
