@@ -17,26 +17,36 @@
 	}
 	
 	function changeDStatus(){
-		var length=$('.order').length;
 		var array = new Array();
-		var dto = new Object();
+		var no=$('.order');
+		var st=$('.dStatus');
 		
-		for(var i=0; i<length; i++){
-			dto = new Object();
-			dto.orderId = ${orderList[i].orderId };
-			dto.orderDeliverState = ${orderList[i].orderDeliverState };
-			console.log(dto.orderId);
+		for(var i=0; i<no.length; i++){
+			var dto = new Object();
+			var id = no.get(i).innerHTML;
+			var status = st.get(i).options[st.get(i).selectedIndex].value;
+			dto.orderId = id;
+			dto.orderDeliverState = status;
 			array.push(dto);
 		}
 		
 		$.ajax({
 			url : 'changeDeliverStatus.do',
 			dataType : 'json',
+			type: 'POST',
 			data: {list: JSON.stringify(array)}, //Array를 JSON string형태로 변환
 			success : function(result) {
-				
+				if(result == 1){
+					for(var i=0; i<no.length; i++){
+						if(status != '배송준비중'){
+						console.log("현상태"+status);
+						console.log(array[i].orderDeliverState);
+						}
+					}
+				}
 			}
 		});
+		
 		//location.href='admin_deliverListForm.do?status=배송준비중';
 		
 	}
@@ -115,7 +125,7 @@
 						<td>${i.orderAddress2 }</td>
 						<td>${i.orderPhoneNum }</td>
 						<c:if test="${i.orderDeliverState == '배송준비중' && param.status == '배송준비중' }">
-							<td><select name="dStatus"	class="btn btn-secondary btn-sm dropdown-toggle dStatus">
+							<td><select id="dStatus" name="dStatus"	class="btn btn-secondary btn-sm dropdown-toggle dStatus">
 								<option value="입금완료">입금완료</option>
 								<option	value="배송준비중" selected>배송준비중</option>
 								<option value="배송완료">배송완료</option></select></td>
