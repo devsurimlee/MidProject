@@ -49,7 +49,7 @@
 	function deleteCart(e, amountId) {
 		var tr = $(e.target).parent().parent()
 		$.ajax( {
-			url : 'cartDelete.do',
+			url : 'wishListDelete.do',
 			data : {
 				deleteCheck : amountId
 			},

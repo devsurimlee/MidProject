@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.yd.common.JDBCutil;
-import co.yd.dto.CartDTO;
 import co.yd.dto.WishListDTO;
 
 
@@ -22,6 +21,50 @@ public class WishListDAO {
 	public static WishListDAO getInstance() {
 		return instance;
 	}
+	
+	
+	public WishListDTO delectAllWishList(WishListDTO dto) {
+		String sql = "delete from wish_list where m_id = ?";
+		
+		try {
+			conn = JDBCutil.connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getM_id());
+			
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 위시리스트 삭제완료");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		
+		return dto;
+	}
+	
+	
+	
+	public WishListDTO delectWishList (WishListDTO dto) {
+		String sql = "delete wish_list where m_id= ? and p_id= ? ";
+		conn = JDBCutil.connect();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getM_id());
+			pstmt.setInt(2, dto.getP_id());
+			
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "위시리스트 삭제 삭제완료");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		
+		return dto;
+	}
+	
 	
 	public WishListDTO insertWishList (WishListDTO dto) {
 		String sql = "select wishlist_seq.nextval from dual";

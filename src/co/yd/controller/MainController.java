@@ -99,6 +99,7 @@ import co.yd.command.order.ProductDressListCommand;
 import co.yd.command.order.ProductOuterListCommand;
 import co.yd.command.order.ProductTopListCommand;
 import co.yd.command.order.WishListCommand;
+import co.yd.command.order.WishListDeleteCommand;
 import co.yd.command.order.WishListInsertCommand;
 
 @WebServlet("/MainController")
@@ -129,6 +130,8 @@ public class MainController extends HttpServlet {
 		//위시리스트
 		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());		
 		map.put("/basic_wishListView.do", new WishListCommand());
+		map.put("/wishListDelete.do", new WishListDeleteCommand());
+		
 		//카트
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());

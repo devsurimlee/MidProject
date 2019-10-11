@@ -155,15 +155,15 @@ $(document).ready (function()
 	<tbody>
 		<tr>
 			<td><input type="hidden" id="id" name="id" value="${id }"></td>
-			<td><input type="text" id="key" name="key" value="${key }"></td>
-			<td><input type="text" id="productId" name="productId"></td>
-			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td>
-			<td><input type="text" id="productPrice" name="productPrice"></td>
-			<td><input type="text" id="productColor" name="productColor"></td>
-			<td><input type="text" id="productSize" name="productSize"></td>
-			<td><input type="text" id="productCount" name="productCount" value="1"></td>
-			<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
-			<td><input type="text" id="amountId" name="amountId"></td>
+			<td><input type="hidden" id="key" name="key" value="${key }"></td>
+			<td><input type="hidden" id="productId" name="productId"></td>
+			<td><input type="hidden" id="productName" name="productName" value="${dto.p_name }"></td>
+			<td><input type="hidden" id="productPrice" name="productPrice"></td>
+			<td><input type="hidden" id="productColor" name="productColor"></td>
+			<td><input type="hidden" id="productSize" name="productSize"></td>
+			<td><input type="hidden" id="productCount" name="productCount" value="1"></td>
+			<td><input type="hidden" id="orderProductCount" name="orderProductCount"></td>
+			<td><input type="hidden" id="amountId" name="amountId"></td>
 		</tr>
 	</tbody>
 </table>
