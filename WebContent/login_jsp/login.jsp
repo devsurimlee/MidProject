@@ -54,7 +54,7 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
-						<form role="form" id="loginfrm" name="loginfrm" action="basic_login.do">
+						<form role="form" id="loginfrm" name="loginfrm" action="basic_login.do" method="POST">
 							<table>
 								<tr>
 									<th width="100"> ID </th>
