@@ -147,7 +147,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>주문관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">주문관리</h6>
 					<a class="dropdown-item" href="admin_orderListForm.do">전체 주문 목록</a> <a
 						class="dropdown-item" href="admin_deliverListForm.do?status=전체">배송 관리</a>
 				</div>	

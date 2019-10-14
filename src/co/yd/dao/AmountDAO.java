@@ -98,6 +98,39 @@ public class AmountDAO {
 		}
 		return returnValue;
 	}
+	
+	public int update(int amount_id, int amount_count) {
+		int success = 0;
+		int returnValue = 0;
+		try {
+			conn = JDBCutil.connect(); // 커넥트
+			String sql = "select amount_count from amount where amount_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, amount_id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int beforeCount = rs.getInt(1);
+
+			sql = "update amount set AMOUNT_COUNT = ? " + "where AMOUNT_ID = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, amount_count);
+			pstmt.setInt(2, amount_id);
+			success = pstmt.executeUpdate();
+			if (success > 0) {
+				returnValue = amount_count - beforeCount;
+			} else {
+				returnValue = 2147438647;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		return returnValue;
+	}
 
 	public int delete(AmountDTO dto) {
 		int result = 0;

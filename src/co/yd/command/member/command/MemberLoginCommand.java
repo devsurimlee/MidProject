@@ -22,9 +22,7 @@ public class MemberLoginCommand implements Command {
 		MemberDAO dao = new MemberDAO();
 		MemberDTO ndto = new MemberDTO();
 
-		String path = null;
 		HttpSession session = request.getSession(false);
-
 		dto.setmId(request.getParameter("id"));
 		dto.setmPw(request.getParameter("pw"));
 		
@@ -36,13 +34,14 @@ public class MemberLoginCommand implements Command {
 			session.setAttribute("id", ndto.getmId()); // 세션에 아이디저장
 			session.setAttribute("grant", ndto.getgGrade());
 			session.setAttribute("name", ndto.getmName());
-			path = "/basic_index.do";
+			if(request.getParameter("id").equals("admin"))
+				return "admin_deliverListForm.do?status=전체";
+			else
+				return "basic_index.do";
 		} else {
 			request.setAttribute("message", "로그인 실패하셨습니다. 아이디와 비밀번호를 다시 확인해 주세요.");
-			path = "login_jsp/login.jsp";
+			return "login_jsp/login.jsp";
 		}
-
-		return path;
 	}
 
 }

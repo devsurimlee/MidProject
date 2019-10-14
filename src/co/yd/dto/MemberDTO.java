@@ -11,7 +11,14 @@ public class MemberDTO {
 	private String mPostcode;
 	private String gGrade;
 	private String mSalt;
+	private int sumOrder;
 	
+	public int getSumOrder() {
+		return sumOrder;
+	}
+	public void setSumOrder(int sumOrder) {
+		this.sumOrder = sumOrder;
+	}
 	public String getmId() {
 		return mId;
 	}
