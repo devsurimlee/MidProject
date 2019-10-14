@@ -18,10 +18,11 @@ public class AdminMemberDeleteCommand implements Command {
 
 		MemberDAO dao = new MemberDAO();
 		String deletemId = request.getParameter("key");
+		System.out.println(deletemId);
 		int value = dao.deleteMember(deletemId);
 		String path = "";
 		if (value != 0) {
-			path = "admin_Index.do";
+			path = "admin/adminLeaveMemberListForm.jsp";
 		}
 		else
 		{

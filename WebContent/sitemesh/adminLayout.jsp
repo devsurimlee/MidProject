@@ -163,10 +163,19 @@
 					<a class="dropdown-item" href="adminAmountListForm.do">입고</a> 
 				</div>	
 			</li>
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>고객관리</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+					<h6 class="dropdown-header">고객관리</h6>
+					<a class="dropdown-item" href="adminMemberListFormCommand.do">현재 유저 관리</a> <a
+						class="dropdown-item" href="adminLeaveMemberListFormCommand.do">탈퇴한 유저</a>
+				</div>	
+			</li>
 			
-			<li class="nav-item"><a class="nav-link" href="adminMemberListFormCommand.do">
-					<i class="fas fa-fw fa-chart-area"></i> <span>고객관리</span>
-			</a></li>
 			<li class="nav-item dropdown">
 				<a
 					class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
