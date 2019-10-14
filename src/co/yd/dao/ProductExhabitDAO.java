@@ -78,6 +78,41 @@ public class ProductExhabitDAO {
 		return dto;
 	}
 	
+	// 판매량순서별 셀렉트해서 가져옴(베스트아이템 카테고리)
+	
+	public ArrayList<ProductDTO> sortBySellingItem(ProductDTO pDto) {
+		String sql = "select p.p_name, p.p_price, p.p_size, p.p_color, p.p_detail, p.p_category, p.p_show_state, od.p_id, count(od.p_id) "
+				+ "from order_detail od, product p " 
+				+ "where p.p_id = od.p_id " 
+				+ "group by od.p_id, p.p_name, p.p_price, p.p_size, p.p_color, p.p_detail, p.p_category, p.p_show_state";
+		
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		try {
+			
+			conn = JDBCutil.connect(); //커넥트
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setP_name(rs.getString("P_NAME"));
+				dto.setP_price(rs.getInt("P_PRICE"));
+				dto.setP_size(rs.getString("P_SIZE"));
+				dto.setP_color(rs.getString("P_COLOR"));
+				dto.setP_detail(rs.getString("P_DETAIL"));
+				dto.setP_category(rs.getString("P_CATEGORY"));
+				dto.setP_show_state(rs.getString("P_SHOW_STATE"));
+				dto.setP_id(rs.getInt("P_ID"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); //클로즈
+		}
+		return list;
+	}
+	
+	
 	
 	//'진열' 상태인 물품 전체 가져오기
 	public ArrayList<ProductDTO> selectDisplayAll(ProductDTO pDto) {

@@ -9,8 +9,20 @@ public class ProductDTO {
 	String p_detail;
 	String p_category;
 	String p_show_state;
+	
+	/// 베스트셀링용- 물품판매량
+	int count_p_id;
+	
+	
+	
 	public int getP_id() {
 		return p_id;
+	}
+	public int getCount_p_id() {
+		return count_p_id;
+	}
+	public void setCount_p_id(int count_p_id) {
+		this.count_p_id = count_p_id;
 	}
 	public void setP_id(int p_id) {
 		this.p_id = p_id;
