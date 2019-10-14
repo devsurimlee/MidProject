@@ -12,6 +12,23 @@
 
 
 	$(function() {
+		//카트에 담을때의 수량에 따른 금액책정
+		var optionList = JSON.parse('${optionList}');
+		var amountCount = $('[name=amountCount]');
+		var amountId = $('[name=amountId]');
+		var price = $('[name=price]');
+		var sum = 0;
+	
+		for(var i = 0; i < optionList.length; i++) {
+			price[i].value *= amountCount[i].value ; 
+			sum +=  parseInt(price[i].value);
+		}
+		
+		$("#productPrice").val(sum);
+		$("#totalPrice").val(sum+2500);
+
+		
+		
 		//전체결제
 		var tr = $('tr')
 		var allOrderBtn = $("#allOrderBtn");
@@ -36,16 +53,7 @@
 		 	 }
 		});
 		
-		//최종금액 계산
-		var optionList = JSON.parse('${optionList}');
-		var sum = 0;
-		for(var i = 0; i <optionList.length; i++ ){
-			sum += optionList[i].p_price;
-		}
-		$("#productPrice").val(sum+"원");
-		$("#totalPrice").val(sum+2500+"원");
-		
-	});
+	}); 
 	
 	//JSP라서 button에 보면 event있음
 	function deleteCart(e, amountId) {
@@ -60,14 +68,15 @@
 				 alert("상품이 삭제되었습니다");
 				 tr.remove();
 				 
-					var price = parseInt($("#productPrice").val())
-				  
-			 	 //가격수정
-					var sum = price;
-					sum -= parseInt(tr.children().eq(6).attr('id'));
+				 
+				 //상품삭제시 금액수정
+				 	var sum = $('#productPrice').val();
+					sum -= parseInt(tr.children().eq(6).attr('id')) * tr.children().eq(5).children().eq(1).val();
 					
-					$("#productPrice").val(sum + "원");
-					$("#totalPrice").val(sum + 2500+"원");
+					console.log( tr.children().eq(5).children().eq(1).val() +"check"   );
+					
+					$("#productPrice").val(sum);
+					$("#totalPrice").val(sum + 2500);   
 					
 					//상품이 하나도 없을때 설명글 띄우기, 버튼삭제
 					if($('tr').length == 0) {
@@ -75,10 +84,11 @@
 						$('#forAjax').append("<h3>카트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
 					}
 				 
-				 
 			}
 		});
 		
+		//펑션 끝나고 리로드인데, 이거 안넣으면 버그있음!
+		location.reload();
 	};
 	
 	function deleteAllCart() {
@@ -107,11 +117,29 @@
 	var optionList = JSON.parse('${optionList}');
 	var amountCount = $('[name=amountCount]');
 	var amountId = $('[name=amountId]');
-	
+	var price = $('[name=price]');
+
 	for(var i = 0; i < optionList.length; i++) {
 		if(trAmountId == amountId[i].value) {
 			var y = Number(amountCount[i].value  ) + num;
+			
+			if(y < 1) {
+				y = 1;
+			}
+			
+			//물품별 금액책정
 			amountCount[i].value = y;
+			price[i].value = optionList[i].p_price * y; 
+			
+			//상품합계, 총결제금액 책정
+			var sum = 0;
+			for(var i = 0; i < optionList.length; i++) {
+				sum +=  parseInt(price[i].value);
+			}
+			
+			$("#productPrice").val(sum);
+			$("#totalPrice").val(sum+2500);
+			
 		}
 	  }
  	}//
@@ -144,6 +172,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 	left: 20%;
 }
 
+
 </style>
 </head>
 
@@ -175,7 +204,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 				</tr>
 				<c:forEach items="${OptionList }" var="dto">
 					<tr>
-						<td><input type="checkBox"></td>
+						<td> </td>
 						<td>
 							<div class="media">
 								<a class="thumbnail pull-left" href="#"> <img
@@ -206,7 +235,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 								
 						</td>
 						<td id ="${dto.p_price }"><h5>
-								<input type="text" id="price" name="price" value="${dto.p_price }" style="border:0" size="10">
+								<input type="text" id="price" name="price" value="${dto.p_price }" style="border:0" size="4">원
 							</h5></td>
 						<td><button type="button" class="btn btn-md btn-primary btn-block" id="deleteBtn" name="deleteBtn" onclick="deleteCart(event, '${dto.amountId }')">삭제</button>	
 						<input type="hidden" id="key" name="key" value="${dto.p_id }" style="border:0" size="10">	
@@ -222,13 +251,14 @@ padding:0 10px; /* 각 메뉴 간격 */
 	
 		<ul>
 			<li><h3>결제 금액</h3></li>
-			<li>상품합계: <input type="text" id="productPrice" style="border:0"></li>
+			<li>상품합계: <input type="text" id="productPrice" style="border:0" size="4">원</li>
 			<li>배송비: <input type="text" id="deliveryPrice" style="border:0" value="2500원"></li>
 			<hr>
-			<li>총결제금액 <input type="text" id="totalPrice" style="border:0"></li>
+			<li>총결제금액: <input type="text" id="totalPrice" style="border:0" size="4">원</li>
 		</ul>
 		<ul>
-			<li><button id="selectOrderBtn" name="selectOrderBtn" class="btn btn-md btn-primary btn-block">선택상품결제</button>
+			<li>
+			<!-- <button id="selectOrderBtn" name="selectOrderBtn" class="btn btn-md btn-primary btn-block">선택상품결제</button> -->
 			<button id="allOrderBtn" name="allOrderBtn" class="btn btn-md btn-primary btn-block" onclick ="orderAll()">전체결제</button>
 			<button id="deleteAllBtn" name="deleteAllBtn" class="btn btn-md btn-primary btn-block" onclick ="deleteAllCart()">장바구니비우기</button></li>
 		</ul>
