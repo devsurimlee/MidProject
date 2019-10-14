@@ -67,7 +67,7 @@ public class OrderSingleFormCommand implements Command{
 		
 		
 		
-		return "order_jsp/orderSingleForm.jsp";
+		return "order_jsp/orderAllForm.jsp";
 		
 	}
 

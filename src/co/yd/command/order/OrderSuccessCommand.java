@@ -1,6 +1,7 @@
 package co.yd.command.order;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import co.yd.command.Command;
+import co.yd.dao.CartDAO;
 import co.yd.dao.OrderDAO;
 import co.yd.dto.AmountDTO;
+import co.yd.dto.CartDTO;
 import co.yd.dto.OrderDTO;
 import co.yd.dto.OrderDetailDTO;
 import co.yd.dto.OrderFormDTO;
@@ -48,11 +51,18 @@ public class OrderSuccessCommand implements Command{
 		request.setAttribute("orderDetail", odDto);
 		
 		//재고테이블 물품 산만큼 수량 빼기
+		
+		System.out.println(odDto.getAmountId() +"값확인");
+		
 		AmountDTO amDto = new AmountDTO();
 		amDto.setAmount_id(odDto.getAmountId());
 		amDto.setP_id(odDto.getProductId());
 		amDto.setOrderProductCount(odDto.getOrderProductCount());
+		
+		System.out.println(odDto.getOrderProductCount()+"물품주문값"); ///이거 값이 없음 
 		dao.subAmount(amDto);
+		
+		
 		
 		//주문한 물품 옵션 뿌려주는용
 		OrderFormDTO ofDTO = new OrderFormDTO();
@@ -64,6 +74,15 @@ public class OrderSuccessCommand implements Command{
 		} 
 		
 		request.setAttribute("ofDTO", ofDTO);
+		
+		//카트에서 주문한 물건 삭제
+		CartDTO cdto = new CartDTO();
+		CartDAO cdao = new CartDAO();
+
+		cdto.setmId((String)session.getAttribute("id"));
+		cdto.setAmountId(Integer.parseInt(request.getParameter("amountId")));
+		cdao.delectAllCart(cdto);
+		
 		
 		return "order_jsp/orderSuccess.jsp";		
 	}
