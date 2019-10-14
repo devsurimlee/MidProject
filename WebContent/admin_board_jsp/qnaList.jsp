@@ -108,7 +108,6 @@
 			            
 			        <tfoot></tfoot>
 			    </table>
-			    <button type="button" onclick="location.href='admin_qnaWriteForm.do'" class="btn btn-outline-primary"> WRITE </button>
 			</div>
 			<div class="col-md-1"></div>
 		</div>

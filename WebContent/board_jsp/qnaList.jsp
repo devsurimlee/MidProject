@@ -57,6 +57,7 @@
 <body>
 <%
 	String grant = (String) session.getAttribute("grant");
+	String id = (String) session.getAttribute("mId");
 %>
 	<div align="center">
 		<div class="row">
@@ -108,7 +109,9 @@
 			            
 			        <tfoot></tfoot>
 			    </table>
-			    <button type="button" onclick="location.href='basic_qnaWriteForm.do'" class="btn btn-outline-primary"> WRITE </button>
+			    <c:if test="${grant != 'admin'}">
+			    	<button type="button" onclick="location.href='basic_qnaWriteForm.do'" class="btn btn-outline-primary"> WRITE </button>
+			    </c:if>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
