@@ -151,6 +151,11 @@
 					<a class="dropdown-item" href="admin_qnaListForm.do?title=상품문의">1:1게시판</a> 
 				</div>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="basic_index.do">
+					<i class="fas fa-fw fa-chart-area"></i> <span>쇼핑몰</span>
+				</a>
+			</li>
 		</ul>
 		<div id="content-wrapper">
 
