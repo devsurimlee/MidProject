@@ -64,7 +64,7 @@ public class OrderDAO{
 					where += "and m_id = ? ";
 			}
 			String sql = "select b.* from ( select a.*, rownum  rnum from ( " + " select * from orders " + where
-					+ " order by o_id )a" + " )b where rnum between ? and ?";
+					+ " order by o_id desc )a" + " )b where rnum between ? and ?";
 
 			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);

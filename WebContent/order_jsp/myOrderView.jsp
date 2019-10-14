@@ -23,10 +23,14 @@ padding-left: 300px;
 
 }
 
+
+
 </style>
 
 </head>
 <body>
+
+
 <form action="basic_myOrderList.do" name="frm">
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="status" value="${param.status }">
@@ -63,7 +67,7 @@ padding-left: 300px;
 					<th scope="col" width="100"> 배송상태</th>
 				</tr>
 				<c:forEach var="i" items="${orderList }">
-					<tr onclick="getKey(${i.orderId})">
+					<tr onclick="getKey(${i.orderId})" style="cursor:pointer">
 						<th scope="row">${i.orderId }</th>
 						<td>${i.orderDate }</td>
 						<td>${i.orderDeliveredDate }</td>
