@@ -9,6 +9,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
+
 	$(function() {
 		//전체결제
 		var tr = $('tr')
@@ -97,7 +99,36 @@
 			}
 		});
 		
+	}//
+	
+	
+	//구매수량 변경용
+ 	function change(amountId, num) {
+	var optionList = JSON.parse('${optionList}');
+	var amountCount = $('[name=amountCount]');
+	
+	for(var i = 0; i < optionList.length; i++) {
+		
+		var y = Number(amountCount[i].value  ) + num;
+		amountCount[i].value = y;
+		
 	}
+		
+		
+		//var y = Number( amountCount.val() ) + num;
+		
+/* 		if (y < 1) { 
+			y = 1;
+		} 
+		if (y > count) {
+			y = count;
+		}  */
+		
+		//amountCount.value(y);
+		//cartForm.amountCount.value = y
+ 
+ 
+ 	}//
 	
 </script>
 
@@ -111,6 +142,9 @@ ul {
 ul li { 
 padding:0 10px; /* 각 메뉴 간격 */
 
+}
+#top {
+padding-left: 500px;
 }
 
 #middle {
@@ -128,18 +162,30 @@ padding:0 10px; /* 각 메뉴 간격 */
 
 <body>
 
+<div id="top"><h1>CART</h1></div><br>
+
+<c:if test="${!empty OptionList }">
 <form id="cartForm" name="cartForm" method="post" action="basic_orderAllForm.do">
 	<!--SHIPPING METHOD-->
 	<div class="panel panel-default">
 		<br />
 		<div class="panel-heading text-center">
-			<h1>CART</h1>
 		</div>
 		<div class="panel-body">
 			<table class="table borderless">
 				<thead>
 				</thead>
 				<tbody>
+				<tr>
+					<th>-</th>
+					<th>상품명</th>
+					<th>품번</th>
+					<th>색상</th>
+					<th>사이즈</th>
+					<th>수량</th>
+					<th>가격</th>
+					<th></th>
+				</tr>
 				<c:forEach items="${OptionList }" var="dto">
 					<tr>
 						<td><input type="checkBox"></td>
@@ -151,23 +197,29 @@ padding:0 10px; /* 각 메뉴 간격 */
 									style="width: 72px; height: 72px;">
 								</a>
 								<div class="media-body">
-									<h5 class="media-heading"></h5><input type="text" id="productName" name="productName" value="${dto.p_name }" style="border:0" >
-									<h5 class="media-heading"></h5><input type="text" id="productId" name="productId" value="${dto.p_id }" style="border:0" size="10">
+									<h5 class="media-heading"><input type="text" id="productName" name="productName" value="${dto.p_name }" style="border:0" ></h5>
+									<h5 class="media-heading"><input type="text" id="productId" name="productId" value="${dto.p_id }" style="border:0" size="10"></h5>
 								</div>
 							</div>
 						</td>
-						<td> <input type="text" id="amountId" name="amountId" value="${dto.amountId }" style="border:0" size="5"></td>
-						<td><h5>
-								색상: <input type="text" id="amountColor" name="amountColor" value="${dto.amount_color }" style="border:0">
-							</h5></td>
-						<td><h5>
-								사이즈: <input type="text" id="amountSize" name="amountSize" value="${dto.amount_size }" style="border:0" size="10">
-							</h5></td>
-						<td><h5>
-								수량: <input type="text" id="amountCount" name="amountCount" value="${dto.a_count }" style="border:0" size="10">
-							</h5></td>
+						<td>
+							<h5><input type="text" id="amountId" name="amountId" value="${dto.amountId }" style="border:0" size="5"></h5>
+						</td>
+						<td>
+							<h5><input type="text" id="amountColor" name="amountColor" value="${dto.amount_color }" style="border:0"></h5>
+						</td>
+						<td>
+							<h5><input type="text" id="amountSize" name="amountSize" value="${dto.amount_size }" style="border:0" size="10"></h5>
+						</td>
+						<td>
+							
+										<a href="#" onclick="change(${dto.amountId }, -1)">◀</a>
+										<input type="text" id="amountCount" name="amountCount" value="${dto.a_count }" size="3">
+										<a href="#" onclick="change(${dto.amountId }, 1)">▶</a>
+								
+						</td>
 						<td id ="${dto.p_price }"><h5>
-								가격: <input type="text" id="price" name="price" value="${dto.p_price }" style="border:0" size="10">
+								<input type="text" id="price" name="price" value="${dto.p_price }" style="border:0" size="10">
 							</h5></td>
 						<td><button type="button" class="btn btn-md btn-primary btn-block" id="deleteBtn" name="deleteBtn" onclick="deleteCart(event, '${dto.amountId }')">삭제</button>	
 						<input type="hidden" id="key" name="key" value="${dto.p_id }" style="border:0" size="10">	
@@ -180,7 +232,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 	</div>
 	<!--SHIPPING METHOD END-->
 </form>
-	<c:if test="${!empty OptionList }">
+	
 		<ul>
 			<li><h3>결제 금액</h3></li>
 			<li>상품합계: <input type="text" id="productPrice" style="border:0"></li>
@@ -193,7 +245,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 			<button id="allOrderBtn" name="allOrderBtn" class="btn btn-md btn-primary btn-block" onclick ="orderAll()">전체결제</button>
 			<button id="deleteAllBtn" name="deleteAllBtn" class="btn btn-md btn-primary btn-block" onclick ="deleteAllCart()">장바구니비우기</button></li>
 		</ul>
-	</c:if>
+</c:if>
 	
 	<div id="forAjax"></div>
 	

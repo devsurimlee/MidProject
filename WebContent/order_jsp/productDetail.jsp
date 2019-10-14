@@ -16,6 +16,7 @@
 <script>
 var dtoList = JSON.parse('${dtoList}');
 var amountList = JSON.parse('${amountList}');
+
 var totalPrice = 0;
 console.log(amountList);
 console.log(dtoList[0].p_price + "dto!!");
@@ -35,7 +36,7 @@ console.log(dtoList[0].p_price + "dto!!");
 				selectOption.orderProductCount.value = 1;
 				var count = amountList[i].amount_count;
 				//<재고> 부분에 물품 재고값 넣어줌
-				productCnt.productAmount.value= "재고: " + count;
+				productCnt.productAmount.value= "-재고: " + count;
 				break;
 			}
 	 	  }
@@ -279,9 +280,9 @@ $(document).ready (function()
 										<td colspan="2"><button type="button" id="buyNow" name="buyNow"
 												class="btn btn-md btn-primary btn-block">BUY NOW</button></td>
 									</tr>
-									<tr>
+<!-- 									<tr>
 										<td colspan="2"><input type="image" id="naverPayBtn" value="네이버페이 결제 버튼" src="image/etc/naverPayBtn.jpg"></td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 							</div>
