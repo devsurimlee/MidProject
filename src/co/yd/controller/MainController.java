@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
+import co.yd.command.admin.AdminAddAmountCommand;
 import co.yd.command.admin.AdminAddAmountListFormCommand;
 import co.yd.command.admin.AdminFormQnaAnswer;
 import co.yd.command.admin.AdminFormQnaList;
@@ -168,6 +169,7 @@ public class MainController extends HttpServlet {
 		map.put("/adminLeaveMemberListFormCommand.do",new AdminLeaveMemberListFormCommand());
 		//재고관리
 		map.put("/adminAmountListForm.do", new AdminAddAmountListFormCommand());
+		map.put("/adminAmountAdd.do", new AdminAddAmountCommand());
 		
 		
 		
