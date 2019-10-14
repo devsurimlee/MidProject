@@ -24,7 +24,8 @@ public class AdminMemberDAO extends DAO {
 		try {
 
 			conn = JDBCutil.connect(); // 커넥트
-			String sql = "select m_id,m_name,m_email,m_phone,m_address1,g_grade from members where m_id != 'admin'";
+			String sql = "select m_id,m_name,m_email,m_phone,m_address1,m_address2,g_grade from members where m_id != 'admin' and"
+					+ " g_grade != 'null'";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -34,6 +35,36 @@ public class AdminMemberDAO extends DAO {
 				dto.setmEmail(rs.getString("m_email"));
 				dto.setmPhone(rs.getString("m_phone"));
 				dto.setmAddress1(rs.getString("m_address1"));
+				dto.setmAddress2(rs.getString("m_address2"));
+				dto.setgGrade(rs.getString("g_grade"));
+
+				list.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		return list;
+	}
+	
+	public ArrayList<MemberDTO> selectLeaveAll(){
+		ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+		try {
+
+			conn = JDBCutil.connect(); // 커넥트
+			String sql = "select m_id,m_name,m_email,m_phone,m_address1,m_address2,g_grade from members where g_grade ='null'";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setmId(rs.getString("m_id"));
+				dto.setmName(rs.getString("m_name"));
+				dto.setmEmail(rs.getString("m_email"));
+				dto.setmPhone(rs.getString("m_phone"));
+				dto.setmAddress1(rs.getString("m_address1"));
+				dto.setmAddress2(rs.getString("m_address2"));
 				dto.setgGrade(rs.getString("g_grade"));
 
 				list.add(dto);

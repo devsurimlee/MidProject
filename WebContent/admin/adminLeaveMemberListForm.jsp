@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
-	<div class="card mb-3">
+<div class="card mb-3">
 		<div class="card-header">
 			<i class="fas fa-table"></i> 유저리스트
 		</div>
@@ -26,7 +26,6 @@
 							<th>주소</th>
 							<th>주소2</th>
 							<th>등급</th>
-							<th>삭제버튼</th>
 							<!-- 							<th>재고상태</th> -->
 						</tr>
 					</thead>
@@ -68,10 +67,6 @@
 
 									${dto.gGrade }</td>
 
-								<td><input type="button"
-									onclick="deleteMember('${dto.mId}')"
-									
-									value="삭제"></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -80,17 +75,5 @@
 		</div>
 
 	</div>
-	<script type="text/javascript">
-	function deleteMember(mId) {
-		var confrimDel = confirm("유저를 삭제하시겟습니까?")
-		if(confrimDel){
-			location.href='adminMemberDeleteCommand.do?key='+mId;
-		}
-		else{
-			alert("취소되었습니다.");
-		}
-	}
-	</script>
 </body>
-
 </html>

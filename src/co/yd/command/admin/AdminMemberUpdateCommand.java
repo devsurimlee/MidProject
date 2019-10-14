@@ -31,7 +31,7 @@ public class AdminMemberUpdateCommand implements Command{
 		int result = dao.updateMember(dto);
 
 		if(result > 0) {
-			path = "admin_Index.do";
+			path = "admin/adminLeaveMemberListForm.jsp";
 		}
 		return path;
 	}

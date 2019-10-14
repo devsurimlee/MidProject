@@ -252,7 +252,7 @@ public ArrayList<OrderDetailDTO> insertAllOrderDetail(ArrayList<OrderDetailDTO> 
 	
 	public OrderDTO insertOrders(OrderDTO dto) {
 		String sql1 ="select ORDERS_SEQ.nextval from dual";
-		String sql = "insert into orders VALUES(?, sysdate, null, ?, ?, ?, ?, ?, ?, '배송준비중', ?)";
+		String sql = "insert into orders VALUES(?, sysdate, null, ?, ?, ?, ?, ?, ?, '입금완료', ?)";
 
 				try {
 					conn = JDBCutil.connect(); //커넥트

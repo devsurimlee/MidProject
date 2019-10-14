@@ -34,10 +34,11 @@ public class AdminProductUpdateCommand implements Command {
 			addAmountDtoList = amountProcess(amountList);
 			if (addAmountDtoList.equals(null)) {
 				System.out.println("재고 변경사항 없음");
+				path = "admin_productListForm.do";
 			} else {
 				addAmountResult = addAmountProcess(addAmountDtoList);
 				if (addAmountResult) {
-					path = "admin_Index.do";
+					path = "admin_productListForm.do";
 				}
 			}
 

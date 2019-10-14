@@ -19,6 +19,7 @@ import co.yd.command.admin.AdminFormQnaPassword;
 import co.yd.command.admin.AdminFormQnaRead;
 import co.yd.command.admin.AdminFormQnaWrite;
 import co.yd.command.admin.AdminIndexCommand;
+import co.yd.command.admin.AdminLeaveMemberListFormCommand;
 import co.yd.command.admin.AdminMemberDeleteCommand;
 import co.yd.command.admin.AdminMemberListFormCommand;
 import co.yd.command.admin.AdminMemberUpdateCommand;
@@ -164,7 +165,7 @@ public class MainController extends HttpServlet {
 		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
 		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
 		map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
-		
+		map.put("/adminLeaveMemberListFormCommand.do",new AdminLeaveMemberListFormCommand());
 		//재고관리
 		map.put("/adminAmountListForm.do", new AdminAddAmountListFormCommand());
 		
