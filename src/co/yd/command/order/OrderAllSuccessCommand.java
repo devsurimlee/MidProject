@@ -15,7 +15,6 @@ import co.yd.dao.OrderDAO;
 import co.yd.dto.AmountDTO;
 import co.yd.dto.OrderDTO;
 import co.yd.dto.OrderDetailDTO;
-import co.yd.dto.OrderFormDTO;
 
 public class OrderAllSuccessCommand implements Command{
 
@@ -27,7 +26,6 @@ public class OrderAllSuccessCommand implements Command{
 		
 		OrderDAO dao = new OrderDAO();
 		OrderDTO dto = new OrderDTO();
-		
 		
 		//오더테이블에 주문 추가
 		dto.setmId((String)session.getAttribute("id"));
@@ -91,12 +89,6 @@ public class OrderAllSuccessCommand implements Command{
 		//주문한 물품 옵션 뿌려주는용
 
 
-		
-		
-		
-	
-		
-		//request.setAttribute("ofDTO", ofDTO);
 		
 		return "order_jsp/orderAllSuccess.jsp";		
 	}

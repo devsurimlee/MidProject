@@ -1,4 +1,4 @@
-package co.yd.controller;
+package co.yd.command.order;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,16 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
 
 import co.yd.command.Command;
 import co.yd.dao.OrderDAO;
 import co.yd.dto.AmountDTO;
 import co.yd.dto.OrderDTO;
 import co.yd.dto.OrderDetailDTO;
-import co.yd.dto.OrderFormDTO;
 
-public class OrderAllSuccessCommand implements Command{
+public class OrderSigleSuccessCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,7 +86,6 @@ public class OrderAllSuccessCommand implements Command{
 		dao.subAllAmount(amountList);
 		
 		//주문한 물품 옵션 뿌려주는용
-
 
 		
 		return "order_jsp/orderAllSuccess.jsp";		
