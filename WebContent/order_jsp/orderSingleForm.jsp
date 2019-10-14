@@ -381,8 +381,10 @@
 						</div>
 						
 						<form id="checkOutForm" name="checkOutForm" method="post">
-						<button type="button" class="btn btn-primary btn-lg btn-block"
-							onclick="checkOrderForm()">Checkout</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block"
+								onclick="checkOrderForm()">Checkout</button>
+							<input type="image" id="naverPayBtn" value="네이버페이 결제 버튼" src="image/etc/naverPayBtn.jpg" ></td>
+								
 						</form>
 					</div>
 
@@ -393,6 +395,9 @@
 
 		</div>
 	</div>
+	
+
+	
 
 
 

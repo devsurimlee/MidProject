@@ -55,12 +55,6 @@ public class OrderAllFormCommand implements Command{
 		//상품상세페이지에서 넘어온값
 		OrderFormDTO ofDTO = new OrderFormDTO();
 		
-		CartDTO dto = new CartDTO();
-		CartDAO dao = new CartDAO();
-		
-		dto.setmId((String)session.getAttribute("id"));
-		dao.delectAllCart(dto);
-		
 
 		
 		return "order_jsp/orderAllForm.jsp";

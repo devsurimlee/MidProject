@@ -30,10 +30,12 @@ public class AdminChangeDeliverStatus implements Command {
 
 		for (int i = 0; i < list.size(); i++) {
 			dto = new OrderDTO();
-			dto.setOrderId(Integer.parseInt((String) list.get(i).get("orderId")));
-			dto.setOrderDeliverState((String) list.get(i).get("orderDeliverState"));
-			int r = dao.changeDeliverStatus(dto);
-			System.out.println("성공 실패: " + r);
+			String id = (String) list.get(i).get("orderId");
+			String status = (String) list.get(i).get("orderDeliverState");
+			
+			dto.setOrderId(Integer.parseInt(id));
+			dto.setOrderDeliverState(status);
+			dao.changeDeliverStatus(dto);
 		}
 
 		return "ajax:" + 1;
