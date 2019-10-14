@@ -103,31 +103,17 @@
 	
 	
 	//구매수량 변경용
- 	function change(amountId, num) {
+ 	function change(trAmountId, num) {
 	var optionList = JSON.parse('${optionList}');
 	var amountCount = $('[name=amountCount]');
+	var amountId = $('[name=amountId]');
 	
 	for(var i = 0; i < optionList.length; i++) {
-		
-		var y = Number(amountCount[i].value  ) + num;
-		amountCount[i].value = y;
-		
-	}
-		
-		
-		//var y = Number( amountCount.val() ) + num;
-		
-/* 		if (y < 1) { 
-			y = 1;
-		} 
-		if (y > count) {
-			y = count;
-		}  */
-		
-		//amountCount.value(y);
-		//cartForm.amountCount.value = y
- 
- 
+		if(trAmountId == amountId[i].value) {
+			var y = Number(amountCount[i].value  ) + num;
+			amountCount[i].value = y;
+		}
+	  }
  	}//
 	
 </script>
@@ -144,7 +130,8 @@ padding:0 10px; /* 각 메뉴 간격 */
 
 }
 #top {
-padding-left: 500px;
+	position: absolute;
+	left: 45%;
 }
 
 #middle {
@@ -162,7 +149,7 @@ padding-left: 500px;
 
 <body>
 
-<div id="top"><h1>CART</h1></div><br>
+<div id="top"><h2><b>CART</b></h2></div><br><br>
 
 <c:if test="${!empty OptionList }">
 <form id="cartForm" name="cartForm" method="post" action="basic_orderAllForm.do">
