@@ -94,6 +94,14 @@ $(document).ready (function()
 	//카트
 	var cart = $("#cart");
 	cart.click( function() {
+		if(! $("[name=colorGroup]:checked").val()) {
+			alert("색상을 선택해주세요");
+			return false;
+		}  if(! $("[name=sizeGroup]:checked").val()) {
+			alert("사이즈를 선택해주세요");
+			return false;
+		}
+		
 		$("#selectOption").attr("action", "basic_cartInsert.do");
 		selectOption.submit();
 		

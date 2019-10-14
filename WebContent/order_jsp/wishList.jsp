@@ -32,6 +32,11 @@
 				 alert("상품이 삭제되었습니다");
 				 figure.remove();
 				 
+					if($('figure').length == 0) {
+						$('ul').remove();
+						$('#forAjax').append("<h3>위시리스트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
+					}
+				 
 			}
 		}); 
 		
@@ -50,6 +55,7 @@
 				 alert("상품이 모두 삭제되었습니다");
 				 $('figure').remove();
 				 $('button').remove();
+				 $('#forAjax').append("<h3>위시리스트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
 			}
 		});
 		
@@ -64,6 +70,11 @@
 }
 
 #middle {
+	position: absolute;
+	left: 20%;
+}
+
+#forAjax {
 	position: absolute;
 	left: 20%;
 }
@@ -117,6 +128,7 @@ ul {
 	</ul>
 	</c:if>
 	
+	<div id="forAjax"></div>
 	<c:if test="${empty optionList }">
 		<div id="middle"><h3>위시리스트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3></div>
 	</c:if>
