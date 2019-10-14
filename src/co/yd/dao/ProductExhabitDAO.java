@@ -195,7 +195,7 @@ public class ProductExhabitDAO {
 	}
 	
 	public ArrayList<ProductDTO> selectOuterDisplay(ProductDTO pDto) {
-		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열' and p_category='bottom'";
+		String sql = "select P_ID,P_NAME,P_PRICE,P_SIZE,P_COLOR,P_DETAIL,P_CATEGORY,P_SHOW_STATE from product  where p_show_state ='진열' and p_category='outer'";
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		try {
 			

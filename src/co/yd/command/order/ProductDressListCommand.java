@@ -19,7 +19,7 @@ public class ProductDressListCommand implements Command{
 		ProductDTO pDto = new ProductDTO();
 		ProductExhabitDAO mDao = new ProductExhabitDAO();
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-		list = mDao.selectBottomDisplay(pDto);
+		list = mDao.selectDressDisplay(pDto);
 		request.setAttribute("list", list);
 		
 		
