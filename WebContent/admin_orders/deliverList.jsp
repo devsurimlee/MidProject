@@ -19,7 +19,12 @@
 	function changeDStatus(){
 		var array = new Array();
 		var no=$('.order');
-		var st=$('.dStatus');
+		var st;
+		if("${param.status }" == '배송준비중') {
+			st = $('.status1');
+		} else if("${param.status }" == '입금완료'){
+			st = $('.status2');
+		}
 		
 		for(var i=0; i<no.length; i++){
 			var dto = new Object();
@@ -43,12 +48,10 @@
 						console.log(array[i].orderDeliverState);
 						}
 					}
+					location.reload();
 				}
 			}
 		});
-		
-		//location.href='admin_deliverListForm.do?status=배송준비중';
-		
 	}
 	
 	$(function(){
@@ -95,18 +98,19 @@
 			<button id="btn3" type="button" class="btn btn-outline-info btn-lg" onclick="location.href='admin_deliverListForm.do?status=배송준비중'"> 배송준비중 </button>&nbsp;&nbsp;
 			<button id="btn4" type="button" class="btn btn-outline-info btn-lg" onclick="location.href='admin_deliverListForm.do?status=배송완료'"> 배송 완료 </button>
 			<br /><br />
+			
 			<table class="table">
-				<tr id='tr'>
-					<th scope="col" width="100"> 주문번호 </th>
-					<th scope="col" width="100"> 주문날짜 </th>
-					<th scope="col" width="100"> 출고날짜 </th>
-					<th scope="col" width="100"> 주문 총액</th>
-					<th scope="col" width="100"> 회원ID </th>
-					<th scope="col" width="100"> 수신자명 </th>
-					<th scope="col" width="100"> 우편번호 </th>
-					<th scope="col" width="250"> 주소 </th>
-					<th scope="col" width="250"> 상세주소</th>
-					<th scope="col" width="200"> 전화번호 </th>
+				<tr id='tr' align="center">
+					<th scope="col" width="50"> 주문번호 </th>
+					<th scope="col" width="80"> 주문날짜 </th>
+					<th scope="col" width="80"> 출고날짜 </th>
+					<th scope="col" width="70"> 회원ID </th>
+					<th scope="col" width="70"> 수신자명 </th>
+					<th scope="col" width="80"> 우편번호 </th>
+					<th scope="col" width="300"> 주소 </th>
+					<th scope="col" width="200"> 상세주소</th>
+					<th scope="col" width="100"> 전화번호 </th>
+					<th scope="col" width="100"> 주문총액</th>
 					<th scope="col" width="100" id="th"> 배송상태</th>
 				</tr>
 				<c:if test="${empty orderList}">
@@ -114,32 +118,39 @@
 				</c:if>
 				<c:forEach var="i" items="${orderList }">
 					<tr>
-						<th scope="row" class="order">${i.orderId }</th>
-						<td>${i.orderDate }</td>
-						<td>${i.orderDeliveredDate }</td>
-						<td>${i.orderTotalPrice }</td>
-						<td>${i.mId }</td>
-						<td>${i.orderName }</td>
-						<td>${i.orderPostCode }</td>
+						<th class="order" align="center">${i.orderId }</th>
+						<td align="center">${i.orderDate }</td>
+						<td align="center">${i.orderDeliveredDate }</td>
+						<td align="center">${i.mId }</td>
+						<td align="center">${i.orderName }</td>
+						<td align="center">${i.orderPostCode }</td>
 						<td>${i.orderAddress1 }</td>
 						<td>${i.orderAddress2 }</td>
-						<td>${i.orderPhoneNum }</td>
+						<td align="center">${i.orderPhoneNum }</td>
+						<td align="center">${i.orderTotalPrice }</td>
 						<c:if test="${i.orderDeliverState == '배송준비중' && param.status == '배송준비중' }">
-							<td><select id="dStatus" name="dStatus"	class="btn btn-secondary btn-sm dropdown-toggle dStatus">
+							<td align="center"><select id="status1" name="status1"	class="btn btn-secondary btn-sm dropdown-toggle status1">
 								<option value="입금완료">입금완료</option>
 								<option	value="배송준비중" selected>배송준비중</option>
 								<option value="배송완료">배송완료</option></select></td>
 						</c:if>
-						<c:if test="${param.status != '배송준비중' }">
-							<td>${i.orderDeliverState }</td>
+						<c:if test="${i.orderDeliverState == '입금완료' && param.status == '입금완료' }">
+							<td align="center"><select id="status2" name="status2"	class="btn btn-secondary btn-sm dropdown-toggle status2">
+								<option value="입금완료" selected>입금완료</option>
+								<option	value="배송준비중">배송준비중</option>
+								<option value="배송완료">배송완료</option></select></td>
+						</c:if>
+						<c:if test="${param.status != '배송준비중' && param.status != '입금완료' }">
+							<td align="center">${i.orderDeliverState }</td>
 						</c:if>
 					</tr>
 				</c:forEach>
-				<c:if test="${param.status == '배송준비중' }">
+				<c:if test="${param.status == '배송준비중' || param.status == '입금완료' }">
 					<tr><td colspan="10"></td>
-					<td><button class="btn btn-outline-secondary btn-sm" onclick="changeDStatus()"> 배송상태변경 </button></td></tr>
+					<td align="center"><button type="button" class="btn btn-outline-secondary btn-sm" onclick="changeDStatus()"> 배송상태변경 </button></td></tr>
 				</c:if>
 			</table>
+				
 				<!-- 페이징 -->
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">

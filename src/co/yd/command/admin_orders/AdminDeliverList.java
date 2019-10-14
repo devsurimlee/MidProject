@@ -27,7 +27,7 @@ public class AdminDeliverList implements Command {
 		int first, last; 		// 조회할 시작과 끝 레코드 번호
 		int recordTotal; 		// 총레코드 갯수(DB조회)
 		int pagePerRecord = 0;  // 한페이지에 출력할 레코드 건수
-		if(status.equals("배송준비중"))
+		if(status.equals("배송준비중") || status.equals("입금완료"))
 			pagePerRecord = 8;
 		else
 			pagePerRecord = 5;

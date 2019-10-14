@@ -25,30 +25,30 @@
 		
 		<div class="row">
 			<table class="table">
-				<tr>
-					<th scope="col" width="100"> 주문번호 </th>
-					<th scope="col" width="100"> 주문날짜 </th>
-					<th scope="col" width="100"> 출고날짜 </th>
-					<th scope="col" width="100"> 주문 총액</th>
-					<th scope="col" width="100"> 수신자명 </th>
-					<th scope="col" width="150"> 수신 우편번호 </th>
-					<th scope="col" width="250"> 수신 주소 </th>
-					<th scope="col" width="250"> 수신 상세주소</th>
-					<th scope="col" width="200"> 수신자 전화번호 </th>
-					<th scope="col" width="100"> 배송상태</th>
+				<tr align="center">
+					<th scope="col" width="50"> 주문번호 </th>
+					<th scope="col" width="80"> 주문날짜 </th>
+					<th scope="col" width="80"> 출고날짜 </th>
+					<th scope="col" width="70"> 수신자명 </th>
+					<th scope="col" width="80"> 우편번호 </th>
+					<th scope="col" width="300"> 주소 </th>
+					<th scope="col" width="200"> 상세주소 </th>
+					<th scope="col" width="100"> 전화번호 </th>
+					<th scope="col" width="100"> 주문총액 </th>
+					<th scope="col" width="100"> 배송상태 </th>
 				</tr>
 				<c:forEach var="i" items="${orderList }">
 					<tr onclick="getKey(${i.orderId})">
-						<th scope="row">${i.orderId }</th>
-						<td>${i.orderDate }</td>
-						<td>${i.orderDeliveredDate }</td>
-						<td>${i.orderTotalPrice }</td>
-						<td>${i.orderName }</td>
-						<td>${i.orderPostCode }</td>
+						<td align="center"><b>${i.orderId }</b></td>
+						<td align="center">${i.orderDate }</td>
+						<td align="center">${i.orderDeliveredDate }</td>
+						<td align="center">${i.orderName }</td>
+						<td align="center">${i.orderPostCode }</td>
 						<td>${i.orderAddress1 }</td>
 						<td>${i.orderAddress2 }</td>
-						<td>${i.orderPhoneNum }</td>
-						<td>${i.orderDeliverState }</td>
+						<td align="center">${i.orderPhoneNum }</td>
+						<td align="center">${i.orderTotalPrice }</td>
+						<td align="center">${i.orderDeliverState }</td>
 					</tr>
 				</c:forEach>
 				<!-- 페이징 -->

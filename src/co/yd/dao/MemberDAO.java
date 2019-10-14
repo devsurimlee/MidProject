@@ -86,7 +86,7 @@ public class MemberDAO {
 	// 2. 회원 정보 수정
 	// 2-1. 정보 변경(전화번호, 이메일, 주소)
 	public int updateMember(MemberDTO dto) {
-		String sql = "update members set m_email=?, m_phone=?, m_postcode=?, m_address1=?, m_address2=?,g_grade = ? where m_id=?";
+		String sql = "update members set m_email=?, m_phone=?, m_postcode=?, m_address1=?, m_address2=? where m_id=?";
 		int r = 0;
 		try {
 			//post 없어서 에러
@@ -97,8 +97,7 @@ public class MemberDAO {
 			pstmt.setString(3, dto.getmPostcode());
 			pstmt.setString(4, dto.getmAddress1());
 			pstmt.setString(5, dto.getmAddress2());
-			pstmt.setString(6, dto.getgGrade());
-			pstmt.setString(7, dto.getmId());
+			pstmt.setString(6, dto.getmId());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
