@@ -49,6 +49,28 @@ public class AdminMemberDAO extends DAO {
 		return list;
 	}
 	
+	public MemberDTO addAll_O_Total_Price(MemberDTO dto){
+		
+		try {
+
+			conn = JDBCutil.connect(); // 커넥트
+			String sql = "select sum(o_total_price) o_total_price from orders where m_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getmId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dto.setSumOrder(rs.getInt(1));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		return dto;
+	}
+	
 	public ArrayList<MemberDTO> selectLeaveAll(){
 		ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
 		try {

@@ -26,7 +26,9 @@
 							<th>주소</th>
 							<th>주소2</th>
 							<th>등급</th>
+							<th>총구매금액</th>
 							<th>삭제버튼</th>
+
 							<!-- 							<th>재고상태</th> -->
 						</tr>
 					</thead>
@@ -41,37 +43,34 @@
 						<c:forEach items="${list }" var="dto">
 							<tr>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-									${dto.mId}</td>
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.mId}</td>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-
-									${dto.mName }</td>
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.mName }</td>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-
-									${dto.mEmail }</td>
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.mEmail }</td>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-
-									${dto.mPhone }</td>
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.mPhone }</td>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-
-									${dto.mAddress1 }</td>
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.mAddress1 }</td>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-
-									${dto.mAddress2 }</td>
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.mAddress2 }</td>
 								<td
-									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'">
-
-									${dto.gGrade }</td>
-
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.gGrade }</td>
+								<td
+									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.mId}'"
+									onmouseover="setCursor(this,'pointer')">${dto.sumOrder}</td>
+<!-- 								<td -->
+<%-- 									onclick="location.href='adminMemberUpdateFormCommand.do?key=${dto.sumOrder }" --%>
+<!-- 									onmouseover="setCursor(this,'pointer')"></td> -->
 								<td><input type="button"
-									onclick="deleteMember('${dto.mId}')"
-									
-									value="삭제"></td>
+									onclick="deleteMember('${dto.mId}')" value="삭제"></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -81,15 +80,17 @@
 
 	</div>
 	<script type="text/javascript">
-	function deleteMember(mId) {
-		var confrimDel = confirm("유저를 삭제하시겟습니까?")
-		if(confrimDel){
-			location.href='adminMemberDeleteCommand.do?key='+mId;
+		function deleteMember(mId) {
+			var confrimDel = confirm("유저를 삭제하시겟습니까?")
+			if (confrimDel) {
+				location.href = 'adminMemberDeleteCommand.do?key=' + mId;
+			} else {
+				alert("취소되었습니다.");
+			}
 		}
-		else{
-			alert("취소되었습니다.");
+		function setCursor(str, str2) {
+			str.style.cursor = str2;
 		}
-	}
 	</script>
 </body>
 
