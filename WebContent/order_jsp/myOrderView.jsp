@@ -9,10 +9,25 @@
 	function getKey(orderId){
 		location.href = 'basic_myOrderReadForm.do?orderId='+orderId;
 	}
+	
+	function clickPage(p){
+		document.frm.p.value = p;
+		document.frm.submit();
+	}
+	
 </script>
+
+<style>
+#middle{
+padding-left: 300px;
+
+}
+
+</style>
+
 </head>
 <body>
-<form action="admin_deliverListForm.do" name="frm">
+<form action="basic_myOrderList.do" name="frm">
 	<input type="hidden" name="p" value="1">
 	<input type="hidden" name="status" value="${param.status }">
 </form>
@@ -27,6 +42,11 @@
 			</div>
 		</div>
 		
+		<c:if test="${empty orderList }">
+			<div id="middle"><h3>주문내역이 없습니다~~~ 주문하러 가볼까요?</h3></div>
+		</c:if>
+		
+		<c:if test="${! empty id && ! empty orderList}">
 		<div class="row">
 			<table class="table">
 				<tr>
@@ -58,7 +78,8 @@
 					</tr>
 				</c:forEach>
 			</table>
-							<!-- 페이징 -->
+			
+				<!-- 페이징 -->
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">
 				    <li class="page-item">
@@ -78,5 +99,6 @@
 				  </ul>
 				</nav>
 		</div>
+	</c:if>
 </body>
 </html>

@@ -333,11 +333,11 @@
 						<thead></thead>
 						<tbody>
 							<tr>
-								<td><input type="text" id="productName" name="productName" value="${ofDTO.productName }"></td>
-								<td><input type="text" id="productPrice" name="productPrice" value="${ofDTO.productPrice }"></td>
-								<td><input type="text" id="productColor" name="productColor" value="${ofDTO.productColor }"></td>
-								<td><input type="text" id="productSize" name="productSize" value="${ofDTO.productSize }"></td>
-								<td><input type="text" id="productCount" name="productCount" value="${ofDTO.productCount }"></td>
+								<td><input type="hidden" id="productName" name="productName" value="${ofDTO.productName }"></td>
+								<td><input type="hidden" id="productPrice" name="productPrice" value="${ofDTO.productPrice }"></td>
+								<td><input type="hidden" id="productColor" name="productColor" value="${ofDTO.productColor }"></td>
+								<td><input type="hidden" id="productSize" name="productSize" value="${ofDTO.productSize }"></td>
+								<td><input type="hidden" id="productCount" name="productCount" value="${ofDTO.productCount }"></td>
 							</tr>
 						</tbody>
 					</table>
