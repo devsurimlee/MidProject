@@ -163,26 +163,7 @@ public class MainController extends HttpServlet {
 		map.put("/adminMemberUpdateFormCommand.do", new AdminMemberUpdateFormCommand());
 		map.put("/adminMemberUpdateCommand.do", new AdminMemberUpdateCommand());
 		map.put("/adminMemberDeleteCommand.do", new AdminMemberDeleteCommand());
-		// 공지사항
-		map.put("/admin_noticeListForm.do", new AdminNoticeListForm());
-		map.put("/admin_noticeReadForm.do", new AdminNoticeReadForm());
-		map.put("/admin_noticeUpdateForm.do", new AdminNoticeUpdateForm());
-		map.put("/admin_noticeWriteForm.do", new AdminNoticeWriteForm());
-
-		map.put("/admin_noticeDelete.do", new AdminNoticeDeleteCommand());
-		map.put("/admin_noticeUpdate.do", new AdminNoticeUpdateCommand());
-		map.put("/admin_noticeWrite.do", new AdminNoticeWriteCommand());
-		// 1:1문의사항
-		map.put("/admin_qnaListForm.do", new AdminFormQnaList());
-		map.put("/admin_qnaReadForm.do", new AdminFormQnaRead());
-		map.put("/admin_qnaWriteForm.do", new AdminFormQnaWrite());
-		map.put("/admin_qnaAnswerForm.do", new AdminFormQnaAnswer());
-		map.put("/admin_qnaPasswordForm.do", new AdminFormQnaPassword());
 		
-		map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
-		map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
-		map.put("/admin_qnaAnswer.do", new AdminQnaAnswerCommand());
-		map.put("/admin_qnaPassword.do", new AdminQnaPasswordCommand());
 		//재고관리
 		map.put("/adminAmountListForm.do", new AdminAddAmountListFormCommand());
 		
@@ -237,6 +218,28 @@ public class MainController extends HttpServlet {
 		map.put("/basic_qnaDelete.do", new QnaDeleteCommand());
 		map.put("/basic_qnaAnswer.do", new QnaAnswerCommand());
 		map.put("/basic_qnaPassword.do", new QnaPasswordCommand());
+		
+		// 관리자 - 공지사항
+		map.put("/admin_noticeListForm.do", new AdminNoticeListForm());
+		map.put("/admin_noticeReadForm.do", new AdminNoticeReadForm());
+		map.put("/admin_noticeUpdateForm.do", new AdminNoticeUpdateForm());
+		map.put("/admin_noticeWriteForm.do", new AdminNoticeWriteForm());
+
+		map.put("/admin_noticeDelete.do", new AdminNoticeDeleteCommand());
+		map.put("/admin_noticeUpdate.do", new AdminNoticeUpdateCommand());
+		map.put("/admin_noticeWrite.do", new AdminNoticeWriteCommand());
+		
+		// 관리자 - 1:1문의사항
+		map.put("/admin_qnaListForm.do", new AdminFormQnaList());
+		map.put("/admin_qnaReadForm.do", new AdminFormQnaRead());
+		map.put("/admin_qnaWriteForm.do", new AdminFormQnaWrite());
+		map.put("/admin_qnaAnswerForm.do", new AdminFormQnaAnswer());
+		map.put("/admin_qnaPasswordForm.do", new AdminFormQnaPassword());
+		
+		map.put("/admin_qnaWrite.do", new AdminQnaWriteCommand());
+		map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
+		map.put("/admin_qnaAnswer.do", new AdminQnaAnswerCommand());
+		map.put("/admin_qnaPassword.do", new AdminQnaPasswordCommand());
 		
 		// 관리자 - 주문관리
 		map.put("/admin_orderListForm.do", new AdminOrderList());
