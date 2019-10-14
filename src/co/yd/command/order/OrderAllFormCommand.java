@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import co.yd.command.Command;
+import co.yd.dao.CartDAO;
 import co.yd.dao.OrderDAO;
+import co.yd.dto.CartDTO;
 import co.yd.dto.MemberDTO;
 import co.yd.dto.OrderFormDTO;
 
@@ -52,9 +54,6 @@ public class OrderAllFormCommand implements Command{
 		request.setAttribute("mdto", mdto); //db에서 넘어온 값을  request객체 속성으로 삽입
 		//상품상세페이지에서 넘어온값
 		OrderFormDTO ofDTO = new OrderFormDTO();
-		
-
-		
 		
 
 		

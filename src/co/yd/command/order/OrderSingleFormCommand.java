@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 import co.yd.command.Command;
+import co.yd.dao.CartDAO;
 import co.yd.dao.OrderDAO;
+import co.yd.dto.CartDTO;
 import co.yd.dto.MemberDTO;
 import co.yd.dto.OrderFormDTO;
 
@@ -62,6 +64,7 @@ public class OrderSingleFormCommand implements Command{
 		request.setAttribute("amountSize", amountSize);
 		request.setAttribute("amountCount", amountCount);
 		request.setAttribute("productPrice", productPrice);
+		
 		
 		
 		return "order_jsp/orderSingleForm.jsp";

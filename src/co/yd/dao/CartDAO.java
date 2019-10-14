@@ -22,13 +22,13 @@ public class CartDAO {
 		return instance;
 	}
 	
-	public CartDTO delectAllCart(CartDTO dto) {
+	public CartDTO delectAllCart(CartDTO cdto) {
 		String sql = "delete from cart where m_id = ?";
 		
 		try {
 			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getmId());
+			pstmt.setString(1, cdto.getmId());
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 장바구니 삭제완료");
@@ -39,18 +39,18 @@ public class CartDAO {
 			JDBCutil.disconnect(pstmt, conn); // 클로즈
 		}
 		
-		return dto;
+		return cdto;
 	}
 	
 	
-	public CartDTO delectCart (CartDTO dto) {
+	public CartDTO delectCart (CartDTO cdto) {
 		String sql = "delete from cart where m_id = ? and amount_id = ?";
 		
 		try {
 			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getmId());
-			pstmt.setInt(2, dto.getAmountId());
+			pstmt.setString(1, cdto.getmId());
+			pstmt.setInt(2, cdto.getAmountId());
 			
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 장바구니 삭제완료");
@@ -61,7 +61,7 @@ public class CartDAO {
 			JDBCutil.disconnect(pstmt, conn); // 클로즈
 		}
 		
-		return dto;
+		return cdto;
 	}
 	
 	

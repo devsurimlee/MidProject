@@ -49,7 +49,7 @@
 	function deleteCart(e, amountId) {
 		var tr = $(e.target).parent().parent()
 		$.ajax( {
-			url : 'wishListDelete.do',
+			url : 'cartDelete.do',
 			data : {
 				deleteCheck : amountId
 			},
@@ -60,12 +60,18 @@
 				 
 					var price = parseInt($("#productPrice").val())
 				  
-			 	 //수정
+			 	 //가격수정
 					var sum = price;
 					sum -= parseInt(tr.children().eq(6).attr('id'));
 					
 					$("#productPrice").val(sum + "원");
-					$("#totalPrice").val(sum + 2500+"원");	   
+					$("#totalPrice").val(sum + 2500+"원");
+					
+					//상품이 하나도 없을때 설명글 띄우기, 버튼삭제
+					if($('tr').length == 0) {
+						$('ul').remove();
+						$('#forAjax').append("<h3>카트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
+					}
 				 
 				 
 			}
@@ -86,6 +92,8 @@
 				 $('tr').remove();
 				 $("#productPrice").val('0');
 				 $("#totalPrice").val('0');
+				 $('ul').remove();
+				 $('#forAjax').append("<h3>카트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
 			}
 		});
 		
@@ -105,6 +113,16 @@ padding:0 10px; /* 각 메뉴 간격 */
 
 }
 
+#middle {
+	position: absolute;
+	left: 20%;
+}
+
+#forAjax {
+	position: absolute;
+	left: 20%;
+}
+
 </style>
 </head>
 
@@ -120,7 +138,6 @@ padding:0 10px; /* 각 메뉴 간격 */
 		<div class="panel-body">
 			<table class="table borderless">
 				<thead>
-					<strong>ITEM LIST</strong>
 				</thead>
 				<tbody>
 				<c:forEach items="${OptionList }" var="dto">
@@ -163,7 +180,7 @@ padding:0 10px; /* 각 메뉴 간격 */
 	</div>
 	<!--SHIPPING METHOD END-->
 </form>
-
+	<c:if test="${!empty OptionList }">
 		<ul>
 			<li><h3>결제 금액</h3></li>
 			<li>상품합계: <input type="text" id="productPrice" style="border:0"></li>
@@ -176,5 +193,13 @@ padding:0 10px; /* 각 메뉴 간격 */
 			<button id="allOrderBtn" name="allOrderBtn" class="btn btn-md btn-primary btn-block" onclick ="orderAll()">전체결제</button>
 			<button id="deleteAllBtn" name="deleteAllBtn" class="btn btn-md btn-primary btn-block" onclick ="deleteAllCart()">장바구니비우기</button></li>
 		</ul>
+	</c:if>
+	
+	<div id="forAjax"></div>
+	
+	<c:if test="${empty OptionList }">
+		<div id="middle"><h3>카트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3></div>
+	</c:if>
+	
 </body>
 </html>

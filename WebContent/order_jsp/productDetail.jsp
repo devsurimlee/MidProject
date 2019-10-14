@@ -25,7 +25,7 @@ console.log(dtoList[0].p_price + "dto!!");
 		var color =$("[name=colorGroup]:checked").length > 0 ? $("[name=colorGroup]:checked").val() : "" ;
 		var size = $("[name=sizeGroup]:checked").length >0 ? $("[name=sizeGroup]:checked").val() : "";
 		totalPrice = dtoList[0].p_price;
-		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
+		productCnt.colorNsize.value = "-색상: " + color + " -사이즈:" + size + " -가격: " + totalPrice;
 		
 		for(var i = 0; i < amountList.length; i++ ){
 			if (amountList[i].amount_color == color && amountList[i].amount_size == size) {
@@ -76,7 +76,7 @@ console.log(dtoList[0].p_price + "dto!!");
 		selectOption.orderProductCount.value = y;
 		
 		totalPrice = dtoList[0].p_price * y;
-		productCnt.colorNsize.value = "색상: " + color + " 사이즈:" + size + " 가격: " + totalPrice;
+		productCnt.colorNsize.value = "-색상: " + color + " -사이즈:" + size + " -가격: " + totalPrice;
 		
 		selectOption.productPrice.value = totalPrice;
 
@@ -94,6 +94,14 @@ $(document).ready (function()
 	//카트
 	var cart = $("#cart");
 	cart.click( function() {
+		if(! $("[name=colorGroup]:checked").val()) {
+			alert("색상을 선택해주세요");
+			return false;
+		}  if(! $("[name=sizeGroup]:checked").val()) {
+			alert("사이즈를 선택해주세요");
+			return false;
+		}
+		
 		$("#selectOption").attr("action", "basic_cartInsert.do");
 		selectOption.submit();
 		
@@ -248,13 +256,13 @@ $(document).ready (function()
 										</td>
 									</tr>
 									<tr>
-										<td id="total_product"><input type="text" id="colorNsize" name="colorNsize" size="50">
+										<td id="total_product"><input type="text" id="colorNsize" name="colorNsize" size="50" style="border:0">
 										<a href="#" onclick="change(-1)">◀</a>
 										<input type="text" id="cnt" name="cnt" value="1" size="3">
 										<a href="#" onclick="change(1)">▶</a></td>
 									</tr>
 									<tr>
-										<td id="amount"><input type="text" id="productAmount" name="productAmount"></td>
+										<td id="amount"><input type="text" id="productAmount" name="productAmount" style="border:0"></td>
 									</tr>
 								</tbody>
 							</table>

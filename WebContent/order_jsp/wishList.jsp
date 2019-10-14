@@ -18,11 +18,7 @@
 	href="${pageContext.request.contextPath }/css/product.css">
 
 <script>
-	$(function() {
-
-	});
-	
-	
+		
 	function deleteWishList(e, pId) {
 		var figure = $(e.target).parent().parent()
 
@@ -35,6 +31,11 @@
 			success : function() {
 				 alert("상품이 삭제되었습니다");
 				 figure.remove();
+				 
+					if($('figure').length == 0) {
+						$('ul').remove();
+						$('#forAjax').append("<h3>위시리스트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
+					}
 				 
 			}
 		}); 
@@ -52,7 +53,9 @@
 			dataType: 'json',
 			success : function() {
 				 alert("상품이 모두 삭제되었습니다");
-				 figure.remove();
+				 $('figure').remove();
+				 $('button').remove();
+				 $('#forAjax').append("<h3>위시리스트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3>");
 			}
 		});
 		
@@ -65,6 +68,23 @@
 	position: absolute;
 	left: 42%;
 }
+
+#middle {
+	position: absolute;
+	left: 20%;
+}
+
+#forAjax {
+	position: absolute;
+	left: 20%;
+}
+
+ul {
+   list-style:none;
+   padding-left:300px;
+   padding-right:300px;
+}
+
 </style>
 
 </head>
@@ -94,15 +114,24 @@
 				<br>
 				<br>
 				<br> <i class="ion-ios-arrow-right"></i>
-				<input type="button" id="orderBtn" value="구매" onclick="location='basic_orderSingleForm.do?key=${dto.p_id }'">
-				<input type="button" id="deleteBtn" value="삭제" onclick="deleteWishList(event, '${dto.p_id }')">
+<%-- 				<input type="button" id="orderBtn" value="구매" onclick="location='basic_orderSingleForm.do?key=${dto.p_id }'">
+ --%>				<input type="button" id="deleteBtn" value="삭제" onclick="deleteWishList(event, '${dto.p_id }')">
 				<input type="button" id="showBtn" value="상품보러가기" onclick="location='basic_productDetail.do?key=${dto.p_id }'">
 			</figcaption>
 		</figure>
 				
 	</c:forEach>
+	<c:if test="${!empty optionList }" >
+	<ul>
+		<li><button id="deleteAllBtn" name="deleteAllBtn" class="btn btn-md btn-primary btn-block" onclick ="deleteAllWishList()" style="width:300px">위시리스트 비우기</button>
+		</li>
+	</ul>
+	</c:if>
 	
-	<button id="deleteAllBtn" name="deleteAllBtn" class="btn btn-md btn-primary btn-block" onclick ="deleteAllWishList()">위시리스트 비우기</button></li>
+	<div id="forAjax"></div>
+	<c:if test="${empty optionList }">
+		<div id="middle"><h3>위시리스트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3></div>
+	</c:if>
 	
 </body>
 </html>
