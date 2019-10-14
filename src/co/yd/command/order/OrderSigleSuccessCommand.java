@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 
 import co.yd.command.Command;
+import co.yd.dao.CartDAO;
 import co.yd.dao.OrderDAO;
 import co.yd.dto.AmountDTO;
+import co.yd.dto.CartDTO;
 import co.yd.dto.OrderDTO;
 import co.yd.dto.OrderDetailDTO;
 
@@ -87,6 +89,17 @@ public class OrderSigleSuccessCommand implements Command{
 		
 		//주문한 물품 옵션 뿌려주는용
 
+		
+		
+		//카트에서 주문한 물건 삭제
+		CartDTO cdto = new CartDTO();
+		CartDAO cdao = new CartDAO();
+
+		cdto.setmId((String)session.getAttribute("id"));
+		cdto.setAmountId(Integer.parseInt(request.getParameter("amountId")));
+		cdao.delectAllCart(cdto);
+		
+		
 		
 		return "order_jsp/orderAllSuccess.jsp";		
 	}

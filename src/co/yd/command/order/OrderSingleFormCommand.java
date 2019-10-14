@@ -65,13 +65,6 @@ public class OrderSingleFormCommand implements Command{
 		request.setAttribute("amountCount", amountCount);
 		request.setAttribute("productPrice", productPrice);
 		
-		//주문한 물건 카트에서 지워짐
-		CartDTO dto = new CartDTO();
-		CartDAO dao = new CartDAO();
-		
-		dto.setmId((String)session.getAttribute("id"));
-		dto.setAmountId(Integer.parseInt(request.getParameter("amountId")));
-		dao.delectCart(dto);
 		
 		
 		return "order_jsp/orderSingleForm.jsp";
