@@ -132,7 +132,7 @@ public class AmountDAO {
 	}
 
 	public ArrayList<AmountDTO> selectAll() {
-		String sql = "select AMOUNT_ID,P_ID,AMOUNT_SIZE,AMOUNT_COLOR,AMOUNT_COUNT " + "from amount";
+		String sql = "select b.p_name p_name,a.AMOUNT_ID AMOUNT_ID, a.p_id p_id,a.amount_size amount_size,a.amount_color amount_color ,a.amount_count amount_count  from amount a,product b where a.p_id =b.p_id order by 1";
 		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
 		try {
 
@@ -141,6 +141,7 @@ public class AmountDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				AmountDTO dto = new AmountDTO();
+				dto.setP_name(rs.getString("p_name"));
 				dto.setAmount_id(rs.getInt("AMOUNT_ID"));
 				dto.setP_id(rs.getInt("P_ID"));
 				dto.setAmount_size(rs.getString("AMOUNT_SIZE"));

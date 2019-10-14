@@ -58,6 +58,7 @@ public class AddAmountDAO {
 		String sql = "select AMOUNT_ID,AA_DATE,AA_COUNT from add_amount";
 		ArrayList<AddAmountDTO> list = new ArrayList<AddAmountDTO>();
 		try {
+			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

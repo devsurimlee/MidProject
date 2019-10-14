@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yd.command.Command;
+import co.yd.command.admin.AdminAddAmountListFormCommand;
 import co.yd.command.admin.AdminFormQnaAnswer;
 import co.yd.command.admin.AdminFormQnaList;
 import co.yd.command.admin.AdminFormQnaPassword;
@@ -98,6 +99,7 @@ import co.yd.command.order.ProductDressListCommand;
 import co.yd.command.order.ProductOuterListCommand;
 import co.yd.command.order.ProductTopListCommand;
 import co.yd.command.order.WishListCommand;
+import co.yd.command.order.WishListDeleteCommand;
 import co.yd.command.order.WishListInsertCommand;
 
 @WebServlet("/MainController")
@@ -128,6 +130,8 @@ public class MainController extends HttpServlet {
 		//위시리스트
 		map.put("/basic_wishlistInsert.do", new WishListInsertCommand());		
 		map.put("/basic_wishListView.do", new WishListCommand());
+		map.put("/wishListDelete.do", new WishListDeleteCommand());
+		
 		//카트
 		map.put("/basic_cartInsert.do", new CartInsertCommand());
 		map.put("/basic_cartView.do", new CartViewCommand());
@@ -179,7 +183,8 @@ public class MainController extends HttpServlet {
 		map.put("/admin_qnaDelete.do", new AdminQnaDeleteCommand());
 		map.put("/admin_qnaAnswer.do", new AdminQnaAnswerCommand());
 		map.put("/admin_qnaPassword.do", new AdminQnaPasswordCommand());
-		
+		//재고관리
+		map.put("/adminAmountListForm.do", new AdminAddAmountListFormCommand());
 		
 		
 		
