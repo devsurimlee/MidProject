@@ -40,8 +40,6 @@ public class AdminProductRegistCommand implements Command {
 		if (productResult) {
 
 			int amountCount = Integer.parseInt(multi.getParameter("amount_count"));
-//					request.getParameter("amount_count"));// 다른방식으로처리
-			
 			amountList = buildAmountDtoList(productDto, amountCount);
 
 			amountResult = amountProcess(amountList);// 재고 등록
@@ -78,7 +76,7 @@ public class AdminProductRegistCommand implements Command {
 				}
 				if (addAmountResult) {
 					
-					path = "admin_Index.do";
+					path = "admin_productListForm.do";
 				}
 			}
 

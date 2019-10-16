@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 <body>
-	<form id="frm" name="frm" action="">
+	<form id="frm" name="frm" action="adminAmountAdd.do" method="post">
 		<div class="card mb-3">
 			<div class="card-header">
 				<i class="fas fa-table"></i> 재고리스트
@@ -37,17 +37,17 @@
 
 							</c:if>
 							<c:forEach items="${amountList }" var="dto">
-								<tr onclick="">
-									<td><input type="hidden" value="${dto.amount_id}" >
+								<tr>
+									<td><input type="hidden" id="amount_id" name="amount_id" value="${dto.amount_id}" >
 										<input type="hidden" value="${dto.p_id}"> <input
 										type="text" value="${dto.p_name }" readonly="readonly"></td>
-									<td><input type="text" value="${dto.amount_size}" readonly="readonly"> 
+									<td>${dto.amount_size}
 									 </td>
-									<td><input type="text" value="${dto.amount_color}" readonly="readonly"></td>
-									<td><input type="text" value="${dto.amount_count}" onchange="changed()">
-									<button type="button"    class="btn1">△</button>
+									<td>${dto.amount_color}</td>
+									<td><input type="text" id="amount_count" name="amount_count" value="${dto.amount_count}">
+									<button type="button" class="btn1">△</button>
 									</td>
-									<td><input type="checkbox" readonly="readonly"> </td>
+									<td><input type="checkbox" class="checkbox" id="chnageIndex" name="changeIndex" onclick="return false" value="${dto.amount_id}"> </td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -61,12 +61,30 @@
 	</form>
 	<script type="text/javascript">
 $(function() {
-	$(".btn1").on("click",function(){
-		$(this).prev().val(+110);
-		$(this).next().check();
+	$("#dataTable").on("click",".btn1",function(){
+		var value= $(this).prev().val();
+
+		var addvalue = (Number(value)+10);
+
+		$(this).prev().val(addvalue);
+		
+		$(this).prev().trigger("change");
+		
+	})
+	
+	
+	$("#dataTable").on("change","[name='amount_count']",function(){
+		var trparent = $(this).parent().parent();
+		trparent.find('.checkbox').attr("checked",true);
+		
+		
 	})
 })
 
+// function checksubmit() {
+// 	var checked =$("")
+	
+// }
 
 </script>
 	

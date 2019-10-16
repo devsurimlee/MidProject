@@ -24,6 +24,8 @@ public class AddAmountDAO {
 		String sql = "insert into add_amount(AMOUNT_ID,AA_DATE,AA_COUNT) " + "values(?,sysdate,?)";
 		int result = 0;
 		try {
+			System.out.println(dto.getAmount_id());
+			System.out.println(dto.getAa_Count());
 			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getAmount_id());

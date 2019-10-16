@@ -20,7 +20,7 @@ public class BestItemListCommand implements Command{
 		ProductDTO pDto = new ProductDTO();
 		ProductExhabitDAO mDao = new ProductExhabitDAO();
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-		list = mDao.selectDisplayAll(pDto);
+		list = mDao.sortBySellingItem(pDto);
 		request.setAttribute("list", list);
 		
 		
