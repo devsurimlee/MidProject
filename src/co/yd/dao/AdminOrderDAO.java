@@ -25,12 +25,15 @@ public class AdminOrderDAO {
 	// 지원 1전체주문내역수 2주문목록 3상세주문 4배송상태에따른목록
 
 	// 1. 전체 주문 내역 수
-	public int countOrders(String status) {
+	public int countOrders(String status, String selectKey, String keyword) {
 		String where = "where 1=1 ";
 		int i = 0;
 		if (status != null) {
 			if (!status.equals("전체"))
 				where += "and o_deliver_state = ? ";
+		}
+		if(keyword != null && selectKey != null) {
+			where += "and " + selectKey + " LIKE '%" + keyword + "%'";
 		}
 		String sql = "select count(*) as count from orders " + where;
 		int count = 0;
@@ -53,13 +56,16 @@ public class AdminOrderDAO {
 	}
 
 	// 2. 주문 목록(조건부 검색)
-	public ArrayList<OrderDTO> orderList(OrderDTO dto, int first, int last) throws Exception {
+	public ArrayList<OrderDTO> orderList(OrderDTO dto, int first, int last, String selectKey, String keyword) throws Exception {
 		ArrayList<OrderDTO> list = new ArrayList<>();
 		try {
 			String where = "where 1=1 ";
 			if (dto.getOrderDeliverState() != null) {
 				if (!dto.getOrderDeliverState().equals("전체"))
 					where += "and o_deliver_state = ? ";
+			}
+			if(keyword != null && selectKey != null) {
+				where += "and " + selectKey + " LIKE '%" + keyword + "%'";
 			}
 			String sql = "select b.* from ( select a.*, rownum  rnum from ( " + " select * from orders " + where
 					+ " order by o_id )a" + " )b where rnum between ? and ?";

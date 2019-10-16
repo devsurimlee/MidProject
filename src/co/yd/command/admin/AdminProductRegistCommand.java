@@ -47,8 +47,11 @@ public class AdminProductRegistCommand implements Command {
 			if (amountResult) {
 				addAmountDtoList = bulidaddAmountList(amountList);
 				addAmountResult = addAmountProcess(addAmountDtoList); // 재고 수량테이블에 추가
-				System.out.println(addAmountResult);
+//				System.out.println(addAmountResult);
 				Enumeration<?> files = multi.getFileNames();
+				
+				
+//				System.out.println(multi.getFileNames());
 				String product_new_fileName = "/product" + (productDto.getP_id() + ".jpg");
 				String[] amount_new_filename = new String[amountList.size()];
 				for (int i = 0; i < amountList.size(); i++) {
@@ -56,25 +59,30 @@ public class AdminProductRegistCommand implements Command {
 				}
 				int count = 0;
 //				 uploadFilePath //이전 파일 업로드 경로
+				
 
 				while (files.hasMoreElements()) {
 					String file = (String) files.nextElement();
 					String file_name = multi.getFilesystemName(file);
-					System.out.println(file_name);
+//					System.out.println(file_name);
 					if(count == 0) {
 						File src = new File(uploadFilePath, file_name);
 						File des = new File(uploadFilePath, "/thumbnail/"+product_new_fileName);
 						if ( des.exists())
 							des.delete();
+						
 						src.renameTo(des);
+
+						System.out.println(des.getName());
 						count++;
 					} else {
 						File src = new File(uploadFilePath, file_name);
-						File des = new File(uploadFilePath, "/clothesDetail/" + amount_new_filename[count]);
+						File des = new File(uploadFilePath, "/clothesDetail/" + amount_new_filename[count-1]);
 						System.out.println(des.getName());
 						if ( des.exists())
 							des.delete();
 						src.renameTo(des);
+						count++;
 					}
 					
 					
@@ -130,11 +138,11 @@ public class AdminProductRegistCommand implements Command {
 			String savePath = "image";
 			int uploadFileSizeLimit = 10 * 1024 * 1024;
 			String encType = "UTF-8";
-			PrintWriter out = response.getWriter();
+//			PrintWriter out = response.getWriter();
 
 			ServletContext context = request.getServletContext();
 			uploadFilePath = context.getRealPath(savePath);
-			System.out.println(uploadFilePath);
+//			System.out.println(uploadFilePath);
 			multi = new MultipartRequest(request,
 
 					uploadFilePath,
@@ -144,16 +152,16 @@ public class AdminProductRegistCommand implements Command {
 					encType,
 
 					new DefaultFileRenamePolicy());
-			Enumeration<?> files = multi.getFileNames();
-			while (files.hasMoreElements()) {
-				String file = (String) files.nextElement();
-				String file_name = multi.getFilesystemName(file);
-				String ori_file_name = multi.getOriginalFileName(file);
-				out.print("<br>업로드된 파일명 : " + file_name);
-				out.print("<br>업로드된 파일명 : " + ori_file_name);
-				out.print("<hr>");
-
-			}
+//			Enumeration<?> files = multi.getFileNames();
+//			while (files.hasMoreElements()) {
+//				String file = (String) files.nextElement();
+//				String file_name = multi.getFilesystemName(file);
+//				String ori_file_name = multi.getOriginalFileName(file);
+//				out.print("<br>업로드된 파일명 : " + file_name);
+//				out.print("<br>업로드된 파일명 : " + ori_file_name);
+//				out.print("<hr>");
+//
+//			}
 		} catch (Exception e) {
 			System.out.print("예외 발생 : " + e);
 		}

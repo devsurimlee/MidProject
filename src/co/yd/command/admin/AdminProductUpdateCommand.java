@@ -3,7 +3,6 @@ package co.yd.command.admin;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -113,9 +112,7 @@ public class AdminProductUpdateCommand implements Command {
 			} else {
 				list.add(bulidAddAmount(amountDto, returnValue));
 			}
-
 		}
-
 		return list;
 	}
 
@@ -124,14 +121,11 @@ public class AdminProductUpdateCommand implements Command {
 		int check = 0;
 		AddAmountDAO addAmountDao = new AddAmountDAO();
 		for (AddAmountDTO dto : addAmountList) {
-
 			if (addAmountList.size() != 0) {
 				check += addAmountDao.countIncrease(dto);
 			} else
 				result = true;
-
 		}
-
 		return result;
 	}
 
@@ -140,7 +134,6 @@ public class AdminProductUpdateCommand implements Command {
 		dto.setAmount_id(amountDto.getAmount_id());
 		dto.setAa_Count(addInt);
 		return dto;
-
 	}
 
 }

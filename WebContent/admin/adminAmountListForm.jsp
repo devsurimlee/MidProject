@@ -56,10 +56,31 @@
 			</div>
 
 		</div>
-		<input type="submit" value="수정">
+		<button onclick="addAmount()"></button>
 		
 	</form>
 	<script type="text/javascript">
+	
+	function addAmount() {
+		$('#frm').submit();
+		$.ajax({
+			url : 'changeDeliverStatus.do',
+			dataType : 'json',
+			type: 'POST',
+			data: {list: JSON.stringify(array)}, //Array를 JSON string형태로 변환
+			success : function(result) {
+				if(result == 1){
+					for(var i=0; i<no.length; i++){
+						if(status != '배송준비중'){
+						console.log("현상태"+status);
+						console.log(array[i].orderDeliverState);
+						}
+					}
+					location.reload();
+				}
+			}
+		});
+	}
 $(function() {
 	$("#dataTable").on("click",".btn1",function(){
 		var value= $(this).prev().val();

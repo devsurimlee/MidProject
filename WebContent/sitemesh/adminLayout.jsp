@@ -52,7 +52,7 @@
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-		<a class="navbar-brand mr-1" href="admin_Index.do">예담 관리자</a>
+		<a class="navbar-brand mr-1" href="admin_deliverListForm.do?status=전체">예담 관리자</a>
 
 		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
 			id="sidebarToggle" href="#">
@@ -123,7 +123,7 @@
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav">
 			<li class="nav-item active"><a class="nav-link"
-				href="admin_Index.do"> <i class="fas fa-fw fa-tachometer-alt"></i>
+				href="admin_deliverListForm.do?status=전체"> <i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Menu</span>
 			</a>
 			</li>
@@ -134,7 +134,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>물품관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">상품관리</h6>
 					<a class="dropdown-item" href="admin_productRegistForm.do">상품등록</a> <a
 						class="dropdown-item" href="admin_productListForm.do">상품리스트</a>
 				</div>
@@ -158,7 +157,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>재고관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">재고입고</h6>
 					<a class="dropdown-item" href="adminAmountListForm.do">입고</a> 
 				</div>	
 			</li>
@@ -169,7 +167,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>고객관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">고객관리</h6>
 					<a class="dropdown-item" href="adminMemberListFormCommand.do">현재 유저 관리</a> <a
 						class="dropdown-item" href="adminLeaveMemberListFormCommand.do">탈퇴한 유저</a>
 				</div>	

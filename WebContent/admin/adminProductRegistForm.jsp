@@ -10,19 +10,26 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="admin/js/imageUpload.js"></script>
 <script type="text/javascript">
-
-	function p_name_Check() {
-		var chkP_name = $("p_name");
-		if (chkP_name.value == "") {
-			alert("아이디를 입력하세요");
-			chkId.focus();
+	// 	function p_name_Check() {
+	// 		var chkP_name = $("p_name");
+	// 		if (chkP_name.value == "") {
+	// 			alert("아이디를 입력하세요");
+	// 			chkId.focus();
+	// 			return false;
+	// 		} else {
+	// 			window.open("AdminProductPnameCheck.do?key=" + chkP_name.value, "",
+	// 					width = "600", height = "400");
+	// 		}
+	// 	}
+	function fileCheck() {
+		var file1 = document.getElementById("uploadFile1").value;
+		var file2 = document.getElementById("uploadFile2").value;
+		if (!file1) {
+			alert("파일을 첨부해 주세요");
 			return false;
-		} else {
-			window.open("AdminProductPnameCheck.do?key=" + chkP_name.value, "",
-					width = "600", height = "400");
 		}
+		
 	}
-	
 </script>
 </head>
 
@@ -85,10 +92,11 @@
 
 						<tr>
 							<th>썸네일</th>
-							<td colspan="2"><input type="file" name="uploadFile"
-								id="uploadFile" class="form-control" >
-								<input type="file" name="uploadFile"
-								id="uploadFile" class="form-control" >
+							<td colspan="2"><input type="file" name="thumbnail"
+								id="uploadFile1" class="form-control"> <input
+								type="file" name="clothesDetail1" id="uploadFile2"
+								class="form-control"> <input type="file"
+								name="clothesDetail2" id="uploadFile3" class="form-control">
 								<div id="sumnail"></div>
 						</tr>
 					</table>
@@ -191,8 +199,7 @@
 									</tr>
 									<tr>
 										<td><label>각각 갯수</label></td>
-										<td>
-										<select id="amount_count" name="amount_count">
+										<td><select id="amount_count" name="amount_count">
 												<option value="10" selected>10</option>
 												<option value="20" selected>20</option>
 												<option value="30" selected>30</option>
@@ -203,11 +210,9 @@
 												<option value="80" selected>80</option>
 												<option value="90" selected>90</option>
 												<option value="100" selected>100</option>
-										</select>
-<!-- 										<input type="text" id="amount_count" -->
-<!-- 											name="amount_count"> -->
-											
-											</td>
+										</select> <!-- 										<input type="text" id="amount_count" --> <!-- 											name="amount_count"> -->
+
+										</td>
 
 
 									</tr>
@@ -228,7 +233,8 @@
 					<table>
 						<tr>
 							<td width="230">
-								<button type="submit" class="btn btn-primary btn-block">등록</button>
+								<button onclick="fileCheck()"
+									class="btn btn-primary btn-block">등록</button>
 							</td>
 						</tr>
 					</table>
