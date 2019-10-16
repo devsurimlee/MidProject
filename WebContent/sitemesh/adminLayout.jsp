@@ -134,7 +134,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>물품관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">상품관리</h6>
 					<a class="dropdown-item" href="admin_productRegistForm.do">상품등록</a> <a
 						class="dropdown-item" href="admin_productListForm.do">상품리스트</a>
 				</div>
@@ -158,7 +157,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>재고관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">재고입고</h6>
 					<a class="dropdown-item" href="adminAmountListForm.do">입고</a> 
 				</div>	
 			</li>
@@ -169,7 +167,6 @@
 					aria-expanded="false"> <i class="fas fa-fw fa-folder"></i> <span>고객관리</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-					<h6 class="dropdown-header">고객관리</h6>
 					<a class="dropdown-item" href="adminMemberListFormCommand.do">현재 유저 관리</a> <a
 						class="dropdown-item" href="adminLeaveMemberListFormCommand.do">탈퇴한 유저</a>
 				</div>	

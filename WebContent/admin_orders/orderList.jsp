@@ -62,11 +62,11 @@
 				</div><br /><br />
 			</div>
 		</div>
-		
+		<!-- 
 		<div class="row">
 		<div class="input-group input-append date" id="dateRangePicker"> </div>
 		
-		<input type="button" id="datePicker" class="form-control" value="calendar button" /><br /><br />
+		<input type="button" id="datePicker" class="form-control" value="calendar button" /><br /><br /> -->
 		
 			<table class="table">
 				<tr align="center">
