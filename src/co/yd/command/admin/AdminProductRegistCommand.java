@@ -30,6 +30,7 @@ public class AdminProductRegistCommand implements Command {
 			throws ServletException, IOException {
 		MultipartRequest multi = multi(request, response);
 		ProductDTO productDto = dto(multi, response);
+		
 		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
 		ArrayList<AddAmountDTO> addAmountDtoList = new ArrayList<AddAmountDTO>();
 		String path = "";
@@ -57,32 +58,39 @@ public class AdminProductRegistCommand implements Command {
 //				 uploadFilePath //이전 파일 업로드 경로
 
 				while (files.hasMoreElements()) {
-
-					File file = new File((String) files.nextElement());
-					String filePath = file.getPath();
-					System.out.println(file.getAbsolutePath());
-					System.out.println(filePath);
-					System.out.println(file.getName());
-					String new_name="";
-					if (count == 0) {
-						new_name= filePath + product_new_fileName;
-
+					String file = (String) files.nextElement();
+					String file_name = multi.getFilesystemName(file);
+					System.out.println(file_name);
+					if(count == 0) {
+						File src = new File(uploadFilePath, file_name);
+						File des = new File(uploadFilePath, "/thumbnail/"+product_new_fileName);
+						if ( des.exists())
+							des.delete();
+						src.renameTo(des);
+						count++;
 					} else {
-						new_name = file.getParent() + "/clothesDetail" + amount_new_filename[count - 1];
-
+						File src = new File(uploadFilePath, file_name);
+						File des = new File(uploadFilePath, "/clothesDetail/" + amount_new_filename[count]);
+						System.out.println(des.getName());
+						if ( des.exists())
+							des.delete();
+						src.renameTo(des);
 					}
-					File fileToMove = new File(new_name);
-					boolean isMoved = file.renameTo(fileToMove);
+					
+					
 				}
+
+				path = "admin_productListForm.do";
 				if (addAmountResult) {
 					
 					path = "admin_productListForm.do";
 				}
 			}
 
-		} else {
-			path = "";
-		}
+		} 
+//		else {
+//			path = "";
+//		}
 
 		return path;
 	}
@@ -119,7 +127,7 @@ public class AdminProductRegistCommand implements Command {
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=UTF-8");
 
-			String savePath = "image/thumbnail";
+			String savePath = "image";
 			int uploadFileSizeLimit = 10 * 1024 * 1024;
 			String encType = "UTF-8";
 			PrintWriter out = response.getWriter();

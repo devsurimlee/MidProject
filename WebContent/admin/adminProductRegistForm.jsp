@@ -82,20 +82,13 @@
 
 							</td>
 						</tr>
+
 						<tr>
 							<th>썸네일</th>
-							<td colspan="2"><a href="javascript:"
-								onclick="fileUploadAction();" class="my_button"></a> <!-- 								<div id="sumnail"></div> -->
-						</tr>
-						<tr>
-							<th>썸네일 사진</th>
-							<td colspan="2"><input type="file" name="input_imgs"
-								id="input_imgs" class="form-control" multiple></td>
-						</tr>
-						<tr>
-							<th>추가사진</th>
 							<td colspan="2"><input type="file" name="uploadFile"
-								id="uploadFile" class="form-control" multiple>
+								id="uploadFile" class="form-control" >
+								<input type="file" name="uploadFile"
+								id="uploadFile" class="form-control" >
 								<div id="sumnail"></div>
 						</tr>
 					</table>
