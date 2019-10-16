@@ -25,12 +25,13 @@ import co.yd.dto.ProductDTO;
 
 public class AdminProductRegistCommand implements Command {
 	String uploadFilePath;
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		MultipartRequest multi = multi(request, response);
 		ProductDTO productDto = dto(multi, response);
-		
+
 		ArrayList<AmountDTO> amountList = new ArrayList<AmountDTO>();
 		ArrayList<AddAmountDTO> addAmountDtoList = new ArrayList<AddAmountDTO>();
 		String path = "";
@@ -49,8 +50,7 @@ public class AdminProductRegistCommand implements Command {
 				addAmountResult = addAmountProcess(addAmountDtoList); // 재고 수량테이블에 추가
 //				System.out.println(addAmountResult);
 				Enumeration<?> files = multi.getFileNames();
-				
-				
+
 //				System.out.println(multi.getFileNames());
 				String product_new_fileName = "/product" + (productDto.getP_id() + ".jpg");
 				String[] amount_new_filename = new String[amountList.size()];
@@ -59,43 +59,43 @@ public class AdminProductRegistCommand implements Command {
 				}
 				int count = 0;
 //				 uploadFilePath //이전 파일 업로드 경로
-				
 
 				while (files.hasMoreElements()) {
 					String file = (String) files.nextElement();
 					String file_name = multi.getFilesystemName(file);
-//					System.out.println(file_name);
-					if(count == 0) {
-						File src = new File(uploadFilePath, file_name);
-						File des = new File(uploadFilePath, "/thumbnail/"+product_new_fileName);
-						if ( des.exists())
-							des.delete();
-						
-						src.renameTo(des);
+					if (file_name != null) { //파일 이름이 null 이면 스킵.
+						System.out.println(file_name);
+						if (count == 0) {
+							File src = new File(uploadFilePath, file_name);
+							File des = new File(uploadFilePath, "/thumbnail/" + product_new_fileName);
+							if (des.exists())
+								des.delete();
 
-						System.out.println(des.getName());
-						count++;
-					} else {
-						File src = new File(uploadFilePath, file_name);
-						File des = new File(uploadFilePath, "/clothesDetail/" + amount_new_filename[count-1]);
-						System.out.println(des.getName());
-						if ( des.exists())
-							des.delete();
-						src.renameTo(des);
-						count++;
+							src.renameTo(des);
+
+							System.out.println(des.getName());
+							count++;
+						} else {
+							File src = new File(uploadFilePath, file_name);
+							File des = new File(uploadFilePath, "/clothesDetail/" + amount_new_filename[count - 1]);
+							System.out.println(des.getName());
+							if (des.exists())
+								des.delete();
+							src.renameTo(des);
+							count++;
+						}
 					}
-					
-					
+
 				}
 
 				path = "admin_productListForm.do";
 				if (addAmountResult) {
-					
+
 					path = "admin_productListForm.do";
 				}
 			}
 
-		} 
+		}
 //		else {
 //			path = "";
 //		}
@@ -207,10 +207,9 @@ public class AdminProductRegistCommand implements Command {
 				result = true;
 
 		}
-		if(check>0) {
+		if (check > 0) {
 			result = true;
 		}
-		
 
 		return result;
 	}

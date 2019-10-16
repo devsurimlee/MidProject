@@ -24,11 +24,15 @@
 	function fileCheck() {
 		var file1 = document.getElementById("uploadFile1").value;
 		var file2 = document.getElementById("uploadFile2").value;
-		if (!file1) {
+
+		if (file1 && file2) {
+			var fr = document.frm;
+			fr.submit();
+
+		} else {
 			alert("파일을 첨부해 주세요");
-			return false;
 		}
-		
+
 	}
 </script>
 </head>
@@ -233,7 +237,7 @@
 					<table>
 						<tr>
 							<td width="230">
-								<button onclick="fileCheck()"
+								<button type="button" onclick="fileCheck()"
 									class="btn btn-primary btn-block">등록</button>
 							</td>
 						</tr>
