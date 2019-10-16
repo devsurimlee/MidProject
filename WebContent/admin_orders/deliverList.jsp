@@ -101,7 +101,18 @@
 			<button id="btn3" type="button" class="btn btn-outline-info btn-lg" onclick="location.href='admin_deliverListForm.do?status=배송준비중'"> 배송준비중 </button>&nbsp;&nbsp;
 			<button id="btn4" type="button" class="btn btn-outline-info btn-lg" onclick="location.href='admin_deliverListForm.do?status=배송완료'"> 배송 완료 </button>
 			<br /><br />
-			
+			<form role="form" id="searchfrm" name="searchfrm" action="admin_deliverListForm.do" method="post">
+				<input type="hidden" name="p" value="1">
+				<input type="hidden" name="status" value="${param.status }">
+				<table>
+					<tr><td><select id="selectKey" name="selectKey" class="btn btn-outline-warning btn-sm dropdown-toggle">
+							<option	value="o_id" selected>주문번호</option>
+							<option value="m_id">회원ID</option>
+							<option value="o_phone">전화번호</option></select></td>
+					<td width="300"><input type="text" id='keyword' name='keyword' class="form-control"></td>
+					<td><button id='searchBtn' name='searchBtn' onclick='searchBtn' class="btn btn-outline-warning btn-sm">검색</button></td>
+				</table><br />
+			</form>
 			<table class="table">
 				<tr id='tr' align="center">
 					<th scope="col" width="80"> 주문번호 </th>
