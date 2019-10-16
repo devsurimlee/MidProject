@@ -85,10 +85,10 @@
 
 						<tr>
 							<th>썸네일</th>
-							<td colspan="2"><input type="file" name="uploadFile"
-								id="uploadFile" class="form-control" >
-								<input type="file" name="uploadFile"
-								id="uploadFile" class="form-control" >
+							<td colspan="2">
+								<input type="file" name="thumbnail" id="uploadFile" class="form-control" > 
+								<input type="file" name="clothesDetail1" id="uploadFile" class="form-control" >
+								<input type="file" name="clothesDetail2" id="uploadFile" class="form-control" >
 								<div id="sumnail"></div>
 						</tr>
 					</table>
