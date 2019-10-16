@@ -120,7 +120,7 @@
 					<tr><td colspan="11" align="center"> 해당 주문 목록이 없습니다. </td></tr>
 				</c:if>
 				<c:forEach var="i" items="${orderList }">
-					<tr class="tr">
+					<tr class="tr" onclick="getKey(${i.orderId})">
 						<th class="order" align="center">${i.orderId }</th>
 						<td align="center">${i.orderDate }</td>
 						<td align="center">${i.orderDeliveredDate }</td>

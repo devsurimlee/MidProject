@@ -52,7 +52,7 @@
 
 	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-		<a class="navbar-brand mr-1" href="admin_Index.do">예담 관리자</a>
+		<a class="navbar-brand mr-1" href="admin_deliverListForm.do?status=전체">예담 관리자</a>
 
 		<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
 			id="sidebarToggle" href="#">
@@ -123,7 +123,7 @@
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav">
 			<li class="nav-item active"><a class="nav-link"
-				href="admin_Index.do"> <i class="fas fa-fw fa-tachometer-alt"></i>
+				href="admin_deliverListForm.do?status=전체"> <i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Menu</span>
 			</a>
 			</li>
