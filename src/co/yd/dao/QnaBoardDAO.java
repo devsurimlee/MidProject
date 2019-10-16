@@ -29,9 +29,10 @@ public class QnaBoardDAO extends DAO {
 		QnaBoardDTO dto = new QnaBoardDTO();
 		ArrayList<QnaBoardDTO> list = new ArrayList<>();
 		// 1qb_id  2m_id  3qb_title  4qb_contents  5qb_date  6qb_hit  7qb_origin  8qb_pw
-		String sql = "select q.qb_id, q.m_id, m.m_name, q.qb_title, q.qb_contents, q.qb_date, q.qb_hit, q.qb_pw " + 
-						"from qna_board q, members m " + 
-						"where q.m_id = m.m_id and q.qb_title = ? and q.qb_origin is null";
+		String sql = "select q.qb_id, q.m_id,(select m_name from members m where m.m_id = q.m_id) m_name, " +
+					"q.qb_title, q.qb_contents, q.qb_date, q.qb_hit, q.qb_pw " + 
+					"from qna_board q " + 
+					"where q.qb_origin is null and q.qb_title = ?";
 		try {
 			conn = JDBCutil.connect(); //커넥트
 			pstmt = conn.prepareStatement(sql);
@@ -40,8 +41,12 @@ public class QnaBoardDAO extends DAO {
 			while(rs.next()) {
 				dto = new QnaBoardDTO();
 				dto.setQbId(rs.getInt("qb_id"));
-				dto.setmId(rs.getString("m_id"));
-				dto.setmName(rs.getString("m_name"));
+				String mId = rs.getString("m_id");
+				dto.setmId(mId);
+				if(mId.equals(""))
+					dto.setmName(mId);
+				else
+					dto.setmName(rs.getString("m_name"));
 				dto.setQbTitle(rs.getString("qb_title"));
 				dto.setQbContents(rs.getString("qb_contents"));
 				dto.setQbDate(rs.getDate("qb_date"));

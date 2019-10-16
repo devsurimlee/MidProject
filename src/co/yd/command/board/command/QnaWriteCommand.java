@@ -24,6 +24,12 @@ public class QnaWriteCommand implements Command {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("dto.getmId = " + dto.getmId());
+		System.out.println("mId = " + request.getParameter("mId"));
+		System.out.println("qbName = " + request.getParameter("qbName"));
+		if(request.getParameter("mId").equals(""))
+			dto.setmId(request.getParameter("qbName"));
+		System.out.println("dto.getmId = " + dto.getmId());
 		
 		int r = dao.qnaWrite(dto);
 		

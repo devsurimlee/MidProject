@@ -254,21 +254,20 @@ public class MainController extends HttpServlet {
 			throws ServletException, IOException {
 		// 들어온 요청을 확인 후 실행시켜 주는 부분
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String uri = request.getRequestURI();
 		String context = request.getContextPath();
 		String path = uri.substring(context.length());
 
 		Command comm = map.get(path);
 		String page = comm.execute(request, response);
-
+		
 		if (page != null) {
 			if (page.startsWith("redirect:")) {
 				response.sendRedirect(page.substring(9));
 			} else if (page.startsWith("ajax:")) {
-				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(page.substring(5));
 			} else if (page.startsWith("script:")) {
-				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(page.substring(7));
 			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(page);

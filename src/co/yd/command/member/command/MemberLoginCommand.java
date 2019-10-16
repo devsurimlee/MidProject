@@ -1,6 +1,7 @@
 package co.yd.command.member.command;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,13 @@ public class MemberLoginCommand implements Command {
 			session.setAttribute("id", ndto.getmId()); // 세션에 아이디저장
 			session.setAttribute("grant", ndto.getgGrade());
 			session.setAttribute("name", ndto.getmName());
-			if(request.getParameter("id").equals("admin"))
-				return "admin_deliverListForm.do?status=전체";
+			if(request.getParameter("id").equals("admin")) {
+				String status="전체";
+				String encodedParam = URLEncoder.encode(status, "UTF-8");
+				return "redirect:admin_deliverListForm.do?status="+encodedParam;
+			}
 			else
-				return "basic_index.do";
+				return "redirect:basic_index.do";
 		} else {
 			request.setAttribute("message", "로그인 실패하셨습니다. 아이디와 비밀번호를 다시 확인해 주세요.");
 			return "login_jsp/login.jsp";

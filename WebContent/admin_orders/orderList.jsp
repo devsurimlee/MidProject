@@ -47,7 +47,9 @@
 	});//ready end
 	
 </script>
-
+<style>
+.tr:hover{background-color: lightcyan; cursor: pointer}
+</style>
 </head>
 <body>
 	<div align="center">
@@ -80,7 +82,7 @@
 					<th scope="col" width="100"> 배송상태 </th>
 				</tr>
 				<c:forEach var="i" items="${orderList }">
-					<tr onclick="getKey(${i.orderId})">
+					<tr class="tr" onclick="getKey(${i.orderId})">
 						<td align="center"><b>${i.orderId }</b></td>
 						<td align="center">${i.orderDate }</td>
 						<td align="center">${i.orderDeliveredDate }</td>

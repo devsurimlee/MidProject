@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,12 @@
 							</tr>
 							<tr>
 								<th> NAME </th>
-								<td colspan="2"> ${name } </td>
+								<c:if test="${not empty name }">
+									<td colspan="2"> ${name } </td>
+								</c:if>
+								<c:if test="${empty name }">
+									<td colspan="2"><input type="text" class="form-control" id="qbName" name="qbName"></td>
+								</c:if>
 							</tr>
 							<tr>
 								<th> DATE </th>

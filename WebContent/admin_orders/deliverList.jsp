@@ -74,6 +74,9 @@
 		
 	})
 </script>
+<style>
+.tr:hover{background-color: lightcyan; cursor: pointer}
+</style>
 </head>
 <body>
 <form action="admin_deliverListForm.do" name="frm">
@@ -101,7 +104,7 @@
 			
 			<table class="table">
 				<tr id='tr' align="center">
-					<th scope="col" width="50"> 주문번호 </th>
+					<th scope="col" width="80"> 주문번호 </th>
 					<th scope="col" width="80"> 주문날짜 </th>
 					<th scope="col" width="80"> 출고날짜 </th>
 					<th scope="col" width="70"> 회원ID </th>
@@ -117,7 +120,7 @@
 					<tr><td colspan="11" align="center"> 해당 주문 목록이 없습니다. </td></tr>
 				</c:if>
 				<c:forEach var="i" items="${orderList }">
-					<tr>
+					<tr class="tr">
 						<th class="order" align="center">${i.orderId }</th>
 						<td align="center">${i.orderDate }</td>
 						<td align="center">${i.orderDeliveredDate }</td>
