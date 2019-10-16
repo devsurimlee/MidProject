@@ -17,6 +17,8 @@ public class AdminOrderList implements Command {
 		// 페이징 처리
 		AdminOrderDAO dao = new AdminOrderDAO();
 		OrderDTO dto = new OrderDTO();
+		String selectKey = request.getParameter("selectKey");
+		String keyword = request.getParameter("keyword");
 		String p = request.getParameter("p"); // 페이지번호
 		int pageNo = 1;
 		if (p != null && !p.isEmpty()) {
@@ -29,11 +31,11 @@ public class AdminOrderList implements Command {
 		first = (pageNo - 1) * pagePerRecord + 1; // 해당페이지의 시작레코드
 		last = first + pagePerRecord - 1; // 해당페이지의 마지막레코드
 		String status = null;
-		recordTotal = dao.countOrders(status); // 전체레코드 수
+		recordTotal = dao.countOrders(status, selectKey, keyword); // 전체레코드 수
 		pageCnt = recordTotal / pagePerRecord + (recordTotal % pagePerRecord > 0 ? 1 : 0);// 마지막페이지번호
 
 		try {
-			request.setAttribute("orderList", dao.orderList(dto, first, last));
+			request.setAttribute("orderList", dao.orderList(dto, first, last, selectKey, keyword));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

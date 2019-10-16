@@ -44,7 +44,7 @@
 						<tr>
 							<td colspan="2"></td>
 							<td colspan="2" align="center">
-							<button type="button" onclick="location.href='admin_orderListForm.do'" class="btn btn-md btn-primary btn-block"> LIST </button></td>
+							<button type="button" onclick="location.href='admin_orderListForm.do'" class="btn btn-md btn-outline-info btn-block"> LIST </button></td>
 							<td colspan="2"></td>
 						</tr>
 					</table>
