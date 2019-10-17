@@ -294,11 +294,11 @@ $(document).ready (function()
 					<div class="col-md-12">
 						${dto.p_detail }<br />
 
-						<img src="image/thumbnail/product${dto.p_id }.jpg" /><br>
+						<img src="D:dev\apache-tomcat-8.5.45\wtpwebapps\MidProject\image\thumbnail\product${dto.p_id }.jpg" /><br>
 						<c:forEach items="${amount }" var="amount">
-							<img src="image/clothesDetail/amount${amount.amount_id }.jpg" /><br>
+							<img src="D:\dev\apache-tomcat-8.5.45\wtpwebapps\MidProject\image\clothesDetail\amount${amount.amount_id }.jpg" /><br>
 						</c:forEach>
-						<img src="image/etc/${dto.p_category }.jpg" />
+						<img src="D:\dev\apache-tomcat-8.5.45\wtpwebapps\MidProject\image\etc\${dto.p_category }.jpg" />
 
 					</div>
 					<!-- 상세페이지 끝 -->
