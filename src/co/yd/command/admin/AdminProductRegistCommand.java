@@ -46,7 +46,7 @@ public class AdminProductRegistCommand implements Command {
 
 			amountResult = amountProcess(amountList);// 재고 등록
 			if (amountResult) {
-				addAmountDtoList = bulidaddAmountList(amountList);
+				addAmountDtoList = bulidaddAmountList(amountList); //재고 수량 테이블 생성(amount_id 없음)
 				addAmountResult = addAmountProcess(addAmountDtoList); // 재고 수량테이블에 추가
 //				System.out.println(addAmountResult);
 				Enumeration<?> files = multi.getFileNames();
@@ -109,7 +109,10 @@ public class AdminProductRegistCommand implements Command {
 		productDto.setP_price(Integer.parseInt(request.getParameter("p_price")));
 		productDto.setP_size(request.getParameter("p_size")); // amount column
 		productDto.setP_color(request.getParameter("p_color")); // amount column
-		productDto.setP_detail(request.getParameter("p_detail"));
+		String spaceReplace = (request.getParameter("p_detail"));
+		spaceReplace.replaceAll(System.getProperty("line.separator")," ");
+		
+		productDto.setP_detail(spaceReplace); //띄우기 삭제(상품 구매에서 에러난다고 하기에 처리)
 		productDto.setP_category(request.getParameter("p_category"));
 		productDto.setP_show_state(request.getParameter("p_show_state"));
 		return productDto;

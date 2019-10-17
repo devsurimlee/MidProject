@@ -160,10 +160,13 @@
 									<tr>
 										<td><label>색상</label></td>
 										<td><select id="p_color" name="p_color">
-												<option value="white" selected>white</option>
-												<option value="red">red</option>
-												<option value="blue">blue</option>
 												<option value="black">black</option>
+												<option value="gray" selected>gray</option>
+												<option value="beige">beige</option>
+												<option value="blue">blue</option>
+												<option value="khaki">khaki</option>
+												<option value="Navy">Navy</option>
+												
 												<option value="white,red">white,red</option>
 												<option value="white,blue">white,blue</option>
 												<option value="white,black">white,black</option>
@@ -236,12 +239,8 @@
 								class="form-control"> <input type="file"
 								name="clothesDetail9" id="uploadFile10" class="form-control">
 								<input type="file" name="clothesDetail10" id="uploadFile11"
-								class="form-control">
-								<br />
-								<br />
-								<div id="clothesDetails"></div>
-								
-								</td>
+								class="form-control"> <br /> <br />
+								<div id="clothesDetails"></div></td>
 						</tr>
 
 
