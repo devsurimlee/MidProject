@@ -109,7 +109,7 @@
 			            
 			        <tfoot></tfoot>
 			    </table>
-			    <c:if test="${grant != 'admin'}">
+			    <c:if test="${grant != 'admin' && !empty id}">
 			    	<button type="button" onclick="location.href='basic_qnaWriteForm.do'" class="btn btn-outline-primary"> WRITE </button>
 			    </c:if>
 			</div>

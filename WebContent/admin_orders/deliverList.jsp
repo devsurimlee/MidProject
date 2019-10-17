@@ -131,17 +131,17 @@
 					<tr><td colspan="11" align="center"> 해당 주문 목록이 없습니다. </td></tr>
 				</c:if>
 				<c:forEach var="i" items="${orderList }">
-					<tr class="tr" onclick="getKey(${i.orderId})">
-						<th class="order" align="center">${i.orderId }</th>
-						<td align="center">${i.orderDate }</td>
-						<td align="center">${i.orderDeliveredDate }</td>
-						<td align="center">${i.mId }</td>
-						<td align="center">${i.orderName }</td>
-						<td align="center">${i.orderPostCode }</td>
-						<td>${i.orderAddress1 }</td>
-						<td>${i.orderAddress2 }</td>
-						<td align="center">${i.orderPhoneNum }</td>
-						<td align="center">${i.orderTotalPrice }</td>
+					<tr class="tr">
+						<th class="order" align="center" onclick="getKey(${i.orderId})">${i.orderId }</th>
+						<td align="center" onclick="getKey(${i.orderId})">${i.orderDate }</td>
+						<td align="center" onclick="getKey(${i.orderId})">${i.orderDeliveredDate }</td>
+						<td align="center" onclick="getKey(${i.orderId})">${i.mId }</td>
+						<td align="center" onclick="getKey(${i.orderId})">${i.orderName }</td>
+						<td align="center" onclick="getKey(${i.orderId})">${i.orderPostCode }</td>
+						<td onclick="getKey(${i.orderId})">${i.orderAddress1 }</td>
+						<td onclick="getKey(${i.orderId})">${i.orderAddress2 }</td>
+						<td align="center" onclick="getKey(${i.orderId})">${i.orderPhoneNum }</td>
+						<td align="center" onclick="getKey(${i.orderId})">${i.orderTotalPrice }</td>
 						<c:if test="${i.orderDeliverState == '배송준비중' && param.status == '배송준비중' }">
 							<td align="center"><select id="status1" name="status1"	class="btn btn-secondary btn-sm dropdown-toggle status1">
 								<option value="입금완료">입금완료</option>
@@ -155,7 +155,7 @@
 								<option value="배송완료">배송완료</option></select></td>
 						</c:if>
 						<c:if test="${param.status != '배송준비중' && param.status != '입금완료' }">
-							<td align="center">${i.orderDeliverState }</td>
+							<td align="center" onclick="getKey(${i.orderId})">${i.orderDeliverState }</td>
 						</c:if>
 					</tr>
 				</c:forEach>
