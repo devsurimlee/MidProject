@@ -110,7 +110,7 @@ public class AdminProductRegistCommand implements Command {
 		productDto.setP_size(request.getParameter("p_size")); // amount column
 		productDto.setP_color(request.getParameter("p_color")); // amount column
 		String spaceReplace = (request.getParameter("p_detail"));
-		spaceReplace.replaceAll(System.getProperty("line.separator")," ");
+		spaceReplace.replaceAll("(\r\n|\r|\n|\n\r)",",");
 		
 		productDto.setP_detail(spaceReplace); //띄우기 삭제(상품 구매에서 에러난다고 하기에 처리)
 		productDto.setP_category(request.getParameter("p_category"));
