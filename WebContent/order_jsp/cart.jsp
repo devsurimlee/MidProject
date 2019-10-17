@@ -14,6 +14,9 @@
 	$(function() {
 		//카트에 담을때의 수량에 따른 금액책정
 		var optionList = JSON.parse('${optionList}');
+		
+		console.log(optionList +"check");
+		
 		var amountCount = $('[name=amountCount]');
 		var amountId = $('[name=amountId]');
 		var price = $('[name=price]');

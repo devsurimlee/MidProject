@@ -26,13 +26,20 @@ public class ProductDetailCommand implements Command{
 		ProductExhabitDAO pDAO = new ProductExhabitDAO();
 		ProductDTO dto = new ProductDTO();
 		dto = pDAO.selectProduct(key);
+		
+		System.out.println(dto.getP_price() + "커멘드체크"); // ok
+		
 		request.setAttribute("dtoList", JSONArray.fromObject(dto).toString());
 		request.setAttribute("dto", dto);
+		String test = JSONArray.fromObject(dto).toString();
+		
 		
 		//재고 테이블
 		ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
 		list = pDAO.selectProductStock(key);
 		request.setAttribute("amountList", JSONArray.fromObject(list).toString());
+		
+		
 		request.setAttribute("amount", list);
 
 		

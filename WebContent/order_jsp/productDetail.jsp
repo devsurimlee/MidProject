@@ -17,9 +17,10 @@
 var dtoList = JSON.parse('${dtoList}');
 var amountList = JSON.parse('${amountList}');
 
+
 var totalPrice = 0;
 console.log(amountList);
-console.log(dtoList[0].p_price + "dto!!");
+console.log(dtoList[0].p_price + "금액!!");
 
 
 	function add() {
@@ -163,16 +164,16 @@ $(document).ready (function()
 	<thead></thead>
 	<tbody>
 		<tr>
-			<td><input type="hidden" id="id" name="id" value="${id }"></td>
-			<td><input type="hidden" id="key" name="key" value="${key }"></td>
-			<td><input type="hidden" id="productId" name="productId"></td>
-			<td><input type="hidden" id="productName" name="productName" value="${dto.p_name }"></td>
-			<td><input type="hidden" id="productPrice" name="productPrice"></td>
-			<td><input type="hidden" id="productColor" name="productColor"></td>
-			<td><input type="hidden" id="productSize" name="productSize"></td>
-			<td><input type="hidden" id="productCount" name="productCount" value="1"></td>
-			<td><input type="hidden" id="orderProductCount" name="orderProductCount"></td>
-			<td><input type="hidden" id="amountId" name="amountId"></td>
+			<td><input type="text" id="id" name="id" value="${id }"></td>
+			<td><input type="text" id="key" name="key" value="${key }"></td>
+			<td><input type="text" id="productId" name="productId"></td>
+			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td> <!-- 됨 -->
+			<td><input type="text" id="productPrice" name="productPrice"></td>
+			<td><input type="text" id="productColor" name="productColor"></td>
+			<td><input type="text" id="productSize" name="productSize"></td>
+			<td><input type="text" id="productCount" name="productCount" value="1"></td> <!-- 됨 -->
+			<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
+			<td><input type="text" id="amountId" name="amountId"></td>
 		</tr>
 	</tbody>
 </table>
@@ -308,7 +309,7 @@ $(document).ready (function()
 	</div>
 
 <!-- 네이버페이 테스트용 -->
-<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+<!-- <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 <script>
     var oPay = Naver.Pay.create({
           "mode" : "production", // development or production
@@ -330,7 +331,7 @@ $(document).ready (function()
         });
     });
 
-</script>
+</script> -->
 <!-- 네이버페이 테스트용 끝 -->
 
 
