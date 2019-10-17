@@ -53,8 +53,9 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row">상품명 <input type="text" hidden="true" id="product_id" name="product_id" value="${product.p_id }">
-								 <strong class="icoRequired">필수</strong></th>
+								<th scope="row">상품명 <input type="text" hidden="true"
+									id="product_id" name="product_id" value="${product.p_id }">
+									<strong class="icoRequired">필수</strong></th>
 								<td colspan="2">
 									<div class="overlapTip">
 										<input type="text" name="product_name" required="required"
@@ -93,10 +94,10 @@
 							</tr>
 							<tr>
 								<th scope="row">상품 카테고리</th>
-								<td colspan="2"><input type="text" 
-										id="product_category" name="product_category" value="${product.p_category }">
-								
-								</textarea></td>
+								<td colspan="2"><input type="text" id="product_category"
+									name="product_category" value="${product.p_category }">
+
+									</textarea></td>
 							</tr>
 
 							<tr>
@@ -267,7 +268,7 @@
 						<tbody>
 							<tr>
 								<th scope="row">진열상태</th>
-								<td> <label class="fLabel">진열함 <input type="radio"
+								<td><label class="fLabel">진열함 <input type="radio"
 										class="fCheck eMarketChecker" id="product_show_state"
 										name="product_show_state" value="진열"
 										<c:if test="${product.p_show_state eq '진열'}" >checked=checked</c:if> />
@@ -409,18 +410,18 @@
 
 
 			<div id="footer" align="right">
-				<input type="submit" value="상품수정"> &nbsp;&nbsp;&nbsp; 
-				
+				<input type="submit" value="상품수정"> &nbsp;&nbsp;&nbsp;
 
-<button type="button" onclick="location.href='admin_productDelete.do?key=${product.p_id }'"
-									>삭제</button>
-<!-- 				</button> -->
-				
-<!-- 				<a -->
-<!-- 					href="admin_productUpdate.do" class="btnSubmit" -->
-<!-- 					id="ec-product-register-submit">상품삭제</a> -->
 
-<!-- admin_productDelete.do -->
+				<button type="button"
+					onclick="location.href='admin_productDelete.do?key=${product.p_id }'">삭제</button>
+				<!-- 				</button> -->
+
+				<!-- 				<a -->
+				<!-- 					href="admin_productUpdate.do" class="btnSubmit" -->
+				<!-- 					id="ec-product-register-submit">상품삭제</a> -->
+
+				<!-- admin_productDelete.do -->
 			</div>
 
 
@@ -434,7 +435,8 @@
 	</form>
 
 
-	<script type="text/javascript" src="//neomart.cafe24.com/admin/js/jslb_ajax.js" charset="utf-8"></script>
+	<script type="text/javascript"
+		src="//neomart.cafe24.com/admin/js/jslb_ajax.js" charset="utf-8"></script>
 	<script type="text/javascript"
 		src="//neomart.cafe24.com/ind-script/i18n.php?lang=ko_KR&domain=admin&v=1909251080"
 		charset="utf-8"></script>
@@ -455,6 +457,9 @@
 </body>
 
 <script type="text/javascript">
+	if ('${message}' != '') {
+		alert('${message}');
+	}
 	var d = document.getElementById("amountShow");
 	d.style.display = "none";
 </script>

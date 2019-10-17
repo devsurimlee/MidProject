@@ -51,9 +51,11 @@ public class AdminProductDeleteCommand implements Command{
 		
 		
 		int result = productDao.delete(productDto);
-		if(result >0) {
-			path = "admin_productListForm.do";
+		path = "admin_productListForm.do";
+		if(result <=0) {
+			request.setAttribute("message", "주문이 있는 상품이므로 삭제할수 없습니다.");
 		}
+		
 		
 		return path;
 	}

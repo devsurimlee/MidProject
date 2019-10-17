@@ -56,11 +56,10 @@
 			</div>
 
 		</div>
-		<button onclick="addAmount()"></button>
+		<button onclick="addAmount()">재고수정</button>
 		
 	</form>
 	<script type="text/javascript">
-	
 	function addAmount() {
 		$('#frm').submit();
 		$.ajax({
