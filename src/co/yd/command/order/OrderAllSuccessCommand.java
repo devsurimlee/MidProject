@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
 
 import co.yd.command.Command;
 import co.yd.dao.CartDAO;
@@ -35,7 +34,7 @@ public class OrderAllSuccessCommand implements Command{
 		dto.setOrderAddress1(request.getParameter("orderAddress"));
 		dto.setOrderPostCode(request.getParameter("orderPostCode"));
 		dto.setOrderPhoneNum(request.getParameter("orderPhoneNum"));
-		dto.setOrderTotalPrice(Integer.parseInt(request.getParameter("orderTotalPrice")));
+		dto.setOrderTotalPrice(request.getParameter("orderTotalPrice"));
 		dto.setOrderAddress2(request.getParameter("orderDetailAddress"));
 		dao.insertOrders(dto);
 		request.setAttribute("orders", dto);

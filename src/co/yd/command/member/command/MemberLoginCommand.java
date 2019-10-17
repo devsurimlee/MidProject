@@ -17,8 +17,6 @@ public class MemberLoginCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 전달된 id, password를 받아서 DB에서 확인해서 인증
-		System.out.println("command in");
-		
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
 		MemberDTO ndto = new MemberDTO();
@@ -31,7 +29,6 @@ public class MemberLoginCommand implements Command {
 		session.setAttribute("list", ndto);
 
 		if (ndto.getgGrade() != null) {
-			System.out.println(ndto.getgGrade());
 			session.setAttribute("id", ndto.getmId()); // 세션에 아이디저장
 			session.setAttribute("grant", ndto.getgGrade());
 			session.setAttribute("name", ndto.getmName());

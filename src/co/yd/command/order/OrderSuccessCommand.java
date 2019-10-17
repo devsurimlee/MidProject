@@ -1,7 +1,6 @@
 package co.yd.command.order;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +35,7 @@ public class OrderSuccessCommand implements Command{
 		dto.setOrderAddress1(request.getParameter("orderAddress"));
 		dto.setOrderPostCode(request.getParameter("orderPostCode"));
 		dto.setOrderPhoneNum(request.getParameter("orderPhoneNum"));
-		dto.setOrderTotalPrice(Integer.parseInt(request.getParameter("orderTotalPrice")));
+		dto.setOrderTotalPrice(request.getParameter("orderTotalPrice"));
 		dto.setOrderAddress2(request.getParameter("orderDetailAddress"));
 		dao.insertOrders(dto);
 		request.setAttribute("orders", dto);

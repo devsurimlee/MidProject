@@ -10,7 +10,7 @@ public class OrderDetailDTO {
 	private String pName;
 	private String aSize;
 	private String aColor;
-	private int pPrice;
+	private String pPrice;
 	
 	public OrderDetailDTO() {
 	}
@@ -80,11 +80,11 @@ public class OrderDetailDTO {
 		this.aColor = aColor;
 	}
 
-	public int getpPrice() {
+	public String getpPrice() {
 		return pPrice;
 	}
 
-	public void setpPrice(int pPrice) {
+	public void setpPrice(String pPrice) {
 		this.pPrice = pPrice;
 	}
 }

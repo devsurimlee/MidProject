@@ -26,7 +26,6 @@
 		
 		$("#productPrice").val(sum);
 		$("#totalPrice").val(sum+2500);
-
 		
 		
 		//전체결제
@@ -264,8 +263,8 @@ padding:0 10px; /* 각 메뉴 간격 */
 		</ul>
 </c:if>
 	
+	<!-- 카트 비웠을때 아작스 처리하여 바로 비워있다고 띄워줌  -->
 	<div id="forAjax"></div>
-	
 	<c:if test="${empty OptionList }">
 		<div id="middle"><h3>카트가 비어있어요~~ 상품을 찾으러 가볼까요?</h3></div>
 	</c:if>

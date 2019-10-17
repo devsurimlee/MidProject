@@ -91,7 +91,9 @@ public class AdminOrderDAO {
 				ndto.setOrderAddress1(rs.getString("o_address1"));
 				ndto.setOrderPostCode(rs.getString("o_postcode"));
 				ndto.setOrderPhoneNum(rs.getString("o_phone"));
-				ndto.setOrderTotalPrice(rs.getInt("o_total_price"));
+				// 금액에 천단위로 콤마 넣기
+				String totalPrice = String.format("%,d", rs.getInt("o_total_price"));
+				ndto.setOrderTotalPrice(totalPrice);
 				ndto.setOrderDeliverState(rs.getString("o_deliver_state"));
 				ndto.setOrderAddress2(rs.getString("o_address2"));
 				list.add(ndto);
@@ -125,7 +127,9 @@ public class AdminOrderDAO {
 				dto.setaSize(rs.getString("amount_size"));
 				dto.setaColor(rs.getString("amount_color"));
 				dto.setOrderProductCount(rs.getInt("count(*)"));
-				dto.setpPrice(rs.getInt("가격"));
+				// 금액에 천단위로 콤마 넣기
+				String price = String.format("%,d", rs.getInt("가격"));
+				dto.setpPrice(price);
 				list.add(dto);
 			}
 		} catch (SQLException e) {

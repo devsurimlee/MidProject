@@ -11,7 +11,7 @@ public class OrderDTO {
 	private String orderAddress1;
 	private String orderPostCode;
 	private String orderPhoneNum;
-	private int orderTotalPrice;
+	private String orderTotalPrice;
 	private String orderDeliverState;
 	private String orderAddress2;
 	
@@ -82,11 +82,11 @@ public class OrderDTO {
 		this.orderPhoneNum = orderPhoneNum;
 	}
 
-	public int getOrderTotalPrice() {
+	public String getOrderTotalPrice() {
 		return orderTotalPrice;
 	}
 
-	public void setOrderTotalPrice(int orderTotalPrice) {
+	public void setOrderTotalPrice(String orderTotalPrice) {
 		this.orderTotalPrice = orderTotalPrice;
 	}
 
