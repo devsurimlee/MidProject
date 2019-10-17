@@ -20,12 +20,7 @@
 					<thead>
 						<tr>
 							<th>유저아이디</th>
-							<th>유저네임</th>
-							<th>이메일</th>
-							<th>폰번호</th>
-							<th>주소</th>
-							<th>주소2</th>
-							<th>등급</th>
+							
 							<!-- 							<th>재고상태</th> -->
 						</tr>
 					</thead>
@@ -40,12 +35,7 @@
 						<c:forEach items="${list }" var="dto">
 							<tr>
 								<td>${dto.mId}</td>
-								<td>${dto.mName }</td>
-								<td>${dto.mEmail }</td>
-								<td>${dto.mPhone }</td>
-								<td>${dto.mAddress1 }</td>
-								<td>${dto.mAddress2 }</td>
-								<td>${dto.gGrade }</td>
+								
 
 							</tr>
 						</c:forEach>

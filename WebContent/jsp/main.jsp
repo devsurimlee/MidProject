@@ -45,30 +45,21 @@ $(document).ready(function(){
 				<img class="d-block w-100" alt="Carousel Bootstrap First"
 					src="image/main_sample1.jpg">
 				<div class="carousel-caption">
-					<h4>First Thumbnail label</h4>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+
 				</div>
 			</div>
 			<div class="carousel-item">
 				<img class="d-block w-100" alt="Carousel Bootstrap Second"
 					src="image/main_sample2.jpg">
 				<div class="carousel-caption">
-					<h4>Second Thumbnail label</h4>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+
 				</div>
 			</div>
 			<div class="carousel-item">
 				<img class="d-block w-100" alt="Carousel Bootstrap Third"
 					src="image/main_sample3.jpg">
 				<div class="carousel-caption">
-					<h4>Third Thumbnail label</h4>
-					<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-						Donec id elit non mi porta gravida at eget metus. Nullam id dolor
-						id nibh ultricies vehicula ut id elit.</p>
+
 				</div>
 			</div>
 		</div>
