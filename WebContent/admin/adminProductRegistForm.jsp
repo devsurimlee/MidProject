@@ -77,7 +77,10 @@
 						<tr>
 							<th>상세설명</th>
 							<td colspan="2"><textarea class="form-control" id="p_detail"
-									name="p_detail"> </textarea></td>
+									name="p_detail"> </textarea>
+									<br/>
+								"엔터키를 쓰지마세요"
+									</td>
 						</tr>
 						<tr>
 							<th>카테고리</th>

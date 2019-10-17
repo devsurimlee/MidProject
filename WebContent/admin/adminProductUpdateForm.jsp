@@ -88,9 +88,11 @@
 							<tr>
 								<th scope="row">상품 상세설명</th>
 								<td colspan="2"><textarea rows="3" cols="70"
-										id="product_detail" name="product_detail">
+										id="product_detail" name="product_detail" >
 								${product.p_detail }
-								</textarea></td>
+								</textarea><br/>
+								"엔터키를 쓰지마세요"
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">상품 카테고리</th>
