@@ -63,4 +63,10 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+if('${message}' != ''){
+	alert('${message}');
+}
+
+</script>
 </html>

@@ -27,13 +27,15 @@ public class AdminProductUpdateCommand implements Command {
 		String path = "";
 
 		boolean productResult = productProcess(productDto); // 상품등록
+		System.out.println(productResult);
 		boolean addAmountResult = false;
 		if (productResult) {
+			path = "admin_productListForm.do";
 			amountList = buildAmountDtoList(request, response);
 			addAmountDtoList = amountProcess(amountList);
 			if (addAmountDtoList.equals(null)) {
 				System.out.println("재고 변경사항 없음");
-				path = "admin_productListForm.do";
+
 			} else {
 				addAmountResult = addAmountProcess(addAmountDtoList);
 				if (addAmountResult) {
@@ -41,8 +43,6 @@ public class AdminProductUpdateCommand implements Command {
 				}
 			}
 
-		} else {
-			path = "";
 		}
 
 		return path;
@@ -62,8 +62,10 @@ public class AdminProductUpdateCommand implements Command {
 	private boolean productProcess(ProductDTO productDto) {
 		boolean result = false;
 		ProductDAO productDao = new ProductDAO();
-		productDao.update(productDto);
-		
+
+		if (productDao.update(productDto) > 0) {
+			result = true;
+		}
 
 		return result;
 	}

@@ -16,7 +16,6 @@ public class AdminAddAmountCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		String path = "";
 		AmountDAO amountDao = new AmountDAO();
 		String[] amount_idString= request.getParameterValues("amount_id");
@@ -37,7 +36,6 @@ public class AdminAddAmountCommand implements Command{
 			}
 			count++;
 		}
-		
 		AddAmountDAO addAmountDao = new AddAmountDAO();
 		int[] addResult = new int[amount_id.length ];
 		count = 0;
@@ -50,10 +48,10 @@ public class AdminAddAmountCommand implements Command{
 		
 		for(int result1  :addResult) {
 			if(result1 >0) {
-				path = "admin/adminAmountListForm.do";
+				path = "adminAmountListForm.do";
 			}
 			else {
-				path = "";
+				path = "adminAmountListForm.do";
 			}
 		}
 		
