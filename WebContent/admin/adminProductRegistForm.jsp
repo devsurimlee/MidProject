@@ -94,15 +94,7 @@
 							</td>
 						</tr>
 
-						<tr>
-							<th>썸네일</th>
-							<td colspan="2"><input type="file" name="thumbnail"
-								id="uploadFile1" class="form-control"> <input
-								type="file" name="clothesDetail1" id="uploadFile2"
-								class="form-control"> <input type="file"
-								name="clothesDetail2" id="uploadFile3" class="form-control">
-								<div id="sumnail"></div>
-						</tr>
+
 					</table>
 
 				</div>
@@ -168,10 +160,13 @@
 									<tr>
 										<td><label>색상</label></td>
 										<td><select id="p_color" name="p_color">
-												<option value="white" selected>white</option>
-												<option value="red">red</option>
-												<option value="blue">blue</option>
 												<option value="black">black</option>
+												<option value="gray" selected>gray</option>
+												<option value="beige">beige</option>
+												<option value="blue">blue</option>
+												<option value="khaki">khaki</option>
+												<option value="Navy">Navy</option>
+												
 												<option value="white,red">white,red</option>
 												<option value="white,blue">white,blue</option>
 												<option value="white,black">white,black</option>
@@ -221,8 +216,34 @@
 
 									</tr>
 
-								</table></td>
+								</table>
+						<tr>
+							<th>썸네일</th>
+							<td colspan="2"><input type="file" name="uploadFile1"
+								id="uploadFile1" class="form-control"> <br />
+								<div id="sumnail"></div>
 						</tr>
+						<tr>
+							<th>상품이미지</th>
+							<td colspan="2"><br /> <input type="file"
+								name="clothesDetail1" id="uploadFile2" class="form-control">
+								썸네일과 상세사진 최소 1장 이상 필요합니다 <br /> <input type="file"
+								name="clothesDetail2" id="uploadFile3" class="form-control">
+								<input type="file" name="clothesDetail3" id="uploadFile4"
+								class="form-control"><input type="file"
+								name="clothesDetail4" id="uploadFile5" class="form-control"><input
+								type="file" name="clothesDetail5" id="uploadFile6"
+								class="form-control"><input type="file"
+								name="clothesDetail6" id="uploadFile7" class="form-control"><input
+								type="file" name="clothesDetail8" id="uploadFile9"
+								class="form-control"> <input type="file"
+								name="clothesDetail9" id="uploadFile10" class="form-control">
+								<input type="file" name="clothesDetail10" id="uploadFile11"
+								class="form-control"> <br /> <br />
+								<div id="clothesDetails"></div></td>
+						</tr>
+
+
 						<tr>
 
 
