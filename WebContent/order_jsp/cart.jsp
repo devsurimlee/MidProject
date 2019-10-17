@@ -26,7 +26,6 @@
 		
 		$("#productPrice").val(sum);
 		$("#totalPrice").val(sum+2500);
-
 		
 		
 		//전체결제
