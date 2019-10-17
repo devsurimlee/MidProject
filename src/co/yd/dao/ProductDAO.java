@@ -94,6 +94,7 @@ public class ProductDAO {
 			conn = JDBCutil.connect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getP_id());
+			System.out.println("product_id" +dto.getP_id());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

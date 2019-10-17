@@ -409,11 +409,18 @@
 
 
 			<div id="footer" align="right">
-				<input type="submit" value="상품수정"> &nbsp;&nbsp;&nbsp; <a
-					href="admin_productUpdate.do" class="btnSubmit"
-					id="ec-product-register-submit">상품삭제</a>
+				<input type="submit" value="상품수정"> &nbsp;&nbsp;&nbsp; 
+				
 
+<button type="button" onclick="location.href='admin_productDelete.do?key=${product.p_id }'"
+									>삭제</button>
+<!-- 				</button> -->
+				
+<!-- 				<a -->
+<!-- 					href="admin_productUpdate.do" class="btnSubmit" -->
+<!-- 					id="ec-product-register-submit">상품삭제</a> -->
 
+<!-- admin_productDelete.do -->
 			</div>
 
 

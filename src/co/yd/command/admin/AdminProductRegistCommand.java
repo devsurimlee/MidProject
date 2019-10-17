@@ -138,10 +138,12 @@ public class AdminProductRegistCommand implements Command {
 			String savePath = "image";
 			int uploadFileSizeLimit = 10 * 1024 * 1024;
 			String encType = "UTF-8";
+			
 //			PrintWriter out = response.getWriter();
 
 			ServletContext context = request.getServletContext();
 			uploadFilePath = context.getRealPath(savePath);
+			
 //			System.out.println(uploadFilePath);
 			multi = new MultipartRequest(request,
 

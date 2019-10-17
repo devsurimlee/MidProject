@@ -149,6 +149,47 @@ public class AmountDAO {
 		}
 		return result;
 	}
+	
+	public int delete(ProductDTO productDto) {
+		int success = 0;
+		try {
+			conn = JDBCutil.connect(); // 커넥트
+			ArrayList<AmountDTO> list = new ArrayList<AmountDTO>();
+			
+			String sql = "select amount_id from amount where p_id=?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productDto.getP_id());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AmountDTO amountDto = new AmountDTO();
+				amountDto.setAmount_id(rs.getInt("amount_id"));
+				list.add(amountDto);
+			}
+			success=delete(list);
+//			
+//			
+//			int beforeCount = rs.getInt(1);
+//
+//			sql = "update amount set AMOUNT_COUNT = ? " + "where AMOUNT_ID = ?";
+//
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, amount_count);
+//			pstmt.setInt(2, amount_id);
+//			success = pstmt.executeUpdate();
+//			if (success > 0) {
+//				returnValue = amount_count - beforeCount;
+//			} else {
+//				returnValue = 2147438647;
+//			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		return success;
+	}
 
 	public int delete(ArrayList<AmountDTO> list) {
 		int result = 0;

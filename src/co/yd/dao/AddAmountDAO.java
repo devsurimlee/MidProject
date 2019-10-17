@@ -23,8 +23,6 @@ public class AddAmountDAO {
 		String sql = "insert into add_amount(AMOUNT_ID,AA_DATE,AA_COUNT) " + "values(?,sysdate,?)";
 		int result = 0;
 		try {
-			System.out.println(dto.getAmount_id());
-			System.out.println(dto.getAa_Count());
 			conn = JDBCutil.connect(); // 커넥트
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getAmount_id());
@@ -46,6 +44,23 @@ public class AddAmountDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getAmount_id());
 			pstmt.setInt(2, -(dto.getAa_Count()));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCutil.disconnect(pstmt, conn); // 클로즈
+		}
+		return result;
+	}
+	
+	public int Delete(AddAmountDTO dto) {
+		int result = 0;
+		String sql = "delete from add_amount where AMOUNT_ID = ?";
+		try {
+
+			conn = JDBCutil.connect(); // 커넥트
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getAmount_id());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
