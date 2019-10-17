@@ -15,6 +15,7 @@ public class AdminNoticeDeleteCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NoticeBoardDAO dao = new NoticeBoardDAO();
 		int nbId = Integer.parseInt(request.getParameter("id"));
+		System.out.println(nbId);
 		int r = dao.noticeDelete(nbId);
 		if(r != 0) {
 			request.setAttribute("deleteMessage", "공지글이 삭제되었습니다.");
