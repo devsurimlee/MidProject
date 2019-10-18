@@ -417,7 +417,7 @@
 	</div>
 	
 	
-	<!-- 네이버페이 JS -->
+<!-- 네이버페이 JS -->
 <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 <script>
     var oPay = Naver.Pay.create({

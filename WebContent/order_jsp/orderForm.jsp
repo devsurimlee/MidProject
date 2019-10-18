@@ -321,7 +321,7 @@
 								size="50"></td>
 						</tr>
 						<tr>
-							<td><input type="hidden" id="orderTotalPrice" name="orderTotalPrice" value="${ofDTO.productPrice }"></td>
+							<td><input type="hidden" id="orderTotalPrice" name="orderTotalPrice" value="${ofDTO.productPrice + 2500}"></td>
 							<td><input type="hidden" id="productId" name="productId" value="${key }"></td>
 							<td><input type="hidden" id="amountId" name="amountId" value="${ofDTO.productId }"> </td>
 							<td><input type="hidden" id="orderProductCount" name="orderProductCount" value="${ofDTO.productCount }"></td>
@@ -379,13 +379,14 @@
 							</div>
 							<hr>
 						</div>
-						
+						<!-- 체크아웃 버튼 -->
 						<form id="checkOutForm" name="checkOutForm" method="post">
-						<button type="button" class="btn btn-primary btn-lg btn-block"
-							onclick="checkOrderForm()">Checkout</button>
+							<button type="button" class="btn btn-primary btn-lg btn-block"
+								onclick="checkOrderForm()" style="width: 226px" >Checkout</button>
 						</form>
-					</div>
-
+					</div><br>
+						<!-- 네이버페이버튼 JS밑에있음 -->
+						<input type="image" id="naverPayBtn" value="네이버페이 결제 버튼" src="image/etc/naverPayBtn.jpg">
 				</div>
 				<!--REVIEW ORDER END-->
 			</div>
@@ -393,6 +394,79 @@
 
 		</div>
 	</div>
+	
+	
+		
+<!-- 네이버페이 JS -->
+<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+<script>
+    var oPay = Naver.Pay.create({
+          "mode" : "production", // development or production
+          "clientId": "u86j4ripEt8LRfPGzQ8", // clientId
+          "openType": "layer", //layer, popup, page; 생략시 디폴트 layer
+          "onAuthorize" : function(oData) {
+
+        		    if(oData.resultCode === "Success") {
+        		      // 네이버페이 결제 승인 요청 처리
+        		      orderForm.submit();
+        		    } else {
+        		      console.log("결제취소");
+        		    }
+          }
+    });
+
+    //직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요
+    var elNaverPayBtn = document.getElementById("naverPayBtn");
+
+    elNaverPayBtn.addEventListener("click", function() {
+		var userForm = document.userForm;
+		var orderForm = document.orderForm;
+		var checkOutForm = document.checkOutForm;
+		
+		if (userForm.userName.value == "") {
+			alert("주문자 이름을 입력하세요.");
+			userForm.userName.focus();
+			return false;
+		}
+		
+		if (userForm.userPhoneNum.value == "") {
+			alert("주문자 휴대폰 번호를 입력하세요.");
+			userForm.userPhoneNum.focus();
+			return false;
+		}
+		
+		
+		if (orderForm.orderName.value == "") {
+			alert("수신자 이름을 입력하세요.");
+			orderForm.orderName.focus();
+			return false;
+		}
+
+		if (orderForm.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			orderForm.orderPostCode.focus();
+			return false;
+		}
+		
+		if (orderForm.orderPostCode.value == "") {
+			alert("우편번호를 입력하세요.");
+			orderForm.orderPostCode.focus();
+			return false;
+			
+		} else {
+	         oPay.open({
+	          "merchantUserKey": "test", //가맹점 사용자 식별키 *merchantUserKey(가맹점의 사용자키) 파라미터는 개인 아이디와 같은 개인정보 데이터를 제외한 사용자 식별키값으로 전달해 주시면 됩니다.
+	          "merchantPayKey": "1", //가맹점 주문 번호 *가맹점에서 사용중인 주문번호 또는 결제번호를 전달해 주시면 됩니다.
+	          "productName": $('#productName').val(),
+	          "totalPayAmount": $('#orderTotalPrice').val(),
+	          "taxScopeAmount": $('#orderTotalPrice').val(),
+	          "taxExScopeAmount": "0",
+	          "returnUrl": "basic_orderSuccess.do" //결제완료시 띄울 페이지
+	        });
+	    }
+    }); //
+
+</script>
 
 
 
