@@ -474,10 +474,12 @@
 			return false;
 			
 		} else {
+			//카트에 담긴 물품의 갯수
+			var count = $('[name=productName]').length
 	         oPay.open({
 	          "merchantUserKey": "test", //가맹점 사용자 식별키 *merchantUserKey(가맹점의 사용자키) 파라미터는 개인 아이디와 같은 개인정보 데이터를 제외한 사용자 식별키값으로 전달해 주시면 됩니다.
 	          "merchantPayKey": "1", //가맹점 주문 번호 *가맹점에서 사용중인 주문번호 또는 결제번호를 전달해 주시면 됩니다.
-	          "productName": $('[name=productName]')[0].value,
+	          "productName": $('[name=productName]')[0].value + " 외 " + (count-1) + " 물품" ,
 	          "totalPayAmount": $('#totalScore').val(),
 	          "taxScopeAmount": $('#totalScore').val(),
 	          "taxExScopeAmount": "0",
