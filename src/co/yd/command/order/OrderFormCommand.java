@@ -13,6 +13,7 @@ import co.yd.command.Command;
 import co.yd.dao.OrderDAO;
 import co.yd.dto.MemberDTO;
 import co.yd.dto.OrderFormDTO;
+import net.sf.json.JSONArray;
 
 public class OrderFormCommand implements Command{
 
@@ -41,7 +42,6 @@ public class OrderFormCommand implements Command{
 		} 
 		
 		request.setAttribute("ofDTO", ofDTO);
-		
 		
 		return "order_jsp/orderForm.jsp";
 		

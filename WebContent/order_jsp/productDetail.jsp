@@ -95,6 +95,12 @@ $(document).ready (function()
 	
 	//카트
 	var cart = $("#cart");
+	if($('#id').val().length == "") {
+		cart.click( function() { 
+			alert("로그인 화면으로 이동합니다");
+			window.location.href = "basic_loginForm.do";
+		});
+	} else {
 		cart.click( function() {
 			if(! $("[name=colorGroup]:checked").val()) {
 				alert("색상을 선택해주세요");
@@ -113,6 +119,33 @@ $(document).ready (function()
 			//취소하면 페이지 그대로
 		}
 	});
+		
+		
+	}//
+		
+/* 		//카트
+		var cart = $("#cart");
+			cart.click( function() {
+				if(! $("[name=colorGroup]:checked").val()) {
+					alert("색상을 선택해주세요");
+					return false;
+				}  if(! $("[name=sizeGroup]:checked").val()) {
+					alert("사이즈를 선택해주세요");
+					return false;
+				}
+			$("#selectOption").attr("action", "basic_cartInsert.do");
+			selectOption.submit();
+			
+			var cartResurt = confirm("상품이 카트에 담겼습니다. 카트로 이동하시겠습니까?");
+			if(cartResurt == true) {
+				window.location.replace("basic_cartView.do");
+			} else {
+				//취소하면 페이지 그대로
+			}
+		}); */
+		
+		
+		
 	
 	//위시리스트
 	var wishList = $("#wishList");
@@ -166,11 +199,11 @@ $(document).ready (function()
 			<td><input type="text" id="id" name="id" value="${id }"></td>
 			<td><input type="text" id="key" name="key" value="${key }"></td>
 			<td><input type="text" id="productId" name="productId"></td>
-			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td> <!-- 됨 -->
+			<td><input type="text" id="productName" name="productName" value="${dto.p_name }"></td> 
 			<td><input type="text" id="productPrice" name="productPrice"></td>
 			<td><input type="text" id="productColor" name="productColor"></td>
 			<td><input type="text" id="productSize" name="productSize"></td>
-			<td><input type="text" id="productCount" name="productCount" value="1"></td> <!-- 됨 -->
+			<td><input type="text" id="productCount" name="productCount" value="1"></td> 
 			<td><input type="text" id="orderProductCount" name="orderProductCount"></td>
 			<td><input type="text" id="amountId" name="amountId"></td>
 		</tr>
@@ -280,9 +313,6 @@ $(document).ready (function()
 										<td colspan="2"><button type="button" id="buyNow" name="buyNow"
 												class="btn btn-md btn-primary btn-block">BUY NOW</button></td>
 									</tr>
-<!-- 									<tr>
-										<td colspan="2"><input type="image" id="naverPayBtn" value="네이버페이 결제 버튼" src="image/etc/naverPayBtn.jpg"></td>
-									</tr> -->
 								</tbody>
 							</table>
 							</div>
@@ -298,7 +328,7 @@ $(document).ready (function()
 						<c:forEach items="${amount }" var="amount">
 							<img src="D:\dev\apache-tomcat-8.5.45\wtpwebapps\MidProject\image\clothesDetail\amount${amount.amount_id }.jpg" /><br>
 						</c:forEach>
-						<img src="D:\dev\apache-tomcat-8.5.45\wtpwebapps\MidProject\image\etc\${dto.p_category }.jpg" />
+						<img src="D:/dev/apache-tomcat-8.5.45/wtpwebapps/MidProject/image/etc/${dto.p_category }.jpg" />
 
 					</div>
 					<!-- 상세페이지 끝 -->
@@ -306,33 +336,6 @@ $(document).ready (function()
 			</div>
 		</div>
 	</div>
-
-<!-- 네이버페이 테스트용 -->
-<!-- <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
-<script>
-    var oPay = Naver.Pay.create({
-          "mode" : "production", // development or production
-          "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
-    });
-
-    //직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요
-    var elNaverPayBtn = document.getElementById("naverPayBtn");
-
-    elNaverPayBtn.addEventListener("click", function() {
-        oPay.open({
-          "merchantUserKey": "test", //가맹점 사용자 식별키 *merchantUserKey(가맹점의 사용자키) 파라미터는 개인 아이디와 같은 개인정보 데이터를 제외한 사용자 식별키값으로 전달해 주시면 됩니다.
-          "merchantPayKey": "1", //가맹점 주문 번호 *가맹점에서 사용중인 주문번호 또는 결제번호를 전달해 주시면 됩니다.
-          "productName": $("#productName").attr("value"),
-          "totalPayAmount": "25000",
-          "taxScopeAmount": "25000",
-          "taxExScopeAmount": "0",
-          "returnUrl": "basic_index.do" //결제완료시 띄울 페이지
-        });
-    });
-
-</script> -->
-<!-- 네이버페이 테스트용 끝 -->
-
 
 </body>
 </html>
