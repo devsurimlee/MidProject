@@ -6,6 +6,9 @@
 <body>
 
 <input type="image" id="naverPayBtn" value="네이버페이 결제 버튼" src="image/etc/naverPayBtn.jpg">
+<input type="image" id="aaa" value="사진" src="D:\dev\apache-tomcat-8.5.45\wtpwebapps\MidProject\image\thumbnail\product3.jpg">
+
+
 <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
 <script>
     var oPay = Naver.Pay.create({
@@ -26,7 +29,7 @@
           "taxExScopeAmount": "0",
           "returnUrl": "basic_index.do" //결제완료시 띄울 페이지
         });
-    }); 
+    }); //
 
 </script>
 
