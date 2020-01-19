@@ -21,13 +21,18 @@
  BootStrap4, HTML5, Javascript, Jquery, Ajax, CSS
  #### Database
  Oracle Database Express Edition 11g Release 2
+ 
 #### 사용 API
-● Kakao 우편번호서비스 (http://postcode.map.daum.net/guide)  
-● SB ADMIN2 (https://blackrockdigital.github.io/startbootstrap-sb-admin-2/)  
-● Naver Pay (https://developer.pay.naver.com/)  
-● DataTables (https://datatables.net/reference/api/)  
+Kakao 우편번호서비스 (http://postcode.map.daum.net/guide)  
+SB ADMIN2 (https://blackrockdigital.github.io/startbootstrap-sb-admin-2/)  
+Naver Pay (https://developer.pay.naver.com/)  
+DataTables (https://datatables.net/reference/api/)  
 
-#### 메인화면
+### 프레젠테이션 링크
+https://docs.google.com/presentation/d/1alMVhCm7PQhJJEJATg8-tR5Cocl3dQU4XWdk8v3rjNw/edit?usp=sharing
+
+### 메인화면
 <div>
 <img width="80%" src="https://user-images.githubusercontent.com/53467957/72683929-76b7bf80-3b1f-11ea-9a40-e9218bb377a2.png">
 </div>
+
