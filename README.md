@@ -29,7 +29,7 @@ Naver Pay (https://developer.pay.naver.com/)
 DataTables (https://datatables.net/reference/api/)  
 
 ### 프레젠테이션 링크
-https://docs.google.com/presentation/d/1alMVhCm7PQhJJEJATg8-tR5Cocl3dQU4XWdk8v3rjNw/edit?usp=sharing
+https://docs.google.com/presentation/d/1oSCKJMRwfvkTfi9N4w-CDFwfn18ZFe0mi3KDEQ0yuDA/edit?usp=sharing
 
 ### 메인화면
 <div>
